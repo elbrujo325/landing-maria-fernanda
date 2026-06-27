@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tu página web — Propuesta</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap');
+
+  :root{
+    --cream:#F6F1E9;
+    --ink:#2C2A26;
+    --sage:#6F8B73;
+    --sage-deep:#4F6A53;
+    --terracotta:#C5774F;
+    --line:#E2D9C7;
+    --muted:#5b5648;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+  }
+  .wrap{max-width:800px;margin:0 auto;padding:64px 28px 100px;}
+  h1,h2,h3{font-family:'Fraunces',serif;font-weight:600;margin:0;}
+  .eyebrow{
+    font-size:13px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--sage-deep);margin-bottom:10px;font-weight:600;
+  }
+  header{margin-bottom:56px;}
+  header h1{font-size:36px;line-height:1.15;}
+  header p{font-size:16.5px;color:var(--muted);margin-top:14px;max-width:540px;}
+
+  section{margin-bottom:56px;}
+  section h2{font-size:24px;margin-bottom:8px;}
+  section > p.lead{color:var(--muted);font-size:15px;margin:14px 0 26px;max-width:560px;}
+  .divider{width:36px;height:3px;background:var(--terracotta);border-radius:3px;}
+
+  /* Browser mockup */
+  .mock{
+    background:#fff;border:1px solid var(--line);border-radius:12px;
+    overflow:hidden;margin:18px 0 0;
+  }
+  .mock .bar{
+    background:#EFE9DB;padding:9px 12px;display:flex;gap:6px;align-items:center;
+    border-bottom:1px solid var(--line);
+  }
+  .mock .dot{width:9px;height:9px;border-radius:50%;background:#D8CFBC;}
+  .mock .url{
+    margin-left:8px;font-size:11.5px;color:#9c9483;background:#fff;
+    padding:3px 10px;border-radius:5px;flex:1;
+  }
+  .mock .body{padding:18px 16px;}
+  .mock .skel{background:#F1EBDF;border-radius:6px;}
+
+  .cards{display:grid;gap:16px;}
+  .cards.two{grid-template-columns:1fr 1fr;}
+  .cards.three{grid-template-columns:1fr 1fr 1fr;}
+  @media(max-width:680px){.cards.two,.cards.three{grid-template-columns:1fr;}}
+
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 18px;}
+  .card.recommended{border-color:var(--sage);box-shadow:0 0 0 1px var(--sage) inset;}
+  .badge{
+    display:inline-block;background:var(--sage);color:#fff;font-size:11px;font-weight:600;
+    letter-spacing:.03em;padding:3px 9px;border-radius:100px;margin-bottom:10px;
+  }
+  .icon{width:30px;height:30px;margin-bottom:12px;}
+  .card h3{font-size:16px;margin-bottom:2px;}
+  .card .toolname{font-size:12.5px;color:var(--sage-deep);font-weight:600;margin-bottom:8px;}
+  .card p{font-size:13.5px;color:var(--muted);margin:0 0 6px;}
+  .priceline{
+    font-size:13px;font-weight:600;color:var(--ink);margin-top:10px;
+    border-top:1px dashed var(--line);padding-top:10px;
+  }
+  .priceline span{color:var(--terracotta);}
+  .condition{font-size:12px;color:#8a8473;margin-top:4px;}
+
+  .note{
+    background:#FBF6EC;border-left:3px solid var(--terracotta);padding:14px 18px;
+    border-radius:0 8px 8px 0;font-size:14px;color:var(--muted);margin-top:18px;
+  }
+
+  .howitworks{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px 22px;}
+  .howitworks ol{margin:0;padding-left:20px;}
+  .howitworks li{margin-bottom:9px;font-size:14.5px;color:#3a3730;}
+  .howitworks li b{color:var(--ink);}
+
+  table.domains{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line);}
+  table.domains th,table.domains td{padding:12px 14px;text-align:left;font-size:13.5px;}
+  table.domains th{background:#F1EBDF;font-weight:600;color:var(--ink);}
+  table.domains td{border-top:1px solid var(--line);color:var(--muted);}
+  table.domains tr.best td:first-child{color:var(--sage-deep);font-weight:600;}
+
+  footer{border-top:1px solid var(--line);padding-top:22px;font-size:13px;color:#8a8473;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">Propuesta de página web</div>
+    <h1>Tu espacio digital,<br>sin complicarte con lo técnico</h1>
+    <p>Tu página va a verse como una sola pieza. Por dentro, usa herramientas ya probadas por miles de profesionales para las partes más delicadas: cobrar y agendar. Nadie construye desde cero algo que ya funciona bien.</p>
+  </header>
+
+  <section>
+    <h2>Cómo funciona, en simple</h2>
+    <div class="divider"></div>
+    <div class="howitworks" style="margin-top:18px;">
+      <ol>
+        <li><b>Tu página:</b> diseño, textos y fotos — lo construyo yo, a tu estilo.</li>
+        <li><b>Agendar una cita:</b> lo maneja una herramienta especializada en reservas, conectada a tu calendario.</li>
+        <li><b>Comprar un ebook:</b> lo maneja una plataforma de pagos, que cobra (y en algunos casos entrega el archivo) automáticamente.</li>
+      </ol>
+    </div>
+    <div class="mock">
+      <div class="bar"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="url">mariafernandaaran.com</div></div>
+      <div class="body">
+        <div class="skel" style="height:14px;width:55%;margin-bottom:10px;"></div>
+        <div class="skel" style="height:8px;width:80%;margin-bottom:6px;"></div>
+        <div class="skel" style="height:8px;width:65%;margin-bottom:16px;"></div>
+        <div style="display:flex;gap:10px;">
+          <div class="skel" style="height:30px;width:120px;background:var(--sage);"></div>
+          <div class="skel" style="height:30px;width:120px;border:1px solid var(--sage);background:#fff;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Tu dominio (la dirección de tu web)</h2>
+    <div class="divider"></div>
+    <p class="lead">Esto se registra a <b>tu nombre</b>, con tu correo y tu tarjeta — así es 100% tuyo, sin depender de mí si algún día cambias de proveedor.</p>
+    <table class="domains">
+      <tr><th>Extensión</th><th>Costo aproximado / año</th><th>Cuándo conviene</th></tr>
+      <tr class="best"><td>.com</td><td>S/ 50 – 80</td><td>Recomendado — el más reconocido y más barato</td></tr>
+      <tr><td>.pe</td><td>S/ 110 – 150</td><td>Si quieres reforzar identidad peruana, o tu .com ya está ocupado</td></tr>
+      <tr><td>.com.pe</td><td>S/ 80 – 170</td><td>Opción intermedia, poco usada</td></tr>
+    </table>
+    <div class="note">Sugerencia: <b>mariafernandaaran.com</b> o algo cercano a tu nombre profesional. Lo registramos juntos en la reunión o tú lo haces después con mi guía — toma 10 minutos.</div>
+  </section>
+
+  <section>
+    <h2>Cómo quieres que agenden contigo</h2>
+    <div class="divider"></div>
+    <p class="lead">Dos formas de recibir reservas. Puedes empezar con una y cambiar después sin perder nada.</p>
+    <div class="cards two">
+
+      <div class="card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="var(--sage-deep)" stroke-width="1.6"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        <div class="toolname">WhatsApp Business</div>
+        <h3>Agenda manual</h3>
+        <p>Un botón en tu web abre un chat contigo. Coordinas el horario a mano, mensaje por mensaje.</p>
+        <div class="priceline">Costo: <span>S/ 0</span></div>
+        <div class="condition">Sin configuración. Más tiempo tuyo cada día, sin recordatorios automáticos.</div>
+      </div>
+
+      <div class="card recommended">
+        <span class="badge">Recomendado</span>
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="var(--sage-deep)" stroke-width="1.6"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+        <div class="toolname">Cal.com (plan gratuito)</div>
+        <h3>Agenda automática</h3>
+        <p>El visitante ve tus horarios libres y reserva solo. Se bloquea en tu calendario y llegan recordatorios automáticos a los dos.</p>
+        <div class="priceline">Costo: <span>S/ 0</span> en plan básico</div>
+        <div class="condition">Condición: requiere conectar tu cuenta de Google Calendar. Plan gratuito sin límite de citas para 1 persona.</div>
+      </div>
+
+    </div>
+    <div class="mock">
+      <div class="bar"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="url">cal.com/maria-fernanda</div></div>
+      <div class="body">
+        <div class="skel" style="height:10px;width:40%;margin-bottom:14px;"></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <div class="skel" style="height:26px;width:64px;"></div>
+          <div class="skel" style="height:26px;width:64px;background:var(--sage);"></div>
+          <div class="skel" style="height:26px;width:64px;"></div>
+          <div class="skel" style="height:26px;width:64px;"></div>
+        </div>
+      </div>
+    </div>
+    <div class="note">Sugerencia: empieza con Cal.com como opción principal, y deja el botón de WhatsApp visible para quien prefiera escribirte antes de reservar.</div>
+  </section>
+
+  <section>
+    <h2>Cómo quieres vender tus ebooks</h2>
+    <div class="divider"></div>
+    <p class="lead">Tres formas de cobrar. Se diferencian en cuánta comisión se quedan y cuánto trabajo manual te toca a ti después del pago.</p>
+    <div class="cards three">
+
+      <div class="card recommended">
+        <span class="badge">Recomendado para empezar</span>
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="var(--sage-deep)" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+        <div class="toolname">Gumroad</div>
+        <h3>Plataforma de ebooks</h3>
+        <p>Subes el PDF una vez. Al pagar, el cliente recibe el link de descarga al instante por correo, sin que tú hagas nada.</p>
+        <div class="priceline">Comisión: <span>~10% por venta</span></div>
+        <div class="condition">Sin mensualidad. La plataforma genera el link de venta y el de descarga — proceso 100% automático.</div>
+      </div>
+
+      <div class="card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="var(--sage-deep)" stroke-width="1.6"><rect x="2" y="6" width="20" height="13" rx="2"/><path d="M2 10h20"/></svg>
+        <div class="toolname">Culqi</div>
+        <h3>Pasarela peruana</h3>
+        <p>Genera el link de cobro, pero no entrega el ebook solo — eso lo resolvemos aparte (envío manual o automatización a futuro).</p>
+        <div class="priceline">Comisión: <span>3.44% + S/ 0.20 + IGV</span></div>
+        <div class="condition">Sin mensualidad. Entrega del archivo: manual al inicio, hasta automatizarla.</div>
+      </div>
+
+      <div class="card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="var(--sage-deep)" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg>
+        <div class="toolname">Mercado Pago</div>
+        <h3>Pasarela internacional</h3>
+        <p>Igual que Culqi: cobra bien, pero no entrega el archivo solo. Útil si en el futuro vendes fuera de Perú.</p>
+        <div class="priceline">Comisión: <span>3.79% – 3.99% + S/ 1</span></div>
+        <div class="condition">Sin mensualidad. Acepta Yape/Plin como métodos adicionales.</div>
+      </div>
+
+    </div>
+    <div class="note">Sugerencia: empieza con Gumroad para no preocuparte de nada operativo. Si más adelante vendes en volumen y quieres ahorrar comisión, migramos a Culqi y armamos la entrega automática del PDF.</div>
+    <div class="note" style="margin-top:10px;">¿Tienes clientes fuera de Perú? Gumroad acepta pagos en dólares de cualquier país (ideal si vendes a Colombia u otros) y deposita el dinero convertido directo a tu cuenta peruana. Culqi y Mercado Pago están pensados sobre todo para pagos en soles dentro de Perú.</div>
+  </section>
+
+  <section>
+    <h2>Testimonios de tus pacientes</h2>
+    <div class="divider"></div>
+    <p class="lead">Solo se publican con tu confirmación de que cada paciente dio su consentimiento — y siempre de forma anonimizada, así:</p>
+    <div class="mock">
+      <div class="bar"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="url">Sección de testimonios</div></div>
+      <div class="body">
+        <div style="display:flex;gap:14px;flex-wrap:wrap;">
+          <div style="flex:1;min-width:200px;background:#FBF6EC;border-radius:10px;padding:14px;">
+            <div class="skel" style="height:8px;width:90%;margin-bottom:5px;"></div>
+            <div class="skel" style="height:8px;width:75%;margin-bottom:10px;"></div>
+            <div style="font-size:12.5px;color:var(--sage-deep);font-weight:600;">— M., 28 años</div>
+          </div>
+          <div style="flex:1;min-width:200px;background:#FBF6EC;border-radius:10px;padding:14px;">
+            <div class="skel" style="height:8px;width:85%;margin-bottom:5px;"></div>
+            <div class="skel" style="height:8px;width:60%;margin-bottom:10px;"></div>
+            <div style="font-size:12.5px;color:var(--sage-deep);font-weight:600;">— J., 34 años</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="note">Nunca nombre completo, ciudad, profesión específica ni detalles del caso que puedan identificar a la persona — solo inicial + rango de edad, como en el ejemplo. El dato real completo no se guarda en ningún sistema de la web.</div>
+
+    <div class="mock" style="margin-top:18px;">
+      <div class="bar"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="url">tupagina.com/panel-testimonios</div></div>
+      <div class="body">
+        <div class="skel" style="height:10px;width:35%;margin-bottom:14px;"></div>
+        <div style="display:flex;gap:8px;margin-bottom:14px;">
+          <div class="skel" style="height:24px;flex:1;"></div>
+          <div class="skel" style="height:24px;width:60px;"></div>
+          <div class="skel" style="height:24px;width:90px;background:var(--sage);"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-top:1px dashed var(--line);">
+          <div class="skel" style="height:8px;width:50%;"></div>
+          <div class="skel" style="height:20px;width:70px;background:#E3B9A4;"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-top:1px dashed var(--line);">
+          <div class="skel" style="height:8px;width:40%;"></div>
+          <div class="skel" style="height:20px;width:70px;background:#E3B9A4;"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card recommended" style="margin-top:16px;">
+      <span class="badge">Adicional al diseño base</span>
+      <h3>Panel privado de testimonios</h3>
+      <p>Entras con tu contraseña, agregas un testimonio nuevo o eliminas uno antiguo. Se actualiza solo en tu página pública — sin pedirme ayuda ni tocar código.</p>
+      <div class="priceline">Costo adicional: <span>S/ 150 – 200</span> (pago único)</div>
+      <div class="condition">No tiene límite de testimonios ni mensualidad. Solo tú puedes entrar con tu contraseña.</div>
+    </div>
+  </section>
+
+  <footer>
+    Propuesta preparada para María Fernanda Aran · Cualquier cambio de alcance fuera de lo descrito aquí se cotiza por separado.
+  </footer>
+
+</div>
+</body>
+</html>

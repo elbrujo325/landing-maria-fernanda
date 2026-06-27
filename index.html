@@ -1,0 +1,1969 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>María Fernanda Arana · Psicóloga Clínica TCC · Pensar Sentir Hacer</title>
+  <meta name="description" content="Psicóloga clínica y psicoterapeuta Cognitivo Conductual (TCC) con diplomado en Terapia de Pareja. +7 años de experiencia. Lima, Perú.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sky-light: #D6EFF5;
+      --sky-mid: #6BBDD4;
+      --sky-deep: #3A9AB5;
+      --sky-bg: #EAF6FA;
+      --lime: #E8F542;
+      --white: #FFFFFF;
+      --ink: #1A2E35;
+      --muted: #5A7A85;
+      --gradient-bg: linear-gradient(135deg, #C8E8F0 0%, #A8D8E8 50%, #B8E4D4 100%);
+      --gradient-hero: linear-gradient(135deg, #C8E8F0 0%, #B8E4D4 100%);
+      --card-bg: #EAF6FA;
+      --accent-cool: #A8C8D8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--ink);
+      line-height: 1.6;
+      background: var(--white);
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      border-radius: 50px;
+      font-weight: 500;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--sky-deep);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      background: var(--ink);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid var(--white);
+    }
+
+    .btn-secondary:hover {
+      background: var(--white);
+      color: var(--sky-deep);
+    }
+
+    .btn-white {
+      background: var(--white);
+      color: var(--sky-deep);
+    }
+
+    .btn-white:hover {
+      background: var(--sky-light);
+      transform: translateY(-2px);
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* NAVBAR */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: var(--white);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      background: var(--sky-light);
+      box-shadow: 0 4px 30px rgba(58, 154, 181, 0.15);
+    }
+
+    .navbar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 24px;
+    }
+
+    .logo {
+      font-family: 'Fraunces', serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--sky-deep);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+      position: relative;
+    }
+
+    .nav-links > li {
+      position: relative;
+    }
+
+    .nav-links > li > a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink);
+      transition: color 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-links > li > a:hover {
+      color: var(--sky-deep);
+    }
+
+    .nav-links .dropdown-arrow {
+      width: 14px;
+      height: 14px;
+      transition: transform 0.3s ease;
+    }
+
+    .nav-links .has-dropdown:hover .dropdown-arrow {
+      transform: rotate(180deg);
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+      padding: 12px 0;
+      min-width: 220px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: all 0.3s ease;
+      z-index: 100;
+    }
+
+    .has-dropdown:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .dropdown-menu li {
+      list-style: none;
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 12px 24px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink);
+      transition: all 0.2s ease;
+    }
+
+    .dropdown-menu a:hover {
+      background: var(--sky-bg);
+      color: var(--sky-deep);
+      padding-left: 28px;
+    }
+
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 5px;
+    }
+
+    .nav-toggle span {
+      width: 24px;
+      height: 2px;
+      background: var(--ink);
+      transition: all 0.3s ease;
+    }
+
+    /* HERO */
+    .hero {
+      padding: 140px 0 80px;
+      background: var(--gradient-hero);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 60%;
+      height: 200%;
+      background: radial-gradient(ellipse, rgba(168, 200, 216, 0.3) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-content {
+      max-width: 540px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      background: var(--lime);
+      color: var(--ink);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 56px;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+      margin-bottom: 20px;
+      line-height: 1.1;
+    }
+
+    .hero-text {
+      font-size: 17px;
+      color: var(--muted);
+      margin-bottom: 32px;
+      line-height: 1.7;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .hero-image {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-photo {
+      width: 380px;
+      height: 380px;
+      border-radius: 50%;
+      background: var(--sky-mid);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(58, 154, 181, 0.3);
+      transition: transform 0.6s ease-out;
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s ease;
+    }
+
+    .hero-photo:hover img {
+      transform: scale(1.05);
+    }
+
+    .hero-photo::before {
+      content: 'foto-hero.jpg';
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: var(--white);
+      background: var(--sky-deep);
+      z-index: 1;
+    }
+
+    .hero-photo img {
+      z-index: 2;
+    }
+
+    .geometric-dots {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .geometric-dots span {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--lime);
+      opacity: 0.8;
+    }
+
+    .dot-1 { top: 5%; left: 10%; animation: float 4s ease-in-out infinite; }
+    .dot-2 { top: 20%; right: 5%; animation: float 4s ease-in-out infinite 0.5s; }
+    .dot-3 { bottom: 15%; left: 5%; animation: float 4s ease-in-out infinite 1s; }
+    .dot-4 { bottom: 30%; right: 10%; animation: float 4s ease-in-out infinite 1.5s; }
+    .dot-5 { top: 50%; left: -5%; animation: float 4s ease-in-out infinite 2s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    /* SOBRE MI */
+    .sobre-mi {
+      padding: 100px 0;
+      background: var(--white);
+    }
+
+    .sobre-mi .container {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .perfil-photo {
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: var(--sky-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      color: var(--white);
+      box-shadow: 0 10px 40px rgba(107, 189, 212, 0.3);
+      position: sticky;
+      top: 120px;
+    }
+
+    .perfil-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .sobre-mi-content h2 {
+      font-size: 36px;
+      margin-bottom: 24px;
+      color: var(--ink);
+    }
+
+    .sobre-mi-content p {
+      font-size: 16px;
+      color: var(--muted);
+      margin-bottom: 16px;
+      line-height: 1.8;
+    }
+
+    .highlight-card {
+      background: var(--sky-bg);
+      border: 2px solid var(--sky-light);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin: 28px 0;
+    }
+
+    .highlight-card p {
+      font-family: 'Fraunces', serif;
+      font-size: 20px;
+      color: var(--sky-deep);
+      margin: 0;
+    }
+
+    .stats {
+      display: flex;
+      gap: 32px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .stat strong {
+      color: var(--ink);
+    }
+
+    /* TIMELINE CREDENCIALES */
+    .credenciales {
+      margin-top: 60px;
+      padding-top: 40px;
+      border-top: 1px solid var(--sky-light);
+    }
+
+    .credenciales h3 {
+      font-size: 22px;
+      margin-bottom: 32px;
+      color: var(--ink);
+      text-align: center;
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 700px;
+      margin: 0 auto;
+      padding-left: 30px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 11px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, var(--sky-mid) 0%, var(--sky-light) 100%);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-bottom: 32px;
+      padding-right: 40px;
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .timeline-item.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -30px;
+      top: 4px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 3px solid var(--sky-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+      transition: all 0.3s ease;
+    }
+
+    .timeline-dot svg {
+      width: 12px;
+      height: 12px;
+      stroke: var(--sky-deep);
+      fill: none;
+      stroke-width: 2;
+    }
+
+    .timeline-item:hover .timeline-dot {
+      background: var(--sky-deep);
+      border-color: var(--sky-deep);
+      transform: scale(1.2);
+    }
+
+    .timeline-item:hover .timeline-dot svg {
+      stroke: var(--white);
+    }
+
+    .timeline-content {
+      background: var(--card-bg);
+      border: 1px solid var(--sky-light);
+      border-radius: 12px;
+      padding: 20px 24px;
+      transition: all 0.3s ease;
+    }
+
+    .timeline-item:hover .timeline-content {
+      transform: translateX(8px);
+      box-shadow: 0 8px 30px rgba(107, 189, 212, 0.15);
+      border-color: var(--sky-mid);
+    }
+
+    .timeline-year {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--sky-deep);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+
+    .timeline-title {
+      font-family: 'Fraunces', serif;
+      font-size: 16px;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .timeline-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* SERVICIOS */
+    .servicios {
+      padding: 100px 0;
+      background: var(--sky-light);
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 36px;
+      margin-bottom: 16px;
+      color: var(--ink);
+    }
+
+    .section-subtitle {
+      text-align: center;
+      font-size: 16px;
+      color: var(--muted);
+      margin-bottom: 48px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .service-card {
+      background: var(--white);
+      border: 2px solid var(--sky-mid);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      position: relative;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 30px 60px rgba(107, 189, 212, 0.25);
+      border-color: var(--sky-deep);
+    }
+
+    .service-image {
+      width: 100%;
+      height: 180px;
+      background: var(--sky-mid);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .service-card:hover .service-image img {
+      transform: scale(1.1);
+    }
+
+    .service-image::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 50%, rgba(58, 154, 181, 0.3) 100%);
+      z-index: 1;
+    }
+
+    .service-badge {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: var(--lime);
+      color: var(--ink);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 20px;
+      z-index: 2;
+    }
+
+    .service-content {
+      padding: 28px;
+    }
+
+    .service-card h3 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: var(--ink);
+    }
+
+    .service-card p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .service-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--sky-deep);
+      transition: gap 0.3s ease;
+    }
+
+    .service-link svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      transition: transform 0.3s ease;
+    }
+
+    .service-link:hover {
+      gap: 10px;
+    }
+
+    .service-link:hover svg {
+      transform: translateX(4px);
+    }
+
+    /* MISION */
+    .mision {
+      padding: 100px 0;
+      background: var(--sky-mid);
+      color: var(--white);
+    }
+
+    .mision .section-title {
+      color: var(--white);
+    }
+
+    .mision .section-subtitle {
+      color: rgba(255,255,255,0.85);
+    }
+
+    .mision-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+
+    .mision-item {
+      text-align: center;
+    }
+
+    .mision-icon {
+      width: 72px;
+      height: 72px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      transition: all 0.3s ease;
+    }
+
+    .mision-item:hover .mision-icon {
+      background: var(--lime);
+      transform: scale(1.1);
+    }
+
+    .mision-icon svg {
+      width: 32px;
+      height: 32px;
+      stroke: var(--lime);
+      fill: none;
+      stroke-width: 1.8;
+      transition: stroke 0.3s ease;
+    }
+
+    .mision-item:hover .mision-icon svg {
+      stroke: var(--ink);
+    }
+
+    .mision-item h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .mision-item p {
+      font-size: 14px;
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+
+    .mision-frase {
+      text-align: center;
+    }
+
+    .mision-frase h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 64px;
+      color: var(--lime);
+      letter-spacing: 0.03em;
+    }
+
+/* TESTIMONIOS MARQUEE */
+    .testimonios {
+      padding: 100px 0;
+      background: var(--sky-bg);
+      overflow: hidden;
+    }
+
+    .testimonios-marquee {
+      position: relative;
+      overflow: hidden;
+      mask-image: linear-gradient(90deg, transparent, white 10%, white 90%, transparent);
+      -webkit-mask-image: linear-gradient(90deg, transparent, white 10%, white 90%, transparent);
+    }
+
+    .testimonios-track {
+      display: flex;
+      gap: 24px;
+      width: max-content;
+      animation: scroll-marquee 40s linear infinite;
+      padding: 16px 0 32px;
+    }
+
+    .testimonios-track:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes scroll-marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .testimonio-card {
+      flex: 0 0 340px;
+      background: var(--white);
+      border-radius: 20px;
+      padding: 32px 28px;
+      position: relative;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .testimonio-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 50px rgba(107, 189, 212, 0.2);
+      border-color: var(--sky-mid);
+    }
+
+    .testimonio-card::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 40px;
+      height: 32px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 32'%3E%3Cpath d='M0 0h16v16H0zM24 0h16v16H24z' fill='%236BBDD4' fill-opacity='0.2'/%3E%3C/svg%3E") no-repeat;
+      opacity: 0.3;
+      z-index: 0;
+    }
+
+    .testimonio-stars {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .testimonio-stars svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--lime);
+      stroke: var(--lime);
+      stroke-width: 1;
+    }
+
+    .testimonio-text {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .testimonio-author {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--sky-deep);
+    }
+
+    .testimonio-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--sky-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+
+    .testimonio-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Carousel navigation */
+    .carousel-nav {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .carousel-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 2px solid var(--sky-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .carousel-btn:hover {
+      background: var(--sky-deep);
+      border-color: var(--sky-deep);
+    }
+
+    .carousel-btn:hover svg {
+      stroke: var(--white);
+    }
+
+    .carousel-btn svg {
+      width: 24px;
+      height: 24px;
+      stroke: var(--sky-deep);
+      fill: none;
+      stroke-width: 2;
+      transition: stroke 0.3s ease;
+    }
+
+    .carousel-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .carousel-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--sky-light);
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .carousel-dot.active {
+      background: var(--sky-deep);
+      transform: scale(1.2);
+    }
+
+    .testimonio-text {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .testimonio-author {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--sky-deep);
+    }
+
+    .testimonio-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--sky-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+
+    .testimonio-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .testimonio-avatar::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.5'%3E%3Ccircle cx='12' cy='8' r='4'/%3E%3Cpath d='M4 20c0-4 4-6 8-6s8 2 8 6'/%3E%3C/svg%3E") center/24px no-repeat;
+      opacity: 0.5;
+    }
+
+    /* FAQ ACCORDION */
+    .faq {
+      padding: 100px 0;
+      background: var(--white);
+    }
+
+    .faq-grid {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      border: 1px solid var(--sky-light);
+      border-radius: 12px;
+      margin-bottom: 16px;
+      overflow: hidden;
+      background: var(--card-bg);
+      transition: all 0.3s ease;
+    }
+
+    .faq-item:hover {
+      border-color: var(--sky-mid);
+    }
+
+    .faq-question {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 24px;
+      background: transparent;
+      border: none;
+      text-align: left;
+      font-family: 'Fraunces', serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--ink);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .faq-question:hover {
+      color: var(--sky-deep);
+    }
+
+    .faq-question svg {
+      width: 24px;
+      height: 24px;
+      stroke: var(--sky-deep);
+      fill: none;
+      stroke-width: 2;
+      flex-shrink: 0;
+      margin-left: 16px;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.active .faq-question svg {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+    }
+
+    .faq-answer-content {
+      padding: 0 24px 20px;
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    /* CTA FINAL */
+    .cta-final {
+      padding: 100px 0;
+      background: var(--gradient-hero);
+      text-align: center;
+    }
+
+    .cta-final h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 56px;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
+
+    .cta-final p {
+      font-size: 18px;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+
+    .cta-final-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .cta-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--lime);
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 500;
+      padding: 12px 24px;
+      border-radius: 30px;
+    }
+
+    .cta-note svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+    }
+
+    /* WHATSAPP FLOAT */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 64px;
+      height: 64px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
+      z-index: 999;
+      text-decoration: none;
+      animation: pulse 2s ease-in-out infinite;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 12px 40px rgba(37, 211, 102, 0.5);
+    }
+
+    .whatsapp-float svg {
+      width: 32px;
+      height: 32px;
+      fill: var(--white);
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4); }
+      50% { box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6), 0 0 0 10px rgba(37, 211, 102, 0.1); }
+      100% { box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4); }
+    }
+
+    /* FOOTER */
+    .footer {
+      background: var(--sky-deep);
+      color: var(--white);
+      padding: 60px 0 30px;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 40px;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    /* LOGO */
+    .footer-logo,
+    .nav-logo {
+      display: inline-block;
+      width: 140px;
+      height: 40px;
+      background: url('logo_mariafernanda.png') no-repeat center/contain;
+      background-size: contain;
+    }
+
+    .nav-logo {
+      width: 120px;
+      height: 36px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 14px;
+      opacity: 0.9;
+      transition: opacity 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      opacity: 1;
+    }
+
+    .footer-social {
+      text-align: right;
+    }
+
+    .footer-social a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+    }
+
+    .footer-social svg {
+      width: 20px;
+      height: 20px;
+      fill: var(--white);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.2);
+      padding-top: 24px;
+      text-align: center;
+      font-size: 13px;
+      opacity: 0.8;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 968px) {
+      .hero .container {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero-content {
+        max-width: 100%;
+      }
+
+      .hero h1 {
+        font-size: 42px;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+      }
+
+      .hero-image {
+        order: -1;
+      }
+
+      .hero-photo {
+        width: 280px;
+        height: 280px;
+      }
+
+      .services-grid,
+      .testimonios-grid,
+      .mision-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .sobre-mi .container {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .perfil-photo {
+        margin: 0 auto;
+        position: static;
+      }
+
+      .stats {
+        justify-content: center;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .footer-social {
+        text-align: center;
+      }
+
+      .mision-frase h2 {
+        font-size: 48px;
+      }
+
+      .cta-final h2 {
+        font-size: 40px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        flex-direction: column;
+        padding: 20px;
+        gap: 16px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links > li {
+        width: 100%;
+      }
+
+      .dropdown-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        background: var(--sky-bg);
+        border-radius: 8px;
+        padding: 8px 0 8px 16px;
+        margin-top: 8px;
+        display: none;
+      }
+
+      .has-dropdown.active .dropdown-menu {
+        display: block;
+      }
+
+      .nav-toggle {
+        display: flex;
+      }
+
+      .hero {
+        padding: 120px 0 60px;
+        min-height: auto;
+      }
+
+      .hero h1 {
+        font-size: 36px;
+      }
+
+      .section-title {
+        font-size: 28px;
+      }
+
+      .mision-frase h2 {
+        font-size: 40px;
+      }
+
+      .whatsapp-float {
+        bottom: 20px;
+        right: 20px;
+        width: 56px;
+        height: 56px;
+      }
+
+      .whatsapp-float svg {
+        width: 28px;
+        height: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="#" class="nav-logo" aria-label="Pensar Sentir Hacer - Inicio">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+          <path d="M12 6v6l4 2"/>
+          <circle cx="18" cy="18" r="1.5" fill="currentColor"/>
+          <circle cx="6" cy="6" r="1" fill="currentColor"/>
+        </svg>
+        <span class="nav-text">Pensar Sentir Hacer</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#sobre-mi">Sobre mí</a></li>
+        <li class="has-dropdown">
+          <a href="#servicios">
+            Servicios
+            <svg class="dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="#servicios">Terapia Presencial</a></li>
+            <li><a href="#servicios">Terapia Online</a></li>
+            <li><a href="#servicios">Ebooks & Recursos</a></li>
+          </ul>
+        </li>
+        <li><a href="#testimonios">Testimonios</a></li>
+        <li><a href="#faq">Preguntas</a></li>
+        <li><a href="#agenda" class="btn btn-primary" style="padding: 10px 20px; font-size: 13px;">Agendar</a></li>
+      </ul>
+      <div class="nav-toggle" id="navToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content fade-in">
+        <span class="eyebrow">Psicóloga Clínica · TCC · Lima & Online</span>
+        <h1>Terapia para que vivas con más calma, coherencia contigo y sentido</h1>
+        <p class="hero-text">+7 años acompañando personas. 2 sedes en Lima. Online a todo el mundo.</p>
+        <div class="hero-buttons">
+          <a href="#agenda" class="btn btn-primary">Agendar una sesión</a>
+          <a href="#servicios" class="btn btn-secondary">Conoce mis servicios</a>
+        </div>
+      </div>
+      <div class="hero-image fade-in">
+        <div class="geometric-dots">
+          <span class="dot-1"></span>
+          <span class="dot-2"></span>
+          <span class="dot-3"></span>
+          <span class="dot-4"></span>
+          <span class="dot-5"></span>
+        </div>
+        <div class="hero-photo">
+          <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&h=800&fit=crop&crop=face" alt="María Fernanda Arana - Psicóloga Clínica" loading="eager">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE MI -->
+  <section class="sobre-mi" id="sobre-mi">
+    <div class="container">
+      <div class="perfil-photo fade-in">
+        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&h=600&fit=crop&crop=face" alt="María Fernanda Arana - Foto profesional" loading="lazy">
+      </div>
+      <div class="sobre-mi-content fade-in">
+        <h2>Hola, soy María Fernanda</h2>
+        <p>Soy psicóloga clínica y psicoterapeuta Cognitivo Conductual (TCC), con diplomado en Terapia de Pareja Sistémica y Sexualidad. Desde los 15 años supe que quería ser psicóloga —aunque también me gustaban el derecho, la educación y la fotografía.</p>
+        <p>Mi biografía la escribo viviendo el día a día. El amor me lo explicó todo: creo y le apuesto al amor, uno real, racional y vulnerable. Me gusta divertirme, pero no los excesos. Hago lo que me hace feliz, aun sea difícil. Y eso, en mi caso, es acompañarte.</p>
+        <p>Mi estilo terapéutico es horizontal, empático y respetuoso. Fomento el pensamiento crítico —no doy respuestas dictadas, te ayudo a encontrar las tuyas.</p>
+
+        <div class="highlight-card">
+          <p>deseo + propósito + acción = logro</p>
+        </div>
+
+        <div class="stats">
+          <div class="stat"><strong>+7 años</strong> de experiencia</div>
+          <div class="stat"><strong>2 sedes</strong> en Lima</div>
+          <div class="stat"><strong>Online</strong> a todo el mundo</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIMELINE CREDENCIALES -->
+    <div class="container">
+      <div class="credenciales fade-in">
+        <h3>Formación y credenciales</h3>
+        <div class="timeline" id="timeline">
+          <div class="timeline-item">
+            <div class="timeline-dot">
+              <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-year">2017</div>
+              <div class="timeline-title">Licenciatura en Psicología</div>
+              <div class="timeline-desc">Universidad Peruana de Ciencias Aplicadas (UPC). Título profesional a nombre de la nación.</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot">
+              <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-year">2019</div>
+              <div class="timeline-title">Psicoterapeuta Cognitivo Conductual</div>
+              <div class="timeline-desc">Especialización en Terapia Cognitivo Conductual (TCC) — enfoque basado en evidencia para ansiedad, depresión y trastornos del estado de ánimo.</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot">
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-year">2021</div>
+              <div class="timeline-title">Diplomado en Terapia de Pareja Sistémica y Sexualidad</div>
+              <div class="timeline-desc">Formación avanzada en abordaje sistémico de la pareja, comunicación, intimidad y sexualidad humana.</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-year">2018 - Presente</div>
+              <div class="timeline-title">Colegiatura activa</div>
+              <div class="timeline-desc">Colegio de Psicólogos del Perú — Colegiada N° 48921. Habilitación profesional vigente.</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot">
+              <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-year">Continuo</div>
+              <div class="timeline-title">Supervisión clínica y formación continua</div>
+              <div class="timeline-desc">Actualización constante en protocolos TCC, ACT, EMDR y neurociencia aplicada a la práctica clínica.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section class="servicios" id="servicios">
+    <div class="container">
+      <h2 class="section-title fade-in">Servicios</h2>
+      <p class="section-subtitle fade-in">Elige el formato que mejor se adapte a tu momento</p>
+
+      <div class="services-grid">
+        <div class="service-card fade-in">
+          <div class="service-image">
+            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=500&fit=crop" alt="Terapia Presencial - Consultorio" loading="lazy">
+          </div>
+          <div class="service-content">
+            <h3>Terapia Presencial</h3>
+            <p>Sesiones individuales de 50 minutos en un ambiente seguro y confidencial. Dos sedes en Lima: San Isidro y Surco.</p>
+            <a href="#agenda" class="service-link">
+              Agendar sesión
+              <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="service-card fade-in">
+          <div class="service-badge">Online</div>
+          <div class="service-image">
+            <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&h=500&fit=crop" alt="Terapia Online - Videollamada" loading="lazy">
+          </div>
+          <div class="service-content">
+            <h3>Terapia Online</h3>
+            <p>Videollamada con la misma calidad y compromiso que una sesión presencial. Para cualquier parte del mundo.</p>
+            <a href="#agenda" class="service-link">
+              Agendar online
+              <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="service-card fade-in">
+          <div class="service-image">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=500&fit=crop" alt="Ebooks y Recursos - Material descargable" loading="lazy">
+          </div>
+          <div class="service-content">
+            <h3>Ebooks & Recursos</h3>
+            <p>Materiales descargables para tu proceso de autodescubrimiento y crecimiento personal. Disponibles al instante.</p>
+            <a href="#" class="service-link">
+              Ver recursos
+              <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISION -->
+  <section class="mision">
+    <div class="container">
+      <h2 class="section-title fade-in">¿Por qué existe PSH?</h2>
+      <p class="section-subtitle fade-in">Más que un consultorio, un propósito</p>
+
+      <div class="mision-grid">
+        <div class="mision-item fade-in">
+          <div class="mision-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <h3>Para llegar a quienes necesitan estos mensajes</h3>
+          <p>Crear conciencia sobre la importancia de la salud mental de forma accesible y cercana.</p>
+        </div>
+
+        <div class="mision-item fade-in">
+          <div class="mision-icon">
+            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <h3>Para apoyar a quienes aún no pueden costear terapia</h3>
+          <p>Ofrecer recursos, psicoeducación y herramientas gratuitas a quien más lo necesita.</p>
+        </div>
+
+        <div class="mision-item fade-in">
+          <div class="mision-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Para ofrecerte un espacio seguro</h3>
+          <p>Un lugar humano, responsable y libre de juicios donde puedas ser tú y trabajar en tu bienestar.</p>
+        </div>
+      </div>
+
+      <div class="mision-frase fade-in">
+        <h2>TU SALUD MENTAL IMPORTA</h2>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIOS -->
+  <section class="testimonios" id="testimonios">
+    <div class="container">
+      <h2 class="section-title fade-in">Lo que dicen quienes ya dieron el paso</h2>
+      <p class="section-subtitle fade-in">Historias reales de transformación</p>
+
+      <div class="testimonials-carousel">
+        <div class="carousel-track" id="carouselTrack">
+          <!-- Testimonio 1 -->
+          <div class="testimonio-card">
+            <div class="testimonio-avatar">
+              <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&h=200&fit=crop&crop=face" alt="Testimonio de Marileny C." loading="lazy">
+            </div>
+            <div class="testimonio-stars">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <p class="testimonio-text">"Definitivamente María Fernanda logró un antes y un después. Nunca me habían hecho un análisis tan completo. Me permitió replantear algunas cosas de mi vida y poder seguir. Definitivamente y a ojos cerrados la recomiendo."</p>
+            <div class="testimonio-author">— Marileny C.</div>
+          </div>
+
+          <!-- Testimonio 2 -->
+          <div class="testimonio-card">
+            <div class="testimonio-avatar">
+              <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&h=200&fit=crop&crop=face" alt="Testimonio de Waleska P." loading="lazy">
+            </div>
+            <div class="testimonio-stars">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <p class="testimonio-text">"Empecé terapia por sobrecarga laboral y ansiedad. El proceso no es lineal, pero vale la pena cada lágrima hasta encontrarte con el verdadero tú. María Fernanda me acompañó con mucha humanidad y profesionalismo."</p>
+            <div class="testimonio-author">— Waleska P. (Puerto Rico)</div>
+          </div>
+
+          <!-- Testimonio 3 -->
+          <div class="testimonio-card">
+            <div class="testimonio-avatar">
+              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=face" alt="Testimonio anónimo" loading="lazy">
+            </div>
+            <div class="testimonio-stars">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <p class="testimonio-text">"Gracias a María Fernanda pude entender mis emociones y tomar decisiones más alineadas conmigo. Su enfoque me dio herramientas que uso todos los días."</p>
+            <div class="testimonio-author">— M., 28 años</div>
+          </div>
+
+          <!-- Testimonio 4 -->
+          <div class="testimonio-card">
+            <div class="testimonio-avatar">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face" alt="Testimonio de Carlos R." loading="lazy">
+            </div>
+            <div class="testimonio-stars">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <p class="testimonio-text">"Llegué con mucho escepticismo, pero la primera sesión cambió mi perspectiva. El espacio es tan seguro que pude abrirme sin miedo. Ahora veo la terapia como mi mejor inversión personal."</p>
+            <div class="testimonio-author">— Carlos R., 35 años</div>
+          </div>
+
+          <!-- Testimonio 5 -->
+          <div class="testimonio-card">
+            <div class="testimonio-avatar">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&h=200&fit=crop&crop=face" alt="Testimonio de Ana L." loading="lazy">
+            </div>
+            <div class="testimonio-stars">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <p class="testimonio-text">"La terapia de pareja nos salvó. Aprendimos a comunicarnos sin pelearnos y a entendernos desde la vulnerabilidad. Fernanda es increíblemente empática y directa a la vez."</p>
+            <div class="testimonio-author">— Ana L. & Roberto M.</div>
+          </div>
+
+          <!-- Testimonio 6 -->
+          <div class="testimonio-card">
+            <div class="testimonio-avatar">
+              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face" alt="Testimonio de Patricia V." loading="lazy">
+            </div>
+            <div class="testimonio-stars">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <p class="testimonio-text">"Hice terapia online desde España y la conexión fue igual de profunda que en persona. La flexibilidad de horarios fue clave para poder mantener la constancia."</p>
+            <div class="testimonio-author">— Patricia V. (Madrid)</div>
+          </div>
+
+          <!-- Testimonio 7 -->
+          <div class="testimonio-card">
+            <div class="testimonio-avatar">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=face" alt="Testimonio de Diego S." loading="lazy">
+            </div>
+            <div class="testimonio-stars">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <p class="testimonio-text">"Los ebooks de ansiedad y autoestima me sirvieron muchísimo entre sesiones. Tener material para trabajar en casa acelera el proceso. Contenido claro, práctico y sin relleno."</p>
+            <div class="testimonio-author">— Diego S., 31 años</div>
+          </div>
+
+          <!-- Testimonio 8 -->
+          <div class="testimonio-card">
+            <div class="testimonio-avatar">
+              <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=200&h=200&fit=crop&crop=face" alt="Testimonio de Sofía G." loading="lazy">
+            </div>
+            <div class="testimonio-stars">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <p class="testimonio-text">"Me ayudó a entender mis patrones de relación y por qué repetía las mismas historias. El enfoque TCC es práctico y los cambios se notan semana a semana."</p>
+            <div class="testimonio-author">— Sofía G., 29 años</div>
+          </div>
+        </div>
+
+        <!-- Carousel Navigation -->
+        <button class="carousel-btn carousel-prev" id="carouselPrev" aria-label="Testimonio anterior">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button class="carousel-btn carousel-next" id="carouselNext" aria-label="Testimonio siguiente">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+
+        <!-- Dots -->
+        <div class="carousel-dots" id="carouselDots"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <h2 class="section-title fade-in">Preguntas frecuentes</h2>
+      <p class="section-subtitle fade-in">Resolvemos tus dudas antes de empezar</p>
+
+      <div class="faq-grid">
+        <div class="faq-item fade-in">
+          <button class="faq-question" aria-expanded="false">
+            ¿Cómo funciona la terapia online?
+            <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              La terapia online se realiza por videollamada (Google Meet, Zoom o WhatsApp) con la misma duración, confidencialidad y calidad que una sesión presencial. Solo necesitas una conexión a internet estable, un lugar privado y ganas de empezar. La experiencia terapéutica es igual de efectiva: diversos estudios confirman que la TCC online tiene los mismos resultados que la presencial.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item fade-in">
+          <button class="faq-question" aria-expanded="false">
+            ¿Cuánto dura cada sesión y cuál es la frecuencia?
+            <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              Cada sesión dura 50 minutos. La frecuencia ideal para empezar es semanal, lo que permite crear continuidad y avanzar sostenidamente. Con el tiempo, según tu evolución, podemos espaciar a quincenal o mensual. Tú decides el ritmo: no hay permanencia mínima ni paquetes obligatorios.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item fade-in">
+          <button class="faq-question" aria-expanded="false">
+            ¿Los testimonios son reales?
+            <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              Sí, son 100% reales. Cada testimonio publicado cuenta con el consentimiento explícito y por escrito de la persona. Para proteger su privacidad, se muestran solo con inicial y rango de edad (ej. "M., 28 años"), nunca nombre completo, ciudad, profesión específica ni detalles del caso que puedan identificarla. El dato real completo no se guarda en ningún sistema de la web.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="cta-final" id="agenda">
+    <div class="container fade-in">
+      <h2>¿Lista para empezar?</h2>
+      <p>Da el primer paso. Una sesión puede cambiarlo todo.</p>
+      <div class="cta-final-buttons">
+        <a href="#" class="btn btn-white"><!-- REEMPLAZAR: link Cal.com -->Agendar mi primera sesión →</a>
+        <a href="#" class="btn btn-secondary"><!-- REEMPLAZAR: https://wa.me/51XXXXXXXXX -->Prefieres escribirme primero? → WhatsApp</a>
+      </div>
+      <span class="cta-note">
+        <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        Promoción especial para nuevos pacientes de Perú. Escríbeme para más info.
+      </span>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo" aria-label="Pensar Sentir Hacer"></div>
+        <ul class="footer-links">
+          <li><a href="#sobre-mi">Sobre mí</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#testimonios">Testimonios</a></li>
+          <li><a href="#faq">Preguntas</a></li>
+          <li><a href="#agenda">Agendar</a></li>
+        </ul>
+        <div class="footer-social">
+          <a href="https://instagram.com/pensarsentirhacer.pe" target="_blank">
+            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            @pensarsentirhacer.pe
+          </a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        © 2025 María Fernanda Arana · Psicóloga Clínica TCC · Lima, Perú
+      </div>
+    </div>
+  </footer>
+
+  <!-- WHATSAPP FLOAT -->
+  <a href="#" class="whatsapp-float" aria-label="Escribir por WhatsApp">
+    <svg viewBox="0 0 24 24">
+      <path d="M20.52 3.48A11.914 11.914 0 0 0 12 0C5.373 0 0 5.373 0 12c0 1.783.44 3.482 1.227 5.006L0 24l5.894-1.664A11.942 11.942 0 0 0 12 24c6.627 0 12-5.373 12-12 0-1.958-.487-3.813-1.48-5.442zM8 12.5c0 .827.673 1.5 1.5 1.5H10v4.5c0 .827.673 1.5 1.5 1.5s1.5-.673 1.5-1.5V14h2.5c.827 0 1.5-.673 1.5-1.5s-.673-1.5-1.5-1.5H13V9c0-.827-.673-1.5-1.5-1.5s-1.5.673-1.5 1.5v2.5H9.5c-.827 0-1.5.673-1.5 1.5z" fill="#fff"/>
+    </svg>
+  </a>
+
+  <script>
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Mobile menu toggle
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // Close mobile menu on link click
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+    });
+
+    // Mobile dropdown toggle
+    document.querySelectorAll('.has-dropdown > a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        if (window.innerWidth <= 768) {
+          e.preventDefault();
+          link.parentElement.classList.toggle('active');
+        }
+      });
+    });
+
+    // Fade-in animation on scroll
+    const fadeElements = document.querySelectorAll('.fade-in');
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    fadeElements.forEach(el => observer.observe(el));
+
+    // Timeline animation
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    const timelineObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, index * 150);
+        }
+      });
+    }, { threshold: 0.2, rootMargin: '0px 0px -50px 0px' });
+
+    timelineItems.forEach(el => timelineObserver.observe(el));
+
+    // FAQ Accordion
+    document.querySelectorAll('.faq-question').forEach(button => {
+      button.addEventListener('click', () => {
+        const item = button.parentElement;
+        const isActive = item.classList.contains('active');
+
+        // Close all others
+        document.querySelectorAll('.faq-item').forEach(other => {
+          if (other !== item) {
+            other.classList.remove('active');
+            other.querySelector('.faq-answer').style.maxHeight = null;
+            other.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+          }
+        });
+
+        // Toggle current
+        if (!isActive) {
+          item.classList.add('active');
+          button.setAttribute('aria-expanded', 'true');
+          const answer = item.querySelector('.faq-answer');
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+        } else {
+          item.classList.remove('active');
+          button.setAttribute('aria-expanded', 'false');
+          item.querySelector('.faq-answer').style.maxHeight = null;
+        }
+      });
+    });
+
+    // Hero parallax effect
+    const heroPhoto = document.querySelector('.hero-photo');
+    const heroSection = document.querySelector('.hero');
+
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY;
+      const heroHeight = heroSection.offsetHeight;
+
+      if (scrolled < heroHeight && heroPhoto) {
+        const rate = scrolled * 0.3;
+        heroPhoto.style.transform = `translateY(${rate}px)`;
+      }
+    });
+
+    // Service card hover enhancement
+    document.querySelectorAll('.service-card').forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        card.style.zIndex = '10';
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.zIndex = '1';
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1163,18 +1163,43 @@
     }
 
     /* LOGO */
-    .footer-logo,
     .nav-logo {
-      display: inline-block;
-      width: 140px;
-      height: 40px;
-      background: url('logo_mariafernanda.png') no-repeat center/contain;
-      background-size: contain;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--sky-deep);
     }
 
-    .nav-logo {
-      width: 120px;
+    .nav-icon {
+      width: 32px;
+      height: 32px;
+      stroke: var(--sky-deep);
+      fill: none;
+    }
+
+    .nav-text {
+      font-family: 'Fraunces', serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--sky-deep);
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-logo .nav-icon {
+      width: 36px;
       height: 36px;
+      stroke: var(--white);
+    }
+
+    .footer-logo .nav-text {
+      font-size: 22px;
+      color: var(--white);
     }
 
     .footer-links {
@@ -1818,7 +1843,15 @@
   <footer class="footer">
     <div class="container">
       <div class="footer-content">
-        <div class="footer-logo" aria-label="Pensar Sentir Hacer"></div>
+        <div class="footer-logo" aria-label="Pensar Sentir Hacer">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+            <path d="M12 6v6l4 2"/>
+            <circle cx="18" cy="18" r="1.5" fill="currentColor"/>
+            <circle cx="6" cy="6" r="1" fill="currentColor"/>
+          </svg>
+          <span class="nav-text">Pensar Sentir Hacer</span>
+        </div>
         <ul class="footer-links">
           <li><a href="#sobre-mi">Sobre mí</a></li>
           <li><a href="#servicios">Servicios</a></li>

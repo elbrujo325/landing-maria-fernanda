@@ -235,7 +235,7 @@
 
     /* HERO */
     .hero {
-      padding: 140px 0 80px;
+      padding: 140px 0 60px;
       background: var(--gradient-hero);
       min-height: 100vh;
       display: flex;
@@ -265,7 +265,7 @@
     }
 
     .hero-content {
-      max-width: 540px;
+      max-width: 580px;
     }
 
     .eyebrow {
@@ -283,18 +283,67 @@
 
     .hero h1 {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 56px;
+      font-size: 58px;
       letter-spacing: 0.02em;
       color: var(--ink);
       margin-bottom: 20px;
       line-height: 1.1;
     }
 
+    .hero h1 span {
+      color: var(--blue-deep);
+    }
+
     .hero-text {
-      font-size: 17px;
+      font-size: 18px;
       color: var(--muted);
-      margin-bottom: 32px;
+      margin-bottom: 28px;
       line-height: 1.7;
+    }
+
+    .hero-trust {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 32px;
+      padding: 16px 20px;
+      background: var(--white);
+      border-radius: 12px;
+      border: 1px solid var(--blue-light);
+      box-shadow: 0 4px 20px rgba(90, 159, 212, 0.08);
+    }
+
+    .hero-trust-avatars {
+      display: flex;
+      margin-right: 8px;
+    }
+
+    .hero-trust-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--blue-mid);
+      border: 2px solid var(--white);
+      margin-left: -8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .hero-trust-avatar:first-child {
+      margin-left: 0;
+    }
+
+    .hero-trust-text {
+      font-size: 13px;
+      color: var(--ink);
+    }
+
+    .hero-trust-text strong {
+      color: var(--blue-deep);
     }
 
     .hero-buttons {
@@ -310,13 +359,13 @@
     }
 
     .hero-photo {
-      width: 380px;
-      height: 380px;
+      width: 400px;
+      height: 400px;
       border-radius: 50%;
       background: var(--blue-mid);
       position: relative;
       overflow: hidden;
-      box-shadow: 0 20px 60px rgba(90, 159, 212, 0.3);
+      box-shadow: 0 25px 70px rgba(90, 159, 212, 0.35);
       transition: transform 0.6s ease-out;
     }
 
@@ -373,6 +422,845 @@
     @keyframes float {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-15px); }
+    }
+
+    /* SOCIAL PROOF BAR */
+    .social-proof-bar {
+      padding: 40px 0;
+      background: var(--white);
+      border-bottom: 1px solid var(--blue-light);
+    }
+
+    .social-proof-bar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .social-proof-stats {
+      display: flex;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+
+    .social-proof-stat {
+      text-align: center;
+    }
+
+    .social-proof-stat-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 36px;
+      color: var(--blue-deep);
+      line-height: 1;
+    }
+
+    .social-proof-stat-label {
+      font-size: 13px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 4px;
+    }
+
+    .social-proof-logos {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      opacity: 0.5;
+      filter: grayscale(100%);
+      transition: opacity 0.3s ease, filter 0.3s ease;
+    }
+
+    .social-proof-logos:hover {
+      opacity: 0.8;
+      filter: grayscale(0%);
+    }
+
+    .social-proof-logo {
+      height: 28px;
+      max-width: 100px;
+      object-fit: contain;
+    }
+
+    .social-proof-logo-text {
+      font-family: 'Fraunces', serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    /* PROBLEM / SOLUTION */
+    .problema-solucion {
+      padding: 100px 0;
+      background: var(--white);
+    }
+
+    .problema-solucion .container {
+      max-width: 900px;
+    }
+
+    .problem-solution-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .problem-card, .solution-card {
+      padding: 40px;
+      border-radius: 20px;
+      position: relative;
+    }
+
+    .problem-card {
+      background: var(--blue-bg);
+      border: 1px solid var(--blue-light);
+    }
+
+    .solution-card {
+      background: var(--gradient-hero);
+      border: 1px solid var(--blue-mid);
+    }
+
+    .problem-card h3, .solution-card h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 24px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .problem-card h3 {
+      color: var(--ink);
+    }
+
+    .solution-card h3 {
+      color: var(--ink);
+    }
+
+    .problem-icon, .solution-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .problem-icon {
+      background: var(--white);
+    }
+
+    .solution-icon {
+      background: var(--white);
+    }
+
+    .problem-icon svg, .solution-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--blue-deep);
+    }
+
+    .problem-list, .solution-list {
+      list-style: none;
+    }
+
+    .problem-item, .solution-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid;
+    }
+
+    .problem-item {
+      border-color: var(--blue-light);
+    }
+
+    .solution-item {
+      border-color: rgba(90, 159, 212, 0.2);
+    }
+
+    .problem-item:last-child, .solution-item:last-child {
+      border-bottom: none;
+    }
+
+    .problem-bullet, .solution-bullet {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .problem-bullet {
+      background: var(--brand-cream);
+    }
+
+    .problem-bullet svg {
+      width: 12px;
+      height: 12px;
+      stroke: var(--ink);
+    }
+
+    .solution-bullet {
+      background: var(--white);
+    }
+
+    .solution-bullet svg {
+      width: 12px;
+      height: 12px;
+      stroke: var(--blue-deep);
+    }
+
+    .problem-text, .solution-text {
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .problem-text {
+      color: var(--muted);
+    }
+
+    .solution-text {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .solution-text span {
+      color: var(--blue-deep);
+      font-weight: 600;
+    }
+
+    /* HOW IT WORKS */
+    .como-funciona {
+      padding: 100px 0;
+      background: var(--blue-bg);
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .step-card {
+      background: var(--white);
+      border: 1px solid var(--blue-light);
+      border-radius: 20px;
+      padding: 40px 32px;
+      text-align: center;
+      position: relative;
+      transition: all 0.4s ease;
+    }
+
+    .step-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 50px rgba(90, 159, 212, 0.15);
+      border-color: var(--blue-mid);
+    }
+
+    .step-number {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--gradient-hero);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 24px;
+      color: var(--ink);
+      border: 2px solid var(--blue-light);
+    }
+
+    .step-card h3 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: var(--ink);
+    }
+
+    .step-card p {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .step-connector {
+      display: none;
+    }
+
+    /* PRICING */
+    .precios {
+      padding: 100px 0;
+      background: var(--white);
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .pricing-card {
+      background: var(--white);
+      border: 2px solid var(--blue-light);
+      border-radius: 20px;
+      padding: 40px 32px;
+      text-align: center;
+      transition: all 0.4s ease;
+      position: relative;
+    }
+
+    .pricing-card:hover {
+      border-color: var(--blue-mid);
+      box-shadow: 0 25px 50px rgba(90, 159, 212, 0.12);
+    }
+
+    .pricing-card.popular {
+      border-color: var(--blue-deep);
+      transform: scale(1.02);
+    }
+
+    .pricing-card.popular:hover {
+      transform: scale(1.02) translateY(-8px);
+    }
+
+    .pricing-badge {
+      display: inline-block;
+      background: var(--brand-cream);
+      color: var(--ink);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    .pricing-card.popular .pricing-badge {
+      background: var(--blue-deep);
+      color: var(--white);
+    }
+
+    .pricing-card h3 {
+      font-size: 20px;
+      margin-bottom: 8px;
+      color: var(--ink);
+    }
+
+    .pricing-subtitle {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .pricing-price {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 48px;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .pricing-period {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    .pricing-features {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 32px;
+    }
+
+    .pricing-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 0;
+      font-size: 14px;
+      color: var(--ink);
+      border-bottom: 1px solid var(--blue-light);
+    }
+
+    .pricing-feature:last-child {
+      border-bottom: none;
+    }
+
+    .pricing-feature svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--blue-deep);
+      fill: none;
+      stroke-width: 2;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .pricing-feature.inactive {
+      color: var(--muted);
+    }
+
+    .pricing-feature.inactive svg {
+      stroke: var(--blue-light);
+    }
+
+    .btn-pricing {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .pricing-card.popular .btn-pricing {
+      background: var(--blue-deep);
+      color: var(--white);
+    }
+
+    .pricing-card.popular .btn-pricing:hover {
+      background: var(--ink);
+    }
+
+    /* FINAL CTA IMPROVEMENTS */
+    .cta-final {
+      padding: 120px 0;
+      background: var(--gradient-hero);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-final::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 60%;
+      height: 200%;
+      background: radial-gradient(ellipse, rgba(170, 207, 241, 0.25) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-final .container {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+    }
+
+    .cta-final h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 56px;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
+
+    .cta-final p {
+      font-size: 18px;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+
+    .cta-final-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .cta-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--brand-cream);
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 500;
+      padding: 12px 24px;
+      border-radius: 30px;
+    }
+
+    .cta-note svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+    }
+
+    .cta-urgency {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(90, 159, 212, 0.1);
+      color: var(--blue-deep);
+      font-size: 14px;
+      font-weight: 500;
+      padding: 10px 20px;
+      border-radius: 30px;
+      margin-top: 16px;
+      border: 1px solid var(--blue-mid);
+    }
+
+    .cta-urgency svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+    }
+
+    /* MOBILE STICKY CTA */
+    .mobile-sticky-cta {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--white);
+      border-top: 1px solid var(--blue-light);
+      box-shadow: 0 -4px 30px rgba(0,0,0,0.08);
+      padding: 12px 16px;
+      z-index: 1000;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .mobile-sticky-cta.visible {
+      display: flex;
+    }
+
+    .mobile-sticky-cta-text {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .mobile-sticky-cta-text strong {
+      color: var(--ink);
+    }
+
+    .mobile-sticky-cta-btn {
+      background: var(--blue-deep);
+      color: var(--white);
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-weight: 500;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    /* RESPONSIVE UPDATES */
+    @media (max-width: 968px) {
+      .hero .container {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero-content {
+        max-width: 100%;
+      }
+
+      .hero h1 {
+        font-size: 42px;
+      }
+
+      .hero-trust {
+        justify-content: center;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+      }
+
+      .hero-image {
+        order: -1;
+      }
+
+      .hero-photo {
+        width: 280px;
+        height: 280px;
+      }
+
+      .social-proof-bar .container {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .social-proof-stats {
+        justify-content: center;
+        gap: 32px;
+      }
+
+      .problem-solution-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .steps-grid,
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .pricing-card.popular {
+        transform: none;
+      }
+
+      .pricing-card.popular:hover {
+        transform: translateY(-8px);
+      }
+
+      .cta-final h2 {
+        font-size: 40px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        padding: 100px 0 40px;
+        min-height: auto;
+      }
+
+      .hero .container {
+        gap: 32px;
+      }
+
+      .hero h1 {
+        font-size: 36px;
+        line-height: 1.15;
+      }
+
+      .hero-text {
+        font-size: 15px;
+        line-height: 1.65;
+      }
+
+      .hero-trust {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+      }
+
+      .hero-trust-avatars {
+        margin-right: 0;
+        order: -1;
+      }
+
+      .hero-buttons {
+        gap: 10px;
+      }
+
+      .btn {
+        padding: 12px 22px;
+        font-size: 14px;
+      }
+
+      .hero-photo {
+        width: 240px;
+        height: 240px;
+      }
+
+      .section-title {
+        font-size: 26px;
+      }
+
+      .sobre-mi {
+        padding: 60px 0;
+      }
+
+      .servicios {
+        padding: 60px 0;
+      }
+
+      .mision {
+        padding: 60px 0;
+      }
+
+      .mision-frase h2 {
+        font-size: 38px;
+      }
+
+      .faq {
+        padding: 60px 0;
+      }
+
+      .problema-solucion {
+        padding: 60px 0;
+      }
+
+      .como-funciona {
+        padding: 60px 0;
+      }
+
+      .precios {
+        padding: 60px 0;
+      }
+
+      .cta-final {
+        padding: 80px 0;
+      }
+
+      .cta-final h2 {
+        font-size: 40px;
+      }
+
+      .cta-final p {
+        font-size: 16px;
+      }
+
+      .cta-note {
+        font-size: 13px;
+        padding: 10px 18px;
+      }
+
+      .testimonios {
+        padding: 60px 0;
+      }
+
+      .whatsapp-float {
+        bottom: 85px;
+        right: 18px;
+        width: 52px;
+        height: 52px;
+      }
+
+      .whatsapp-float svg {
+        width: 26px;
+        height: 26px;
+      }
+
+      .footer {
+        padding: 40px 0 25px;
+      }
+
+      .footer-content {
+        gap: 24px;
+        margin-bottom: 24px;
+      }
+
+      .footer-links {
+        gap: 20px;
+      }
+
+      .footer-links a {
+        font-size: 13px;
+      }
+
+      .footer-bottom {
+        font-size: 12px;
+        padding-top: 18px;
+      }
+
+      .stats {
+        gap: 18px;
+        font-size: 13px;
+      }
+
+      .timeline-item {
+        padding-right: 24px;
+        padding-bottom: 24px;
+      }
+
+      .timeline-content {
+        padding: 16px 18px;
+      }
+
+      .timeline-year {
+        font-size: 11px;
+      }
+
+      .timeline-title {
+        font-size: 15px;
+      }
+
+      .timeline-desc {
+        font-size: 13px;
+      }
+
+      .services-grid {
+        gap: 16px;
+      }
+
+      .service-card {
+        border-radius: 16px;
+      }
+
+      .service-image {
+        height: 140px;
+      }
+
+      .service-content {
+        padding: 20px 18px;
+      }
+
+      .service-card h3 {
+        font-size: 18px;
+      }
+
+      .service-card p {
+        font-size: 13px;
+      }
+
+      .mobile-sticky-cta {
+        display: flex;
+      }
+
+      .cta-final-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .cta-final-buttons .btn {
+        width: 100%;
+        max-width: 280px;
+      }
+
+      @media (max-width: 480px) {
+        .hero h1 {
+          font-size: 30px;
+        }
+
+        .hero-photo {
+          width: 200px;
+          height: 200px;
+        }
+
+        .section-title {
+          font-size: 24px;
+        }
+
+        .cta-final h2 {
+          font-size: 34px;
+        }
+
+        .mision-frase h2 {
+          font-size: 32px;
+        }
+
+        .social-proof-stats {
+          gap: 24px;
+        }
+
+        .social-proof-stat-number {
+          font-size: 28px;
+        }
+
+        .problem-card, .solution-card {
+          padding: 24px;
+        }
+
+        .step-card, .pricing-card {
+          padding: 28px 20px;
+        }
+      }
     }
 
     /* SOBRE MI */
@@ -1584,7 +2472,9 @@
             <li><a href="#servicios">Ebooks & Recursos</a></li>
           </ul>
         </li>
+        <li><a href="#problema-solucion">¿Te sientes así?</a></li>
         <li><a href="#testimonios">Testimonios</a></li>
+        <li><a href="#precios">Precios</a></li>
         <li><a href="#faq">Preguntas</a></li>
         <li><a href="#agenda" class="btn btn-primary" style="padding: 10px 20px; font-size: 13px;">Agendar</a></li>
       </ul>
@@ -1601,10 +2491,22 @@
     <div class="container">
       <div class="hero-content fade-in">
         <span class="eyebrow">Psicóloga Clínica · TCC · Lima & Online</span>
-        <h1>Terapia para que vivas con más calma, coherencia contigo y sentido</h1>
+        <h1>Terapia para que vivas con más <span>calma, coherencia y sentido</span></h1>
         <p class="hero-text">+7 años acompañando personas. 2 sedes en Lima. Online a todo el mundo.</p>
+        
+        <div class="hero-trust">
+          <div class="hero-trust-avatars">
+            <div class="hero-trust-avatar">MC</div>
+            <div class="hero-trust-avatar">WP</div>
+            <div class="hero-trust-avatar">M</div>
+            <div class="hero-trust-avatar">CR</div>
+            <div class="hero-trust-avatar">AL</div>
+          </div>
+          <span class="hero-trust-text"><strong>+150 pacientes</strong> han dado el paso. Tú puedes ser el siguiente.</span>
+        </div>
+
         <div class="hero-buttons">
-          <a href="#agenda" class="btn btn-primary">Agendar una sesión</a>
+          <a href="#agenda" class="btn btn-primary">Agendar mi primera sesión</a>
           <a href="#servicios" class="btn btn-secondary">Conoce mis servicios</a>
         </div>
       </div>
@@ -1619,6 +2521,35 @@
         <div class="hero-photo">
           <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&h=800&fit=crop&crop=face" alt="María Fernanda Arana - Psicóloga Clínica" loading="eager">
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL PROOF BAR -->
+  <section class="social-proof-bar" aria-label="Prueba social">
+    <div class="container">
+      <div class="social-proof-stats">
+        <div class="social-proof-stat">
+          <div class="social-proof-stat-number">+150</div>
+          <div class="social-proof-stat-label">Pacientes atendidos</div>
+        </div>
+        <div class="social-proof-stat">
+          <div class="social-proof-stat-number">+7</div>
+          <div class="social-proof-stat-label">Años de experiencia</div>
+        </div>
+        <div class="social-proof-stat">
+          <div class="social-proof-stat-number">2</div>
+          <div class="social-proof-stat-label">Sedes en Lima</div>
+        </div>
+        <div class="social-proof-stat">
+          <div class="social-proof-stat-number">100%</div>
+          <div class="social-proof-stat-label">Sesiones online</div>
+        </div>
+      </div>
+      <div class="social-proof-logos">
+        <span class="social-proof-logo-text">Colegio de Psicólogos del Perú · N° 48921</span>
+        <span class="social-proof-logo-text">TCC Certificada</span>
+        <span class="social-proof-logo-text">Terapia de Pareja Sistémica</span>
       </div>
     </div>
   </section>
@@ -1702,6 +2633,70 @@
               <div class="timeline-desc">Actualización constante en protocolos TCC, ACT, EMDR y neurociencia aplicada a la práctica clínica.</div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEMA / SOLUCION -->
+  <section class="problema-solucion" id="problema-solucion">
+    <div class="container fade-in">
+      <h2 class="section-title" style="text-align: center; margin-bottom: 8px;">¿Te sientes identificado?</h2>
+      <p class="section-subtitle">Muchas personas llegan a terapia sintiendo que algo no encaja. Aquí está el antes y el después.</p>
+      
+      <div class="problem-solution-grid">
+        <div class="problem-card fade-in">
+          <h3>
+            <span class="problem-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+            </span>
+            El problema
+          </h3>
+          <ul class="problem-list">
+            <li class="problem-item">
+              <span class="problem-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></span>
+              <span class="problem-text">Ansiedad que no te deja dormir, concentrar ni disfrutar el presente</span>
+            </li>
+            <li class="problem-item">
+              <span class="problem-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></span>
+              <span class="problem-text">Pensamientos en bucle que te agotan y te hacen dudar de ti</span>
+            </li>
+            <li class="problem-item">
+              <span class="problem-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></span>
+              <span class="problem-text">Relaciones que se repiten en patrones que no entiendes</span>
+            </li>
+            <li class="problem-item">
+              <span class="problem-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></span>
+              <span class="problem-text">Sensación de estar estancado/a sin saber por dónde empezar</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="solution-card fade-in">
+          <h3>
+            <span class="solution-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+            </span>
+            El resultado
+          </h3>
+          <ul class="solution-list">
+            <li class="solution-item">
+              <span class="solution-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></span>
+              <span class="solution-text"><span>Calma mental</span> para dormir, enfocarte y estar presente</span>
+            </li>
+            <li class="solution-item">
+              <span class="solution-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></span>
+              <span class="solution-text"><span>Claridad</span> para decidir sin dar vueltas ni auto-sabotearte</span>
+            </li>
+            <li class="solution-item">
+              <span class="solution-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></span>
+              <span class="solution-text"><span>Relaciones sanas</span> con límites claros y comunicación real</span>
+            </li>
+            <li class="solution-item">
+              <span class="solution-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></span>
+              <span class="solution-text"><span>Dirección</span> y herramientas para avanzar por tu cuenta</span>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -1795,6 +2790,96 @@
       <div class="mision-frase fade-in">
         <h2>TU SALUD MENTAL IMPORTA</h2>
       </div>
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <section class="como-funciona" id="como-funciona">
+    <div class="container">
+      <h2 class="section-title fade-in">Cómo funciona el proceso</h2>
+      <p class="section-subtitle fade-in">Tres pasos claros para que sepas qué esperar desde el primer día</p>
+      
+      <div class="steps-grid">
+        <div class="step-card fade-in">
+          <div class="step-number">01</div>
+          <h3>Primera sesión: nos conocemos</h3>
+          <p>En 50 minutos exploramos qué te trae aquí, tu historia y tus objetivos. Sin presión, a tu ritmo. Salimos con un plan claro adaptado a ti.</p>
+        </div>
+        
+        <div class="step-card fade-in">
+          <div class="step-number">02</div>
+          <h3>Trabajo semanal guiado</h3>
+          <p>Sesiones de 50 min cada semana (online o presencial). Usamos herramientas TCC probadas: reestructuración cognitiva, exposición gradual, activación conductual. Tareas prácticas entre sesiones.</p>
+        </div>
+        
+        <div class="step-card fade-in">
+          <div class="step-number">03</div>
+          <h3>Autonomía y cierre</h3>
+          <p>Cuando logras tus metas, espaciamos sesiones. Te llevas un "kit de herramientas" personalizado para manejar retos futuros sin depender de la terapia. Puertas abiertas si necesitas volver.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRECIOS -->
+  <section class="precios" id="precios">
+    <div class="container">
+      <h2 class="section-title fade-in">Inversión en tu bienestar</h2>
+      <p class="section-subtitle fade-in">Precios transparentes, sin sorpresas. Eliges lo que necesitas.</p>
+      
+      <div class="pricing-grid">
+        <div class="pricing-card fade-in">
+          <span class="pricing-badge">Sesión suelta</span>
+          <h3>Sesión Individual</h3>
+          <p class="pricing-subtitle">Ideal para probar o consultas puntuales</p>
+          <div class="pricing-price">S/ 180</div>
+          <p class="pricing-period">por sesión de 50 min</p>
+          <ul class="pricing-features">
+            <li class="pricing-feature"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Sesión online o presencial</li>
+            <li class="pricing-feature"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Informe breve post-sesión</li>
+            <li class="pricing-feature"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Material de apoyo (PDF)</li>
+            <li class="pricing-feature inactive"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Seguimiento entre sesiones</li>
+            <li class="pricing-feature inactive"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Descuento en ebooks</li>
+          </ul>
+          <a href="#agenda" class="btn btn-white btn-pricing">Reservar sesión</a>
+        </div>
+
+        <div class="pricing-card popular fade-in">
+          <span class="pricing-badge">Más elegido</span>
+          <h3>Pack 4 Sesiones</h3>
+          <p class="pricing-subtitle">El formato recomendado para empezar</p>
+          <div class="pricing-price">S/ 680</div>
+          <p class="pricing-period">S/ 170 c/u — ahorras S/ 40</p>
+          <ul class="pricing-features">
+            <li class="pricing-feature"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>4 sesiones (válido 2 meses)</li>
+            <li class="pricing-feature"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Online o presencial (mezclables)</li>
+            <li class="pricing-feature"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Seguimiento por WhatsApp entre sesiones</li>
+            <li class="pricing-feature"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Plan de trabajo personalizado</li>
+            <li class="pricing-feature"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>10% descuento en ebooks</li>
+          </ul>
+          <a href="#agenda" class="btn btn-pricing" style="background: var(--blue-deep); color: var(--white);">Empezar mi pack</a>
+        </div>
+
+        <div class="pricing-card fade-in">
+          <span class="pricing-badge">Terapia de Pareja</span>
+          <h3>Sesión Pareja</h3>
+          <p class="pricing-subtitle">60 minutos para dos personas</p>
+          <div class="pricing-price">S/ 250</div>
+          <p class="pricing-period">por sesión de 60 min</p>
+          <ul class="pricing-features">
+            <li class="pricing-feature"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Sesión online o presencial</li>
+            <li class="pricing-feature"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Enfoque sistémico + TCC</li>
+            <li class="pricing-feature"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Ejercicios de comunicación</li>
+            <li class="pricing-feature"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Guía de acuerdos de pareja</li>
+            <li class="pricing-feature inactive"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Pack descuento (consultar)</li>
+          </ul>
+          <a href="#agenda" class="btn btn-white btn-pricing">Agendar para nosotros</a>
+        </div>
+      </div>
+      
+      <p style="text-align: center; margin-top: 32px; color: var(--muted); font-size: 14px;">
+        * Todos los precios incluyen IGV. Pago por transferencia, Yape, Plin o link de pago seguro. Sin permanencia mínima.
+      </p>
     </div>
   </section>
 
@@ -2034,6 +3119,66 @@
             </div>
           </div>
         </div>
+
+        <div class="faq-item fade-in">
+          <button class="faq-question" aria-expanded="false">
+            ¿Qué métodos de pago aceptan?
+            <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              Aceptamos transferencia bancaria (BCP, Interbank, BBVA), Yape, Plin y link de pago seguro con tarjeta (Visa, Mastercard). El pago se realiza antes de la sesión para confirmar el horario. Recibes comprobante electrónico (boleta/factura) con IGV incluido.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item fade-in">
+          <button class="faq-question" aria-expanded="false">
+            ¿Puedo cambiar de modalidad (online/presencial) entre sesiones?
+            <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              Sí, totalmente. Puedes alternar según tu disponibilidad: una semana presencial en San Isidro, la siguiente online desde casa o viaje. Lo coordinamos con antelación para reservar el consultorio o enviar el enlace de videollamada. La calidad y continuidad del proceso se mantienen igual.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item fade-in">
+          <button class="faq-question" aria-expanded="false">
+            ¿Qué pasa si necesito cancelar o reprogramar?
+            <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              Avisando con 24 horas de antelación, reprogramamos sin costo. Con menos de 24h, la sesión se considera realizada (salvo fuerza mayor comprobable). Valoramos tu tiempo y el de la agenda: esto nos permite ofrecer el horario a otra persona en lista de espera.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item fade-in">
+          <button class="faq-question" aria-expanded="false">
+            ¿La terapia es confidencial?
+            <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              Absolutamente. Todo lo que se comparte en sesión queda bajo secreto profesional (Código de Ética del Psicólogo, Ley 29733). Solo se rompe confidencialidad por mandato judicial o riesgo inminente de vida (tuya o de terceros). Las grabaciones están prohibidas; las notas clínicas son custodiadas bajo llave y encriptadas.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item fade-in">
+          <button class="faq-question" aria-expanded="false">
+            ¿Atendés menores de edad?
+            <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              No, mi práctica está enfocada en adultos (desde 18 años). Para adolescentes o niños, puedo orientarte hacia colegas especializados en población infanto-juvenil con quienes tengo red de derivación de confianza.
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -2045,14 +3190,24 @@
       <p>Da el primer paso. Una sesión puede cambiarlo todo.</p>
       <div class="cta-final-buttons">
         <a href="#" class="btn btn-white"><!-- REEMPLAZAR: link Cal.com -->Agendar mi primera sesión →</a>
-        <a href="#" class="btn btn-secondary"><!-- REEMPLAZAR: https://wa.me/51XXXXXXXXX -->Prefieres escribirme primero? → WhatsApp</a>
+        <a href="#" class="btn btn-secondary"><!-- REEMPLAZAR: https://wa.me/51XXXXXXXXX -->¿Prefieres escribirme primero? → WhatsApp</a>
       </div>
       <span class="cta-note">
         <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
         Promoción especial para nuevos pacientes de Perú. Escríbeme para más info.
       </span>
+      <span class="cta-urgency">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        Cupos limitados esta semana — agenda hoy y asegura tu horario
+      </span>
     </div>
   </section>
+
+  <!-- MOBILE STICKY CTA -->
+  <div class="mobile-sticky-cta" id="mobileStickyCta" aria-hidden="true">
+    <span class="mobile-sticky-cta-text">Empieza tu proceso <strong>hoy</strong></span>
+    <a href="#agenda" class="mobile-sticky-cta-btn">Agendar sesión</a>
+  </div>
 
   <!-- FOOTER -->
   <footer class="footer">
@@ -2070,7 +3225,9 @@
         <ul class="footer-links">
           <li><a href="#sobre-mi">Sobre mí</a></li>
           <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#problema-solucion">¿Te sientes así?</a></li>
           <li><a href="#testimonios">Testimonios</a></li>
+          <li><a href="#precios">Precios</a></li>
           <li><a href="#faq">Preguntas</a></li>
           <li><a href="#agenda">Agendar</a></li>
         </ul>
@@ -2093,6 +3250,12 @@
       <path d="M20.52 3.48A11.914 11.914 0 0 0 12 0C5.373 0 0 5.373 0 12c0 1.783.44 3.482 1.227 5.006L0 24l5.894-1.664A11.942 11.942 0 0 0 12 24c6.627 0 12-5.373 12-12 0-1.958-.487-3.813-1.48-5.442zM8 12.5c0 .827.673 1.5 1.5 1.5H10v4.5c0 .827.673 1.5 1.5 1.5s1.5-.673 1.5-1.5V14h2.5c.827 0 1.5-.673 1.5-1.5s-.673-1.5-1.5-1.5H13V9c0-.827-.673-1.5-1.5-1.5s-1.5.673-1.5 1.5v2.5H9.5c-.827 0-1.5.673-1.5 1.5z" fill="#fff"/>
     </svg>
   </a>
+
+  <!-- MOBILE STICKY CTA -->
+  <div class="mobile-sticky-cta" id="mobileStickyCta" aria-hidden="true">
+    <span class="mobile-sticky-cta-text">Agenda tu sesión <strong>desde S/ 170</strong></span>
+    <a href="#agenda" class="mobile-sticky-cta-btn">Reservar ahora</a>
+  </div>
 
   <script>
     // Navbar scroll effect
@@ -2211,6 +3374,38 @@
       card.addEventListener('mouseleave', () => {
         card.style.zIndex = '1';
       });
+    });
+
+    // Mobile sticky CTA - show after scrolling past hero
+    const mobileStickyCta = document.getElementById('mobileStickyCta');
+    const heroSectionEl = document.querySelector('.hero');
+
+    window.addEventListener('scroll', () => {
+      if (window.innerWidth <= 768 && heroSectionEl && mobileStickyCta) {
+        const heroBottom = heroSectionEl.offsetTop + heroSectionEl.offsetHeight;
+        if (window.scrollY > heroBottom - 100) {
+          mobileStickyCta.classList.add('visible');
+          mobileStickyCta.setAttribute('aria-hidden', 'false');
+        } else {
+          mobileStickyCta.classList.remove('visible');
+          mobileStickyCta.setAttribute('aria-hidden', 'true');
+        }
+      } else if (mobileStickyCta) {
+        mobileStickyCta.classList.remove('visible');
+        mobileStickyCta.setAttribute('aria-hidden', 'true');
+      }
+    });
+
+    // WhatsApp float - adjust position when mobile sticky CTA is visible
+    const whatsappFloat = document.querySelector('.whatsapp-float');
+    window.addEventListener('scroll', () => {
+      if (window.innerWidth <= 768 && whatsappFloat && mobileStickyCta) {
+        if (mobileStickyCta.classList.contains('visible')) {
+          whatsappFloat.style.bottom = '90px';
+        } else {
+          whatsappFloat.style.bottom = '18px';
+        }
+      }
     });
   </script>
 </body>

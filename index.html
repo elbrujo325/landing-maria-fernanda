@@ -637,6 +637,112 @@
       font-weight: 600;
     }
 
+    /* CREDENTIALS GRID */
+    .credenciales-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 32px;
+    }
+
+    @media (min-width: 1024px) {
+      .credenciales-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .credential-card {
+      background: var(--white);
+      border: 1px solid var(--blue-light);
+      border-radius: 20px;
+      padding: 32px;
+      transition: all 0.4s ease;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .credential-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(90, 159, 212, 0.12);
+      border-color: var(--blue-mid);
+    }
+
+    .credential-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: var(--blue-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      color: var(--blue-deep);
+    }
+
+    .credential-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke: var(--blue-deep);
+      fill: none;
+      stroke-width: 2;
+    }
+
+    .credential-year {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--blue-deep);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .credential-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+
+    .credential-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 20px;
+      flex: 1;
+    }
+
+    .credential-image {
+      background: var(--blue-bg);
+      border: 2px dashed var(--blue-light);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .credential-image:hover {
+      border-color: var(--blue-mid);
+      background: var(--white);
+    }
+
+    .credential-image svg {
+      width: 32px;
+      height: 32px;
+      stroke: var(--blue-mid);
+      fill: none;
+      stroke-width: 1.5;
+      margin-bottom: 8px;
+    }
+
+    .credential-image span {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
     /* HOW IT WORKS */
     .como-funciona {
       padding: 100px 0;
@@ -1345,119 +1451,117 @@
       color: var(--ink);
     }
 
-    /* TIMELINE CREDENCIALES */
-    .credenciales {
-      margin-top: 60px;
-      padding-top: 40px;
-      border-top: 1px solid var(--blue-light);
+    /* CREDENCIALES GRID (replaces old timeline) */
+    .credenciales-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 32px;
     }
 
-    .credenciales h3 {
-      font-size: 22px;
-      margin-bottom: 32px;
-      color: var(--ink);
-      text-align: center;
+    @media (min-width: 1024px) {
+      .credenciales-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
     }
 
-    .timeline {
-      position: relative;
-      max-width: 700px;
-      margin: 0 auto;
-      padding-left: 30px;
-    }
-
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 11px;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: linear-gradient(180deg, var(--blue-mid) 0%, var(--blue-light) 100%);
-    }
-
-    .timeline-item {
-      position: relative;
-      padding-bottom: 32px;
-      padding-right: 40px;
-      opacity: 0;
-      transform: translateX(-20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-
-    .timeline-item.visible {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    .timeline-dot {
-      position: absolute;
-      left: -30px;
-      top: 4px;
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
+    .credential-card {
       background: var(--white);
-      border: 3px solid var(--blue-mid);
+      border: 1px solid var(--blue-light);
+      border-radius: 20px;
+      padding: 32px;
+      transition: all 0.4s ease;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .credential-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(90, 159, 212, 0.12);
+      border-color: var(--blue-mid);
+    }
+
+    .credential-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: var(--blue-bg);
       display: flex;
       align-items: center;
       justify-content: center;
-      z-index: 1;
-      transition: all 0.3s ease;
+      margin-bottom: 16px;
+      color: var(--blue-deep);
     }
 
-    .timeline-dot svg {
-      width: 12px;
-      height: 12px;
+    .credential-icon svg {
+      width: 24px;
+      height: 24px;
       stroke: var(--blue-deep);
       fill: none;
       stroke-width: 2;
     }
 
-    .timeline-item:hover .timeline-dot {
-      background: var(--blue-deep);
-      border-color: var(--blue-deep);
-      transform: scale(1.2);
-    }
-
-    .timeline-item:hover .timeline-dot svg {
-      stroke: var(--white);
-    }
-
-    .timeline-content {
-      background: var(--card-bg);
-      border: 1px solid var(--blue-light);
-      border-radius: 12px;
-      padding: 20px 24px;
-      transition: all 0.3s ease;
-    }
-
-    .timeline-item:hover .timeline-content {
-      transform: translateX(8px);
-      box-shadow: 0 8px 30px rgba(90, 159, 212, 0.15);
-      border-color: var(--blue-mid);
-    }
-
-    .timeline-year {
+    .credential-year {
       font-size: 12px;
       font-weight: 600;
       color: var(--blue-deep);
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      margin-bottom: 4px;
+      margin-bottom: 8px;
     }
 
-    .timeline-title {
-      font-family: 'Fraunces', serif;
-      font-size: 16px;
+    .credential-title {
+      font-size: 18px;
+      font-weight: 600;
       color: var(--ink);
-      margin-bottom: 4px;
+      margin-bottom: 12px;
+      line-height: 1.3;
     }
 
-    .timeline-desc {
+    .credential-desc {
       font-size: 14px;
       color: var(--muted);
       line-height: 1.6;
+      margin-bottom: 20px;
+      flex: 1;
+    }
+
+    .credential-image {
+      background: var(--blue-bg);
+      border: 2px dashed var(--blue-light);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .credential-image:hover {
+      border-color: var(--blue-mid);
+      background: var(--white);
+    }
+
+    .credential-image svg {
+      width: 32px;
+      height: 32px;
+      stroke: var(--blue-mid);
+      fill: none;
+      stroke-width: 1.5;
+      margin-bottom: 8px;
+    }
+
+    .credential-image span {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    /* RESPONSIVE for credentials grid */
+    @media (max-width: 968px) {
+      .credenciales-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     /* SERVICIOS */
@@ -2161,7 +2265,8 @@
 
       .services-grid,
       .testimonios-grid,
-      .mision-grid {
+      .mision-grid,
+      .credentials-grid {
         grid-template-columns: 1fr;
       }
 
@@ -2578,65 +2683,80 @@
       </div>
     </div>
 
-    <!-- TIMELINE CREDENCIALES -->
-    <div class="container">
-      <div class="credenciales fade-in">
-        <h3>Formación y credenciales</h3>
-        <div class="timeline" id="timeline">
-          <div class="timeline-item">
-            <div class="timeline-dot">
-              <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <!-- CREDENCIALES GRID -->
+    <section class="credenciales-grid" id="credenciales">
+      <div class="container">
+        <h2 class="section-title fade-in">Formación y credenciales</h2>
+        <p class="section-subtitle fade-in">Formación académica, certificaciones y desarrollo profesional continuo</p>
+        
+        <div class="credentials-grid">
+          <article class="credential-card fade-in">
+            <div class="credential-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
             </div>
-            <div class="timeline-content">
-              <div class="timeline-year">2017</div>
-              <div class="timeline-title">Licenciatura en Psicología</div>
-              <div class="timeline-desc">Universidad Peruana de Ciencias Aplicadas (UPC). Título profesional a nombre de la nación.</div>
+            <div class="credential-year">2017</div>
+            <h3 class="credential-title">Licenciatura en Psicología</h3>
+            <p class="credential-desc">Universidad Peruana de Ciencias Aplicadas (UPC). Título profesional a nombre de la nación.</p>
+            <div class="credential-image" aria-label="Diploma de licenciatura">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+              <span>Agregar foto del diploma</span>
             </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot">
-              <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          </article>
+
+          <article class="credential-card fade-in">
+            <div class="credential-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
             </div>
-            <div class="timeline-content">
-              <div class="timeline-year">2019</div>
-              <div class="timeline-title">Psicoterapeuta Cognitivo Conductual</div>
-              <div class="timeline-desc">Especialización en Terapia Cognitivo Conductual (TCC) — enfoque basado en evidencia para ansiedad, depresión y trastornos del estado de ánimo.</div>
+            <div class="credential-year">2019</div>
+            <h3 class="credential-title">Psicoterapeuta Cognitivo Conductual</h3>
+            <p class="credential-desc">Especialización en Terapia Cognitivo Conductual (TCC) — enfoque basado en evidencia para ansiedad, depresión y trastornos del estado de ánimo.</p>
+            <div class="credential-image" aria-label="Certificación TCC">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+              <span>Agregar certificación</span>
             </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot">
-              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </article>
+
+          <article class="credential-card fade-in">
+            <div class="credential-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
             </div>
-            <div class="timeline-content">
-              <div class="timeline-year">2021</div>
-              <div class="timeline-title">Diplomado en Terapia de Pareja Sistémica y Sexualidad</div>
-              <div class="timeline-desc">Formación avanzada en abordaje sistémico de la pareja, comunicación, intimidad y sexualidad humana.</div>
+            <div class="credential-year">2021</div>
+            <h3 class="credential-title">Diplomado en Terapia de Pareja Sistémica y Sexualidad</h3>
+            <p class="credential-desc">Formación avanzada en abordaje sistémico de la pareja, comunicación, intimidad y sexualidad humana.</p>
+            <div class="credential-image" aria-label="Diplomado terapia de pareja">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+              <span>Agregar diploma</span>
             </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot">
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </article>
+
+          <article class="credential-card fade-in">
+            <div class="credential-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
             </div>
-            <div class="timeline-content">
-              <div class="timeline-year">2018 - Presente</div>
-              <div class="timeline-title">Colegiatura activa</div>
-              <div class="timeline-desc">Colegio de Psicólogos del Perú — Colegiada N° 48921. Habilitación profesional vigente.</div>
+            <div class="credential-year">2018 - Presente</div>
+            <h3 class="credential-title">Colegiatura Activa</h3>
+            <p class="credential-desc">Colegio de Psicólogos del Perú — Colegiada N° 48921. Habilitación profesional vigente.</p>
+            <div class="credential-image" aria-label="Colegiatura">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+              <span>Agregar carné/constancia</span>
             </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot">
-              <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </article>
+
+          <article class="credential-card fade-in">
+            <div class="credential-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
             </div>
-            <div class="timeline-content">
-              <div class="timeline-year">Continuo</div>
-              <div class="timeline-title">Supervisión clínica y formación continua</div>
-              <div class="timeline-desc">Actualización constante en protocolos TCC, ACT, EMDR y neurociencia aplicada a la práctica clínica.</div>
+            <div class="credential-year">Continuo</div>
+            <h3 class="credential-title">Supervisión Clínica y Formación Continua</h3>
+            <p class="credential-desc">Actualización constante en protocolos TCC, ACT, EMDR y neurociencia aplicada a la práctica clínica.</p>
+            <div class="credential-image" aria-label="Formación continua">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+              <span>Agregar certificados</span>
             </div>
-          </div>
+          </article>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
   <!-- PROBLEMA / SOLUCION -->
   <section class="problema-solucion" id="problema-solucion">
@@ -3308,20 +3428,6 @@
     }, observerOptions);
 
     fadeElements.forEach(el => observer.observe(el));
-
-    // Timeline animation
-    const timelineItems = document.querySelectorAll('.timeline-item');
-    const timelineObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry, index) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.classList.add('visible');
-          }, index * 150);
-        }
-      });
-    }, { threshold: 0.2, rootMargin: '0px 0px -50px 0px' });
-
-    timelineItems.forEach(el => timelineObserver.observe(el));
 
     // FAQ Accordion
     document.querySelectorAll('.faq-question').forEach(button => {

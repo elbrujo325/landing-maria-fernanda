@@ -1232,7 +1232,7 @@
       }
 
       .whatsapp-float {
-        bottom: 85px;
+        bottom: 18px;
         right: 18px;
         width: 52px;
         height: 52px;
@@ -1327,6 +1327,16 @@
       .cta-final-buttons .btn {
         width: 100%;
         max-width: 280px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .hero-buttons .btn {
+        width: 100%;
+        text-align: center;
       }
 
       @media (max-width: 480px) {
@@ -2318,6 +2328,30 @@
       /* Mobile: testimonios */
       .testimonios {
         padding: 60px 0;
+      }
+
+      .testimonios-marquee {
+        mask-image: none;
+        -webkit-mask-image: none;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding: 0 16px 16px;
+        margin: 0 -16px;
+      }
+
+      .testimonios-track {
+        animation: none;
+        width: max-content;
+        display: flex;
+        gap: 16px;
+        padding: 16px 16px 32px;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .testimonio-card {
+        flex: 0 0 280px;
+        scroll-snap-align: start;
       }
 
       /* Mobile: whatsapp */
@@ -3395,7 +3429,7 @@
     window.addEventListener('scroll', () => {
       if (window.innerWidth <= 768 && whatsappFloat && mobileStickyCta) {
         if (mobileStickyCta.classList.contains('visible')) {
-          whatsappFloat.style.bottom = '90px';
+          whatsappFloat.style.bottom = '85px';
         } else {
           whatsappFloat.style.bottom = '18px';
         }

@@ -48,7 +48,7 @@
     }
 
     .container {
-      max-width: 1200px;
+      max-width: 1400px;
       margin: 0 auto;
       padding: 0 24px;
     }
@@ -1451,112 +1451,6 @@
       color: var(--ink);
     }
 
-    /* CREDENCIALES GRID (replaces old timeline) */
-    .credenciales-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
-      margin-top: 32px;
-    }
-
-    @media (min-width: 1024px) {
-      .credenciales-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-
-    .credential-card {
-      background: var(--white);
-      border: 1px solid var(--blue-light);
-      border-radius: 20px;
-      padding: 32px;
-      transition: all 0.4s ease;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .credential-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 40px rgba(90, 159, 212, 0.12);
-      border-color: var(--blue-mid);
-    }
-
-    .credential-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 14px;
-      background: var(--blue-bg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 16px;
-      color: var(--blue-deep);
-    }
-
-    .credential-icon svg {
-      width: 24px;
-      height: 24px;
-      stroke: var(--blue-deep);
-      fill: none;
-      stroke-width: 2;
-    }
-
-    .credential-year {
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--blue-deep);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 8px;
-    }
-
-    .credential-title {
-      font-size: 18px;
-      font-weight: 600;
-      color: var(--ink);
-      margin-bottom: 12px;
-      line-height: 1.3;
-    }
-
-    .credential-desc {
-      font-size: 14px;
-      color: var(--muted);
-      line-height: 1.6;
-      margin-bottom: 20px;
-      flex: 1;
-    }
-
-    .credential-image {
-      background: var(--blue-bg);
-      border: 2px dashed var(--blue-light);
-      border-radius: 12px;
-      padding: 20px;
-      text-align: center;
-      transition: all 0.3s ease;
-    }
-
-    .credential-image:hover {
-      border-color: var(--blue-mid);
-      background: var(--white);
-    }
-
-    .credential-image svg {
-      width: 32px;
-      height: 32px;
-      stroke: var(--blue-mid);
-      fill: none;
-      stroke-width: 1.5;
-      margin-bottom: 8px;
-    }
-
-    .credential-image span {
-      display: block;
-      font-size: 12px;
-      color: var(--muted);
-      font-weight: 500;
-    }
-
     /* SERVICIOS */
     .servicios {
       padding: 100px 0;
@@ -2426,26 +2320,6 @@
         padding: 60px 0;
       }
 
-      .testimonios-marquee {
-        mask-image: none;
-        -webkit-mask-image: none;
-      }
-
-      .testimonios-track {
-        animation: none;
-        width: auto;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-        padding: 16px 0 32px;
-        gap: 16px;
-      }
-
-      .testimonio-card {
-        flex: 0 0 280px;
-        scroll-snap-align: start;
-      }
-
       /* Mobile: whatsapp */
       .whatsapp-float {
         bottom: 18px;
@@ -2695,81 +2569,82 @@
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- CREDENCIALES GRID -->
-    <section class="credenciales-grid" id="credenciales">
-      <div class="container">
-        <h2 class="section-title fade-in">Formación y credenciales</h2>
-        <p class="section-subtitle fade-in">Formación académica, certificaciones y desarrollo profesional continuo</p>
-        
-        <div class="credenciales-grid">
-          <article class="credential-card fade-in">
-            <div class="credential-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-            </div>
-            <div class="credential-year">2017</div>
-            <h3 class="credential-title">Licenciatura en Psicología</h3>
-            <p class="credential-desc">Universidad Peruana de Ciencias Aplicadas (UPC). Título profesional a nombre de la nación.</p>
-            <div class="credential-image" aria-label="Diploma de licenciatura">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-              <span>Agregar foto del diploma</span>
-            </div>
-          </article>
+  <!-- CREDENCIALES GRID (sección independiente) -->
+  <section class="credenciales-section" id="credenciales">
+    <div class="container">
+      <h2 class="section-title fade-in">Formación y credenciales</h2>
+      <p class="section-subtitle fade-in">Formación académica, certificaciones y desarrollo profesional continuo</p>
+      
+      <div class="credenciales-grid">
+        <article class="credential-card fade-in">
+          <div class="credential-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </div>
+          <div class="credential-year">2017</div>
+          <h3 class="credential-title">Licenciatura en Psicología</h3>
+          <p class="credential-desc">Universidad Peruana de Ciencias Aplicadas (UPC). Título profesional a nombre de la nación.</p>
+          <div class="credential-image" aria-label="Diploma de licenciatura">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            <span>Agregar foto del diploma</span>
+          </div>
+        </article>
 
-          <article class="credential-card fade-in">
-            <div class="credential-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-            </div>
-            <div class="credential-year">2019</div>
-            <h3 class="credential-title">Psicoterapeuta Cognitivo Conductual</h3>
-            <p class="credential-desc">Especialización en Terapia Cognitivo Conductual (TCC) — enfoque basado en evidencia para ansiedad, depresión y trastornos del estado de ánimo.</p>
-            <div class="credential-image" aria-label="Certificación TCC">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-              <span>Agregar certificación</span>
-            </div>
-          </article>
+        <article class="credential-card fade-in">
+          <div class="credential-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <div class="credential-year">2019</div>
+          <h3 class="credential-title">Psicoterapeuta Cognitivo Conductual</h3>
+          <p class="credential-desc">Especialización en Terapia Cognitivo Conductual (TCC) — enfoque basado en evidencia para ansiedad, depresión y trastornos del estado de ánimo.</p>
+          <div class="credential-image" aria-label="Certificación TCC">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            <span>Agregar certificación</span>
+          </div>
+        </article>
 
-          <article class="credential-card fade-in">
-            <div class="credential-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-            </div>
-            <div class="credential-year">2021</div>
-            <h3 class="credential-title">Diplomado en Terapia de Pareja Sistémica y Sexualidad</h3>
-            <p class="credential-desc">Formación avanzada en abordaje sistémico de la pareja, comunicación, intimidad y sexualidad humana.</p>
-            <div class="credential-image" aria-label="Diplomado terapia de pareja">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-              <span>Agregar diploma</span>
-            </div>
-          </article>
+        <article class="credential-card fade-in">
+          <div class="credential-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <div class="credential-year">2021</div>
+          <h3 class="credential-title">Diplomado en Terapia de Pareja Sistémica y Sexualidad</h3>
+          <p class="credential-desc">Formación avanzada en abordaje sistémico de la pareja, comunicación, intimidad y sexualidad humana.</p>
+          <div class="credential-image" aria-label="Diplomado terapia de pareja">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            <span>Agregar diploma</span>
+          </div>
+        </article>
 
-          <article class="credential-card fade-in">
-            <div class="credential-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-            </div>
-            <div class="credential-year">2018 - Presente</div>
-            <h3 class="credential-title">Colegiatura Activa</h3>
-            <p class="credential-desc">Colegio de Psicólogos del Perú — Colegiada N° 48921. Habilitación profesional vigente.</p>
-            <div class="credential-image" aria-label="Colegiatura">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-              <span>Agregar carné/constancia</span>
-            </div>
-          </article>
+        <article class="credential-card fade-in">
+          <div class="credential-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <div class="credential-year">2018 - Presente</div>
+          <h3 class="credential-title">Colegiatura Activa</h3>
+          <p class="credential-desc">Colegio de Psicólogos del Perú — Colegiada N° 48921. Habilitación profesional vigente.</p>
+          <div class="credential-image" aria-label="Colegiatura">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            <span>Agregar carné/constancia</span>
+          </div>
+        </article>
 
-          <article class="credential-card fade-in">
-            <div class="credential-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-            </div>
-            <div class="credential-year">Continuo</div>
-            <h3 class="credential-title">Supervisión Clínica y Formación Continua</h3>
-            <p class="credential-desc">Actualización constante en protocolos TCC, ACT, EMDR y neurociencia aplicada a la práctica clínica.</p>
-            <div class="credential-image" aria-label="Formación continua">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-              <span>Agregar certificados</span>
-            </div>
-          </article>
-        </div>
+        <article class="credential-card fade-in">
+          <div class="credential-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
+          <div class="credential-year">Continuo</div>
+          <h3 class="credential-title">Supervisión Clínica y Formación Continua</h3>
+          <p class="credential-desc">Actualización constante en protocolos TCC, ACT, EMDR y neurociencia aplicada a la práctica clínica.</p>
+          <div class="credential-image" aria-label="Formación continua">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            <span>Agregar certificados</span>
+          </div>
+        </article>
       </div>
-    </section>
+    </div>
+  </section>
 
   <!-- PROBLEMA / SOLUCION -->
   <section class="problema-solucion" id="problema-solucion">
@@ -3383,6 +3258,12 @@
       <path d="M20.52 3.48A11.914 11.914 0 0 0 12 0C5.373 0 0 5.373 0 12c0 1.783.44 3.482 1.227 5.006L0 24l5.894-1.664A11.942 11.942 0 0 0 12 24c6.627 0 12-5.373 12-12 0-1.958-.487-3.813-1.48-5.442zM8 12.5c0 .827.673 1.5 1.5 1.5H10v4.5c0 .827.673 1.5 1.5 1.5s1.5-.673 1.5-1.5V14h2.5c.827 0 1.5-.673 1.5-1.5s-.673-1.5-1.5-1.5H13V9c0-.827-.673-1.5-1.5-1.5s-1.5.673-1.5 1.5v2.5H9.5c-.827 0-1.5.673-1.5 1.5z" fill="#fff"/>
     </svg>
   </a>
+
+  <!-- MOBILE STICKY CTA -->
+  <div class="mobile-sticky-cta" id="mobileStickyCta" aria-hidden="true">
+    <span class="mobile-sticky-cta-text">Agenda tu sesión <strong>desde S/ 170</strong></span>
+    <a href="#agenda" class="mobile-sticky-cta-btn">Reservar ahora</a>
+  </div>
 
   <script>
     // Navbar scroll effect

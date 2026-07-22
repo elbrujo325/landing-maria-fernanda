@@ -85,6 +85,23 @@
 
 ---
 
+## GRUPO 8 — PALETA DE COLORES OFICIAL + OPTIMIZACIÓN DE IMÁGENES + TIPOGRAFÍAS (COMPLETADO ✅)
+
+| T# | Descripción | Archivo/Líneas | Verificación rápida | Estado |
+|---|---|---|---|---|
+| 8.1 | Reemplazar paleta inventada (`--blue-light`, `--blue-mid`, `--blue-deep`, `--brand-cream`, `--accent-cool`, etc.) por **paleta oficial PSH**: creams `--cream` `#FFFEEC`, `--cream-light` `#FFFDF4`; yellows `--yellow-light` `#FDFDC9`, `--yellow-mid` `#FEFFAF`, `--yellow-deep` `#FFFB85`; celestes `--celeste-light` `#B0DDFC`, `--celeste-mid` `#89CCFF`, `--celeste-deep` `#6FC1FF`; core `--white`, `--ink` `#1A2E35`, `--muted` `#7A9A8A`; gradients `--gradient-bg`, `--gradient-hero`; componentes `--card-bg`, `--card-border`, `--accent-warm`, `--accent-cool` | `index.html:12-42` (`:root` block) + ~200 referencias CSS | `grep "var(--cream)\|var(--celeste-deep)\|var(--yellow-mid)" index.html` → múltiples resultados; `grep "blue-light\|blue-mid\|blue-deep\|brand-cream" index.html` → 0 (salvo comentarios) | ✅ |
+| 8.2 | Actualizar `body` background de `var(--white)` a `var(--cream)` | `index.html:58` | Visual: fondo crema en todo el sitio | ✅ |
+| 8.3 | Actualizar botones (`.btn-primary`, `.btn-secondary`, `.btn-white`) para usar `--celeste-deep` y `--white` según nueva paleta | `index.html:89-118` | Visual: botones primarios celeste, secundarios con borde blanco, blancos con texto celeste | ✅ |
+| 8.4 | Actualizar Navbar temas (light/dark): bordes, textos, logo filter para usar nueva paleta | `index.html:131-183` | Visual: navbar glassmorphism con colores correctos en ambos temas | ✅ |
+| 8.5 | Actualizar todas las secciones: Hero, Social Proof Bar, Problema/Solución, Credenciales, Sobre Mí, Servicios, Misión, Testimonios, FAQ, CTA Final, Footer, Responsive | `index.html` (múltiples líneas) | Visual check: todas las secciones usan cremas/celestes/amarillos según paleta oficial | ✅ |
+| 8.6 | Corregir variable indefinida `var(--border-color)` en media query mobile navbar → `var(--card-border)` | `index.html:~3620` | `grep "border-color" index.html` → no hay `var(--border-color)` sin definir | ✅ |
+| 8.7 | **Optimizar imágenes pesadas** (4 archivos >2MB → <300KB c/u): `consultorio-1.jpg` 2.2MB→103KB, `consultorio-2.jpg` 3.0MB→171KB, `consultorio-3.jpg` 2.9MB→227KB, `tarjeta-presentacion.jpg` 3.5MB→122KB | Archivos nuevos: `consultorio-1-optimized.jpg`, `consultorio-2-optimized.jpg`, `consultorio-3-optimized.jpg`, `tarjeta-presentacion-optimized.jpg` | `ls -lh *optimized*` → todos < 300KB | ✅ |
+| 8.8 | Actualizar referencias `src` en HTML a versiones optimizadas | `index.html:2995-3009, 3058, 3359` | `grep "optimized" index.html` → 7 ocurrencias | ✅ |
+| 8.9 | **Eliminar imagen duplicada** `fernanda-headshot.png` (duplicado exacto de `foto-fernanda.png`, 199KB) | Archivo borrado del repo | `ls fernanda-headshot.png` → no existe | ✅ |
+| 8.10 | **Actualizar Google Fonts y tipografías** a marcas oficiales: import `League Spartan` (títulos), `Open Sans` (body), `Glacial Indifference` (subtítulos) — reemplaza `Bebas Neue`, `Fraunces`, `Inter` | `index.html:10` (Google Fonts link) + `index.html:55,62` (body + headings) + ~20 referencias CSS inline | `grep "League Spartan\|Open Sans\|Glacial Indifference" index.html` → múltiples; `grep "Bebas Neue\|Fraunces\|Inter" index.html` → 0 (salvo IntersectionObserver) | ✅ |
+
+---
+
 ## GRUPO 7 — VERIFICACIÓN TRANSVERSAL FINAL
 
 | T# | Descripción | Comando/Check | Estado |
@@ -93,8 +110,8 @@
 | 7.2 | **R-2** Cero direcciones exactas | `grep -i "San Isidro\|Surco\|dirección" index.html` → 0 | ✅ |
 | 7.3 | **R-3** TCC → ACT en todo el sitio | `grep -i "TCC" index.html` → 0 (salvo comentarios) | ✅ |
 | 7.4 | **R-4** Nav links válidos | Todos `href="#..."` en nav/footer tienen `id` correspondiente | ✅ |
-| 7.5 | **R-5** Paleta CSS variables intactas | Diff de `:root` block vs original = 0 cambios | ✅ |
-| 7.6 | **R-6** Tipografías intactas | Google Fonts link sin cambios | ✅ |
+| 7.5 | **R-5** Paleta oficial PSH aplicada | Variables CSS `:root` actualizadas a creams, yellows, celestes oficiales | ✅ |
+| 7.6 | **R-6** Tipografías de marca aplicadas | Google Fonts: League Spartan, Open Sans, Glacial Indifference; font-family actualizado en CSS | ✅ |
 | 7.7 | **R-7** Estilos orgánicos | No nuevos `border-radius: 0px` ni cajas rectangulares duras | ✅ |
 | 7.8 | **R-8** Ebooks oculta no borrada | `grep "DESHABILITADO v1" index.html` → 2 resultados | ✅ |
 | 7.9 | **R-9** WhatsApp +51 939855573 | `grep "wa.me/51939855573" index.html` → 12 ocurrencias | ✅ |
@@ -109,6 +126,7 @@
 
 ```
 Grupos 1-5 COMPLETADOS ✅
+Grupo 8 — Paleta oficial + Optimización imágenes + Tipografías ✅ COMPLETADO
 Fase 3.6 (Grupo 6) → Tareas 6.1 a 6.9   (Firebase + Form + Admin - FASE COMPLEJA, coordinar con Paolo)
 Fase 3.7 (Grupo 7) → Tareas 7.13        (Performance Lighthouse - pendiente)
 ```
@@ -162,18 +180,22 @@ echo "IDs:" && grep -oP 'id="[^"]+"' index.html | grep -E "(sobre-mi|servicios|p
 
 ---
 
-## ARCHIVOS DE IMAGEN AGREGADOS AL REPO (commit 8f28dab)
+## ARCHIVOS DE IMAGEN AGREGADOS AL REPO (commit 8f28dab + optimizaciones post-commit)
 
 | Archivo | Uso | Tamaño |
 |---|---|---|
 | `logo-psh.png` | Navbar + Footer logo (reemplaza logo_mariafernanda.png) | 60 KB |
-| `consultorio-1.jpg` | Terapia Presencial accordion | 2.2 MB |
-| `consultorio-2.jpg` | Terapia Presencial accordion | 3.0 MB |
-| `consultorio-3.jpg` | Terapia Presencial accordion | 2.9 MB |
+| `consultorio-1.jpg` | — | 2.2 MB | **ORIGINAL (no referenciada en HTML)**
+| `consultorio-2.jpg` | — | 3.0 MB | **ORIGINAL (no referenciada en HTML)**
+| `consultorio-3.jpg` | — | 2.9 MB | **ORIGINAL (no referenciada en HTML)**
 | `manos-libreta.jpg` | Terapia Online accordion | 109 KB |
-| `tarjeta-presentacion.jpg` | Redes & Agenda section | 3.5 MB |
-| `fernanda-headshot.png` | Foto profesional (backup) | 199 KB |
+| `tarjeta-presentacion.jpg` | — | 3.5 MB | **ORIGINAL (no referenciada en HTML)**
+| `fernanda-headshot.png` | — | — | **ELIMINADA** (duplicado exacto de foto-fernanda.png)
 | `foto-fernanda.png` | Hero + Sobre mí photo | 199 KB |
 | `logo_mariafernanda.png` | Logo original (referencia) | 21 KB |
+| `consultorio-1-optimized.jpg` | Terapia Presencial accordion | **103 KB** |
+| `consultorio-2-optimized.jpg` | Terapia Presencial accordion | **171 KB** |
+| `consultorio-3-optimized.jpg` | Terapia Presencial accordion | **227 KB** |
+| `tarjeta-presentacion-optimized.jpg` | Redes & Agenda section | **122 KB** |
 
 **Deploy:** GitHub Pages automático desde `main` branch → https://elbrujo325.github.io/landing-maria-fernanda/

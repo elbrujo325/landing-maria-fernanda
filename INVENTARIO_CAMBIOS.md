@@ -3,7 +3,7 @@
 **Archivo base:** `index.html` (3.629 líneas)  
 **Fecha:** 2026-07-21  
 **Fuente:** Brief del cliente + revisión exhaustiva del HTML actual  
-**Última actualización:** 2026-07-21 — Commit `8f28dab` (Grupos 1-5 completados ✅)
+**Última actualización:** 2026-07-21 — Commit `8f28dab` (Grupos 1-5 completados ✅) + **Post-commit: Paleta oficial, optimización imágenes, tipografías de marca, docs actualizados**
 
 ---
 
@@ -47,17 +47,17 @@
 | **C-2** | Nueva sección | Dentro de C-1 | **Feed Instagram vivo (Behold.so)**: embed widget conectado a `@pensarsentirhacer.pe`. Requiere que clienta conecte su cuenta en Behold.so. Patrón de proyecto "Luz de Cristo / Luxto". | ✅ (placeholder listo) |
 | **C-3** | Nueva sección | Sección "Sobre mí" (líneas 2764-2786) | **Video YouTube embebido** después del texto: `https://www.youtube.com/watch?v=CfACxsC7K-A` → iframe responsive | ✅ |
 | **C-4** | Nueva funcionalidad | Servicios líneas 2933-2977 | **Accordion/desplegable** en cada tarjeta servicio (Presencial / Online): duración, modalidad, qué incluye. **NO precio ni dirección exacta.** | ✅ |
-| **C-5** | Nueva funcionalidad | Debajo de Testimonios (línea 3300) | **Formulario reseñas públicas**: nombre, texto, estrellas 1-5. Envío → Firestore `testimonios` con `aprobado: false`. Moderación admin. Render dinámico en carrusel. | ⏳ (Grupo 6 - Firebase) |
+| **C-5** | Nueva funcionalidad | Debajo de Testimonios (línea 3300) | **Formulario reseñas públicas**: nombre, texto, estrellas 1-5. Envío → Firestore `testimonios` con `aprobado: false`. Moderación admin. Render dinámico en carrusel. | ⏳ (Grupo 6 - Firebase) **— PENDIENTE: requiere credenciales Firebase de la clienta** |
 
 ---
 
 | ID | Categoría | Sección / Línea | Cambio requerido | Estado |
 |---|---|---|---|---|
-| **D-1** | Backend | Firebase | Configurar projecto Firebase **bajo cuenta Google de la clienta** (coordinar con Paolo). Firestore + Auth + Hosting rules. | ⏳ |
-| **D-2** | Backend | Firestore | Colección `testimonios`: `{ nombre, texto, estrellas, fecha, aprobado: boolean }`. Default `aprobado: false`. | ⏳ |
-| **D-3** | Backend | Firestore | Colección `blogs`: `{ titulo, cuerpo, imagen_url, fecha, publicado: boolean }`. Solo `publicado: true` se renderiza en público. | ⏳ |
-| **D-4** | Backend | Auth/Admin | Ruta protegida `/admin` (Firebase Auth email/password solo clienta). Panel: crear/edit blog (rich text básico: título, cuerpo, imagen opcional), ver/aprobar/rechazar testimonios pendientes. | ⏳ |
-| **D-5** | Backend | Frontend | Integrar Firebase SDK en `index.html` (modular SDK v9+). Formulario reseñas → write a `testimonios`. Carrusel testimonios → leer `testimonios` con `aprobado: true` + merge con testimonios estáticos actuales. | ⏳ |
+| **D-1** | Backend | Firebase | Configurar projecto Firebase **bajo cuenta Google de la clienta** (coordinar con Paolo). Firestore + Auth + Hosting rules. | ⏳ **DEFERIDO: esperando credenciales clienta** |
+| **D-2** | Backend | Firestore | Colección `testimonios`: `{ nombre, texto, estrellas, fecha, aprobado: boolean }`. Default `aprobado: false`. | ⏳ **DEFERIDO: esperando credenciales clienta** |
+| **D-3** | Backend | Firestore | Colección `blogs`: `{ titulo, cuerpo, imagen_url, fecha, publicado: boolean }`. Solo `publicado: true` se renderiza en público. | ⏳ **DEFERIDO: esperando credenciales clienta** |
+| **D-4** | Backend | Auth/Admin | Ruta protegida `/admin` (Firebase Auth email/password solo clienta). Panel: crear/edit blog (rich text básico: título, cuerpo, imagen opcional), ver/aprobar/rechazar testimonios pendientes. | ⏳ **DEFERIDO: esperando credenciales clienta** |
+| **D-5** | Backend | Frontend | Integrar Firebase SDK en `index.html` (modular SDK v9+). Formulario reseñas → write a `testimonios`. Carrusel testimonios → leer `testimonios` con `aprobado: true` + merge con testimonios estáticos actuales. | ⏳ **DEFERIDO: esperando credenciales clienta** |
 
 ---
 
@@ -69,8 +69,8 @@
 | **R-2** | **Cero direcciones exactas** | `grep -i "San Isidro\|Surco\|dirección" index.html` → 0 resultados | ✅ |
 | **R-3** | **TCC → ACT en TODO el sitio** | `grep -i "TCC" index.html` → 0 resultados (excepto comentarios) | ✅ |
 | **R-4** | **Nav links válidos** | Todos los `href="#..."` del nav/footer apuntan a `id` existentes en el HTML final | ✅ |
-| **R-5** | **Paleta vainilla intacta** | Variables CSS `--blue-light`, `--blue-mid`, `--blue-deep`, `--brand-cream`, `--white`, `--ink`, `--muted`, `--gradient-bg`, `--gradient-hero`, `--card-bg`, `--accent-cool` **no cambian** | ✅ |
-| **R-6** | **Tipografías intactas** | `Bebas Neue`, `Fraunces`, `Inter`, `Glacial Indifference` (si se usa) no cambian | ✅ |
+| **R-5** | **Paleta oficial PSH aplicada** | Variables CSS `--cream` `#FFFEEC`, `--cream-light` `#FFFDF4`, `--yellow-light` `#FDFDC9`, `--yellow-mid` `#FEFFAF`, `--yellow-deep` `#FFFB85`, `--celeste-light` `#B0DDFC`, `--celeste-mid` `#89CCFF`, `--celeste-deep` `#6FC1FF`, `--white` `#FFFFFF`, `--ink` `#1A2E35`, `--muted` `#7A9A8A`, `--gradient-bg`, `--gradient-hero`, `--card-bg`, `--card-border`, `--accent-warm`, `--accent-cool` | ✅ |
+| **R-6** | **Tipografías de marca aplicadas** | Google Fonts: `League Spartan`, `Open Sans`, `Glacial Indifference`. `font-family` en CSS actualizado a: body → `Open Sans`, headings → `League Spartan`, subtítulos → `Glacial Indifference` | ✅ |
 | **R-7** | **Estilos orgánicos/retro-groovy** | `border-radius` orgánicos, blobs/ondas, no bordes rectangulares duros nuevos | ✅ |
 | **R-8** | **Sección Ebooks oculta, no borrada** | Buscar `<!-- DESHABILITADO v1` → 2 ocurrencias (nav + servicios) | ✅ |
 | **R-9** | **WhatsApp +51 939855573** | Todos los `href="https://wa.me/51939855573"` (formato sin espacios) | ✅ (12 ocurrencias) |
@@ -105,13 +105,15 @@
 - [x] `grep -i "S/" index.html` → 0 resultados (salvo comentarios)
 - [x] `grep -i "San Isidro\|Surco\|dirección" index.html` → 0 resultados
 - [x] Todos los `href="#..."` del nav/footer tienen `id` correspondiente en el HTML
-- [x] Paleta CSS variables sin cambios
-- [x] Fonts Google Fonts sin cambios
+- [x] **Paleta oficial PSH aplicada** — variables CSS actualizadas a creams, yellows, celestes
+- [x] **Tipografías de marca aplicadas** — Google Fonts: League Spartan, Open Sans, Glacial Indifference; font-family actualizado en CSS
+- [x] Estilos orgánicos
 - [x] Sección Ebooks: 2 comentarios `<!-- DESHABILITADO v1 - reactivar en v2 -->` presentes
 - [x] WhatsApp links todos `https://wa.me/51939855573`
 - [x] Botones Agenda: todos → WhatsApp con `target="_blank"`
 - [ ] Firebase SDK cargado (modular v9+) — **Grupo 6 pendiente**
 - [ ] `/admin` route protegida — **Grupo 6 pendiente**
+- [x] **Imágenes optimizadas** — consultorio-1/2/3, tarjeta-presentacion < 300KB cada una; originales no referenciadas en HTML
 
 ---
 
@@ -140,18 +142,22 @@
 
 ---
 
-## IMÁGENES AGREGADAS AL REPO (commit 8f28dab)
+## IMÁGENES AGREGADAS AL REPO (commit 8f28dab + optimizaciones post-commit)
 
 | Archivo | Tamaño | Uso | Notas |
 |---|---|---|---|
 | `logo-psh.png` | 60 KB | Navbar + Footer | Reemplaza logo_mariafernanda.png (21 KB) — tamaño correcto para clip-path CSS |
-| `consultorio-1.jpg` | 2.2 MB | Terapia Presencial accordion | Sala de espera |
-| `consultorio-2.jpg` | 3.0 MB | Terapia Presencial accordion | Sillón y jardín |
-| `consultorio-3.jpg` | 2.9 MB | Terapia Presencial accordion | Vista amplia |
-| `manos-libreta.jpg` | 109 KB | Terapia Online accordion | Manos con libreta |
-| `tarjeta-presentacion.jpg` | 3.5 MB | Redes & Agenda section | Tarjeta presentación PSH |
-| `fernanda-headshot.png` | 199 KB | Backup/futuro | Foto profesional transparente |
+| `consultorio-1.jpg` | 2.2 MB | Terapia Presencial accordion | Sala de espera — **ORIGINAL (no referenciada en HTML)** |
+| `consultorio-2.jpg` | 3.0 MB | Terapia Presencial accordion | Sillón y jardín — **ORIGINAL (no referenciada en HTML)** |
+| `consultorio-3.jpg` | 2.9 MB | Terapia Presencial accordion | Vista amplia — **ORIGINAL (no referenciada en HTML)** |
+| `manos-libreta.jpg` | 109 KB | Terapia Online accordion | Manos con libreta — ya optimizada |
+| `tarjeta-presentacion.jpg` | 3.5 MB | Redes & Agenda section | Tarjeta presentación PSH — **ORIGINAL (no referenciada en HTML)** |
+| `fernanda-headshot.png` | 199 KB | — | **ELIMINADA** (duplicado exacto de foto-fernanda.png) |
 | `foto-fernanda.png` | 199 KB | Hero + Sobre mí | Foto profesional actual |
 | `logo_mariafernanda.png` | 21 KB | Referencia | Logo original pequeño |
+| `consultorio-1-optimized.jpg` | 103 KB | Terapia Presencial accordion | **OPTIMIZADA** — reemplaza consultorio-1.jpg en HTML |
+| `consultorio-2-optimized.jpg` | 171 KB | Terapia Presencial accordion | **OPTIMIZADA** — reemplaza consultorio-2.jpg en HTML |
+| `consultorio-3-optimized.jpg` | 227 KB | Terapia Presencial accordion | **OPTIMIZADA** — reemplaza consultorio-3.jpg en HTML |
+| `tarjeta-presentacion-optimized.jpg` | 122 KB | Redes & Agenda section | **OPTIMIZADA** — reemplaza tarjeta-presentacion.jpg en HTML |
 
 **Deploy:** GitHub Pages automático desde `main` branch → https://elbrujo325.github.io/landing-maria-fernanda/

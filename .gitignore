@@ -1,0 +1,14 @@
+# Ignored files and directories for Maria Fernanda Landing Page
+.claude/
+.fotos_maria_fernanda_y_archivos_de_context/
+consultorio-*.jpg
+tarjeta-presentacion-optimized.jpg
+logo-inspector.html
+*.pdf
+*.HEIC
+*.dmg
+*.exe
+.DS_Store
+node_modules/
+.env
+

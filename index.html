@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>María Fernanda Arana · Psicóloga Clínica TCC · Pensar Sentir Hacer</title>
-  <meta name="description" content="Psicóloga clínica y psicoterapeuta Cognitivo Conductual (TCC) con diplomado en Terapia de Pareja. +7 años de experiencia. Lima, Perú.">
+  <title>María Fernanda Arana · Psicóloga Clínica ACT · Pensar Sentir Hacer</title>
+  <meta name="description" content="Psicóloga clínica ACT, especialista en bienestar emocional. +7 años de experiencia, +12 países. Terapia online y presencial en Lima.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
@@ -14,6 +14,7 @@
       --blue-mid: #8AB8E0;
       --blue-deep: #5A9FD4;
       --blue-bg: #F0F7FC;
+      --blue-brand: #abcff1;
       --brand-cream: #FFF4BB;
       --white: #FFFFFF;
       --ink: #1A2E35;
@@ -21,7 +22,7 @@
       --gradient-bg: linear-gradient(135deg, #C8E8F0 0%, #A8D8E8 50%, #B8E4D4 100%);
       --gradient-hero: linear-gradient(135deg, #C8E8F0 0%, #B8E4D4 100%);
       --card-bg: #EAF6FA;
-      --accent-cool: var(--brand-blue);
+      --accent-cool: var(--blue-brand);
     }
 
     * {
@@ -118,21 +119,63 @@
       left: 0;
       right: 0;
       z-index: 1000;
-      background: var(--white);
-      box-shadow: 0 2px 20px rgba(0,0,0,0.08);
-      transition: background 0.3s ease, box-shadow 0.3s ease;
+      /* Consistent glassmorphism everywhere - only text/logo colors adapt via theme-dark */
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      border-bottom: 1px solid rgba(171, 207, 241, 0.15);
+      transition: background 0.3s ease, border-color 0.3s ease;
     }
 
     .navbar.scrolled {
-      background: var(--blue-light);
-      box-shadow: 0 4px 30px rgba(58, 154, 181, 0.15);
+      background: rgba(255, 255, 255, 0.22);
+      border-bottom-color: rgba(171, 207, 241, 0.22);
+    }
+
+    /* Theme: LIGHT (default) - over white/light sections */
+    .navbar:not(.theme-dark) .nav-text {
+      color: var(--blue-brand);
+    }
+    .navbar:not(.theme-dark) .nav-links > li > a {
+      color: var(--blue-brand);
+    }
+    .navbar:not(.theme-dark) .nav-links > li > a:hover {
+      color: var(--ink);
+    }
+    .navbar:not(.theme-dark) .dropdown-arrow {
+      stroke: var(--blue-brand);
+    }
+    .navbar:not(.theme-dark) .nav-logo-img {
+      filter: brightness(0) sepia(100%) hue-rotate(170deg) saturate(600%) brightness(1.15);
+    }
+
+    /* Theme: DARK - over hero/blue gradient sections */
+    .navbar.theme-dark .nav-text {
+      color: var(--white);
+    }
+    .navbar.theme-dark .nav-links > li > a {
+      color: var(--white);
+    }
+    .navbar.theme-dark .nav-links > li > a:hover {
+      color: var(--brand-cream);
+    }
+    .navbar.theme-dark .dropdown-arrow {
+      stroke: var(--white);
+    }
+    .navbar.theme-dark .nav-logo-img {
+      filter: none;
+    }
+
+    /* Scrolled: keep glassmorphism always, only text/logo adapt via theme-dark */
+    .navbar.scrolled {
+      /* Keep same glassmorphism, no background opacity change */
     }
 
     .navbar .container {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 16px 24px;
+      padding: 12px 24px;
     }
 
     .logo {
@@ -231,6 +274,55 @@
       height: 2px;
       background: var(--ink);
       transition: all 0.3s ease;
+    }
+
+    /* Dark theme nav-toggle */
+    .navbar.theme-dark .nav-toggle span {
+      background: var(--white);
+    }
+
+    /* LOGO CIRCULAR - recorte y recoloreo automático */
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+
+    .nav-logo-img-wrap {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: transparent;
+    }
+
+    .nav-logo-img {
+      display: block;
+      width: 348.16px;
+      height: 348.16px;
+      transform: translate(-76px, -80px);
+      clip-path: circle(150px at center);
+      object-fit: cover;
+      transition: filter 0.3s ease;
+    }
+
+    /* Tema CLARO (navbar sobre fondos claros): letras blancas -> AZUL MARCA */
+    .navbar:not(.theme-dark) .nav-logo-img {
+      filter: brightness(0) sepia(100%) hue-rotate(170deg) saturate(600%) brightness(1.15);
+    }
+
+    /* Tema OSCURO (navbar sobre hero/degradado): letras blancas -> BLANCAS (invert) */
+    .navbar.theme-dark .nav-logo-img {
+      filter: brightness(0) invert(1);
+    }
+
+    .nav-text {
+      font-family: 'Fraunces', serif;
+      font-size: 26px;
+      font-weight: 600;
+      line-height: 1.1;
     }
 
     /* HERO */
@@ -2055,40 +2147,63 @@
     .nav-logo {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 18px;
       text-decoration: none;
-      color: var(--blue-deep);
     }
 
-    .nav-icon {
-      width: 32px;
-      height: 32px;
-      stroke: var(--blue-deep);
-      fill: none;
+    .nav-logo-img-wrap {
+      width: 48px;
+      height: 48px;
+      overflow: hidden;
+      border-radius: 50%;
+    }
+
+    .nav-logo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: none;
+      clip-path: circle(150px at 50% 50%);
+      transform: translate(-76px, -80px) scale(0.34);
+      filter: none;
+      transition: filter 0.3s ease;
     }
 
     .nav-text {
       font-family: 'Fraunces', serif;
-      font-size: 18px;
+      font-size: 28px;
       font-weight: 600;
-      color: var(--blue-deep);
+      color: var(--blue-brand);
     }
 
     .footer-logo {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 14px;
     }
 
-    .footer-logo .nav-icon {
-      width: 36px;
-      height: 36px;
-      stroke: var(--white);
+    .footer-logo-img-wrap {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: transparent;
+    }
+
+    .footer-logo-img {
+      display: block;
+      width: 348.16px;
+      height: 348.16px;
+      clip-path: circle(150px at center);
+      transform: translate(-76px, -80px) scale(0.34);
+      filter: brightness(0) invert(1); /* footer es azul oscuro -> logo blanco */
+      object-fit: cover;
     }
 
     .footer-logo .nav-text {
-      font-size: 22px;
+      font-size: 24px;
       color: var(--white);
+      line-height: 1.1;
     }
 
     .footer-links {
@@ -2215,6 +2330,27 @@
         border-top: 1px solid var(--border-color);
       }
 
+      /* Mobile: dark theme navbar */
+      .navbar.theme-dark .nav-links {
+        background: rgba(17, 40, 68, 0.95);
+        border-top-color: rgba(171, 207, 241, 0.15);
+      }
+      .navbar.theme-dark .nav-links > li > a {
+        color: var(--white);
+      }
+      .navbar.theme-dark .nav-links > li > a:hover {
+        color: var(--brand-cream);
+      }
+      .navbar.theme-dark .dropdown-menu {
+        background: rgba(30, 60, 100, 0.98);
+      }
+      .navbar.theme-dark .dropdown-menu a {
+        color: var(--white);
+      }
+      .navbar.theme-dark .dropdown-menu a:hover {
+        color: var(--brand-cream);
+      }
+
       .nav-links.active {
         display: flex;
       }
@@ -2247,6 +2383,36 @@
 
       .nav-toggle {
         display: flex;
+      }
+
+      .nav-logo-img-wrap {
+        width: 40px;
+        height: 40px;
+      }
+
+      .nav-logo-img {
+        width: 100%;
+        height: 100%;
+        object-fit: none;
+        object-position: center;
+        clip-path: circle(150px at 50% 50%);
+        transform: translate(-76px, -80px) scale(0.34);
+        filter: none;
+        transition: filter 0.3s ease;
+      }
+
+      /* Mobile: tema claro - logo azul */
+      .navbar:not(.theme-dark) .nav-logo-img {
+        filter: brightness(0) sepia(100%) hue-rotate(170deg) saturate(600%) brightness(1.15);
+      }
+
+      /* Mobile: tema oscuro - logo blanco */
+      .navbar.theme-dark .nav-logo-img {
+        filter: none;
+      }
+
+      .nav-text {
+        font-size: 26px;
       }
 
       /* Mobile: hero - más compacto */
@@ -2377,6 +2543,23 @@
         margin-bottom: 24px;
       }
 
+      .footer-logo .nav-text {
+        font-size: 22px;
+      }
+
+      .footer-logo-img-wrap {
+        width: 40px;
+        height: 40px;
+      }
+
+      .footer-logo-img {
+        width: 348.16px;
+        height: 348.16px;
+        clip-path: circle(150px at 50% 50%);
+        transform: translate(-76px, -80px) scale(0.34);
+        filter: brightness(0) invert(1);
+      }
+
       .footer-links {
         gap: 20px;
       }
@@ -2475,12 +2658,9 @@
   <nav class="navbar" id="navbar">
     <div class="container">
       <a href="#" class="nav-logo" aria-label="Pensar Sentir Hacer - Inicio">
-        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
-          <path d="M12 6v6l4 2"/>
-          <circle cx="18" cy="18" r="1.5" fill="currentColor"/>
-          <circle cx="6" cy="6" r="1" fill="currentColor"/>
-        </svg>
+        <div class="nav-logo-img-wrap">
+          <img src="logo-psh.png" alt="" class="nav-logo-img" aria-hidden="true">
+        </div>
         <span class="nav-text">Pensar Sentir Hacer</span>
       </a>
       <ul class="nav-links" id="navLinks">
@@ -2495,14 +2675,13 @@
           <ul class="dropdown-menu">
             <li><a href="#servicios">Terapia Presencial</a></li>
             <li><a href="#servicios">Terapia Online</a></li>
-            <li><a href="#servicios">Ebooks & Recursos</a></li>
+            <li style="display:none"><!-- DESHABILITADO v1 - reactivar en v2 --><a href="#servicios">Ebooks & Recursos</a></li>
           </ul>
         </li>
         <li><a href="#problema-solucion">¿Te sientes así?</a></li>
         <li><a href="#testimonios">Testimonios</a></li>
-        <li><a href="#precios">Precios</a></li>
         <li><a href="#faq">Preguntas</a></li>
-        <li><a href="#agenda" class="btn btn-primary" style="padding: 10px 20px; font-size: 13px;">Agendar</a></li>
+        <li><a href="https://wa.me/51939855573" class="btn btn-primary" target="_blank" rel="noopener" style="padding: 10px 20px; font-size: 13px;">Agendar</a></li>
       </ul>
       <div class="nav-toggle" id="navToggle">
         <span></span>
@@ -2516,7 +2695,7 @@
   <section class="hero">
     <div class="container">
       <div class="hero-content fade-in">
-        <span class="eyebrow">Psicóloga Clínica · TCC · Lima & Online</span>
+        <span class="eyebrow">Psicóloga clínica ACT, especialista en bienestar emocional</span>
         <h1>Terapia para que vivas con más <span>calma, coherencia y sentido</span></h1>
         <p class="hero-text">+7 años acompañando personas. 2 sedes en Lima. Online a todo el mundo.</p>
         
@@ -2532,7 +2711,7 @@
         </div>
 
         <div class="hero-buttons">
-          <a href="#agenda" class="btn btn-primary">Agendar mi primera sesión</a>
+          <a href="https://wa.me/51939855573" class="btn btn-primary" target="_blank" rel="noopener">Agendar mi primera sesión</a>
           <a href="#servicios" class="btn btn-secondary">Conoce mis servicios</a>
         </div>
       </div>
@@ -2545,7 +2724,7 @@
           <span class="dot-5"></span>
         </div>
         <div class="hero-photo">
-          <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&h=800&fit=crop&crop=face" alt="María Fernanda Arana - Psicóloga Clínica" loading="eager">
+          <img src="foto-fernanda.png" alt="María Fernanda Arana - Psicóloga Clínica" loading="eager">
         </div>
       </div>
     </div>
@@ -2561,7 +2740,7 @@
         </div>
         <div class="social-proof-stat">
           <div class="social-proof-stat-number">+7</div>
-          <div class="social-proof-stat-label">Años de experiencia</div>
+          <div class="social-proof-stat-label">Años experiencia · +12 países</div>
         </div>
         <div class="social-proof-stat">
           <div class="social-proof-stat-number">2</div>
@@ -2573,10 +2752,8 @@
         </div>
       </div>
       <div class="social-proof-logos">
-        <span class="social-proof-logo-text">Colegio de Psicólogos del Perú · N° 48921</span>
-        <span class="social-proof-logo-text">TCC Certificada</span>
-        <span class="social-proof-logo-text">Terapia de Pareja Sistémica</span>
-      </div>
+      <span class="social-proof-logo-text">CPsP. 46797 Magister en Terapia de Tercera Generación y Bienestar Emocional</span>
+    </div>
     </div>
   </section>
 
@@ -2584,22 +2761,26 @@
   <section class="sobre-mi" id="sobre-mi">
     <div class="container">
       <div class="perfil-photo fade-in">
-        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&h=600&fit=crop&crop=face" alt="María Fernanda Arana - Foto profesional" loading="lazy">
+        <img src="foto-fernanda.png" alt="María Fernanda Arana - Foto profesional" loading="lazy">
       </div>
       <div class="sobre-mi-content fade-in">
         <h2>Hola, soy María Fernanda</h2>
-        <p>Soy psicóloga clínica y psicoterapeuta Cognitivo Conductual (TCC), con diplomado en Terapia de Pareja Sistémica y Sexualidad. Desde los 15 años supe que quería ser psicóloga —aunque también me gustaban el derecho, la educación y la fotografía.</p>
-        <p>Mi biografía la escribo viviendo el día a día. El amor me lo explicó todo: creo y le apuesto al amor, uno real, racional y vulnerable. Me gusta divertirme, pero no los excesos. Hago lo que me hace feliz, aun sea difícil. Y eso, en mi caso, es acompañarte.</p>
-        <p>Mi estilo terapéutico es horizontal, empático y respetuoso. Fomento el pensamiento crítico —no doy respuestas dictadas, te ayudo a encontrar las tuyas.</p>
-
-        <div class="highlight-card">
-          <p>deseo + propósito + acción = logro</p>
-        </div>
+        <p>¡Hola! Soy María Fernanda Arana. Licenciada en Psicología Clínica CPsP 46797, especialista en Terapia de Aceptación y Compromiso (ACT) en casos de ansiedad, depresión, relaciones familiares y de pareja con Diplomado en Terapia de Pareja y Sexualidad. Magister en Terapia de Tercera Generación y Bienestar Emocional en ISEP, Barcelona.</p>
+        <p>Trabajo como psicóloga y psicoterapeuta con experiencia de atención +7 años, llegando a +12 países para mejorar su salud mental, emocional y relaciones.</p>
+        <p>"Si mejoras tú, mejora el mundo y los que te rodean"</p>
+        <p>@pensarsentirhacer.pe</p>
 
         <div class="stats">
           <div class="stat"><strong>+7 años</strong> de experiencia</div>
           <div class="stat"><strong>2 sedes</strong> en Lima</div>
           <div class="stat"><strong>Online</strong> a todo el mundo</div>
+        </div>
+
+        <!-- Video YouTube presentacional -->
+        <div class="youtube-video" style="margin-top:40px; border-radius:24px; overflow:hidden; background:var(--blue-bg); border:1px solid var(--blue-light);">
+          <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;">
+            <iframe src="https://www.youtube.com/embed/CfACxsC7K-A" title="María Fernanda Arana - Presentación Pensar Sentir Hacer" style="position:absolute; top:0; left:0; width:100%; height:100%;" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
         </div>
       </div>
     </div>
@@ -2630,9 +2811,9 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
           </div>
           <div class="credential-year">2019</div>
-          <h3 class="credential-title">Psicoterapeuta Cognitivo Conductual</h3>
-          <p class="credential-desc">Especialización en Terapia Cognitivo Conductual (TCC) — enfoque basado en evidencia para ansiedad, depresión y trastornos del estado de ánimo.</p>
-          <div class="credential-image" aria-label="Certificación TCC">
+          <h3 class="credential-title">Psicoterapeuta en Terapia de Aceptación y Compromiso (ACT)</h3>
+          <p class="credential-desc">Especialización en Terapia de Aceptación y Compromiso (ACT) — enfoque basado en evidencia para ansiedad, depresión y trastornos del estado de ánimo.</p>
+          <div class="credential-image" aria-label="Certificación ACT">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
             <span>Agregar certificación</span>
           </div>
@@ -2670,7 +2851,7 @@
           </div>
           <div class="credential-year">Continuo</div>
           <h3 class="credential-title">Supervisión Clínica y Formación Continua</h3>
-          <p class="credential-desc">Actualización constante en protocolos TCC, ACT, EMDR y neurociencia aplicada a la práctica clínica.</p>
+          <p class="credential-desc">Actualización constante en protocolos ACT, EMDR y neurociencia aplicada a la práctica clínica.</p>
           <div class="credential-image" aria-label="Formación continua">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
             <span>Agregar certificados</span>
@@ -2736,7 +2917,7 @@
             </li>
             <li class="solution-item">
               <span class="solution-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></span>
-              <span class="solution-text"><span>Dirección</span> y herramientas para avanzar por tu cuenta</span>
+              <span class="solution-text"><span>Guía</span> y herramientas para avanzar por tu cuenta</span>
             </li>
           </ul>
         </div>
@@ -2750,49 +2931,147 @@
       <h2 class="section-title fade-in">Servicios</h2>
       <p class="section-subtitle fade-in">Elige el formato que mejor se adapte a tu momento</p>
 
-      <div class="services-grid">
-        <div class="service-card fade-in">
-          <div class="service-image">
-            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=500&fit=crop" alt="Terapia Presencial - Consultorio" loading="lazy">
-          </div>
-          <div class="service-content">
-            <h3>Terapia Presencial</h3>
-            <p>Sesiones individuales de 50 minutos en un ambiente seguro y confidencial. Dos sedes en Lima: San Isidro y Surco.</p>
-            <a href="#agenda" class="service-link">
-              Agendar sesión
-              <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
+      <div class="services-accordion" style="max-width:800px; margin:0 auto;">
+
+        <!-- TERAPIA PRESENCIAL -->
+        <div class="service-accordion-item fade-in" style="background:var(--white); border:2px solid var(--blue-mid); border-radius:20px; overflow:hidden; margin-bottom:16px; transition:all .3s ease;">
+          <button class="service-accordion-header" style="width:100%; padding:28px; display:flex; justify-content:space-between; align-items:center; background:none; border:none; cursor:pointer; text-align:left;">
+            <div style="display:flex; align-items:center; gap:16px;">
+              <div style="width:56px; height:56px; background:var(--blue-bg); border-radius:16px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                <svg style="width:28px; height:28px; stroke:var(--blue-deep);" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              </div>
+              <div>
+                <h3 style="font-size:20px; color:var(--ink); margin:0 0 4px;">Terapia Presencial</h3>
+                <p style="font-size:14px; color:var(--muted); margin:0;">Dos sedes en Lima · Ambiente seguro y confidencial</p>
+              </div>
+            </div>
+            <svg class="accordion-icon" style="width:24px; height:24px; stroke:var(--blue-deep); flex-shrink:0; transition:transform .3s ease;" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="service-accordion-content" style="max-height:0; overflow:hidden; transition:max-height .4s ease, padding .3s ease;">
+            <div style="padding:0 28px 28px; border-top:1px solid var(--blue-light);">
+              <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; margin-bottom:20px;">
+                <div style="background:var(--blue-bg); padding:16px; border-radius:12px; border:1px solid var(--blue-light);">
+                  <p style="font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--blue-deep); font-weight:600; margin:0 0 6px;">Duración</p>
+                  <p style="font-size:15px; color:var(--ink); font-weight:500; margin:0;">50 minutos por sesión</p>
+                </div>
+                <div style="background:var(--blue-bg); padding:16px; border-radius:12px; border:1px solid var(--blue-light);">
+                  <p style="font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--blue-deep); font-weight:600; margin:0 0 6px;">Modalidad</p>
+                  <p style="font-size:15px; color:var(--ink); font-weight:500; margin:0;">Presencial en consultorio</p>
+                </div>
+                <div style="background:var(--blue-bg); padding:16px; border-radius:12px; border:1px solid var(--blue-light);">
+                  <p style="font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--blue-deep); font-weight:600; margin:0 0 6px;">Frecuencia</p>
+                  <p style="font-size:15px; color:var(--ink); font-weight:500; margin:0;">Semanal (recomendado)</p>
+                </div>
+              </div>
+              <div>
+                <p style="font-size:13px; text-transform:uppercase; letter-spacing:.05em; color:var(--blue-deep); font-weight:600; margin:0 0 10px;">Qué incluye</p>
+                <ul style="margin:0; padding-left:20px; font-size:14px; color:var(--muted); line-height:1.8;">
+                  <li>Sesión individual en consultorio</li>
+                  <li>Evaluación inicial y plan de trabajo</li>
+                  <li>Herramientas y ejercicios personalizados</li>
+                  <li>Seguimiento por WhatsApp entre sesiones (packs)</li>
+                  <li>Material de apoyo en PDF</li>
+                </ul>
+              </div>
+              <div style="margin-top:24px;">
+                <p style="font-size:13px; text-transform:uppercase; letter-spacing:.05em; color:var(--blue-deep); font-weight:600; margin:0 0 12px;">Nuestro espacio</p>
+                <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px; border-radius:12px; overflow:hidden; border:1px solid var(--blue-light);">
+                  <img src="consultorio-1.jpg" alt="Consultorio - Sala de espera" style="width:100%; height:180px; object-fit:cover; display:block;" loading="lazy">
+                  <img src="consultorio-2.jpg" alt="Consultorio - Sillón y jardín" style="width:100%; height:180px; object-fit:cover; display:block;" loading="lazy">
+                  <img src="consultorio-3.jpg" alt="Consultorio - Vista amplia" style="width:100%; height:180px; object-fit:cover; display:block;" loading="lazy">
+                </div>
+              </div>
+              <div style="margin-top:20px; text-align:center;">
+                <a href="https://wa.me/51939855573" class="btn btn-white" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:8px; padding:14px 28px;">Agendar sesión presencial<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px; height:18px;"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+              </div>
+              <!-- Fotos del consultorio (Terapia Presencial) -->
+              <div style="margin-top:24px;">
+                <p style="font-size:13px; text-transform:uppercase; letter-spacing:.05em; color:var(--blue-deep); font-weight:600; margin:0 0 12px;">Nuestro espacio en Lima</p>
+                <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px;">
+                  <img src="consultorio-1.jpg" alt="Consultorio - Sala de espera" style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:12px; border:1px solid var(--blue-light);">
+                  <img src="consultorio-2.jpg" alt="Consultorio - Sillón y jardín" style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:12px; border:1px solid var(--blue-light);">
+                  <img src="consultorio-3.jpg" alt="Consultorio - Vista interior" style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:12px; border:1px solid var(--blue-light);">
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="service-card fade-in">
-          <div class="service-badge">Online</div>
-          <div class="service-image">
-            <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&h=500&fit=crop" alt="Terapia Online - Videollamada" loading="lazy">
-          </div>
-          <div class="service-content">
-            <h3>Terapia Online</h3>
-            <p>Videollamada con la misma calidad y compromiso que una sesión presencial. Para cualquier parte del mundo.</p>
-            <a href="#agenda" class="service-link">
-              Agendar online
-              <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
+        <!-- TERAPIA ONLINE -->
+        <div class="service-accordion-item fade-in" style="background:var(--white); border:2px solid var(--blue-mid); border-radius:20px; overflow:hidden; margin-bottom:16px; transition:all .3s ease;">
+          <button class="service-accordion-header" style="width:100%; padding:28px; display:flex; justify-content:space-between; align-items:center; background:none; border:none; cursor:pointer; text-align:left;">
+            <div style="display:flex; align-items:center; gap:16px;">
+              <div style="width:56px; height:56px; background:var(--blue-bg); border-radius:16px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                <svg style="width:28px; height:28px; stroke:var(--blue-deep);" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+              </div>
+              <div>
+                <h3 style="font-size:20px; color:var(--ink); margin:0 0 4px;">Terapia Online</h3>
+                <p style="font-size:14px; color:var(--muted); margin:0;">Videollamada segura · Para cualquier parte del mundo</p>
+              </div>
+            </div>
+            <svg class="accordion-icon" style="width:24px; height:24px; stroke:var(--blue-deep); flex-shrink:0; transition:transform .3s ease;" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="service-accordion-content" style="max-height:0; overflow:hidden; transition:max-height .4s ease, padding .3s ease;">
+            <div style="padding:0 28px 28px; border-top:1px solid var(--blue-light);">
+              <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; margin-bottom:20px;">
+                <div style="background:var(--blue-bg); padding:16px; border-radius:12px; border:1px solid var(--blue-light);">
+                  <p style="font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--blue-deep); font-weight:600; margin:0 0 6px;">Duración</p>
+                  <p style="font-size:15px; color:var(--ink); font-weight:500; margin:0;">50 minutos por sesión</p>
+                </div>
+                <div style="background:var(--blue-bg); padding:16px; border-radius:12px; border:1px solid var(--blue-light);">
+                  <p style="font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--blue-deep); font-weight:600; margin:0 0 6px;">Modalidad</p>
+                  <p style="font-size:15px; color:var(--ink); font-weight:500; margin:0;">Videollamada (Google Meet / Zoom / WhatsApp)</p>
+                </div>
+                <div style="background:var(--blue-bg); padding:16px; border-radius:12px; border:1px solid var(--blue-light);">
+                  <p style="font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--blue-deep); font-weight:600; margin:0 0 6px;">Frecuencia</p>
+                  <p style="font-size:15px; color:var(--ink); font-weight:500; margin:0;">Semanal (recomendado)</p>
+                </div>
+              </div>
+              <div>
+                <p style="font-size:13px; text-transform:uppercase; letter-spacing:.05em; color:var(--blue-deep); font-weight:600; margin:0 0 10px;">Qué incluye</p>
+                <ul style="margin:0; padding-left:20px; font-size:14px; color:var(--muted); line-height:1.8;">
+                  <li>Sesión por videollamada segura</li>
+                  <li>Misma calidad y confidencialidad que presencial</li>
+                  <li>Herramientas y ejercicios personalizados</li>
+                  <li>Seguimiento por WhatsApp entre sesiones (packs)</li>
+                  <li>Material de apoyo en PDF</li>
+                </ul>
+              </div>
+              <div style="margin-top:24px;">
+                <p style="font-size:13px; text-transform:uppercase; letter-spacing:.05em; color:var(--blue-deep); font-weight:600; margin:0 0 12px;">Tu espacio de terapia online</p>
+                <img src="manos-libreta.jpg" alt="Terapia online - manos con libreta" style="width:100%; max-width:500px; aspect-ratio:4/3; object-fit:cover; border-radius:16px; border:2px solid var(--blue-light); box-shadow:0 8px 24px rgba(107,169,255,0.15);">
+              </div>
+              <div style="margin-top:20px; text-align:center;">
+                <a href="https://wa.me/51939855573" class="btn btn-white" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:8px; padding:14px 28px;">Agendar sesión online<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px; height:18px;"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="service-card fade-in">
-          <div class="service-image">
-            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=500&fit=crop" alt="Ebooks y Recursos - Material descargable" loading="lazy">
-          </div>
-          <div class="service-content">
-            <h3>Ebooks & Recursos</h3>
-            <p>Materiales descargables para tu proceso de autodescubrimiento y crecimiento personal. Disponibles al instante.</p>
-            <a href="#" class="service-link">
-              Ver recursos
-              <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
+        <!-- EBOOKS & RECURSOS (OCULTO v1) -->
+        <div class="service-accordion-item fade-in" style="display:none; background:var(--white); border:2px solid var(--blue-mid); border-radius:20px; overflow:hidden; margin-bottom:16px; transition:all .3s ease;"><!-- DESHABILITADO v1 - reactivar en v2 -->
+          <button class="service-accordion-header" style="width:100%; padding:28px; display:flex; justify-content:space-between; align-items:center; background:none; border:none; cursor:pointer; text-align:left;">
+            <div style="display:flex; align-items:center; gap:16px;">
+              <div style="width:56px; height:56px; background:var(--blue-bg); border-radius:16px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                <svg style="width:28px; height:28px; stroke:var(--blue-deep);" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              </div>
+              <div>
+                <h3 style="font-size:20px; color:var(--ink); margin:0 0 4px;">Ebooks & Recursos</h3>
+                <p style="font-size:14px; color:var(--muted); margin:0;">Materiales descargables · Autodescubrimiento y crecimiento</p>
+              </div>
+            </div>
+            <svg class="accordion-icon" style="width:24px; height:24px; stroke:var(--blue-deep); flex-shrink:0; transition:transform .3s ease;" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="service-accordion-content" style="max-height:0; overflow:hidden; transition:max-height .4s ease, padding .3s ease;">
+            <div style="padding:0 28px 28px; border-top:1px solid var(--blue-light);">
+              <p style="font-size:14px; color:var(--muted); line-height:1.7; margin-bottom:20px;">Esta sección se reactivará en v2 con catálogo de ebooks, guías y recursos descargables.</p>
+              <div style="text-align:center;">
+                <a href="#" class="service-link" style="display:inline-flex; align-items:center; gap:6px; font-size:14px; font-weight:500; color:var(--blue-deep);">Ver recursos<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px; height:18px;"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+              </div>
+            </div>
           </div>
         </div>
+
       </div>
     </div>
   </section>
@@ -2832,96 +3111,6 @@
       <div class="mision-frase fade-in">
         <h2>TU SALUD MENTAL IMPORTA</h2>
       </div>
-    </div>
-  </section>
-
-  <!-- COMO FUNCIONA -->
-  <section class="como-funciona" id="como-funciona">
-    <div class="container">
-      <h2 class="section-title fade-in">Cómo funciona el proceso</h2>
-      <p class="section-subtitle fade-in">Tres pasos claros para que sepas qué esperar desde el primer día</p>
-      
-      <div class="steps-grid">
-        <div class="step-card fade-in">
-          <div class="step-number">01</div>
-          <h3>Primera sesión: nos conocemos</h3>
-          <p>En 50 minutos exploramos qué te trae aquí, tu historia y tus objetivos. Sin presión, a tu ritmo. Salimos con un plan claro adaptado a ti.</p>
-        </div>
-        
-        <div class="step-card fade-in">
-          <div class="step-number">02</div>
-          <h3>Trabajo semanal guiado</h3>
-          <p>Sesiones de 50 min cada semana (online o presencial). Usamos herramientas TCC probadas: reestructuración cognitiva, exposición gradual, activación conductual. Tareas prácticas entre sesiones.</p>
-        </div>
-        
-        <div class="step-card fade-in">
-          <div class="step-number">03</div>
-          <h3>Autonomía y cierre</h3>
-          <p>Cuando logras tus metas, espaciamos sesiones. Te llevas un "kit de herramientas" personalizado para manejar retos futuros sin depender de la terapia. Puertas abiertas si necesitas volver.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRECIOS -->
-  <section class="precios" id="precios">
-    <div class="container">
-      <h2 class="section-title fade-in">Inversión en tu bienestar</h2>
-      <p class="section-subtitle fade-in">Precios transparentes, sin sorpresas. Eliges lo que necesitas.</p>
-      
-      <div class="pricing-grid">
-        <div class="pricing-card fade-in">
-          <span class="pricing-badge">Sesión suelta</span>
-          <h3>Sesión Individual</h3>
-          <p class="pricing-subtitle">Ideal para probar o consultas puntuales</p>
-          <div class="pricing-price">S/ 180</div>
-          <p class="pricing-period">por sesión de 50 min</p>
-          <ul class="pricing-features">
-            <li class="pricing-feature"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Sesión online o presencial</li>
-            <li class="pricing-feature"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Informe breve post-sesión</li>
-            <li class="pricing-feature"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Material de apoyo (PDF)</li>
-            <li class="pricing-feature inactive"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Seguimiento entre sesiones</li>
-            <li class="pricing-feature inactive"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Descuento en ebooks</li>
-          </ul>
-          <a href="#agenda" class="btn btn-white btn-pricing">Reservar sesión</a>
-        </div>
-
-        <div class="pricing-card popular fade-in">
-          <span class="pricing-badge">Más elegido</span>
-          <h3>Pack 4 Sesiones</h3>
-          <p class="pricing-subtitle">El formato recomendado para empezar</p>
-          <div class="pricing-price">S/ 680</div>
-          <p class="pricing-period">S/ 170 c/u — ahorras S/ 40</p>
-          <ul class="pricing-features">
-            <li class="pricing-feature"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>4 sesiones (válido 2 meses)</li>
-            <li class="pricing-feature"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Online o presencial (mezclables)</li>
-            <li class="pricing-feature"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Seguimiento por WhatsApp entre sesiones</li>
-            <li class="pricing-feature"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Plan de trabajo personalizado</li>
-            <li class="pricing-feature"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>10% descuento en ebooks</li>
-          </ul>
-          <a href="#agenda" class="btn btn-pricing" style="background: var(--blue-deep); color: var(--white);">Empezar mi pack</a>
-        </div>
-
-        <div class="pricing-card fade-in">
-          <span class="pricing-badge">Terapia de Pareja</span>
-          <h3>Sesión Pareja</h3>
-          <p class="pricing-subtitle">60 minutos para dos personas</p>
-          <div class="pricing-price">S/ 250</div>
-          <p class="pricing-period">por sesión de 60 min</p>
-          <ul class="pricing-features">
-            <li class="pricing-feature"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Sesión online o presencial</li>
-            <li class="pricing-feature"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Enfoque sistémico + TCC</li>
-            <li class="pricing-feature"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Ejercicios de comunicación</li>
-            <li class="pricing-feature"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Guía de acuerdos de pareja</li>
-            <li class="pricing-feature inactive"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Pack descuento (consultar)</li>
-          </ul>
-          <a href="#agenda" class="btn btn-white btn-pricing">Agendar para nosotros</a>
-        </div>
-      </div>
-      
-      <p style="text-align: center; margin-top: 32px; color: var(--muted); font-size: 14px;">
-        * Todos los precios incluyen IGV. Pago por transferencia, Yape, Plin o link de pago seguro. Sin permanencia mínima.
-      </p>
     </div>
   </section>
 
@@ -3119,6 +3308,60 @@
     </div>
   </section>
 
+  <!-- REDES & AGENDA -->
+  <section class="redes-agenda" id="redes-agenda">
+    <div class="container">
+      <h2 class="section-title fade-in" style="text-align:center; margin-bottom:8px;">Síguenos y agenda</h2>
+      <p class="section-subtitle fade-in" style="text-align:center; margin-bottom:40px;">Conecta con la comunidad PSH y reserva tu sesión</p>
+
+      <div class="redes-grid" style="display:grid; grid-template-columns:repeat(4,1fr); gap:24px; margin-bottom:40px; max-width:800px; margin-left:auto; margin-right:auto;">
+        <a href="https://instagram.com/pensarsentirhacer.pe" target="_blank" rel="noopener" class="red-card" style="background:var(--blue-bg); border:1px solid var(--blue-light); border-radius:20px; padding:32px 24px; text-align:center; text-decoration:none; color:inherit; transition:all .3s ease;">
+          <svg style="width:48px; height:48px; margin:0 auto 16px; stroke:var(--blue-deep);" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          <div style="font-family:'Fraunces',serif; font-size:18px; font-weight:600; color:var(--ink); margin-bottom:4px;">Instagram</div>
+          <div style="font-size:14px; color:var(--muted);">@pensarsentirhacer.pe</div>
+        </a>
+        <a href="https://tiktok.com/@pensarsentirhacer.pe" target="_blank" rel="noopener" class="red-card" style="background:var(--blue-bg); border:1px solid var(--blue-light); border-radius:20px; padding:32px 24px; text-align:center; text-decoration:none; color:inherit; transition:all .3s ease;">
+          <svg style="width:48px; height:48px; margin:0 auto 16px; stroke:var(--blue-deep);" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M15 20.5a8.5 8.5 0 1 1 0-17a8.5 8.5 0 0 1 0 17m-1-16a7.5 7.5 0 1 0 0 15a7.5 7.5 0 0 0 0-15Z"/><path d="M8 16.5v-3.5a1.5 1.5 0 0 1 3 0v3.5a1.5 1.5 0 0 1-3 0Z"/></svg>
+          <div style="font-family:'Fraunces',serif; font-size:18px; font-weight:600; color:var(--ink); margin-bottom:4px;">TikTok</div>
+          <div style="font-size:14px; color:var(--muted);">@pensarsentirhacer.pe</div>
+        </a>
+        <a href="https://facebook.com/pensarsentirhacer.pe" target="_blank" rel="noopener" class="red-card" style="background:var(--blue-bg); border:1px solid var(--blue-light); border-radius:20px; padding:32px 24px; text-align:center; text-decoration:none; color:inherit; transition:all .3s ease;">
+          <svg style="width:48px; height:48px; margin:0 auto 16px; stroke:var(--blue-deep);" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M18 4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H9.75a1 1 0 0 1-.75-.25v-3.75H6V14H5V11h2V9.5c0-1.75 1.25-3 3-3h2.75V5A1 1 0 0 1 12 4h6Z"/></svg>
+          <div style="font-family:'Fraunces',serif; font-size:18px; font-weight:600; color:var(--ink); margin-bottom:4px;">Facebook</div>
+          <div style="font-size:14px; color:var(--muted);">@pensarsentirhacer.pe</div>
+        </a>
+        <a href="https://wa.me/51939855573" class="red-card" target="_blank" rel="noopener" style="background:var(--blue-bg); border:1px solid var(--blue-light); border-radius:20px; padding:32px 24px; text-align:center; text-decoration:none; color:inherit; transition:all .3s ease;">
+          <svg style="width:48px; height:48px; margin:0 auto 16px; stroke:#25D366;" viewBox="0 0 24 24" fill="#25D366"><path d="M20.52 3.48A11.914 11.914 0 0 0 12 0C5.373 0 0 5.373 0 12c0 1.783.44 3.482 1.227 5.006L0 24l5.894-1.664A11.942 11.942 0 0 0 12 24c6.627 0 12-5.373 12-12 0-1.958-.487-3.813-1.48-5.442zM8 12.5c0 .827.673 1.5 1.5 1.5H10v4.5c0 .827.673 1.5 1.5 1.5s1.5-.673 1.5-1.5V14h2.5c.827 0 1.5-.673 1.5-1.5s-.673-1.5-1.5-1.5H13V9c0-.827-.673-1.5-1.5-1.5s-1.5.673-1.5 1.5v2.5H9.5c-.827 0-1.5.673-1.5 1.5z"/></svg>
+          <div style="font-family:'Fraunces',serif; font-size:18px; font-weight:600; color:var(--ink); margin-bottom:4px;">WhatsApp</div>
+          <div style="font-size:14px; color:var(--muted);">+51 939 855 573</div>
+        </a>
+      </div>
+
+      <!-- Tarjeta de presentación PSH -->
+      <div style="margin-top:40px; text-align:center;">
+        <p style="font-size:13px; text-transform:uppercase; letter-spacing:.05em; color:var(--blue-deep); font-weight:600; margin:0 0 16px;">Pensar Sentir Hacer en tus manos</p>
+        <img src="tarjeta-presentacion.jpg" alt="Tarjeta de presentación Pensar Sentir Hacer" style="max-width:100%; width:320px; aspect-ratio:1/1; object-fit:cover; border-radius:16px; border:1px solid var(--blue-light); box-shadow:0 8px 24px rgba(90,159,212,0.15);">
+      </div>
+
+      <div style="text-align:center; margin-top:32px;">
+        <a href="https://wa.me/51939855573" class="btn btn-primary" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:10px; font-size:16px; padding:16px 36px;">
+          Agendar mi primera sesión
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px; height:20px;"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <!-- Feed Instagram Behold.so (placeholder - requiere embed code de clienta) -->
+      <div class="instagram-feed" style="margin-top:60px; padding-top:40px; border-top:1px solid var(--blue-light);">
+        <h3 style="font-family:'Fraunces',serif; font-size:22px; text-align:center; margin-bottom:24px; color:var(--ink);">Feed de Instagram</h3>
+        <div id="behold-instagram-feed" style="text-align:center; padding:40px; background:var(--blue-bg); border-radius:20px; border:1px dashed var(--blue-light);">
+          <svg style="width:64px; height:64px; margin:0 auto 16px; stroke:var(--blue-mid);" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          <p style="font-size:15px; color:var(--muted); margin-bottom:16px; max-width:500px; margin-left:auto; margin-right:auto;">El feed de Instagram se cargará automáticamente aquí cuando la clienta conecte su cuenta en <strong>Behold.so</strong> y proporcione el código de embed.</p>
+          <p style="font-size:13px; color:var(--muted);"><!-- Placeholder: pegar aquí el código de embed de Behold.so --></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- FAQ -->
   <section class="faq" id="faq">
     <div class="container">
@@ -3133,7 +3376,7 @@
           </button>
           <div class="faq-answer">
             <div class="faq-answer-content">
-              La terapia online se realiza por videollamada (Google Meet, Zoom o WhatsApp) con la misma duración, confidencialidad y calidad que una sesión presencial. Solo necesitas una conexión a internet estable, un lugar privado y ganas de empezar. La experiencia terapéutica es igual de efectiva: diversos estudios confirman que la TCC online tiene los mismos resultados que la presencial.
+              La terapia online se realiza por videollamada (Google Meet, Zoom o WhatsApp) con la misma duración, confidencialidad y calidad que una sesión presencial. Solo necesitas una conexión a internet estable, un lugar privado y ganas de empezar. La experiencia terapéutica es igual de efectiva: diversos estudios confirman que la ACT online tiene los mismos resultados que la presencial.
             </div>
           </div>
         </div>
@@ -3181,7 +3424,7 @@
           </button>
           <div class="faq-answer">
             <div class="faq-answer-content">
-              Sí, totalmente. Puedes alternar según tu disponibilidad: una semana presencial en San Isidro, la siguiente online desde casa o viaje. Lo coordinamos con antelación para reservar el consultorio o enviar el enlace de videollamada. La calidad y continuidad del proceso se mantienen igual.
+              Sí, totalmente. Puedes alternar según tu disponibilidad: una semana presencial, la siguiente online desde casa o viaje. Lo coordinamos con antelación para reservar el consultorio o enviar el enlace de videollamada. La calidad y continuidad del proceso se mantienen igual.
             </div>
           </div>
         </div>
@@ -3217,7 +3460,7 @@
           </button>
           <div class="faq-answer">
             <div class="faq-answer-content">
-              No, mi práctica está enfocada en adultos (desde 18 años). Para adolescentes o niños, puedo orientarte hacia colegas especializados en población infanto-juvenil con quienes tengo red de derivación de confianza.
+              Sí, atiendo adolescentes dependiendo del caso y previa evaluación/validación de la psicóloga.
             </div>
           </div>
         </div>
@@ -3231,8 +3474,8 @@
       <h2>¿Lista para empezar?</h2>
       <p>Da el primer paso. Una sesión puede cambiarlo todo.</p>
       <div class="cta-final-buttons">
-        <a href="#" class="btn btn-white"><!-- REEMPLAZAR: link Cal.com -->Agendar mi primera sesión →</a>
-        <a href="#" class="btn btn-secondary"><!-- REEMPLAZAR: https://wa.me/51XXXXXXXXX -->¿Prefieres escribirme primero? → WhatsApp</a>
+        <a href="https://wa.me/51939855573" class="btn btn-white" target="_blank" rel="noopener">Agendar mi primera sesión →</a>
+        <a href="https://wa.me/51939855573" class="btn btn-secondary" target="_blank" rel="noopener">¿Prefieres escribirme primero? → WhatsApp</a>
       </div>
       <span class="cta-note">
         <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
@@ -3248,7 +3491,7 @@
   <!-- MOBILE STICKY CTA -->
   <div class="mobile-sticky-cta" id="mobileStickyCta" aria-hidden="true">
     <span class="mobile-sticky-cta-text">Empieza tu proceso <strong>hoy</strong></span>
-    <a href="#agenda" class="mobile-sticky-cta-btn">Agendar sesión</a>
+    <a href="https://wa.me/51939855573" class="mobile-sticky-cta-btn" target="_blank" rel="noopener">Agendar sesión</a>
   </div>
 
   <!-- FOOTER -->
@@ -3256,12 +3499,9 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-logo" aria-label="Pensar Sentir Hacer">
-          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
-            <path d="M12 6v6l4 2"/>
-            <circle cx="18" cy="18" r="1.5" fill="currentColor"/>
-            <circle cx="6" cy="6" r="1" fill="currentColor"/>
-          </svg>
+          <div class="footer-logo-img-wrap">
+            <img src="logo-psh.png" alt="" class="footer-logo-img" aria-hidden="true">
+          </div>
           <span class="nav-text">Pensar Sentir Hacer</span>
         </div>
         <ul class="footer-links">
@@ -3269,46 +3509,60 @@
           <li><a href="#servicios">Servicios</a></li>
           <li><a href="#problema-solucion">¿Te sientes así?</a></li>
           <li><a href="#testimonios">Testimonios</a></li>
-          <li><a href="#precios">Precios</a></li>
           <li><a href="#faq">Preguntas</a></li>
-          <li><a href="#agenda">Agendar</a></li>
+          <li><a href="https://wa.me/51939855573" target="_blank" rel="noopener">Agendar</a></li>
         </ul>
         <div class="footer-social">
           <a href="https://instagram.com/pensarsentirhacer.pe" target="_blank">
             <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
             @pensarsentirhacer.pe
           </a>
+          <a href="https://wa.me/51939855573" target="_blank" rel="noopener" style="margin-left:16px;">
+            <svg viewBox="0 0 24 24" width="20" height="20"><path d="M20.52 3.48A11.914 11.914 0 0 0 12 0C5.373 0 0 5.373 0 12c0 1.783.44 3.482 1.227 5.006L0 24l5.894-1.664A11.942 11.942 0 0 0 12 24c6.627 0 12-5.373 12-12 0-1.958-.487-3.813-1.48-5.442zM8 12.5c0 .827.673 1.5 1.5 1.5H10v4.5c0 .827.673 1.5 1.5 1.5s1.5-.673 1.5-1.5V14h2.5c.827 0 1.5-.673 1.5-1.5s-.673-1.5-1.5-1.5H13V9c0-.827-.673-1.5-1.5-1.5s-1.5.673-1.5 1.5v2.5H9.5c-.827 0-1.5.673-1.5 1.5z" fill="#25D366"/></svg>
+          </a>
         </div>
       </div>
       <div class="footer-bottom">
-        © 2025 María Fernanda Arana · Psicóloga Clínica TCC · Lima, Perú
+        © 2025 María Fernanda Arana · Psicóloga Clínica ACT · +51 939855573
       </div>
     </div>
   </footer>
 
   <!-- WHATSAPP FLOAT -->
-  <a href="#" class="whatsapp-float" aria-label="Escribir por WhatsApp">
+  <a href="https://wa.me/51939855573" class="whatsapp-float" aria-label="Escribir por WhatsApp" target="_blank" rel="noopener">
     <svg viewBox="0 0 24 24">
       <path d="M20.52 3.48A11.914 11.914 0 0 0 12 0C5.373 0 0 5.373 0 12c0 1.783.44 3.482 1.227 5.006L0 24l5.894-1.664A11.942 11.942 0 0 0 12 24c6.627 0 12-5.373 12-12 0-1.958-.487-3.813-1.48-5.442zM8 12.5c0 .827.673 1.5 1.5 1.5H10v4.5c0 .827.673 1.5 1.5 1.5s1.5-.673 1.5-1.5V14h2.5c.827 0 1.5-.673 1.5-1.5s-.673-1.5-1.5-1.5H13V9c0-.827-.673-1.5-1.5-1.5s-1.5.673-1.5 1.5v2.5H9.5c-.827 0-1.5.673-1.5 1.5z" fill="#fff"/>
     </svg>
   </a>
 
-  <!-- MOBILE STICKY CTA -->
-  <div class="mobile-sticky-cta" id="mobileStickyCta" aria-hidden="true">
-    <span class="mobile-sticky-cta-text">Agenda tu sesión <strong>desde S/ 170</strong></span>
-    <a href="#agenda" class="mobile-sticky-cta-btn">Reservar ahora</a>
-  </div>
-
   <script>
-    // Navbar scroll effect
+    // Navbar scroll effect + dynamic theme
     const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
+    const hero = document.querySelector('.hero');
+    const heroHeight = hero ? hero.offsetHeight : 600;
+
+    function updateNavbarTheme() {
+      const scrollY = window.scrollY;
+
+      // Scrolled state
+      if (scrollY > 50) {
         navbar.classList.add('scrolled');
       } else {
         navbar.classList.remove('scrolled');
       }
-    });
+
+      // Theme detection: dark theme when over hero (blue gradient)
+      // Hero occupies roughly 0 to heroHeight
+      if (scrollY < heroHeight * 0.6) {
+        navbar.classList.add('theme-dark');
+      } else {
+        navbar.classList.remove('theme-dark');
+      }
+    }
+
+    window.addEventListener('scroll', updateNavbarTheme, { passive: true });
+    // Initial check
+    updateNavbarTheme();
 
     // Mobile menu toggle
     const navToggle = document.getElementById('navToggle');
@@ -3376,6 +3630,40 @@
           item.classList.remove('active');
           button.setAttribute('aria-expanded', 'false');
           item.querySelector('.faq-answer').style.maxHeight = null;
+        }
+      });
+    });
+
+    // Service Accordion (Services section)
+    document.querySelectorAll('.service-accordion-header').forEach(button => {
+      button.addEventListener('click', () => {
+        const item = button.parentElement;
+        const isActive = item.classList.contains('active');
+
+        // Close all others
+        document.querySelectorAll('.service-accordion-item').forEach(other => {
+          if (other !== item) {
+            other.classList.remove('active');
+            other.querySelector('.service-accordion-content').style.maxHeight = null;
+            other.querySelector('.accordion-icon').style.transform = 'rotate(0deg)';
+            other.querySelector('.service-accordion-header').setAttribute('aria-expanded', 'false');
+          }
+        });
+
+        // Toggle current
+        if (!isActive) {
+          item.classList.add('active');
+          button.setAttribute('aria-expanded', 'true');
+          const content = item.querySelector('.service-accordion-content');
+          content.style.maxHeight = content.scrollHeight + 'px';
+          const icon = button.querySelector('.accordion-icon');
+          if (icon) icon.style.transform = 'rotate(180deg)';
+        } else {
+          item.classList.remove('active');
+          button.setAttribute('aria-expanded', 'false');
+          item.querySelector('.service-accordion-content').style.maxHeight = null;
+          const icon = button.querySelector('.accordion-icon');
+          if (icon) icon.style.transform = 'rotate(0deg)';
         }
       });
     });

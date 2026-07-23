@@ -4,14 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>María Fernanda Arana · Psicóloga Clínica ACT · Pensar Sentir Hacer</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='16' fill='%236FC1FF'/><path d='M8 16 Q16 8 24 16 Q16 24 8 16' fill='none' stroke='white' stroke-width='2'/></svg>">
-  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><circle cx='90' cy='90' r='90' fill='%236FC1FF'/><path d='M45 90 Q90 45 135 90 Q90 135 45 90' fill='none' stroke='white' stroke-width='8'/></svg>">
+  <link rel="icon" type="image/png" href="logo-celeste-transparente.png">
+  <link rel="apple-touch-icon" href="logo-celeste-transparente.png">
   <meta name="description" content="Psicóloga clínica ACT, especialista en bienestar emocional. +7 años de experiencia, +12 países. Terapia online y presencial en Lima.">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='16' fill='%236FC1FF'/><path d='M8 16 Q16 8 24 16 Q16 24 8 16' fill='none' stroke='white' stroke-width='2'/></svg>">
-  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><circle cx='90' cy='90' r='90' fill='%236FC1FF'/><path d='M45 90 Q90 45 135 90 Q90 135 45 90' fill='none' stroke='white' stroke-width='8'/></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Glacial+Indifference:ital,wght@0,400;0,700;1,400;1,700&family=League+Spartan:wght@400;500;600;700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Glacial+Indifference:ital,wght@0,400;0,700;1,400;1,700&family=League+Spartan:wght@400;500;600;700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
   <style>
     :root {
       /* Official brand palette — Paleta oficial PSH */
@@ -53,6 +51,7 @@
 
     html {
       scroll-behavior: smooth;
+      overflow-x: hidden;
     }
 
     body {
@@ -1748,8 +1747,6 @@
     .testimonios-marquee {
       position: relative;
       overflow: hidden;
-      mask-image: linear-gradient(90deg, transparent, white 10%, white 90%, transparent);
-      -webkit-mask-image: linear-gradient(90deg, transparent, white 10%, white 90%, transparent);
     }
 
     .testimonios-track {
@@ -1808,9 +1805,9 @@
     .testimonio-stars svg {
       width: 18px;
       height: 18px;
-      fill: var(--yellow-mid);
-      stroke: var(--yellow-mid);
-      stroke-width: 1;
+      fill: #F5C518;
+      stroke: #8B6B00;
+      stroke-width: 0.5;
     }
 
     .testimonio-text {
@@ -1995,7 +1992,23 @@
     }
 
     .faq-question:hover {
-      color: var(--celeste-deep);
+      color: var(--ink);
+      background: var(--cream-light);
+    }
+
+    .faq-item.active .faq-question {
+      color: var(--ink);
+      background: var(--cream-light);
+      border-left: 3px solid var(--celeste-deep);
+    }
+
+    .faq-item.active .faq-question svg {
+      transform: rotate(180deg);
+      stroke: var(--ink);
+    }
+
+    .faq-question:hover svg {
+      stroke: var(--ink);
     }
 
     .faq-question svg {
@@ -2006,11 +2019,7 @@
       stroke-width: 2;
       flex-shrink: 0;
       margin-left: 16px;
-      transition: transform 0.3s ease;
-    }
-
-    .faq-item.active .faq-question svg {
-      transform: rotate(180deg);
+      transition: transform 0.3s ease, stroke 0.3s ease;
     }
 
     .faq-answer {
@@ -2026,124 +2035,377 @@
       line-height: 1.8;
     }
 
-    /* REDES & AGENDA */
+    /* REDES & AGENDA — Rediseño editorial */
     .redes-agenda {
       padding: 100px 0;
       background: var(--cream);
     }
 
-    .redes-grid {
+    /* Header editorial 2-col */
+    .redes-header {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-      margin-bottom: 40px;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
+      grid-template-columns: 1fr auto;
+      gap: 40px;
+      align-items: end;
+      margin-bottom: 64px;
     }
 
-    .social-card {
-      background: var(--cream-light);
-      border: 1px solid var(--celeste-light);
-      border-radius: 20px;
-      padding: 32px 24px;
-      text-align: center;
-      text-decoration: none;
-      color: inherit;
-      transition: all 0.3s ease;
-    }
-
-    .social-card__icon {
-      width: 48px;
-      height: 48px;
-      margin: 0 auto 16px;
-      stroke: var(--celeste-deep);
-      transition: all 0.3s ease;
-    }
-
-    .social-card__name {
-      font-family: 'League Spartan', sans-serif;
-      font-size: 18px;
-      font-weight: 600;
-      color: var(--ink);
-      margin-bottom: 4px;
-      transition: color 0.3s ease;
-    }
-
-    .social-card__handle {
-      font-size: 14px;
+    .redes-eyebrow {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .12em;
       color: var(--muted);
-      transition: color 0.3s ease;
+      font-weight: 600;
+      margin: 0 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .redes-eyebrow__line {
+      width: 48px;
+      height: 2px;
+      background: var(--celeste-deep);
+      border-radius: 2px;
+      flex-shrink: 0;
     }
 
-    /* Hover states with brand colors */
-    .social-card--instagram:hover {
+    .redes-title {
+      font-family: 'League Spartan', sans-serif;
+      font-weight: 600;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      line-height: 1.05;
+      color: var(--ink);
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .15em;
+      align-items: baseline;
+    }
+    .redes-title__highlight {
+      font-family: 'DM Serif Display', serif;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--celeste-deep);
+      position: relative;
+    }
+    .redes-title__underline {
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 100%;
+      height: 16px;
+      pointer-events: none;
+    }
+    .redes-title__underline path {
+      stroke: var(--celeste-deep);
+      stroke-width: 2.5;
+      fill: none;
+      stroke-linecap: round;
+    }
+
+    /* Social pills */
+    .redes-social-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+    .social-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      background: var(--cream);
+      border: 1.5px solid var(--ink);
+      border-radius: 100px;
+      text-decoration: none;
+      color: var(--ink);
+      font-weight: 500;
+      font-size: 13px;
+      font-family: 'Open Sans', sans-serif;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+    .social-pill__icon {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      transition: fill 0.3s ease, transform 0.3s ease;
+    }
+    .social-pill:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(26, 46, 53, 0.12);
+    }
+    .social-pill:hover .social-pill__icon {
+      transform: scale(1.1);
+    }
+    /* Brand hover colors */
+    .social-pill--instagram:hover {
       border-color: #E4405F;
       background: linear-gradient(135deg, #FFF0F2 0%, #FFE4E8 100%);
-      box-shadow: 0 12px 32px rgba(228, 64, 95, 0.2);
-      transform: translateY(-4px);
-    }
-    .social-card--instagram:hover .social-card__icon {
-      stroke: #E4405F;
-      transform: scale(1.1);
-    }
-    .social-card--instagram:hover .social-card__name {
       color: #E4405F;
     }
-
-    .social-card--tiktok:hover {
+    .social-pill--instagram:hover .social-pill__icon { fill: #E4405F; }
+    .social-pill--tiktok:hover {
       border-color: #000000;
       background: linear-gradient(135deg, #F0F0F0 0%, #E0E0E0 100%);
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
-      transform: translateY(-4px);
-    }
-    .social-card--tiktok:hover .social-card__icon {
-      stroke: #000000;
-      transform: scale(1.1);
-    }
-    .social-card--tiktok:hover .social-card__name {
       color: #000000;
     }
-
-    .social-card--facebook:hover {
+    .social-pill--tiktok:hover .social-pill__icon { fill: #000000; }
+    .social-pill--facebook:hover {
       border-color: #1877F2;
       background: linear-gradient(135deg, #E8F0FE 0%, #D6E4FD 100%);
-      box-shadow: 0 12px 32px rgba(24, 119, 242, 0.2);
-      transform: translateY(-4px);
-    }
-    .social-card--facebook:hover .social-card__icon {
-      stroke: #1877F2;
-      transform: scale(1.1);
-    }
-    .social-card--facebook:hover .social-card__name {
       color: #1877F2;
     }
-
-    .social-card--whatsapp:hover {
+    .social-pill--facebook:hover .social-pill__icon { fill: #1877F2; }
+    .social-pill--whatsapp:hover {
       border-color: #25D366;
       background: linear-gradient(135deg, #E6FCEB 0%, #D0F8DA 100%);
-      box-shadow: 0 12px 32px rgba(37, 211, 102, 0.2);
-      transform: translateY(-4px);
-    }
-    .social-card--whatsapp:hover .social-card__icon {
-      stroke: #25D366;
-      fill: #25D366;
-      transform: scale(1.1);
-    }
-    .social-card--whatsapp:hover .social-card__name {
       color: #25D366;
     }
+    .social-pill--whatsapp:hover .social-pill__icon { fill: #25D366; }
 
-    @media (max-width: 768px) {
-      .redes-grid {
+    /* Bento-grid Mosaic */
+    .redes-mosaic {
+      background: #FFFFFF;
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 4px 24px rgba(26, 46, 53, 0.06);
+      position: relative;
+      overflow: hidden;
+    }
+    .redes-mosaic__grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: repeat(6, 1fr);
+      gap: 16px;
+      min-height: 640px;
+      position: relative;
+      z-index: 2;
+    }
+    .mosaic-piece {
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .mosaic-piece:hover {
+      transform: scale(1.02);
+      box-shadow: 0 12px 32px rgba(26, 46, 53, 0.1);
+      z-index: 10;
+    }
+    .mosaic-piece img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .mosaic-piece:hover img {
+      transform: scale(1.05);
+    }
+
+    /* IG Feed placeholder (central piece) */
+    .mosaic-piece--ig {
+      grid-column: span 5;
+      grid-row: span 3;
+      background: var(--cream-light);
+      border: 1px solid var(--celeste-light);
+      display: flex;
+      flex-direction: column;
+      min-height: 320px;
+    }
+    .mosaic-piece__ig-placeholder {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 32px;
+      text-align: center;
+      border-radius: 16px;
+    }
+    .mosaic-piece__ig-icon {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 16px;
+      stroke: var(--celeste-deep);
+    }
+    .mosaic-piece__ig-title {
+      font-family: 'League Spartan', sans-serif;
+      font-size: 20px;
+      color: var(--ink);
+      margin: 0 0 8px;
+    }
+    .mosaic-piece__ig-desc {
+      font-size: 14px;
+      color: var(--muted);
+      margin: 0 0 16px;
+      max-width: 260px;
+      line-height: 1.5;
+    }
+
+    /* Photo pieces */
+    .mosaic-piece--photo-lg { grid-column: span 4; grid-row: span 3; }
+    .mosaic-piece--photo-md { grid-column: span 3; grid-row: span 2; }
+    .mosaic-piece--photo-sm { grid-column: span 2; grid-row: span 2; }
+    .mosaic-piece--photo-xl { grid-column: span 3; grid-row: span 3; }
+
+    /* Decorative elements */
+    .redes-mosaic__decor {
+      pointer-events: none;
+      z-index: 1;
+    }
+    .redes-mosaic__decor svg {
+      opacity: 0.5;
+    }
+
+    /* Responsive: Desktop ≥1024px - already defined above */
+
+    /* Tablet 768-1023px: header stacked, mosaic 6-col */
+    @media (max-width: 1023px) {
+      .redes-header {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        text-align: center;
+        margin-bottom: 48px;
+      }
+      .redes-eyebrow {
+        justify-content: center;
+      }
+      .redes-title {
+        justify-content: center;
+      }
+      .redes-social-pills {
+        justify-content: center;
+      }
+
+      .redes-mosaic__grid {
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: repeat(8, 1fr);
+        min-height: 720px;
+      }
+      .mosaic-piece--ig { grid-column: span 4; grid-row: span 3; }
+      .mosaic-piece--photo-lg { grid-column: span 3; grid-row: span 2; }
+      .mosaic-piece--photo-md { grid-column: span 3; grid-row: span 2; }
+      .mosaic-piece--photo-sm { grid-column: span 3; grid-row: span 2; }
+      .mosaic-piece--photo-xl { grid-column: span 6; grid-row: span 3; }
+    }
+
+    /* Mobile <768px: header stacked, pills horizontal scroll-snap, mosaic becomes carousel/2-col grid */
+    @media (max-width: 767px) {
+      .redes-agenda {
+        padding: 64px 0;
+      }
+      .redes-header {
+        gap: 20px;
+        margin-bottom: 32px;
+      }
+      .redes-title {
+        font-size: clamp(2rem, 10vw, 3.5rem);
+      }
+      .redes-social-pills {
+        justify-content: flex-start;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 8px;
+        -webkit-overflow-scrolling: touch;
+        gap: 8px;
+      }
+      .redes-social-pills::-webkit-scrollbar {
+        display: none;
+      }
+      .social-pill {
+        scroll-snap-align: start;
+        flex-shrink: 0;
+      }
+
+      .redes-mosaic {
+        border-radius: 16px;
+        padding: 16px;
+      }
+      .redes-mosaic__grid {
+        display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 16px;
+        grid-template-rows: auto;
+        gap: 12px;
+        min-height: auto;
+      }
+      .mosaic-piece {
+        grid-column: auto !important;
+        grid-row: auto !important;
+        aspect-ratio: 1;
+      }
+      .mosaic-piece--ig {
+        grid-column: span 2;
+        aspect-ratio: 4/3;
+        min-height: 220px;
+      }
+      .mosaic-piece--photo-lg,
+      .mosaic-piece--photo-xl {
+        grid-column: span 2;
+        aspect-ratio: 4/3;
+      }
+      .mosaic-piece--photo-md {
+        aspect-ratio: 1;
+      }
+      .mosaic-piece--photo-sm {
+        aspect-ratio: 1;
+      }
+      .redes-mosaic__decor {
+        display: none;
       }
     }
 
-    @media (max-width: 480px) {
-      .redes-grid {
-        grid-template-columns: 1fr;
+    /* Photo Collage (legacy - kept for backward compat) */
+    .photo-collage .collage-item {
+      aspect-ratio: 1;
+    }
+    .photo-collage .collage-item--tall {
+      aspect-ratio: 1 / 1.5;
+    }
+    .photo-collage .collage-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .photo-collage .collage-item:hover img {
+      transform: scale(1.05);
+    }
+    .photo-collage .collage-item--behold {
+      aspect-ratio: 2 / 1;
+      min-height: 280px;
+    }
+
+    @media (max-width: 1024px) {
+      .photo-collage {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
+      .photo-collage .collage-item--large {
+        grid-column: span 2 !important;
+        grid-row: span 2 !important;
+      }
+      .photo-collage .collage-item--tall {
+        grid-row: span 2 !important;
+      }
+      .photo-collage .collage-item--behold {
+        grid-column: span 2 !important;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .photo-collage {
+        grid-template-columns: 1fr !important;
+      }
+      .photo-collage .collage-item--large,
+      .photo-collage .collage-item--tall,
+      .photo-collage .collage-item--behold {
+        grid-column: span 1 !important;
+        grid-row: span 1 !important;
+        aspect-ratio: 4 / 3 !important;
+      }
+      .photo-collage .collage-item--behold {
+        min-height: 200px !important;
       }
     }
 
@@ -2988,7 +3250,7 @@
     <div class="container">
       <a href="#" class="nav-logo" aria-label="Pensar Sentir Hacer - Inicio">
         <div class="nav-logo-img-wrap">
-          <img src="assets/logos/logo-psh-celeste.png" alt="Logo Pensar Sentir Hacer" class="nav-logo-img" aria-hidden="true">
+          <img src="logo-celeste-transparente.png" alt="Logo Pensar Sentir Hacer" class="nav-logo-img" aria-hidden="true">
         </div>
         <span class="nav-text">Pensar Sentir Hacer</span>
       </a>
@@ -3069,7 +3331,11 @@
         </div>
         <div class="social-proof-stat">
           <div class="social-proof-stat-number">+7</div>
-          <div class="social-proof-stat-label">Años experiencia · +12 países</div>
+          <div class="social-proof-stat-label">Años experiencia</div>
+        </div>
+        <div class="social-proof-stat">
+          <div class="social-proof-stat-number">+12</div>
+          <div class="social-proof-stat-label">Países atendidos</div>
         </div>
         <div class="social-proof-stat">
           <div class="social-proof-stat-number">2</div>
@@ -3136,10 +3402,6 @@
           <div class="credential-year">2017</div>
           <h3 class="credential-title">Licenciatura en Psicología</h3>
           <p class="credential-desc">Universidad Peruana de Ciencias Aplicadas (UPC). Título profesional a nombre de la nación.</p>
-          <div class="credential-image" aria-label="Diploma de licenciatura">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-            <span>Agregar foto del diploma</span>
-          </div>
         </article>
 
         <article class="credential-card fade-in">
@@ -3149,10 +3411,6 @@
           <div class="credential-year">2019</div>
           <h3 class="credential-title">Psicoterapeuta en Terapia de Aceptación y Compromiso (ACT)</h3>
           <p class="credential-desc">Especialización en Terapia de Aceptación y Compromiso (ACT) — enfoque basado en evidencia para ansiedad, depresión y trastornos del estado de ánimo.</p>
-          <div class="credential-image" aria-label="Certificación ACT">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-            <span>Agregar certificación</span>
-          </div>
         </article>
 
         <article class="credential-card fade-in">
@@ -3162,10 +3420,6 @@
           <div class="credential-year">2021</div>
           <h3 class="credential-title">Diplomado en Terapia de Pareja Sistémica y Sexualidad</h3>
           <p class="credential-desc">Formación avanzada en abordaje sistémico de la pareja, comunicación, intimidad y sexualidad humana.</p>
-          <div class="credential-image" aria-label="Diplomado terapia de pareja">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-            <span>Agregar diploma</span>
-          </div>
         </article>
 
         <article class="credential-card fade-in">
@@ -3175,10 +3429,6 @@
           <div class="credential-year">2018 - Presente</div>
           <h3 class="credential-title">Colegiatura Activa</h3>
           <p class="credential-desc">Colegio de Psicólogos del Perú — Colegiada N° 48921. Habilitación profesional vigente.</p>
-          <div class="credential-image" aria-label="Colegiatura">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-            <span>Agregar carné/constancia</span>
-          </div>
         </article>
 
         <article class="credential-card fade-in">
@@ -3188,10 +3438,6 @@
           <div class="credential-year">Continuo</div>
           <h3 class="credential-title">Supervisión Clínica y Formación Continua</h3>
           <p class="credential-desc">Actualización constante en protocolos ACT, EMDR y neurociencia aplicada a la práctica clínica.</p>
-          <div class="credential-image" aria-label="Formación continua">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-            <span>Agregar certificados</span>
-          </div>
         </article>
       </div>
     </div>
@@ -3667,59 +3913,137 @@
     </svg>
   </div>
 
-  <!-- REDES & AGENDA -->
+  <!-- REDES & AGENDA — Rediseño editorial: header 2-col + bento-grid mosaic con feed IG central -->
   <section class="redes-agenda" id="redes-agenda">
     <div class="container">
-      <h2 class="section-title fade-in" style="text-align:center; margin-bottom:8px;">Síguenos y agenda</h2>
-      <p class="section-subtitle fade-in" style="text-align:center; margin-bottom:40px;">Conecta con la comunidad PSH y reserva tu sesión</p>
 
-      <div class="redes-grid">
-        <!-- Instagram Card Featured - Larger for Behold.so Feed -->
-        <a href="https://instagram.com/pensarsentirhacer.pe" target="_blank" rel="noopener" class="red-card red-card--instagram rede-card--instagram-featured" style="grid-column: span 2; flex-direction: column; justify-content: center; padding: 32px;">
-          <div class="rede-card__content" style="flex: 1; display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
-            <div style="text-align: center; margin-bottom: 24px;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#E4405F" stroke-width="1.5" style="width: 48px; height: 48px; margin: 0 auto 16px;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-3.584-.07-4.849-.149-3.225-1.664-4.771-4.919-4.919-1.266-.058-1.644-.07-4.85-.07-3.204 0-3.584.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-              <h3 style="font-size: 20px; color: var(--ink); margin-bottom: 8px;">@pensarsentirhacer.pe</h3>
-              <p style="color: var(--muted); font-size: 14px;">Contenido ACT · Bienestar · Psicoeducación</p>
+      <!-- ===== HEADER EDITORIAL: 2 columnas desktop, apilado mobile ===== -->
+      <header class="redes-header" style="display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: end; margin-bottom: 64px;">
+        <!-- Izquierda: Eyebrow + H2 mixto -->
+        <div class="redes-header__text" style="max-width: 520px;">
+          <p class="redes-eyebrow" style="font-size: 12px; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); font-weight: 600; margin: 0 0 12px; display: flex; align-items: center; gap: 12px;">
+            CONTENIDO Y COMUNIDAD
+            <span class="redes-eyebrow__line" style="width: 48px; height: 2px; background: var(--celeste-deep); border-radius: 2px;"></span>
+          </p>
+          <h2 class="redes-title" style="font-family: 'League Spartan', sans-serif; font-weight: 600; font-size: clamp(2.5rem, 6vw, 5rem); line-height: 1.05; color: var(--ink); margin: 0; display: flex; flex-wrap: wrap; gap: .15em; align-items: baseline;">
+            <span style="font-style: normal; color: var(--ink);">Sígueme en</span>
+            <span class="redes-title__highlight" style="font-family: 'DM Serif Display', serif; font-style: italic; font-weight: 400; color: var(--celeste-deep); position: relative;">
+              redes
+              <!-- Subrayado curvo SVG -->
+              <svg class="redes-title__underline" viewBox="0 0 120 16" width="100%" height="16" style="position: absolute; left: 0; bottom: -4px; pointer-events: none;" preserveAspectRatio="none">
+                <path d="M0,12 C30,4 90,4 120,12" stroke="var(--celeste-deep)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+              </svg>
+            </span>
+          </h2>
+        </div>
+
+        <!-- Derecha: 4 chips-pill, alineados a la base del H2 -->
+        <nav class="redes-social-pills" aria-label="Redes sociales" style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end;">
+          <a href="https://instagram.com/pensarsentirhacer.pe" target="_blank" rel="noopener noreferrer" class="social-pill social-pill--instagram" aria-label="Instagram @pensarsentirhacer.pe" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: var(--cream); border: 1.5px solid var(--ink); border-radius: 100px; text-decoration: none; color: var(--ink); font-weight: 500; font-size: 13px; font-family: 'Open Sans', sans-serif; transition: all 0.3s ease; white-space: nowrap;">
+            <svg class="social-pill__icon" viewBox="0 0 24 24" fill="currentColor" style="width: 18px; height: 18px; flex-shrink: 0;"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg>
+            <span>Instagram</span>
+          </a>
+          <a href="https://tiktok.com/@pensarsentirhacer.pe" target="_blank" rel="noopener noreferrer" class="social-pill social-pill--tiktok" aria-label="TikTok @pensarsentirhacer.pe" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: var(--cream); border: 1.5px solid var(--ink); border-radius: 100px; text-decoration: none; color: var(--ink); font-weight: 500; font-size: 13px; font-family: 'Open Sans', sans-serif; transition: all 0.3s ease; white-space: nowrap;">
+            <svg class="social-pill__icon" viewBox="0 0 24 24" fill="currentColor" style="width: 18px; height: 18px; flex-shrink: 0;"><path fill-rule="evenodd" clip-rule="evenodd" d="M23.23 2.081a22.337 22.337 0 0 1-1.13 3.284c-2.1.69-4.238 1.071-6.4 1.113v3.76h4.27v3.91h-4.27v10.836H13.3V14.154H9.014v-3.91h4.28v-3.787c0-3.396 1.467-5.56 5.646-5.553a3.5 3.5 0 0 1 3.299 2.503 2.4 2.4 0 0 1 .593 1.231c-.331.053-1.522.166-2.805.517v3.432h-3.375v3.91h3.375V24h5.325V14.154h3.907v-3.91h-3.907v-3.43c.979-.272 1.86-.689 2.476-1.294a9.22 9.22 0 0 0 1.49-5.413c.003-5.078-3.47-9.507-8.17-9.932a26.59 26.59 0 0 1 2.549-.8Z"/></svg>
+            <span>TikTok</span>
+          </a>
+          <a href="https://www.facebook.com/profile.php?id=100063909011274" target="_blank" rel="noopener noreferrer" class="social-pill social-pill--facebook" aria-label="Facebook Pensar Sentir Hacer" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: var(--cream); border: 1.5px solid var(--ink); border-radius: 100px; text-decoration: none; color: var(--ink); font-weight: 500; font-size: 13px; font-family: 'Open Sans', sans-serif; transition: all 0.3s ease; white-space: nowrap;">
+            <svg class="social-pill__icon" viewBox="0 0 24 24" fill="currentColor" style="width: 18px; height: 18px; flex-shrink: 0;"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>
+            <span>Facebook</span>
+          </a>
+          <a href="https://wa.me/51939855573" target="_blank" rel="noopener noreferrer" class="social-pill social-pill--whatsapp" aria-label="WhatsApp +51 939 855 573" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: var(--cream); border: 1.5px solid var(--ink); border-radius: 100px; text-decoration: none; color: var(--ink); font-weight: 500; font-size: 13px; font-family: 'Open Sans', sans-serif; transition: all 0.3s ease; white-space: nowrap;">
+            <svg class="social-pill__icon" viewBox="0 0 24 24" fill="currentColor" style="width: 18px; height: 18px; flex-shrink: 0;"><path d="M20.52 3.48A11.914 11.914 0 0 0 12 0C5.373 0 0 5.373 0 12c0 1.783.44 3.482 1.227 5.006L0 24l5.894-1.664A11.942 11.942 0 0 0 12 24c6.627 0 12-5.373 12-12 0-1.958-.487-3.813-1.48-5.442zM8 12.5c0 .827.673 1.5 1.5 1.5H10v4.5c0 .827.673 1.5 1.5 1.5s1.5-.673 1.5-1.5V14h2.5c.827 0 1.5-.673 1.5-1.5s-.673-1.5-1.5-1.5H13V9c0-.827-.673-1.5-1.5-1.5s-1.5.673-1.5 1.5v2.5H9.5c-.827 0-1.5.673-1.5 1.5z"/></svg>
+            <span>WhatsApp</span>
+          </a>
+        </nav>
+      </header>
+
+      <!-- ===== BENTO-GRID MOSAICO (fondo blanco, 12 cols) ===== -->
+      <div class="redes-mosaic" style="background: #FFFFFF; border-radius: 24px; padding: 24px; box-shadow: 0 4px 24px rgba(26, 46, 53, 0.06); position: relative; overflow: hidden;">
+        <!-- Elemento decorativo: ondas/puntos celestes -->
+        <div class="redes-mosaic__decor" aria-hidden="true" style="position: absolute; top: 24px; right: 24px; pointer-events: none; z-index: 1;">
+          <svg viewBox="0 0 120 80" width="120" height="80" style="opacity: 0.6;">
+            <path d="M10,70 Q30,30 60,50 T110,30" stroke="var(--celeste-deep)" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <circle cx="95" cy="25" r="4" fill="var(--yellow-mid)"/>
+            <circle cx="25" cy="55" r="3" fill="var(--celeste-mid)"/>
+            <circle cx="80" cy="65" r="2" fill="var(--yellow-deep)"/>
+          </svg>
+        </div>
+        <div class="redes-mosaic__decor" aria-hidden="true" style="position: absolute; bottom: 32px; left: 32px; pointer-events: none; z-index: 1;">
+          <svg viewBox="0 0 40 40" width="40" height="40" style="opacity: 0.7;">
+            <polygon points="20,2 23.1,10.5 32.4,11.1 25.1,17.4 26.7,26.7 20,22 13.3,26.7 14.9,17.4 7.6,11.1 16.9,10.5" fill="var(--celeste-deep)" opacity="0.5"/>
+          </svg>
+        </div>
+
+        <div class="redes-mosaic__grid" style="display: grid; grid-template-columns: repeat(12, 1fr); grid-template-rows: repeat(6, 1fr); gap: 16px; min-height: 640px; position: relative; z-index: 2;">
+          <!-- 1. INSTAGRAM FEED (Behold.so) — PIEZA CENTRAL GRANDE: col-span 5, row-span 3 -->
+          <div class="mosaic-piece mosaic-piece--ig" style="grid-column: span 5; grid-row: span 3; border-radius: 16px; overflow: hidden; background: var(--cream-light); border: 1px solid var(--celeste-light); display: flex; flex-direction: column; position: relative; min-height: 320px;">
+            <!-- Placeholder mientras no esté conectado Behold.so -->
+            <div class="mosaic-piece__ig-placeholder" style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 32px; text-align: center; border-radius: 16px;">
+              <svg class="mosaic-piece__ig-icon" viewBox="0 0 24 24" fill="none" stroke="var(--celeste-deep)" stroke-width="1.5" style="width: 64px; height: 64px; margin-bottom: 16px;"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              <h3 class="mosaic-piece__ig-title" style="font-family: 'League Spartan', sans-serif; font-size: 20px; color: var(--ink); margin: 0 0 8px;">Feed de Instagram</h3>
+              <p class="mosaic-piece__ig-desc" style="font-size: 14px; color: var(--muted); margin: 0 0 16px; max-width: 260px; line-height: 1.5;">Conecta tu cuenta en <strong>Behold.so</strong> y pega el embed aquí. El feed aparecerá automáticamente en este espacio central.</p>
+              <span class="mosaic-piece__ig-hint" style="font-size: 11px; color: var(--muted); font-family: 'Open Sans', sans-serif;"><!-- Pegar código de embed de Behold.so --></span>
             </div>
-            <!-- Behold.so Embed Placeholder -->
-            <div id="behold-instagram-feed" style="background: var(--cream-light); border: 1px dashed var(--celeste-light); border-radius: 16px; padding: 24px; text-align: center; min-height: 180px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-              <svg style="width: 40px; height: 40px; margin-bottom: 12px; stroke: var(--celeste-mid);" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-              <p style="font-size: 14px; color: var(--muted); margin-bottom: 8px; max-width: 280px;">El feed de Instagram se cargará automáticamente aquí cuando conectes tu cuenta en <strong>Behold.so</strong> y pegues el código de embed.</p>
-              <p style="font-size: 12px; color: var(--muted);"><!-- Placeholder: pegar aquí el código de embed de Behold.so --></p>
+            <!-- Slot para embed real de Behold.so (se inyecta vía JS si existe) -->
+            <div class="mosaic-piece__ig-embed" id="beholdEmbedSlot" style="display: none; flex: 1; border-radius: 16px; overflow: hidden;"></div>
+          </div>
+
+          <!-- 2. FOTO VERTICAL GRANDE (Fernanda) — col-span 3, row-span 3 -->
+          <div class="mosaic-piece mosaic-piece--portrait" style="grid-column: span 3; grid-row: span 3; border-radius: 16px; overflow: hidden; position: relative;">
+            <img src="foto-fernanda.png" alt="María Fernanda Arana en sesión de terapia, consultorio cálido con luz natural" loading="eager" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; border-radius: 16px;">
+            <div class="mosaic-piece__overlay" style="position: absolute; inset: 0; background: linear-gradient(180deg, transparent 60%, rgba(26,46,53,0.35) 100%); border-radius: 16px; opacity: 0; transition: opacity 0.4s ease; display: flex; align-items: flex-end; padding: 20px; pointer-events: none;">
+              <span style="color: var(--white); font-family: 'League Spartan', sans-serif; font-size: 14px; font-weight: 600;">Terapia presencial y online</span>
             </div>
           </div>
-        </a>
 
-        <a href="https://tiktok.com/@pensarsentirhacer.pe" target="_blank" rel="noopener" class="red-card red-card--tiktok">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1.5"><path d="M0 0v40h40V0zm25.1 39c-.7 0-1.3-.3-1.7-.9l-4.5-7.4c-.3-.5-.2-1.2.3-1.5.4-.2 1.1-.2 1.5.3l3.6 6.1V18.9c0-.7.6-1.2 1.3-1.2.7 0 1.2.6 1.2 1.2v18.6l3.8-6.3c.4-.3 1.1-.3 1.5.3.5.3.6 1.1.3 1.5l-5 8c-.4.6-1 .9-1.7.9z"/></svg>
-          <h3>TikTok</h3>
-          <p>@pensarsentirhacer.pe</p>
-        </a>
-        <a href="https://facebook.com/pensarsentirhacer.pe" target="_blank" rel="noopener" class="red-card red-card--facebook">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#1877F2" stroke-width="1.5"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.852v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-          <h3>Facebook</h3>
-          <p>@pensarsentirhacer.pe</p>
-        </a>
-        <a href="https://wa.me/51939855573" class="red-card red-card--whatsapp" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="#25D366"><path d="M20.52 3.48A11.914 11.914 0 0 0 12 0C5.373 0 0 5.373 0 12c0 1.783.44 3.482 1.227 5.006L0 24l5.894-1.664A11.942 11.942 0 0 0 12 24c6.627 0 12-5.373 12-12 0-1.958-.487-3.813-1.48-5.442zM8 12.5c0 .827.673 1.5 1.5 1.5H10v4.5c0 .827.673 1.5 1.5 1.5s1.5-.673 1.5-1.5V14h2.5c.827 0 1.5-.673 1.5-1.5s-.673-1.5-1.5-1.5H13V9c0-.827-.673-1.5-1.5-1.5s-1.5.673-1.5 1.5v2.5H9.5c-.827 0-1.5.673-1.5 1.5z"/></svg>
-          <h3>WhatsApp</h3>
-          <p>+51 939 855 573</p>
+          <!-- 3. CONSULTORIO 1 — col-span 2, row-span 2 (fila 1-2, col 9-10) -->
+          <div class="mosaic-piece" style="grid-column: span 2; grid-row: span 2; border-radius: 16px; overflow: hidden; position: relative;">
+            <img src="consultorio-1-optimized.jpg" alt="Consultorio presencial Pensar Sentir Hacer, sala principal con sillones y luz cálida" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; border-radius: 16px;">
+            <div class="mosaic-piece__overlay" style="position: absolute; inset: 0; background: linear-gradient(180deg, transparent 60%, rgba(26,46,53,0.35) 100%); border-radius: 16px; opacity: 0; transition: opacity 0.4s ease;"></div>
+          </div>
+
+          <!-- 4. CONSULTORIO 2 — col-span 2, row-span 2 (fila 3-4, col 9-10) -->
+          <div class="mosaic-piece" style="grid-column: span 2; grid-row: span 2; border-radius: 16px; overflow: hidden; position: relative;">
+            <img src="consultorio-2-optimized.jpg" alt="Sala de espera del consultorio Pensar Sentir Hacer, ambiente tranquilo y acogedor" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; border-radius: 16px;">
+            <div class="mosaic-piece__overlay" style="position: absolute; inset: 0; background: linear-gradient(180deg, transparent 60%, rgba(26,46,53,0.35) 100%); border-radius: 16px; opacity: 0; transition: opacity 0.4s ease;"></div>
+          </div>
+
+          <!-- 5. CONSULTORIO 3 (vertical) — col-span 2, row-span 3 (fila 5-7, col 9-10) -->
+          <div class="mosaic-piece" style="grid-column: span 2; grid-row: span 3; border-radius: 16px; overflow: hidden; position: relative;">
+            <img src="consultorio-3-optimized.jpg" alt="Detalle del consultorio: libreria de psicología y elementos terapéuticos" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; border-radius: 16px;">
+            <div class="mosaic-piece__overlay" style="position: absolute; inset: 0; background: linear-gradient(180deg, transparent 60%, rgba(26,46,53,0.35) 100%); border-radius: 16px; opacity: 0; transition: opacity 0.4s ease;"></div>
+          </div>
+
+          <!-- 6. SESIÓN ONLINE 1 — col-span 2, row-span 2 (fila 4-5, col 4-5) -->
+          <div class="mosaic-piece" style="grid-column: span 2; grid-row: span 2; border-radius: 16px; overflow: hidden; position: relative;">
+            <img src="online-1-optimized.jpg" alt="Sesión de terapia online desde casa, persona en videollamada con psicóloga" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; border-radius: 16px;">
+            <div class="mosaic-piece__overlay" style="position: absolute; inset: 0; background: linear-gradient(180deg, transparent 60%, rgba(26,46,53,0.35) 100%); border-radius: 16px; opacity: 0; transition: opacity 0.4s ease;"></div>
+          </div>
+
+          <!-- 7. SESIÓN ONLINE 2 — col-span 2, row-span 2 (fila 4-5, col 7-8) -->
+          <div class="mosaic-piece" style="grid-column: span 2; grid-row: span 2; border-radius: 16px; overflow: hidden; position: relative;">
+            <img src="online-2-optimized.jpg" alt="Terapia online: notebook con videollamada activa, espacio seguro y privado" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; border-radius: 16px;">
+            <div class="mosaic-piece__overlay" style="position: absolute; inset: 0; background: linear-gradient(180deg, transparent 60%, rgba(26,46,53,0.35) 100%); border-radius: 16px; opacity: 0; transition: opacity 0.4s ease;"></div>
+          </div>
+
+          <!-- 8. TARJETA DE PRESENTACIÓN — col-span 4, row-span 2 (fila 6-7, col 1-4) -->
+          <div class="mosaic-piece" style="grid-column: span 4; grid-row: span 2; border-radius: 16px; overflow: hidden; position: relative;">
+            <img src="tarjeta-presentacion-optimized.jpg" alt="Tarjeta de presentación Pensar Sentir Hacer, diseño minimalista con logo celeste y datos de contacto" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; border-radius: 16px;">
+            <div class="mosaic-piece__overlay" style="position: absolute; inset: 0; background: linear-gradient(180deg, transparent 60%, rgba(26,46,53,0.35) 100%); border-radius: 16px; opacity: 0; transition: opacity 0.4s ease;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== CTA FINAL DENTRO DE LA SECCIÓN ===== -->
+      <div class="redes-cta" style="text-align: center; margin-top: 48px;">
+        <p style="font-size: 16px; color: var(--muted); margin: 0 0 20px; max-width: 560px; margin-left: auto; margin-right: auto; line-height: 1.6;">¿Quieres ver más contenido diario? Sígueme en Instagram para tips de ACT, reflexiones y novedades.</p>
+        <a href="https://instagram.com/pensarsentirhacer.pe" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px; font-size: 15px; border-radius: 50px; font-weight: 500;">
+          Seguir en Instagram
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 18px; height: 18px;"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
 
-      <!-- Tarjeta de presentación PSH -->
-      <div style="margin-top:40px; text-align:center;">
-        <p style="font-size:13px; text-transform:uppercase; letter-spacing:.05em; color:var(--celeste-deep); font-weight:600; margin:0 0 16px;">Pensar Sentir Hacer en tus manos</p>
-        <img src="tarjeta-presentacion-optimized.jpg" alt="Tarjeta de presentación Pensar Sentir Hacer" style="max-width:100%; width:320px; aspect-ratio:1/1; object-fit:cover; border-radius:16px; border:1px solid var(--celeste-light); box-shadow:0 8px 24px rgba(90,159,212,0.15);">
-      </div>
-
-      <div style="text-align:center; margin-top:32px;">
-        <a href="https://wa.me/51939855573" class="btn btn-primary" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:10px; font-size:16px; padding:16px 36px;">
-          Agendar mi primera sesión
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px; height:20px;"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-      </div>
     </div>
   </section>
 
@@ -3876,7 +4200,7 @@
       <div class="footer-content">
         <div class="footer-logo" aria-label="Pensar Sentir Hacer">
           <div class="footer-logo-img-wrap">
-            <img src="assets/logos/logo-psh-celeste.png" alt="Logo Pensar Sentir Hacer" class="footer-logo-img" aria-hidden="true">
+            <img src="logo-blanco-transparente.png" alt="Logo Pensar Sentir Hacer" class="footer-logo-img" aria-hidden="true">
           </div>
           <span class="nav-text">Pensar Sentir Hacer</span>
         </div>
@@ -3889,12 +4213,20 @@
           <li><a href="https://wa.me/51939855573" target="_blank" rel="noopener">Agendar</a></li>
         </ul>
         <div class="footer-social">
-          <a href="https://instagram.com/pensarsentirhacer.pe" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          <a href="https://instagram.com/pensarsentirhacer.pe" target="_blank" rel="noopener noreferrer" aria-label="Instagram @pensarsentirhacer.pe">
+            <svg class="footer-social__icon" viewBox="0 0 24 24" fill="currentColor" style="width: 22px; height: 22px;"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg>
             @pensarsentirhacer.pe
           </a>
-          <a href="https://wa.me/51939855573" target="_blank" rel="noopener" style="margin-left:16px;">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.52 3.48A11.914 11.914 0 0 0 12 0C5.373 0 0 5.373 0 12c0 1.783.44 3.482 1.227 5.006L0 24l5.894-1.664A11.942 11.942 0 0 0 12 24c6.627 0 12-5.373 12-12 0-1.958-.487-3.813-1.48-5.442zM8 12.5c0 .827.673 1.5 1.5 1.5H10v4.5c0 .827.673 1.5 1.5 1.5s1.5-.673 1.5-1.5V14h2.5c.827 0 1.5-.673 1.5-1.5s-.673-1.5-1.5-1.5H13V9c0-.827-.673-1.5-1.5-1.5s-1.5.673-1.5 1.5v2.5H9.5c-.827 0-1.5.673-1.5 1.5z"/></svg>
+          <a href="https://tiktok.com/@pensarsentirhacer.pe" target="_blank" rel="noopener noreferrer" aria-label="TikTok @pensarsentirhacer.pe" style="margin-left:16px;">
+            <svg class="footer-social__icon" viewBox="0 0 24 24" fill="currentColor" style="width: 22px; height: 22px;"><path fill-rule="evenodd" clip-rule="evenodd" d="M23.23 2.081a22.337 22.337 0 0 1-1.13 3.284c-2.1.69-4.238 1.071-6.4 1.113v3.76h4.27v3.91h-4.27v10.836H13.3V14.154H9.014v-3.91h4.28v-3.787c0-3.396 1.467-5.56 5.646-5.553a3.5 3.5 0 0 1 3.299 2.503 2.4 2.4 0 0 1 .593 1.231c-.331.053-1.522.166-2.805.517v3.432h-3.375v3.91h3.375V24h5.325V14.154h3.907v-3.91h-3.907v-3.43c.979-.272 1.86-.689 2.476-1.294a9.22 9.22 0 0 0 1.49-5.413c.003-5.078-3.47-9.507-8.17-9.932a26.59 26.59 0 0 1 2.549-.8Z"/></svg>
+            @pensarsentirhacer.pe
+          </a>
+          <a href="https://www.facebook.com/profile.php?id=100063909011274" target="_blank" rel="noopener noreferrer" aria-label="Facebook Pensar Sentir Hacer" style="margin-left:16px;">
+            <svg class="footer-social__icon" viewBox="0 0 24 24" fill="currentColor" style="width: 22px; height: 22px;"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>
+            @pensarsentirhacer.pe
+          </a>
+          <a href="https://wa.me/51939855573" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp +51 939 855 573" style="margin-left:16px;">
+            <svg class="footer-social__icon" viewBox="0 0 24 24" fill="currentColor" style="width: 22px; height: 22px;"><path d="M20.52 3.48A11.914 11.914 0 0 0 12 0C5.373 0 0 5.373 0 12c0 1.783.44 3.482 1.227 5.006L0 24l5.894-1.664A11.942 11.942 0 0 0 12 24c6.627 0 12-5.373 12-12 0-1.958-.487-3.813-1.48-5.442zM8 12.5c0 .827.673 1.5 1.5 1.5H10v4.5c0 .827.673 1.5 1.5 1.5s1.5-.673 1.5-1.5V14h2.5c.827 0 1.5-.673 1.5-1.5s-.673-1.5-1.5-1.5H13V9c0-.827-.673-1.5-1.5-1.5s-1.5.673-1.5 1.5v2.5H9.5c-.827 0-1.5.673-1.5 1.5z"/></svg>
           </a>
         </div>
       </div>
@@ -3905,9 +4237,9 @@
   </footer>
 
   <!-- WHATSAPP FLOAT -->
-  <a href="https://wa.me/51939855573" class="whatsapp-float" aria-label="Escribir por WhatsApp" target="_blank" rel="noopener">
-    <svg viewBox="0 0 24 24">
-      <path d="M20.52 3.48A11.914 11.914 0 0 0 12 0C5.373 0 0 5.373 0 12c0 1.783.44 3.482 1.227 5.006L0 24l5.894-1.664A11.942 11.942 0 0 0 12 24c6.627 0 12-5.373 12-12 0-1.958-.487-3.813-1.48-5.442zM8 12.5c0 .827.673 1.5 1.5 1.5H10v4.5c0 .827.673 1.5 1.5 1.5s1.5-.673 1.5-1.5V14h2.5c.827 0 1.5-.673 1.5-1.5s-.673-1.5-1.5-1.5H13V9c0-.827-.673-1.5-1.5-1.5s-1.5.673-1.5 1.5v2.5H9.5c-.827 0-1.5.673-1.5 1.5z" fill="#fff"/>
+  <a href="https://wa.me/51939855573" class="whatsapp-float" aria-label="Escribir por WhatsApp" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 24 24" fill="#fff">
+      <path d="M20.52 3.48A11.914 11.914 0 0 0 12 0C5.373 0 0 5.373 0 12c0 1.783.44 3.482 1.227 5.006L0 24l5.894-1.664A11.942 11.942 0 0 0 12 24c6.627 0 12-5.373 12-12 0-1.958-.487-3.813-1.48-5.442zM8 12.5c0 .827.673 1.5 1.5 1.5H10v4.5c0 .827.673 1.5 1.5 1.5s1.5-.673 1.5-1.5V14h2.5c.827 0 1.5-.673 1.5-1.5s-.673-1.5-1.5-1.5H13V9c0-.827-.673-1.5-1.5-1.5s-1.5.673-1.5 1.5v2.5H9.5c-.827 0-1.5.673-1.5 1.5z"/>
     </svg>
   </a>
 

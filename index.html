@@ -13,26 +13,26 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Glacial+Indifference:ital,wght@0,400;0,700;1,400;1,700&family=League+Spartan:wght@400;500;600;700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
   <style>
-    :root {
+        :root {
       /* Official brand palette — Paleta oficial PSH */
       /* Creams — fondos principales */
-      --cream: #FFFEEC;           /* Fondo principal */
-      --cream-light: #FFFDF4;     /* Fondo secundario */
+      --cream: #FFFEEC;
+      --cream-light: #FFFDF4;
 
       /* Yellows — acentos cálidos */
       --yellow-light: #FDFDC9;
-      --yellow-mid: #FEFFAF;      /* Reemplaza --brand-cream */
+      --yellow-mid: #FEFFAF;
       --yellow-deep: #FFFB85;
 
-      /* Celestes — acentos fríos (reemplazan azules) */
+      /* Celestes — acentos fríos */
       --celeste-light: #B0DDFC;
       --celeste-mid: #89CCFF;
       --celeste-deep: #6FC1FF;
 
       /* Core */
-      --white: #FFFFFF;           /* Solo para tarjetas sobre fondos de color */
-      --ink: #1A2E35;
-      --muted: #3A5560;           /* WCAG AA sobre crema y celeste — más oscuro */
+      --white: #FFFFFF;
+      --text-dark: #3A4A5A;
+      --title-color: #6FC1FF;
 
       /* Gradientes */
       --gradient-bg: linear-gradient(135deg, #FFFEEC 0%, #FFFDF4 50%, #E8F4FF 100%);
@@ -40,11 +40,10 @@
       --gradient-footer: linear-gradient(180deg, var(--celeste-mid), var(--celeste-deep));
 
       /* Componentes */
-      --card-bg: #FFFFFF;         /* Tarjetas blancas sobre fondo crema */
-      --card-border: #E8F4FF;     /* Borde suave celeste */
-      --accent-warm: var(--yellow-mid);
-      --accent-cool: var(--celeste-deep);
-      /* Waves — animación orgánica */
+      --card-bg: #FFFFFF;
+      --card-border: #E8F4FF;
+
+      /* Waves */
       --wave1: var(--yellow-light);
       --wave2: var(--celeste-light);
     }
@@ -62,7 +61,7 @@
 
     body {
       font-family: 'Open Sans', sans-serif;
-      color: var(--ink);
+      color: var(--text-dark);
       line-height: 1.6;
       background: var(--cream);
     }
@@ -71,6 +70,7 @@
       font-family: 'League Spartan', sans-serif;
       font-weight: 600;
       line-height: 1.2;
+      color: var(--title-color);
     }
 
     .container {
@@ -98,41 +98,92 @@
       text-decoration: none;
     }
 
-    .btn-primary {
+        .btn-primary {
       background: var(--celeste-deep);
-      color: var(--ink);
-      border-color: var(--celeste-deep);
+      color: var(--white);
+      border: none;
+      border-radius: 40% 60% 30% 70% / 50% 40% 60% 50%;
+      padding: 14px 32px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 8px 20px -5px rgba(111, 193, 255, 0.3);
+    }
+    .btn-primary:hover {
+      background: var(--celeste-mid);
+      transform: scale(1.03) translateY(-2px);
+      box-shadow: 0 12px 28px -5px rgba(111, 193, 255, 0.4);
+      color: var(--white);
     }
 
     .btn-primary:hover {
-      background: var(--ink);
+      background: var(--celeste-deep);
       color: var(--cream);
-      border-color: var(--ink);
+      border-color: var(--celeste-light);
       transform: translateY(-2px);
     }
 
-    .btn-secondary {
-      background: var(--cream);
-      color: var(--ink);
-      border-color: var(--ink);
+        .btn-secondary {
+      background: transparent;
+      color: var(--celeste-deep);
+      border: 2px solid var(--celeste-deep);
+      border-radius: 40% 60% 30% 70% / 50% 40% 60% 50%;
+      padding: 12px 30px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .btn-secondary:hover {
+      background: var(--celeste-deep);
+      color: var(--white);
+      transform: scale(1.02) translateY(-1px);
+      box-shadow: 0 8px 24px -4px rgba(111, 193, 255, 0.3);
     }
 
     .btn-secondary:hover {
-      background: var(--ink);
+      background: var(--celeste-deep);
       color: var(--cream);
       transform: translateY(-2px);
     }
 
-    .btn-ghost {
-      background: rgba(26, 46, 53, .06);
-      color: var(--ink);
-      border-color: rgba(26, 46, 53, .3);
+        .btn-ghost {
+      background: transparent;
+      color: var(--text-dark);
+      border: 1px solid var(--celeste-light);
+      border-radius: 40% 60% 30% 70% / 50% 40% 60% 50%;
+      padding: 10px 24px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .btn-ghost:hover {
+      background: var(--celeste-light);
+      color: var(--title-color);
+      border-color: var(--celeste-mid);
     }
 
     .btn-ghost:hover {
-      background: var(--ink);
+      background: var(--celeste-deep);
       color: var(--cream);
-      border-color: var(--ink);
+      border-color: var(--celeste-light);
     }
 
     .fade-in {
@@ -163,25 +214,25 @@
     .navbar.scrolled {
       background: rgba(255, 254, 236, 0.95);
       border-bottom-color: rgba(137, 204, 255, 0.5);
-      box-shadow: 0 6px 24px -16px rgba(26, 46, 53, 0.25);
+      box-shadow: 0 6px 24px -16px rgba(111, 193, 255, 0.25);
     }
 
     /* Texto siempre oscuro (tipografía de marca sobre fondos claros) */
     .navbar .nav-text {
-      color: var(--ink);
+      color: var(--text-dark);
     }
     .navbar .nav-links > li > a {
-      color: var(--ink);
+      color: var(--text-dark);
     }
     .navbar .nav-links > li > a:hover {
       color: var(--celeste-deep);
     }
     .navbar .dropdown-arrow {
-      stroke: var(--ink);
+      stroke: var(--celeste-deep);
     }
     /* Logo en círculo --ink con logo crema */
     .navbar .nav-logo-img-wrap {
-      background: var(--ink);
+      background: var(--celeste-deep);
     }
     .navbar .nav-logo-img {
       filter: brightness(0) invert(1);
@@ -215,7 +266,7 @@
     .nav-links > li > a {
       font-size: 14px;
       font-weight: 500;
-      color: var(--ink);
+      color: var(--text-dark);
       transition: color 0.3s ease;
       display: flex;
       align-items: center;
@@ -267,7 +318,7 @@
       padding: 12px 24px;
       font-size: 14px;
       font-weight: 500;
-      color: var(--ink);
+      color: var(--text-dark);
       transition: all 0.2s ease;
     }
 
@@ -288,7 +339,7 @@
     .nav-toggle span {
       width: 24px;
       height: 2px;
-      background: var(--ink);
+      background: var(--celeste-deep);
       transition: all 0.3s ease;
     }
 
@@ -391,7 +442,7 @@
     .eyebrow {
       display: inline-block;
       background: var(--yellow-mid);
-      color: var(--ink);
+      color: var(--text-dark);
       font-size: 11px;
       font-weight: 600;
       letter-spacing: 0.1em;
@@ -406,7 +457,7 @@
       font-size: 58px;
       font-weight: 700;
       letter-spacing: 0.02em;
-      color: var(--ink);
+      color: var(--text-dark);
       margin-bottom: 20px;
       line-height: 1.1;
       text-shadow: 0 1px 0 rgba(255,255,255,.5);
@@ -418,7 +469,7 @@
 
     .hero-text {
       font-size: 18px;
-      color: var(--muted);
+      color: var(--text-dark);
       margin-bottom: 28px;
       line-height: 1.7;
     }
@@ -461,7 +512,7 @@
 
     .hero-trust-text {
       font-size: 13px;
-      color: var(--ink);
+      color: var(--text-dark);
     }
 
     .hero-trust-text strong {
@@ -563,7 +614,7 @@
 
     .social-proof-stat-label {
       font-size: 13px;
-      color: var(--muted);
+      color: var(--text-dark);
       text-transform: uppercase;
       letter-spacing: 0.05em;
       margin-top: 4px;
@@ -593,7 +644,7 @@
       font-family: 'League Spartan', sans-serif;
       font-size: 14px;
       font-weight: 600;
-      color: var(--muted);
+      color: var(--text-dark);
     }
 
     /* PROBLEM / SOLUTION */
@@ -638,11 +689,11 @@
     }
 
     .problem-card h3 {
-      color: var(--ink);
+      color: var(--text-dark);
     }
 
     .solution-card h3 {
-      color: var(--ink);
+      color: var(--text-dark);
     }
 
     .problem-icon, .solution-icon {
@@ -710,7 +761,7 @@
     .problem-bullet svg {
       width: 12px;
       height: 12px;
-      stroke: var(--ink);
+      stroke: var(--celeste-deep);
     }
 
     .solution-bullet {
@@ -729,11 +780,11 @@
     }
 
     .problem-text {
-      color: var(--muted);
+      color: var(--text-dark);
     }
 
     .solution-text {
-      color: var(--ink);
+      color: var(--text-dark);
       font-weight: 500;
     }
 
@@ -805,14 +856,14 @@
     .credential-title {
       font-size: 18px;
       font-weight: 600;
-      color: var(--ink);
+      color: var(--text-dark);
       margin-bottom: 12px;
       line-height: 1.3;
     }
 
     .credential-desc {
       font-size: 14px;
-      color: var(--muted);
+      color: var(--text-dark);
       line-height: 1.6;
       margin-bottom: 20px;
       flex: 1;
@@ -844,7 +895,7 @@
     .credential-image span {
       display: block;
       font-size: 12px;
-      color: var(--muted);
+      color: var(--text-dark);
       font-weight: 500;
     }
 
@@ -888,19 +939,19 @@
       margin: 0 auto 24px;
       font-family: 'League Spartan', sans-serif;
       font-size: 24px;
-      color: var(--ink);
+      color: var(--text-dark);
       border: 2px solid var(--celeste-light);
     }
 
     .step-card h3 {
       font-size: 20px;
       margin-bottom: 12px;
-      color: var(--ink);
+      color: var(--text-dark);
     }
 
     .step-card p {
       font-size: 15px;
-      color: var(--muted);
+      color: var(--text-dark);
       line-height: 1.7;
     }
 
@@ -951,7 +1002,7 @@
     .pricing-badge {
       display: inline-block;
       background: var(--yellow-mid);
-      color: var(--ink);
+      color: var(--text-dark);
       font-size: 11px;
       font-weight: 600;
       padding: 6px 14px;
@@ -967,25 +1018,25 @@
     .pricing-card h3 {
       font-size: 20px;
       margin-bottom: 8px;
-      color: var(--ink);
+      color: var(--text-dark);
     }
 
     .pricing-subtitle {
       font-size: 14px;
-      color: var(--muted);
+      color: var(--text-dark);
       margin-bottom: 24px;
     }
 
     .pricing-price {
       font-family: 'League Spartan', sans-serif;
       font-size: 48px;
-      color: var(--ink);
+      color: var(--text-dark);
       margin-bottom: 4px;
     }
 
     .pricing-period {
       font-size: 14px;
-      color: var(--muted);
+      color: var(--text-dark);
       margin-bottom: 28px;
     }
 
@@ -1001,7 +1052,7 @@
       gap: 12px;
       padding: 10px 0;
       font-size: 14px;
-      color: var(--ink);
+      color: var(--text-dark);
       border-bottom: 1px solid var(--celeste-light);
     }
 
@@ -1020,7 +1071,7 @@
     }
 
     .pricing-feature.inactive {
-      color: var(--muted);
+      color: var(--text-dark);
     }
 
     .pricing-feature.inactive svg {
@@ -1056,13 +1107,13 @@
     .cta-final h2 {
       font-family: 'League Spartan', sans-serif;
       font-size: 56px;
-      color: var(--ink);
+      color: var(--text-dark);
       margin-bottom: 16px;
     }
 
     .cta-final p {
       font-size: 18px;
-      color: var(--muted);
+      color: var(--text-dark);
       margin-bottom: 32px;
     }
 
@@ -1079,7 +1130,7 @@
       align-items: center;
       gap: 8px;
       background: var(--yellow-mid);
-      color: var(--ink);
+      color: var(--text-dark);
       font-size: 14px;
       font-weight: 500;
       padding: 12px 24px;
@@ -1139,21 +1190,29 @@
 
     .mobile-sticky-cta-text {
       font-size: 13px;
-      color: var(--muted);
+      color: var(--text-dark);
     }
 
     .mobile-sticky-cta-text strong {
-      color: var(--ink);
+      color: var(--text-dark);
     }
 
-    .mobile-sticky-cta-btn {
+        .mobile-sticky-cta-btn {
       background: var(--celeste-deep);
       color: var(--white);
       padding: 12px 24px;
-      border-radius: 50px;
-      font-weight: 500;
-      font-size: 14px;
-      white-space: nowrap;
+      border-radius: 40% 60% 30% 70% / 50% 40% 60% 50%;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 16px -4px rgba(111, 193, 255, 0.4);
+    }
+    .mobile-sticky-cta-btn:hover {
+      background: var(--celeste-mid);
+      transform: scale(1.03);
+      color: var(--white);
     }
 
     /* RESPONSIVE UPDATES */
@@ -1486,12 +1545,12 @@
     .sobre-mi-content h2 {
       font-size: 36px;
       margin-bottom: 24px;
-      color: var(--ink);
+      color: var(--text-dark);
     }
 
     .sobre-mi-content p {
       font-size: 16px;
-      color: var(--muted);
+      color: var(--text-dark);
       margin-bottom: 16px;
       line-height: 1.8;
     }
@@ -1523,11 +1582,11 @@
       align-items: center;
       gap: 8px;
       font-size: 14px;
-      color: var(--muted);
+      color: var(--text-dark);
     }
 
     .stat strong {
-      color: var(--ink);
+      color: var(--text-dark);
     }
 
     /* SERVICIOS */
@@ -1540,13 +1599,13 @@
       text-align: center;
       font-size: 36px;
       margin-bottom: 16px;
-      color: var(--ink);
+      color: var(--text-dark);
     }
 
     .section-subtitle {
       text-align: center;
       font-size: 16px;
-      color: var(--muted);
+      color: var(--text-dark);
       margin-bottom: 48px;
     }
 
@@ -1603,7 +1662,7 @@
       top: 16px;
       right: 16px;
       background: var(--yellow-mid);
-      color: var(--ink);
+      color: var(--text-dark);
       font-size: 11px;
       font-weight: 600;
       padding: 6px 14px;
@@ -1618,12 +1677,12 @@
     .service-card h3 {
       font-size: 20px;
       margin-bottom: 12px;
-      color: var(--ink);
+      color: var(--text-dark);
     }
 
     .service-card p {
       font-size: 14px;
-      color: var(--muted);
+      color: var(--text-dark);
       line-height: 1.7;
       margin-bottom: 20px;
     }
@@ -1708,7 +1767,7 @@
     }
 
     .mision-item:hover .mision-icon svg {
-      stroke: var(--ink);
+      stroke: var(--celeste-deep);
     }
 
     .mision-item h3 {
@@ -1802,13 +1861,13 @@
       width: 18px;
       height: 18px;
       fill: var(--yellow-deep);
-      stroke: var(--ink);
+      stroke: var(--celeste-deep);
       stroke-width: 0.5;
     }
 
     .testimonio-text {
       font-size: 15px;
-      color: var(--muted);
+      color: var(--text-dark);
       line-height: 1.8;
       margin-bottom: 20px;
       position: relative;
@@ -1907,7 +1966,7 @@
 
     .testimonio-text {
       font-size: 15px;
-      color: var(--muted);
+      color: var(--text-dark);
       line-height: 1.8;
       margin-bottom: 20px;
       position: relative;
@@ -1982,29 +2041,29 @@
       font-family: 'League Spartan', sans-serif;
       font-size: 18px;
       font-weight: 600;
-      color: var(--ink);
+      color: var(--text-dark);
       cursor: pointer;
       transition: all 0.3s ease;
     }
 
     .faq-question:hover {
-      color: var(--ink);
+      color: var(--text-dark);
       background: var(--cream-light);
     }
 
     .faq-item.active .faq-question {
-      color: var(--ink);
+      color: var(--text-dark);
       background: var(--cream-light);
       border-left: 3px solid var(--celeste-deep);
     }
 
     .faq-item.active .faq-question svg {
       transform: rotate(180deg);
-      stroke: var(--ink);
+      stroke: var(--celeste-deep);
     }
 
     .faq-question:hover svg {
-      stroke: var(--ink);
+      stroke: var(--celeste-deep);
     }
 
     .faq-question svg {
@@ -2027,7 +2086,7 @@
     .faq-answer-content {
       padding: 0 24px 20px;
       font-size: 15px;
-      color: var(--muted);
+      color: var(--text-dark);
       line-height: 1.8;
     }
 
@@ -2050,7 +2109,7 @@
       font-size: 12px;
       text-transform: uppercase;
       letter-spacing: .12em;
-      color: var(--muted);
+      color: var(--text-dark);
       font-weight: 600;
       margin: 0 0 12px;
       display: flex;
@@ -2070,7 +2129,7 @@
       font-weight: 600;
       font-size: clamp(2.5rem, 6vw, 5rem);
       line-height: 1.05;
-      color: var(--ink);
+      color: var(--text-dark);
       margin: 0;
       display: flex;
       flex-wrap: wrap;
@@ -2162,13 +2221,13 @@
     .cta-final h2 {
       font-family: 'League Spartan', sans-serif;
       font-size: 56px;
-      color: var(--ink);
+      color: var(--text-dark);
       margin-bottom: 16px;
     }
 
     .cta-final p {
       font-size: 18px;
-      color: var(--muted);
+      color: var(--text-dark);
       margin-bottom: 32px;
     }
 
@@ -2185,7 +2244,7 @@
       align-items: center;
       gap: 8px;
       background: var(--yellow-mid);
-      color: var(--ink);
+      color: var(--text-dark);
       font-size: 14px;
       font-weight: 500;
       padding: 12px 24px;
@@ -2263,12 +2322,12 @@
       right: 30px;
       width: 64px;
       height: 64px;
-      background: var(--ink);
+      background: var(--celeste-deep);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 8px 30px rgba(26, 46, 53, 0.4);
+      box-shadow: 0 8px 30px rgba(111, 193, 255, 0.4);
       z-index: 999;
       text-decoration: none;
       animation: pulse 2s ease-in-out infinite;
@@ -2277,7 +2336,7 @@
 
     .whatsapp-float:hover {
       transform: scale(1.1);
-      box-shadow: 0 12px 40px rgba(26, 46, 53, 0.5);
+      box-shadow: 0 12px 40px rgba(111, 193, 255, 0.5);
     }
 
     .whatsapp-float svg {
@@ -2287,9 +2346,9 @@
     }
 
     @keyframes pulse {
-      0% { box-shadow: 0 8px 30px rgba(26, 46, 53, 0.4); }
-      50% { box-shadow: 0 8px 30px rgba(26, 46, 53, 0.6), 0 0 0 10px rgba(26, 46, 53, 0.1); }
-      100% { box-shadow: 0 8px 30px rgba(26, 46, 53, 0.4); }
+      0% { box-shadow: 0 8px 30px rgba(111, 193, 255, 0.4); }
+      50% { box-shadow: 0 8px 30px rgba(111, 193, 255, 0.6), 0 0 0 10px rgba(111, 193, 255, 0.1); }
+      100% { box-shadow: 0 8px 30px rgba(111, 193, 255, 0.4); }
     }
 
     /* REDES & AGENDA — New layout uses .social-chips and .behold-embed */
@@ -2318,10 +2377,10 @@
       box-shadow: 0 8px 24px rgba(24, 119, 242, 0.4);
     }
     .social-chip--wa:hover {
-      background: var(--ink);
+      background: var(--celeste-deep);
       border-color: transparent;
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(26, 46, 53, 0.4);
+      box-shadow: 0 8px 24px rgba(111, 193, 255, 0.4);
     }
     .social-chip:hover span,
     .social-chip:hover svg {
@@ -2338,12 +2397,12 @@
     }
     .testimonio-card {
       border-radius: 20px;
-      box-shadow: 0 10px 40px -12px rgba(26, 46, 53, 0.15);
+      box-shadow: 0 10px 40px -12px rgba(111, 193, 255, 0.15);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
     .testimonio-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 20px 50px -16px rgba(26, 46, 53, 0.22);
+      box-shadow: 0 20px 50px -16px rgba(111, 193, 255, 0.22);
     }
     .testimonio-avatar {
       box-shadow: 0 0 0 3px var(--celeste-light);
@@ -2354,7 +2413,7 @@
     }
     .testimonio-stars svg {
       fill: var(--yellow-deep);
-      stroke: var(--ink);
+      stroke: var(--celeste-deep);
       stroke-width: 0.5;
     }
     .carousel-indicators {
@@ -2463,7 +2522,7 @@
       width: 56px;
       height: 56px;
       border-radius: 50%;
-      background: var(--ink);
+      background: var(--celeste-deep);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -2569,7 +2628,7 @@
       width: 44px;
       height: 44px;
       border-radius: 50%;
-      background: var(--ink);
+      background: var(--celeste-deep);
       color: var(--cream);
       transition: all 0.3s ease;
     }
@@ -2584,7 +2643,7 @@
     .footer-social-btn[href*="instagram"]:hover { background: linear-gradient(135deg, #E4405F, #C13584); color: white; }
     .footer-social-btn[href*="tiktok"]:hover { background: #000; color: white; }
     .footer-social-btn[href*="facebook"]:hover { background: #1877F2; color: white; }
-    .footer-social-btn[href*="wa.me"]:hover { background: var(--ink); color: var(--cream); box-shadow: 0 8px 20px rgba(26, 46, 53, 0.4); }
+    .footer-social-btn[href*="wa.me"]:hover { background: var(--celeste-deep); color: var(--cream); box-shadow: 0 8px 20px rgba(111, 193, 255, 0.4); }
 
     /* Bottom Bar */
     .footer-bottom-bar {
@@ -2754,13 +2813,13 @@
         border-top-color: rgba(176, 221, 252, 0.35);
       }
       .navbar .nav-links > li > a {
-        color: var(--ink);
+        color: var(--text-dark);
       }
       .navbar .nav-links > li > a:hover {
         color: var(--celeste-deep);
       }
       .navbar .dropdown-menu a {
-        color: var(--ink);
+        color: var(--text-dark);
       }
       .navbar .dropdown-menu a:hover {
         color: var(--celeste-deep);
@@ -3112,10 +3171,10 @@
       box-shadow: 0 8px 24px rgba(24, 119, 242, 0.4);
     }
     .social-chip--wa:hover {
-      background: var(--ink);
+      background: var(--celeste-deep);
       border-color: transparent;
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(26, 46, 53, 0.4);
+      box-shadow: 0 8px 24px rgba(111, 193, 255, 0.4);
     }
     .social-chip:hover span,
     .social-chip:hover svg {
@@ -3164,7 +3223,7 @@
       width: 18px;
       height: 18px;
       fill: var(--yellow-deep);
-      stroke: var(--ink);
+      stroke: var(--celeste-deep);
       stroke-width: 0.5;
     }
     .carousel-dots {
@@ -3546,8 +3605,8 @@
                 <svg style="width:28px; height:28px; stroke:var(--celeste-deep);" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
               </div>
               <div>
-                <h3 style="font-size:20px; color:var(--ink); margin:0 0 4px;">Terapia Presencial</h3>
-                <p style="font-size:14px; color:var(--muted); margin:0;">Dos sedes en Lima · Ambiente seguro y confidencial</p>
+                <h3 style="font-size:20px; color:var(--text-dark); margin:0 0 4px;">Terapia Presencial</h3>
+                <p style="font-size:14px; color:var(--text-dark); margin:0;">Dos sedes en Lima · Ambiente seguro y confidencial</p>
               </div>
             </div>
             <svg class="accordion-icon" style="width:24px; height:24px; stroke:var(--celeste-deep); flex-shrink:0; transition:transform .3s ease;" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
@@ -3557,20 +3616,20 @@
               <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; margin-bottom:20px;">
                 <div style="background:var(--cream-light); padding:16px; border-radius:12px; border:1px solid var(--celeste-light);">
                   <p style="font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--celeste-deep); font-weight:600; margin:0 0 6px;">Duración</p>
-                  <p style="font-size:15px; color:var(--ink); font-weight:500; margin:0;">50 minutos por sesión</p>
+                  <p style="font-size:15px; color:var(--text-dark); font-weight:500; margin:0;">50 minutos por sesión</p>
                 </div>
                 <div style="background:var(--cream-light); padding:16px; border-radius:12px; border:1px solid var(--celeste-light);">
                   <p style="font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--celeste-deep); font-weight:600; margin:0 0 6px;">Modalidad</p>
-                  <p style="font-size:15px; color:var(--ink); font-weight:500; margin:0;">Presencial en consultorio</p>
+                  <p style="font-size:15px; color:var(--text-dark); font-weight:500; margin:0;">Presencial en consultorio</p>
                 </div>
                 <div style="background:var(--cream-light); padding:16px; border-radius:12px; border:1px solid var(--celeste-light);">
                   <p style="font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--celeste-deep); font-weight:600; margin:0 0 6px;">Frecuencia</p>
-                  <p style="font-size:15px; color:var(--ink); font-weight:500; margin:0;">Semanal (recomendado)</p>
+                  <p style="font-size:15px; color:var(--text-dark); font-weight:500; margin:0;">Semanal (recomendado)</p>
                 </div>
               </div>
               <div>
                 <p style="font-size:13px; text-transform:uppercase; letter-spacing:.05em; color:var(--celeste-deep); font-weight:600; margin:0 0 10px;">Qué incluye</p>
-                <ul style="margin:0; padding-left:20px; font-size:14px; color:var(--muted); line-height:1.8;">
+                <ul style="margin:0; padding-left:20px; font-size:14px; color:var(--text-dark); line-height:1.8;">
                   <li>Sesión individual en consultorio</li>
                   <li>Evaluación inicial y plan de trabajo</li>
                   <li>Herramientas y ejercicios personalizados</li>
@@ -3601,8 +3660,8 @@
                 <svg style="width:28px; height:28px; stroke:var(--celeste-deep);" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
               </div>
               <div>
-                <h3 style="font-size:20px; color:var(--ink); margin:0 0 4px;">Terapia Online</h3>
-                <p style="font-size:14px; color:var(--muted); margin:0;">Videollamada segura · Para cualquier parte del mundo</p>
+                <h3 style="font-size:20px; color:var(--text-dark); margin:0 0 4px;">Terapia Online</h3>
+                <p style="font-size:14px; color:var(--text-dark); margin:0;">Videollamada segura · Para cualquier parte del mundo</p>
               </div>
             </div>
             <svg class="accordion-icon" style="width:24px; height:24px; stroke:var(--celeste-deep); flex-shrink:0; transition:transform .3s ease;" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
@@ -3612,20 +3671,20 @@
               <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; margin-bottom:20px;">
                 <div style="background:var(--cream-light); padding:16px; border-radius:12px; border:1px solid var(--celeste-light);">
                   <p style="font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--celeste-deep); font-weight:600; margin:0 0 6px;">Duración</p>
-                  <p style="font-size:15px; color:var(--ink); font-weight:500; margin:0;">50 minutos por sesión</p>
+                  <p style="font-size:15px; color:var(--text-dark); font-weight:500; margin:0;">50 minutos por sesión</p>
                 </div>
                 <div style="background:var(--cream-light); padding:16px; border-radius:12px; border:1px solid var(--celeste-light);">
                   <p style="font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--celeste-deep); font-weight:600; margin:0 0 6px;">Modalidad</p>
-                  <p style="font-size:15px; color:var(--ink); font-weight:500; margin:0;">Videollamada (Google Meet / Zoom / WhatsApp)</p>
+                  <p style="font-size:15px; color:var(--text-dark); font-weight:500; margin:0;">Videollamada (Google Meet / Zoom / WhatsApp)</p>
                 </div>
                 <div style="background:var(--cream-light); padding:16px; border-radius:12px; border:1px solid var(--celeste-light);">
                   <p style="font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--celeste-deep); font-weight:600; margin:0 0 6px;">Frecuencia</p>
-                  <p style="font-size:15px; color:var(--ink); font-weight:500; margin:0;">Semanal (recomendado)</p>
+                  <p style="font-size:15px; color:var(--text-dark); font-weight:500; margin:0;">Semanal (recomendado)</p>
                 </div>
               </div>
               <div>
                 <p style="font-size:13px; text-transform:uppercase; letter-spacing:.05em; color:var(--celeste-deep); font-weight:600; margin:0 0 10px;">Qué incluye</p>
-                <ul style="margin:0; padding-left:20px; font-size:14px; color:var(--muted); line-height:1.8;">
+                <ul style="margin:0; padding-left:20px; font-size:14px; color:var(--text-dark); line-height:1.8;">
                   <li>Sesión por videollamada segura</li>
                   <li>Misma calidad y confidencialidad que presencial</li>
                   <li>Herramientas y ejercicios personalizados</li>
@@ -3656,15 +3715,15 @@
                 <svg style="width:28px; height:28px; stroke:var(--celeste-deep);" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
               </div>
               <div>
-                <h3 style="font-size:20px; color:var(--ink); margin:0 0 4px;">Ebooks & Recursos</h3>
-                <p style="font-size:14px; color:var(--muted); margin:0;">Materiales descargables · Autodescubrimiento y crecimiento</p>
+                <h3 style="font-size:20px; color:var(--text-dark); margin:0 0 4px;">Ebooks & Recursos</h3>
+                <p style="font-size:14px; color:var(--text-dark); margin:0;">Materiales descargables · Autodescubrimiento y crecimiento</p>
               </div>
             </div>
             <svg class="accordion-icon" style="width:24px; height:24px; stroke:var(--celeste-deep); flex-shrink:0; transition:transform .3s ease;" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
           </button>
           <div class="service-accordion-content" style="max-height:0; overflow:hidden; transition:max-height .4s ease, padding .3s ease;">
             <div style="padding:0 28px 28px; border-top:1px solid var(--celeste-light);">
-              <p style="font-size:14px; color:var(--muted); line-height:1.7; margin-bottom:20px;">Esta sección se reactivará en v2 con catálogo de ebooks, guías y recursos descargables.</p>
+              <p style="font-size:14px; color:var(--text-dark); line-height:1.7; margin-bottom:20px;">Esta sección se reactivará en v2 con catálogo de ebooks, guías y recursos descargables.</p>
               <div style="text-align:center;">
                 <a href="#" class="service-link" style="display:inline-flex; align-items:center; gap:6px; font-size:14px; font-weight:500; color:var(--celeste-deep);">Ver recursos<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px; height:18px;"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
               </div>
@@ -3949,7 +4008,7 @@
             <span style="width:48px;height:2px;background:var(--celeste-deep);border-radius:2px;"></span>
           </p>
           <h2 class="section-title" style="font-size:clamp(2.5rem,6vw,5rem);line-height:1.05;margin:0;display:flex;flex-wrap:wrap;gap:.15em;align-items:baseline;">
-            <span style="font-style:normal;color:var(--ink);">Sígueme en</span>
+            <span style="font-style:normal;color:var(--text-dark);">Sígueme en</span>
             <em class="celeste-italic" style="font-family:'DM Serif Display',serif;font-style:italic;font-weight:400;color:var(--celeste-deep);position:relative;">redes
               <svg viewBox="0 0 120 16" width="100%" height="16" style="position:absolute;left:0;bottom:-4px;pointer-events:none;" preserveAspectRatio="none">
                 <path d="M0,12 C30,4 90,4 120,12" stroke="var(--celeste-deep)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
@@ -3958,19 +4017,19 @@
           </h2>
         </div>
         <nav class="social-chips" aria-label="Redes sociales" style="display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end;">
-          <a href="https://instagram.com/pensarsentirhacer.pe" target="_blank" rel="noopener noreferrer" class="social-chip social-chip--ig" aria-label="Instagram @pensarsentirhacer.pe" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:var(--ink);color:var(--cream);border-radius:50px;text-decoration:none;font-weight:600;font-size:14px;font-family:'Open Sans',sans-serif;transition:all .3s ease;white-space:nowrap;border:2px solid var(--ink);">
+          <a href="https://instagram.com/pensarsentirhacer.pe" target="_blank" rel="noopener noreferrer" class="social-chip social-chip--ig" aria-label="Instagram @pensarsentirhacer.pe" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:var(--celeste-deep);color:var(--cream);border-radius:50px;text-decoration:none;font-weight:600;font-size:14px;font-family:'Open Sans',sans-serif;transition:all .3s ease;white-space:nowrap;border:2px solid var(--celeste-light);">
             <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
             <span>Instagram</span>
           </a>
-          <a href="https://tiktok.com/@pensarsentirhacer.pe" target="_blank" rel="noopener noreferrer" class="social-chip social-chip--tt" aria-label="TikTok @pensarsentirhacer.pe" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:var(--ink);color:var(--cream);border-radius:50px;text-decoration:none;font-weight:600;font-size:14px;font-family:'Open Sans',sans-serif;transition:all .3s ease;white-space:nowrap;border:2px solid var(--ink);">
+          <a href="https://tiktok.com/@pensarsentirhacer.pe" target="_blank" rel="noopener noreferrer" class="social-chip social-chip--tt" aria-label="TikTok @pensarsentirhacer.pe" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:var(--celeste-deep);color:var(--cream);border-radius:50px;text-decoration:none;font-weight:600;font-size:14px;font-family:'Open Sans',sans-serif;transition:all .3s ease;white-space:nowrap;border:2px solid var(--celeste-light);">
             <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px;"><path d="M23.23 2.081a22.337 22.337 0 0 1-1.13 3.284c-2.1.69-4.238 1.071-6.4 1.113v3.76h4.27v3.91h-4.27v10.836H13.3V14.154H9.014v-3.91h4.28v-3.787c0-3.396 1.467-5.56 5.646-5.553a3.5 3.5 0 0 1 3.299 2.503 2.4 2.4 0 0 1 .593 1.231c-.331.053-1.522.166-2.805.517v3.432h-3.375v3.91h3.375V24h5.325V14.154h3.907v-3.91h-3.907v-3.43c.979-.272 1.86-.689 2.476-1.294a9.22 9.22 0 0 0 1.49-5.413c.003-5.078-3.47-9.507-8.17-9.932a26.59 26.59 0 0 1 2.549-.8Z"/></svg>
             <span>TikTok</span>
           </a>
-          <a href="https://www.facebook.com/profile.php?id=100063909011274" target="_blank" rel="noopener noreferrer" class="social-chip social-chip--fb" aria-label="Facebook Pensar Sentir Hacer" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:var(--ink);color:var(--cream);border-radius:50px;text-decoration:none;font-weight:600;font-size:14px;font-family:'Open Sans',sans-serif;transition:all .3s ease;white-space:nowrap;border:2px solid var(--ink);">
+          <a href="https://www.facebook.com/profile.php?id=100063909011274" target="_blank" rel="noopener noreferrer" class="social-chip social-chip--fb" aria-label="Facebook Pensar Sentir Hacer" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:var(--celeste-deep);color:var(--cream);border-radius:50px;text-decoration:none;font-weight:600;font-size:14px;font-family:'Open Sans',sans-serif;transition:all .3s ease;white-space:nowrap;border:2px solid var(--celeste-light);">
             <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px;"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>
             <span>Facebook</span>
           </a>
-          <a href="https://wa.me/51939855573" target="_blank" rel="noopener noreferrer" class="social-chip social-chip--wa" aria-label="WhatsApp +51 939 855 573" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:var(--ink);color:var(--cream);border-radius:50px;text-decoration:none;font-weight:600;font-size:14px;font-family:'Open Sans',sans-serif;transition:all .3s ease;white-space:nowrap;border:2px solid var(--ink);">
+          <a href="https://wa.me/51939855573" target="_blank" rel="noopener noreferrer" class="social-chip social-chip--wa" aria-label="WhatsApp +51 939 855 573" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:var(--celeste-deep);color:var(--cream);border-radius:50px;text-decoration:none;font-weight:600;font-size:14px;font-family:'Open Sans',sans-serif;transition:all .3s ease;white-space:nowrap;border:2px solid var(--celeste-light);">
             <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px;"><path d="M20.52 3.48A11.914 11.914 0 0 0 12 0C5.373 0 0 5.373 0 12c0 1.783.44 3.482 1.227 5.006L0 24l5.894-1.664A11.942 11.942 0 0 0 12 24c6.627 0 12-5.373 12-12 0-1.958-.487-3.813-1.48-5.442zM8 12.5c0 .827.673 1.5 1.5 1.5H10v4.5c0 .827.673 1.5 1.5 1.5s1.5-.673 1.5-1.5V14h2.5c.827 0 1.5-.673 1.5-1.5s-.673-1.5-1.5-1.5H13V9c0-.827-.673-1.5-1.5-1.5s-1.5.673-1.5 1.5v2.5H9.5c-.827 0-1.5.673-1.5 1.5z"/></svg>
             <span>WhatsApp</span>
           </a>
@@ -3981,9 +4040,9 @@
       <div class="behold-embed" style="max-width:1200px;margin:40px auto 0;">
         <div style="aspect-ratio:4/3;width:100%;background:var(--cream-light);border-radius:20px;border:1px solid var(--celeste-light);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
           <!-- Placeholder para embed de Behold.so - pegar código de embed aquí -->
-          <div style="text-align:center;padding:40px;color:var(--muted);">
+          <div style="text-align:center;padding:40px;color:var(--text-dark);">
             <svg viewBox="0 0 24 24" fill="none" stroke="var(--celeste-deep)" stroke-width="1.5" style="width:64px;height:64px;margin-bottom:16px;"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-            <h3 style="font-family:'League Spartan',sans-serif;font-size:20px;color:var(--ink);margin:0 0 8px;">Feed de Instagram</h3>
+            <h3 style="font-family:'League Spartan',sans-serif;font-size:20px;color:var(--text-dark);margin:0 0 8px;">Feed de Instagram</h3>
             <p style="font-size:14px;margin:0 0 16px;max-width:260px;line-height:1.5;">Conecta tu cuenta en <strong>Behold.so</strong> y pega el embed aquí. El feed aparecerá automáticamente en este espacio.</p>
             <span style="font-size:11px;font-family:'Open Sans',sans-serif;"><!-- Embed code placeholder --></span>
           </div>
@@ -4148,7 +4207,7 @@
   <!-- MOBILE STICKY CTA -->
   <div class="mobile-sticky-cta" id="mobileStickyCta" aria-hidden="true">
     <span class="mobile-sticky-cta-text">Empieza tu proceso <strong>hoy</strong></span>
-    <a href="https://wa.me/51939855573" class="mobile-sticky-cta-btn" target="_blank" rel="noopener">Agendar sesión</a>
+    <a href="https://wa.me/51939855573" class="btn mobile-sticky-cta-btn" target="_blank" rel="noopener">Agendar sesión</a>
   </div>
 
   <!-- FOOTER — Luxto Style -->
@@ -4174,7 +4233,7 @@
             <svg viewBox="0 0 48 48" fill="none" style="width:28px;height:28px;">
               <circle cx="24" cy="24" r="22" fill="currentColor"/>
               <path d="M14 24c0-5.5 4.5-10 10-10s10 4.5 10 10-4.5 10-10 10S14 29.5 14 24z" fill="var(--cream)"/>
-              <path d="M24 18c-3.3 0-6 2.7-6 6s2.7 6 6 6 6-2.7 6-6-2.7-6-6-6z" fill="var(--ink)"/>
+              <path d="M24 18c-3.3 0-6 2.7-6 6s2.7 6 6 6 6-2.7 6-6-2.7-6-6-6z" fill="var(--celeste-deep)"/>
               <circle cx="24" cy="24" r="2" fill="var(--cream)"/>
             </svg>
           </div>

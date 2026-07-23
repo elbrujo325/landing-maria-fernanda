@@ -44,6 +44,9 @@
       --card-border: #E8F4FF;     /* Borde suave celeste */
       --accent-warm: var(--yellow-mid);
       --accent-cool: var(--celeste-deep);
+      /* Waves — animación orgánica */
+      --wave1: var(--yellow-light);
+      --wave2: var(--celeste-light);
     }
 
     * {
@@ -3200,7 +3203,48 @@
     .hero-photo {
       will-change: transform;
     }
-  </style>
+  
+    /* WAVE BACKGROUND — Hero animado orgánico */
+    .wave-background {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .wave-background .wave {
+      position: absolute;
+      left: -50%;
+      width: 200%;
+      height: 120%;
+      background-repeat: repeat no-repeat;
+      background-position: 0 bottom;
+      transform-origin: center bottom;
+      will-change: transform;
+    }
+    .wave-background .wave:nth-child(1) {
+      bottom: -5%;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath d='M0,64 C240,110 480,20 720,50 C960,80 1200,30 1440,60 L1440,120 L0,120 Z' fill='%23FDFDC9' fill-opacity='0.6'/%3E%3C/svg%3E");
+      background-size: 50% 100px;
+      animation: waveMove 20s linear infinite;
+      opacity: 0.5;
+    }
+    .wave-background .wave:nth-child(2) {
+      bottom: -2%;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath d='M0,40 C200,100 500,10 720,50 C940,90 1200,30 1440,60 L1440,120 L0,120 Z' fill='%23B0DDFC' fill-opacity='0.5'/%3E%3C/svg%3E");
+      background-size: 50% 100px;
+      animation: waveMove 25s linear infinite reverse;
+      opacity: 0.4;
+    }
+
+    @keyframes waveMove {
+      0% { transform: translateX(0) translateY(0) rotate(0deg); }
+      25% { transform: translateX(-2%) translateY(2%) rotate(0.5deg); }
+      50% { transform: translateX(0) translateY(0) rotate(0deg); }
+      75% { transform: translateX(2%) translateY(-2%) rotate(-0.5deg); }
+      100% { transform: translateX(0) translateY(0) rotate(0deg); }
+    }
+</style>
 </head>
 <body>
 
@@ -3244,6 +3288,12 @@
   <!-- HERO -->
   <section class="hero">
     <div class="container">
+      <!-- WAVE BACKGROUND - Animated organic waves -->
+      <div class="wave-background" aria-hidden="true">
+        <div class="wave"></div>
+        <div class="wave"></div>
+      </div>
+
       <div class="hero-content fade-in">
         <span class="eyebrow">Psicóloga clínica ACT, especialista en bienestar emocional</span>
         <h1>Terapia para que vivas con más <span>calma, coherencia y sentido</span></h1>

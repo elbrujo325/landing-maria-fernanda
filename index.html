@@ -46,6 +46,23 @@
       /* Waves */
       --wave1: var(--yellow-light);
       --wave2: var(--celeste-light);
+
+      /* Social brand colors — official brand hexes */
+      --color-ig: #E4405F;    /* Instagram gradient start */
+      --color-ig-end: #C13584; /* Instagram gradient end */
+      --color-tt: #000000;     /* TikTok black */
+      --color-fb: #1877F2;     /* Facebook blue */
+      --color-wa: #25D366;     /* WhatsApp green */
+
+      /* Spacing scale — consistent vertical rhythm */
+      --space-xs: 8px;
+      --space-sm: 16px;
+      --space-md: 24px;
+      --space-lg: 32px;
+      --space-xl: 48px;
+      --space-2xl: 64px;
+      --space-3xl: 96px;
+      --space-4xl: 128px;
     }
 
     * {
@@ -56,7 +73,6 @@
 
     html {
       scroll-behavior: smooth;
-      overflow-x: hidden;
     }
 
     body {
@@ -70,13 +86,40 @@
       font-family: 'League Spartan', sans-serif;
       font-weight: 600;
       line-height: 1.2;
-      color: var(--title-color);
+      color: var(--text-dark);
+    }
+
+    /* Títulos en fondos claros usan text-dark; en fondos oscuros/celestes usan title-color */
+    .hero h1,
+    .cta-final h2,
+    .mision-frase h2 {
+      color: var(--text-dark);
+    }
+    .hero h1 span,
+    .cta-final h2 span,
+    .mision-frase h2 span {
+      color: var(--celeste-deep);
+    }
+
+    /* Override: títulos en secciones con fondo blanco/crema usan text-dark */
+    .sobre-mi-content h2,
+    .section-title,
+    .credenciales-grid h3,
+    .problem-card h3,
+    .solution-card h3,
+    .step-card h3,
+    .pricing-card h3,
+    .service-card h3,
+    .mision-item h3,
+    .faq-question h3,
+    .testimonio-card h3 {
+      color: var(--text-dark);
     }
 
     .container {
       max-width: 1400px;
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 0 var(--space-md);
     }
 
     a {
@@ -98,7 +141,7 @@
       text-decoration: none;
     }
 
-        .btn-primary {
+    .btn-primary {
       background: var(--celeste-deep);
       color: var(--white);
       border: none;
@@ -112,26 +155,24 @@
       align-items: center;
       gap: 8px;
       cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-      box-shadow: 0 8px 20px -5px rgba(111, 193, 255, 0.3);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 8px 20px -5px rgba(111, 193, 255, 0.25);
     }
-    .btn-primary:hover {
-      background: var(--celeste-mid);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 28px -5px rgba(111, 193, 255, 0.4);
-      color: var(--white);
-    }
-
     .btn-primary:hover {
       background: var(--celeste-deep);
-      color: var(--cream);
-      border-color: var(--celeste-light);
       transform: translateY(-2px);
+      box-shadow: 0 12px 28px -5px rgba(111, 193, 255, 0.35);
+      color: var(--white);
+      filter: brightness(0.92);
+    }
+    .btn-primary:focus-visible {
+      outline: 2px solid var(--celeste-deep);
+      outline-offset: 2px;
     }
 
-        .btn-secondary {
+    .btn-secondary {
       background: transparent;
-      color: var(--celeste-deep);
+      color: var(--text-dark);
       border: 2px solid var(--celeste-deep);
       border-radius: 12px;
       padding: 12px 30px;
@@ -143,22 +184,20 @@
       align-items: center;
       gap: 8px;
       cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .btn-secondary:hover {
       background: var(--celeste-deep);
       color: var(--white);
       transform: translateY(-1px);
-      box-shadow: 0 8px 24px -4px rgba(111, 193, 255, 0.3);
+      box-shadow: 0 8px 24px -4px rgba(111, 193, 255, 0.25);
+    }
+    .btn-secondary:focus-visible {
+      outline: 2px solid var(--celeste-deep);
+      outline-offset: 2px;
     }
 
-    .btn-secondary:hover {
-      background: var(--celeste-deep);
-      color: var(--cream);
-      transform: translateY(-2px);
-    }
-
-        .btn-ghost {
+    .btn-ghost {
       background: transparent;
       color: var(--text-dark);
       border: 1px solid var(--celeste-light);
@@ -172,18 +211,16 @@
       align-items: center;
       gap: 6px;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .btn-ghost:hover {
-      background: var(--celeste-light);
-      color: var(--title-color);
+      background: var(--cream-light);
+      color: var(--text-dark);
       border-color: var(--celeste-mid);
     }
-
-    .btn-ghost:hover {
-      background: var(--celeste-deep);
-      color: var(--cream);
-      border-color: var(--celeste-light);
+    .btn-ghost:focus-visible {
+      outline: 2px solid var(--celeste-deep);
+      outline-offset: 2px;
     }
 
     .fade-in {
@@ -380,12 +417,11 @@
 
     /* HERO */
     .hero {
-      padding: 140px 0 60px;
+      padding: var(--space-4xl) 0 var(--space-2xl);
       background: var(--gradient-hero);
       min-height: 100vh;
       display: flex;
       align-items: center;
-      overflow: hidden;
       position: relative;
     }
 
@@ -551,7 +587,7 @@
 
     .hero-photo:hover img {
       transform: scale(1.05);
-      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .geometric-dots {
@@ -570,20 +606,22 @@
       opacity: 0.8;
     }
 
-    .dot-1 { top: 5%; left: 10%; animation: float 4s ease-in-out infinite; }
-    .dot-2 { top: 20%; right: 5%; animation: float 4s ease-in-out infinite 0.5s; }
-    .dot-3 { bottom: 15%; left: 5%; animation: float 4s ease-in-out infinite 1s; }
-    .dot-4 { bottom: 30%; right: 10%; animation: float 4s ease-in-out infinite 1.5s; }
-    .dot-5 { top: 50%; left: -5%; animation: float 4s ease-in-out infinite 2s; }
+    @media (prefers-reduced-motion: no-preference) {
+      .dot-1 { top: 5%; left: 10%; animation: float 4s ease-in-out infinite; }
+      .dot-2 { top: 20%; right: 5%; animation: float 4s ease-in-out infinite 0.5s; }
+      .dot-3 { bottom: 15%; left: 5%; animation: float 4s ease-in-out infinite 1s; }
+      .dot-4 { bottom: 30%; right: 10%; animation: float 4s ease-in-out infinite 1.5s; }
+      .dot-5 { top: 50%; left: -5%; animation: float 4s ease-in-out infinite 2s; }
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-15px); }
+      @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-15px); }
+      }
     }
 
     /* SOCIAL PROOF BAR */
     .social-proof-bar {
-      padding: 40px 0;
+      padding: var(--space-lg) 0;
       background: var(--cream);
       border-bottom: 1px solid var(--card-border);
     }
@@ -609,7 +647,7 @@
     .social-proof-stat-number {
       font-family: 'League Spartan', sans-serif;
       font-size: 36px;
-      color: var(--celeste-deep);
+      color: var(--text-dark);
       line-height: 1;
     }
 
@@ -650,7 +688,7 @@
 
     /* PROBLEM / SOLUTION */
     .problema-solucion {
-      padding: 100px 0;
+      padding: var(--space-3xl) 0;
       background: var(--cream);
     }
 
@@ -821,7 +859,6 @@
 
     .credential-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 20px 40px rgba(111, 193, 255, 0.12);
       border-color: var(--celeste-mid);
     }
 
@@ -848,7 +885,7 @@
     .credential-year {
       font-size: 12px;
       font-weight: 600;
-      color: var(--celeste-deep);
+      color: var(--text-dark);
       text-transform: uppercase;
       letter-spacing: 0.05em;
       margin-bottom: 8px;
@@ -902,7 +939,7 @@
 
     /* HOW IT WORKS */
     .como-funciona {
-      padding: 100px 0;
+      padding: var(--space-3xl) 0;
       background: var(--cream-light);
     }
 
@@ -925,7 +962,6 @@
 
     .step-card:hover {
       transform: translateY(-8px);
-      box-shadow: 0 25px 50px rgba(111, 193, 255, 0.15);
       border-color: var(--celeste-mid);
     }
 
@@ -962,7 +998,7 @@
 
     /* PRICING */
     .precios {
-      padding: 100px 0;
+      padding: var(--space-3xl) 0;
       background: var(--white);
     }
 
@@ -988,7 +1024,6 @@
 
     .pricing-card:hover {
       border-color: var(--celeste-mid);
-      box-shadow: 0 25px 50px rgba(111, 193, 255, 0.12);
     }
 
     .pricing-card.popular {
@@ -1081,11 +1116,10 @@
 
     /* FINAL CTA IMPROVEMENTS */
     .cta-final {
-      padding: 120px 0;
+      padding: var(--space-4xl) 0;
       background: var(--gradient-hero);
       text-align: center;
       position: relative;
-      overflow: hidden;
     }
 
     .cta-final::before {
@@ -1151,7 +1185,7 @@
       align-items: center;
       gap: 8px;
       background: rgba(111, 193, 255, 0.1);
-      color: var(--celeste-deep);
+      color: var(--text-dark);
       font-size: 14px;
       font-weight: 500;
       padding: 10px 20px;
@@ -1211,9 +1245,10 @@
       box-shadow: 0 4px 16px -4px rgba(111, 193, 255, 0.4);
     }
     .mobile-sticky-cta-btn:hover {
-      background: var(--celeste-mid);
+      background: var(--celeste-deep);
       transform: scale(1.02);
       color: var(--white);
+      filter: brightness(0.92);
     }
 
     /* RESPONSIVE UPDATES */
@@ -1282,7 +1317,7 @@
 
     @media (max-width: 768px) {
       .hero {
-        padding: 100px 0 40px;
+        padding: var(--space-3xl) 0 var(--space-xl);
         min-height: auto;
       }
 
@@ -1330,15 +1365,15 @@
       }
 
       .sobre-mi {
-        padding: 60px 0;
+        padding: var(--space-xl) 0;
       }
 
       .servicios {
-        padding: 60px 0;
+        padding: var(--space-xl) 0;
       }
 
       .mision {
-        padding: 60px 0;
+        padding: var(--space-xl) 0;
       }
 
       .mision-frase h2 {
@@ -1346,23 +1381,23 @@
       }
 
       .faq {
-        padding: 60px 0;
+        padding: var(--space-xl) 0;
       }
 
       .problema-solucion {
-        padding: 60px 0;
+        padding: var(--space-xl) 0;
       }
 
       .como-funciona {
-        padding: 60px 0;
+        padding: var(--space-xl) 0;
       }
 
       .precios {
-        padding: 60px 0;
+        padding: var(--space-xl) 0;
       }
 
       .cta-final {
-        padding: 80px 0;
+        padding: var(--space-2xl) 0;
       }
 
       .cta-final h2 {
@@ -1379,7 +1414,7 @@
       }
 
       .testimonios {
-        padding: 60px 0;
+        padding: var(--space-xl) 0;
       }
 
       .whatsapp-float {
@@ -1510,7 +1545,7 @@
 
     /* SOBRE MI */
     .sobre-mi {
-      padding: 100px 0;
+      padding: var(--space-3xl) 0;
       background: var(--celeste-light);
     }
 
@@ -1592,7 +1627,7 @@
 
     /* SERVICIOS */
     .servicios {
-      padding: 100px 0;
+      padding: var(--space-3xl) 0;
       background: var(--celeste-light);
     }
 
@@ -1694,8 +1729,9 @@
       gap: 6px;
       font-size: 14px;
       font-weight: 500;
-      color: var(--celeste-deep);
-      transition: gap 0.3s ease;
+      color: var(--text-dark);
+      transition: color 0.3s ease, gap 0.3s ease;
+      text-decoration: none;
     }
 
     .service-link svg {
@@ -1708,6 +1744,7 @@
     }
 
     .service-link:hover {
+      color: var(--celeste-deep);
       gap: 10px;
     }
 
@@ -1717,17 +1754,18 @@
 
     /* MISION */
     .mision {
-      padding: 100px 0;
+      padding: var(--space-3xl) 0;
       background: var(--celeste-mid);
-      color: var(--white);
+      color: var(--text-dark);
     }
 
     .mision .section-title {
-      color: var(--white);
+      color: var(--text-dark);
     }
 
     .mision .section-subtitle {
-      color: rgba(255,255,255,0.85);
+      color: var(--text-dark);
+      font-weight: 500;
     }
 
     .mision-grid {
@@ -1744,13 +1782,14 @@
     .mision-icon {
       width: 72px;
       height: 72px;
-      background: rgba(255,255,255,0.15);
+      background: var(--white);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 0 auto 20px;
       transition: all 0.3s ease;
+      box-shadow: 0 4px 16px rgba(111, 193, 255, 0.2);
     }
 
     .mision-item:hover .mision-icon {
@@ -1761,24 +1800,26 @@
     .mision-icon svg {
       width: 32px;
       height: 32px;
-      stroke: var(--yellow-mid);
+      stroke: var(--celeste-deep);
       fill: none;
       stroke-width: 1.8;
       transition: stroke 0.3s ease;
     }
 
     .mision-item:hover .mision-icon svg {
-      stroke: var(--celeste-deep);
+      stroke: var(--text-dark);
     }
 
     .mision-item h3 {
       font-size: 18px;
       margin-bottom: 10px;
+      color: var(--text-dark);
     }
 
     .mision-item p {
       font-size: 14px;
-      opacity: 0.9;
+      color: var(--text-dark);
+      opacity: 0.85;
       line-height: 1.6;
     }
 
@@ -1789,15 +1830,17 @@
     .mision-frase h2 {
       font-family: 'League Spartan', sans-serif;
       font-size: 64px;
-      color: var(--yellow-mid);
+      color: var(--yellow-deep);
       letter-spacing: 0.03em;
     }
 
-/* TESTIMONIOS MARQUEE */
+    .mision-frase h2 span {
+      color: var(--celeste-deep);
+    }
+
     .testimonios {
-      padding: 100px 0;
+      padding: var(--space-3xl) 0;
       background: var(--celeste-light);
-      overflow: hidden;
     }
 
     .testimonios-marquee {
@@ -1932,7 +1975,7 @@
     .carousel-btn svg {
       width: 24px;
       height: 24px;
-      stroke: var(--celeste-deep);
+      stroke: var(--text-dark);
       fill: none;
       stroke-width: 2;
       transition: stroke 0.3s ease;
@@ -1977,7 +2020,7 @@
     .testimonio-author {
       font-size: 14px;
       font-weight: 600;
-      color: var(--celeste-deep);
+      color: var(--text-dark);
     }
 
     .testimonio-avatar {
@@ -2008,7 +2051,7 @@
 
     /* FAQ ACCORDION */
     .faq {
-      padding: 100px 0;
+      padding: var(--space-3xl) 0;
       background: var(--celeste-light);
     }
 
@@ -2081,7 +2124,15 @@
     .faq-answer {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.4s ease, padding 0.4s ease;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: max-height 0.3s ease-out, opacity 0.3s ease-out, transform 0.3s ease-out;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 500px; /* sufficient for content height */
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .faq-answer-content {
@@ -2093,7 +2144,7 @@
 
     /* REDES & AGENDA — Rediseño editorial */
     .redes-agenda {
-      padding: 100px 0;
+      padding: var(--space-3xl) 0;
       background: var(--cream);
     }
 
@@ -2214,7 +2265,7 @@
 
     /* CTA FINAL */
     .cta-final {
-      padding: 100px 0;
+      padding: var(--space-3xl) 0;
       background: var(--gradient-hero);
       text-align: center;
     }
@@ -2331,8 +2382,13 @@
       box-shadow: 0 8px 30px rgba(111, 193, 255, 0.4);
       z-index: 999;
       text-decoration: none;
-      animation: pulse 2s ease-in-out infinite;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .whatsapp-float {
+        animation: pulse 2s ease-in-out infinite;
+      }
     }
 
     .whatsapp-float:hover {
@@ -2354,38 +2410,93 @@
 
     /* REDES & AGENDA — New layout uses .social-chips and .behold-embed */
     .redes-agenda {
-      padding: 100px 0;
+      padding: var(--space-3xl) 0;
       background: var(--cream);
     }
 
-    /* SOCIAL CHIPS — hover brand colors */
-    .social-chip--ig:hover {
-      background: linear-gradient(135deg, #E4405F, #C13584);
+    /* SOCIAL CHIPS — base styles (moved from inline) */
+    .social-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      background: var(--celeste-deep);
+      color: var(--cream);
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      font-family: 'Open Sans', sans-serif;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      white-space: nowrap;
+      border: 2px solid var(--celeste-light);
+      min-height: 48px; /* Touch target minimum */
+    }
+    .social-chip svg {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      /* currentColor inherited from parent for consistent hover/focus */
+    }
+    .social-chip span {
+      line-height: 1;
+    }
+
+    /* SOCIAL CHIPS — hover brand colors using CSS custom properties */
+    .social-chip--ig:hover,
+    .social-chip--ig:focus-visible {
+      background: linear-gradient(135deg, var(--color-ig), var(--color-ig-end));
       border-color: transparent;
       transform: translateY(-2px);
       box-shadow: 0 8px 24px rgba(228, 64, 95, 0.4);
+      outline: none;
     }
-    .social-chip--tt:hover {
-      background: #181818;
+    .social-chip--tt:hover,
+    .social-chip--tt:focus-visible {
+      background: var(--color-tt);
       border-color: transparent;
       transform: translateY(-2px);
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      outline: none;
     }
-    .social-chip--fb:hover {
-      background: #1877F2;
+    .social-chip--fb:hover,
+    .social-chip--fb:focus-visible {
+      background: var(--color-fb);
       border-color: transparent;
       transform: translateY(-2px);
       box-shadow: 0 8px 24px rgba(24, 119, 242, 0.4);
+      outline: none;
     }
-    .social-chip--wa:hover {
-      background: var(--celeste-deep);
+    .social-chip--wa:hover,
+    .social-chip--wa:focus-visible {
+      background: var(--color-wa);
       border-color: transparent;
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(111, 193, 255, 0.4);
+      box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+      outline: none;
     }
     .social-chip:hover span,
-    .social-chip:hover svg {
-      color: var(--cream);
+    .social-chip:hover svg,
+    .social-chip:focus-visible span,
+    .social-chip:focus-visible svg {
+      color: var(--white);
+    }
+
+    /* Focus-visible ring for keyboard navigation (WCAG 2.4.7) */
+    .social-chip:focus-visible {
+      box-shadow: 0 0 0 3px var(--cream), 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+    .social-chip--ig:focus-visible {
+      box-shadow: 0 0 0 3px var(--cream), 0 8px 24px rgba(228, 64, 95, 0.4);
+    }
+    .social-chip--tt:focus-visible {
+      box-shadow: 0 0 0 3px var(--cream), 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+    .social-chip--fb:focus-visible {
+      box-shadow: 0 0 0 3px var(--cream), 0 8px 24px rgba(24, 119, 242, 0.4);
+    }
+    .social-chip--wa:focus-visible {
+      box-shadow: 0 0 0 3px var(--cream), 0 8px 24px rgba(37, 211, 102, 0.4);
     }
 
     /* TESTIMONIOS CAROUSEL — Premium Polish */
@@ -2413,7 +2524,7 @@
       box-shadow: 0 0 0 5px var(--celeste-deep);
     }
     .testimonio-stars svg {
-      fill: var(--yellow-deep);
+      fill: var(--text-dark);
       stroke: var(--celeste-deep);
       stroke-width: 0.5;
     }
@@ -2434,10 +2545,10 @@
     }
     .carousel-dot.active {
       width: 32px;
-      background: var(--celeste-deep);
+      background: var(--text-dark);
     }
     .carousel-dot:focus-visible {
-      outline: 2px solid var(--celeste-deep);
+      outline: 2px solid var(--text-dark);
       outline-offset: 2px;
     }
 
@@ -2449,8 +2560,7 @@
         radial-gradient(ellipse at 20% 0%, rgba(255,255,255,.08) 0%, transparent 50%),
         radial-gradient(ellipse at 80% 100%, rgba(255,255,255,.05) 0%, transparent 40%);
       color: var(--cream);
-      padding: 0 0 40px;
-      overflow: hidden;
+      padding: 0 0 var(--space-xl);
     }
     .footer-background {
       position: absolute;
@@ -2461,7 +2571,7 @@
 
     /* Quote Strip */
     .footer-quote {
-      padding: 64px 24px 48px;
+      padding: var(--space-2xl) var(--space-md) var(--space-xl);
       text-align: center;
       border-bottom: 1px solid rgba(255,255,255,.08);
     }
@@ -2488,15 +2598,15 @@
     .footer-divider {
       border: none;
       border-top: 1px solid rgba(255,255,255,.12);
-      margin: 0 24px 40px;
+      margin: 0 var(--space-md) var(--space-xl);
     }
 
     /* Grid 3 cols: 1.5fr / 1fr / 1fr */
     .footer-grid {
       display: grid;
       grid-template-columns: 1.5fr 1fr 1fr;
-      gap: 60px;
-      padding: 0 24px 40px;
+      gap: var(--space-xl);
+      padding: 0 var(--space-md) var(--space-xl);
       max-width: 1400px;
       margin: 0 auto;
     }
@@ -2598,17 +2708,17 @@
       margin-bottom: 20px;
       font-size: 15px;
       line-height: 1.6;
-      color: var(--cream);
-      opacity: 0.9;
+      color: var(--white);
+      opacity: 0.95;
     }
     .footer-contact-list svg {
       flex-shrink: 0;
       margin-top: 2px;
-      opacity: 0.7;
+      opacity: 0.9;
     }
     .footer-contact-list a {
-      color: var(--cream);
-      opacity: 0.9;
+      color: var(--white);
+      opacity: 0.95;
       text-decoration: none;
       transition: opacity 0.2s, color 0.2s;
     }
@@ -2630,21 +2740,43 @@
       height: 44px;
       border-radius: 50%;
       background: var(--celeste-deep);
-      color: var(--cream);
-      transition: all 0.3s ease;
+      color: var(--white);
+      transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
     }
     .footer-social-btn svg {
       width: 20px;
       height: 20px;
+      fill: currentColor;
+      stroke: none;
     }
-    .footer-social-btn:hover {
+    .footer-social-btn:hover,
+    .footer-social-btn:focus-visible {
       transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      outline: none;
     }
-    .footer-social-btn[href*="instagram"]:hover { background: linear-gradient(135deg, #E4405F, #C13584); color: white; }
-    .footer-social-btn[href*="tiktok"]:hover { background: #000; color: white; }
-    .footer-social-btn[href*="facebook"]:hover { background: #1877F2; color: white; }
-    .footer-social-btn[href*="wa.me"]:hover { background: var(--celeste-deep); color: var(--cream); box-shadow: 0 8px 20px rgba(111, 193, 255, 0.4); }
+    .footer-social-btn:focus-visible {
+      box-shadow: 0 0 0 3px var(--cream), 0 8px 20px rgba(0,0,0,0.3);
+    }
+    .footer-social-btn[href*="instagram"]:hover,
+    .footer-social-btn[href*="instagram"]:focus-visible {
+      background: linear-gradient(135deg, var(--color-ig), var(--color-ig-end));
+      box-shadow: 0 8px 20px rgba(228, 64, 95, 0.4);
+    }
+    .footer-social-btn[href*="tiktok"]:hover,
+    .footer-social-btn[href*="tiktok"]:focus-visible {
+      background: var(--color-tt);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    }
+    .footer-social-btn[href*="facebook"]:hover,
+    .footer-social-btn[href*="facebook"]:focus-visible {
+      background: var(--color-fb);
+      box-shadow: 0 8px 20px rgba(24, 119, 242, 0.4);
+    }
+    .footer-social-btn[href*="wa.me"]:hover,
+    .footer-social-btn[href*="wa.me"]:focus-visible {
+      background: var(--color-wa);
+      box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+    }
 
     /* Bottom Bar */
     .footer-bottom-bar {
@@ -2657,8 +2789,8 @@
     }
     .footer-copyright {
       font-size: 13px;
-      opacity: 0.7;
-      color: var(--cream);
+      opacity: 0.8;
+      color: var(--white);
     }
     .footer-legal {
       display: flex;
@@ -2666,8 +2798,8 @@
     }
     .footer-legal a {
       font-size: 13px;
-      color: var(--cream);
-      opacity: 0.7;
+      color: var(--white);
+      opacity: 0.8;
       transition: opacity 0.2s;
     }
     .footer-legal a:hover {
@@ -2882,7 +3014,7 @@
 
       /* Mobile: hero - más compacto */
       .hero {
-        padding: 100px 0 50px;
+        padding: var(--space-3xl) 0 var(--space-xl);
         min-height: auto;
       }
 
@@ -2920,15 +3052,15 @@
       }
 
       .sobre-mi {
-        padding: 60px 0;
+        padding: var(--space-xl) 0;
       }
 
       .servicios {
-        padding: 60px 0;
+        padding: var(--space-xl) 0;
       }
 
       .mision {
-        padding: 60px 0;
+        padding: var(--space-xl) 0;
       }
 
       .mision-frase h2 {
@@ -2936,11 +3068,11 @@
       }
 
       .faq {
-        padding: 60px 0;
+        padding: var(--space-xl) 0;
       }
 
       .cta-final {
-        padding: 60px 0;
+        padding: var(--space-2xl) 0;
       }
 
       .cta-final h2 {
@@ -2958,7 +3090,7 @@
 
       /* Mobile: testimonios */
       .testimonios {
-        padding: 60px 0;
+        padding: var(--space-xl) 0;
       }
 
       .testimonios-marquee {
@@ -3006,7 +3138,7 @@
 
       /* Mobile: footer (Luxto-style) */
       .footer {
-        padding: 60px 0 30px;
+        padding: var(--space-2xl) 0 var(--space-lg);
       }
       .footer-background {
         border-radius: 40px 40px 0 0;
@@ -3286,15 +3418,22 @@
       bottom: -5%;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath d='M0,64 C240,110 480,20 720,50 C960,80 1200,30 1440,60 L1440,120 L0,120 Z' fill='%23FDFDC9' fill-opacity='0.6'/%3E%3C/svg%3E");
       background-size: 50% 100px;
-      animation: waveMove 20s linear infinite;
       opacity: 0.5;
     }
     .wave-background .wave:nth-child(2) {
       bottom: -2%;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath d='M0,40 C200,100 500,10 720,50 C940,90 1200,30 1440,60 L1440,120 L0,120 Z' fill='%23B0DDFC' fill-opacity='0.5'/%3E%3C/svg%3E");
       background-size: 50% 100px;
-      animation: waveMove 25s linear infinite reverse;
       opacity: 0.4;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .wave-background .wave:nth-child(1) {
+        animation: waveMove 20s linear infinite;
+      }
+      .wave-background .wave:nth-child(2) {
+        animation: waveMove 25s linear infinite reverse;
+      }
     }
 
     @keyframes waveMove {
@@ -3305,12 +3444,26 @@
       100% { transform: translateX(0) translateY(0) rotate(0deg); }
     }
 
+    /* Respect prefers-reduced-motion for continuous animations */
+    @media (prefers-reduced-motion: reduce) {
+      .wave-background .wave,
+      .hero-photo,
+      .geometric-dots span,
+      .testimonios-track {
+        animation: none !important;
+      }
+      .hero-photo,
+      .hero-photo img {
+        transition: none !important;
+      }
+    }
+
     /* === MOBILE OPTIMIZATIONS === */
     @media (max-width: 768px) {
       /* Hero - prevent photo jitter on scroll */
       .hero {
         min-height: auto;
-        padding: 60px 0 40px;
+        padding: var(--space-xl) 0 var(--space-lg);
       }
       .hero .container {
         padding: 0 16px;
@@ -3423,7 +3576,7 @@
       
       /* CTA Final */
       .cta-final {
-        padding: 40px 0;
+        padding: var(--space-xl) 0;
       }
       .cta-final h2 {
         font-size: clamp(24px, 7vw, 32px);
@@ -4222,23 +4375,21 @@
             </em>
           </h2>
         </div>
-        <nav class="social-chips" aria-label="Redes sociales" style="display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end;">
-          <a href="https://instagram.com/pensarsentirhacer.pe" target="_blank" rel="noopener noreferrer" class="social-chip social-chip--ig" aria-label="Instagram @pensarsentirhacer.pe" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:var(--celeste-deep);color:var(--cream);border-radius:50px;text-decoration:none;font-weight:600;font-size:14px;font-family:'Open Sans',sans-serif;transition:all .3s ease;white-space:nowrap;border:2px solid var(--celeste-light);">
-            <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        <nav class="social-chips" aria-label="Redes sociales">
+          <a href="https://instagram.com/pensarsentirhacer.pe" target="_blank" rel="noopener noreferrer" class="social-chip social-chip--ig" aria-label="Instagram @pensarsentirhacer.pe">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
             <span>Instagram</span>
           </a>
-          <a href="https://tiktok.com/@pensarsentirhacer.pe" target="_blank" rel="noopener noreferrer" class="social-chip social-chip--tt" aria-label="TikTok @pensarsentirhacer.pe" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:var(--celeste-deep);color:var(--cream);border-radius:50px;text-decoration:none;font-weight:600;font-size:14px;font-family:'Open Sans',sans-serif;transition:all .3s ease;white-space:nowrap;border:2px solid var(--celeste-light);">
-            <svg viewBox="0 0 24 24" fill="white" style="width:20px;height:20px;display:block;"><path fill-rule="evenodd" clip-rule="evenodd" d="M23.23 2.081a22.337 22.337 0 0 1-1.13 3.284c-2.1.69-4.238 1.071-6.4 1.113v3.76h4.27v3.91h-4.27v10.836H13.3V14.154H9.014v-3.91h4.28v-3.787c0-3.396 1.467-5.56 5.646-5.553a3.5 3.5 0 0 1 3.299 2.503 2.4 2.4 0 0 1 .593 1.231c-.331.053-1.522.166-2.805.517v3.432h-3.375v3.91h3.375V24h5.325V14.154h3.907v-3.91h-3.907v-3.43c.979-.272 1.86-.689 2.476-1.294a9.22 9.22 0 0 0 1.49-5.413c.003-5.078-3.47-9.507-8.17-9.932a26.59 26.59 0 0 1 2.549-.8Z"/></svg>
+          <a href="https://tiktok.com/@pensarsentirhacer.pe" target="_blank" rel="noopener noreferrer" class="social-chip social-chip--tt" aria-label="TikTok @pensarsentirhacer.pe">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M23.23 2.081a22.337 22.337 0 0 1-1.13 3.284c-2.1.69-4.238 1.071-6.4 1.113v3.76h4.27v3.91h-4.27v10.836H13.3V14.154H9.014v-3.91h4.28v-3.787c0-3.396 1.467-5.56 5.646-5.553a3.5 3.5 0 0 1 3.299 2.503 2.4 2.4 0 0 1 .593 1.231c-.331.053-1.522.166-2.805.517v3.432h-3.375v3.91h3.375V24h5.325V14.154h3.907v-3.91h-3.907v-3.43c.979-.272 1.86-.689 2.476-1.294a9.22 9.22 0 0 0 1.49-5.413c.003-5.078-3.47-9.507-8.17-9.932a26.59 26.59 0 0 1 2.549-.8Z"/></svg>
             <span>TikTok</span>
           </a>
-          <a href="https://www.facebook.com/profile.php?id=100063909011274" target="_blank" rel="noopener noreferrer" class="social-chip social-chip--fb" aria-label="Facebook Pensar Sentir Hacer" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:var(--celeste-deep);color:var(--cream);border-radius:50px;text-decoration:none;font-weight:600;font-size:14px;font-family:'Open Sans',sans-serif;transition:all .3s ease;white-space:nowrap;border:2px solid var(--celeste-light);">
-            <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px;"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>
+          <a href="https://www.facebook.com/profile.php?id=100063909011274" target="_blank" rel="noopener noreferrer" class="social-chip social-chip--fb" aria-label="Facebook Pensar Sentir Hacer">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>
             <span>Facebook</span>
           </a>
-          <a href="https://wa.me/51939855573" target="_blank" rel="noopener noreferrer" class="social-chip social-chip--wa" aria-label="WhatsApp +51 939 855 573" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:var(--celeste-deep);color:var(--cream);border-radius:50px;text-decoration:none;font-weight:600;font-size:14px;font-family:'Open Sans',sans-serif;transition:all .3s ease;white-space:nowrap;border:2px solid var(--celeste-light);">
-            <svg viewBox="0 0 24 24" fill="white" style="width:20px;height:20px;display:block;">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M20.52 3.48A11.914 11.914 0 0 0 12 0C5.373 0 0 5.373 0 12c0 1.783.44 3.482 1.227 5.006L0 24l5.894-1.664A11.942 11.942 0 0 0 12 24c6.627 0 12-5.373 12-12 0-1.958-.487-3.813-1.48-5.442zM8 12.5c0 .827.673 1.5 1.5 1.5H10v4.5c0 .827.673 1.5 1.5 1.5s1.5-.673 1.5-1.5V14h2.5c.827 0 1.5-.673 1.5-1.5s-.673-1.5-1.5-1.5H13V9c0-.827-.673-1.5-1.5-1.5s-1.5.673-1.5 1.5v2.5H9.5c-.827 0-1.5.673-1.5 1.5z"/>
-            </svg>
+          <a href="https://wa.me/51939855573" target="_blank" rel="noopener noreferrer" class="social-chip social-chip--wa" aria-label="WhatsApp +51 939 855 573">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M20.52 3.48A11.914 11.914 0 0 0 12 0C5.373 0 0 5.373 0 12c0 1.783.44 3.482 1.227 5.006L0 24l5.894-1.664A11.942 11.942 0 0 0 12 24c6.627 0 12-5.373 12-12 0-1.958-.487-3.813-1.48-5.442zM8 12.5c0 .827.673 1.5 1.5 1.5H10v4.5c0 .827.673 1.5 1.5 1.5s1.5-.673 1.5-1.5V14h2.5c.827 0 1.5-.673 1.5-1.5s-.673-1.5-1.5-1.5H13V9c0-.827-.673-1.5-1.5-1.5s-1.5.673-1.5 1.5v2.5H9.5c-.827 0-1.5.673-1.5 1.5z"/></svg>
             <span>WhatsApp</span>
           </a>
         </nav>
@@ -4491,16 +4642,14 @@
           <a href="https://instagram.com/pensarsentirhacer.pe" target="_blank" rel="noopener noreferrer" aria-label="Instagram @pensarsentirhacer.pe" class="footer-social-btn">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
           </a>
-          <a href="https://tiktok.com/@pensarsentirhacer.pe" target="_blank" rel="noopener noreferrer" aria-label="TikTok @pensarsentirhacer.pe" class="footer-social-btn" style="color: var(--cream);">
-            <svg viewBox="0 0 24 24" fill="white" style="width:20px;height:20px;display:block;"><path fill-rule="evenodd" clip-rule="evenodd" d="M23.23 2.081a22.337 22.337 0 0 1-1.13 3.284c-2.1.69-4.238 1.071-6.4 1.113v3.76h4.27v3.91h-4.27v10.836H13.3V14.154H9.014v-3.91h4.28v-3.787c0-3.396 1.467-5.56 5.646-5.553a3.5 3.5 0 0 1 3.299 2.503 2.4 2.4 0 0 1 .593 1.231c-.331.053-1.522.166-2.805.517v3.432h-3.375v3.91h3.375V24h5.325V14.154h3.907v-3.91h-3.907v-3.43c.979-.272 1.86-.689 2.476-1.294a9.22 9.22 0 0 0 1.49-5.413c.003-5.078-3.47-9.507-8.17-9.932a26.59 26.59 0 0 1 2.549-.8Z"/></svg>
+          <a href="https://tiktok.com/@pensarsentirhacer.pe" target="_blank" rel="noopener noreferrer" aria-label="TikTok @pensarsentirhacer.pe" class="footer-social-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M23.23 2.081a22.337 22.337 0 0 1-1.13 3.284c-2.1.69-4.238 1.071-6.4 1.113v3.76h4.27v3.91h-4.27v10.836H13.3V14.154H9.014v-3.91h4.28v-3.787c0-3.396 1.467-5.56 5.646-5.553a3.5 3.5 0 0 1 3.299 2.503 2.4 2.4 0 0 1 .593 1.231c-.331.053-1.522.166-2.805.517v3.432h-3.375v3.91h3.375V24h5.325V14.154h3.907v-3.91h-3.907v-3.43c.979-.272 1.86-.689 2.476-1.294a9.22 9.22 0 0 0 1.49-5.413c.003-5.078-3.47-9.507-8.17-9.932a26.59 26.59 0 0 1 2.549-.8Z"/></svg>
           </a>
           <a href="https://www.facebook.com/profile.php?id=100063909011274" target="_blank" rel="noopener noreferrer" aria-label="Facebook Pensar Sentir Hacer" class="footer-social-btn">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>
           </a>
-          <a href="https://wa.me/51939855573" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp +51 939 855 573" class="footer-social-btn" style="color: var(--cream);">
-            <svg viewBox="0 0 24 24" fill="white" style="width:20px;height:20px;display:block;">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M20.52 3.48A11.914 11.914 0 0 0 12 0C5.373 0 0 5.373 0 12c0 1.783.44 3.482 1.227 5.006L0 24l5.894-1.664A11.942 11.942 0 0 0 12 24c6.627 0 12-5.373 12-12 0-1.958-.487-3.813-1.48-5.442zM8 12.5c0 .827.673 1.5 1.5 1.5H10v4.5c0 .827.673 1.5 1.5 1.5s1.5-.673 1.5-1.5V14h2.5c.827 0 1.5-.673 1.5-1.5s-.673-1.5-1.5-1.5H13V9c0-.827-.673-1.5-1.5-1.5s-1.5.673-1.5 1.5v2.5H9.5c-.827 0-1.5.673-1.5 1.5z"/>
-            </svg>
+          <a href="https://wa.me/51939855573" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp +51 939 855 573" class="footer-social-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M20.52 3.48A11.914 11.914 0 0 0 12 0C5.373 0 0 5.373 0 12c0 1.783.44 3.482 1.227 5.006L0 24l5.894-1.664A11.942 11.942 0 0 0 12 24c6.627 0 12-5.373 12-12 0-1.958-.487-3.813-1.48-5.442zM8 12.5c0 .827.673 1.5 1.5 1.5H10v4.5c0 .827.673 1.5 1.5 1.5s1.5-.673 1.5-1.5V14h2.5c.827 0 1.5-.673 1.5-1.5s-.673-1.5-1.5-1.5H13V9c0-.827-.673-1.5-1.5-1.5s-1.5.673-1.5 1.5v2.5H9.5c-.827 0-1.5.673-1.5 1.5z"/></svg>
           </a>
         </div>
       </address>

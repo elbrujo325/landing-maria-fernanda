@@ -941,6 +941,103 @@
       font-weight: 500;
     }
 
+    /* CREDENCIALES SECTION - NUEVA ESTRUCTURA */
+    .credenciales-content {
+      margin-top: 32px;
+    }
+
+    .credenciales-header {
+      background: var(--white);
+      border: 1px solid var(--celeste-light);
+      border-radius: 20px;
+      padding: 32px 40px;
+      margin-bottom: 32px;
+    }
+
+    .credenciales-name {
+      font-family: 'League Spartan', sans-serif;
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    .credenciales-title {
+      font-size: 18px;
+      color: var(--celeste-deep);
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .credenciales-colegio {
+      font-size: 16px;
+      color: var(--text-dark);
+      margin: 0;
+    }
+
+    .credenciales-section {
+      margin-bottom: 32px;
+    }
+
+    .credenciales-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .credenciales-subtitle {
+      font-family: 'League Spartan', sans-serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--celeste-mid);
+      display: inline-block;
+    }
+
+    .credenciales-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .credenciales-list li {
+      margin-bottom: 16px;
+      padding-left: 28px;
+      position: relative;
+      line-height: 1.7;
+      color: var(--text-dark);
+    }
+
+    .credenciales-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--yellow-mid);
+      border: 2px solid var(--white);
+      box-shadow: 0 0 0 2px var(--celeste-mid);
+    }
+
+    .credenciales-text {
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--text-dark);
+      margin-bottom: 16px;
+    }
+
+    .credenciales-text strong {
+      color: var(--celeste-deep);
+      font-weight: 600;
+    }
+
+    .credenciales-text em {
+      font-style: italic;
+      color: var(--text-dark);
+    }
+
     /* HOW IT WORKS */
     .como-funciona {
       padding: var(--space-3xl) 0;
@@ -1419,6 +1516,34 @@
 
       .testimonios {
         padding: var(--space-xl) 0;
+      }
+
+      .credenciales-header {
+        text-align: center;
+        padding: 0 var(--space-sm);
+      }
+
+      .credenciales-name {
+        font-size: 28px;
+      }
+
+      .credenciales-subtitle {
+        font-size: 20px;
+        margin-top: var(--space-lg);
+      }
+
+      .credenciales-text {
+        font-size: 15px;
+        line-height: 1.7;
+      }
+
+      .credenciales-list {
+        padding-left: var(--space-lg);
+      }
+
+      .credenciales-list li {
+        font-size: 15px;
+        margin-bottom: var(--space-sm);
       }
 
       .whatsapp-float {
@@ -3911,51 +4036,36 @@
       <h2 class="section-title fade-in">Formación y credenciales</h2>
       <p class="section-subtitle fade-in">Formación académica, certificaciones y desarrollo profesional continuo</p>
       
-      <div class="credenciales-grid">
-        <article class="credential-card fade-in">
-          <div class="credential-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-          </div>
-          <div class="credential-year">2017</div>
-          <h3 class="credential-title">Licenciatura en Psicología</h3>
-          <p class="credential-desc">Universidad Peruana de Ciencias Aplicadas (UPC). Título profesional a nombre de la nación.</p>
-        </article>
+      <div class="credenciales-content fade-in">
+        <div class="credenciales-header">
+          <h3 class="credenciales-name">María Fernanda Arana</h3>
+          <p class="credenciales-title">Licenciada en Psicología Clínica.</p>
+          <p class="credenciales-colegio">Colegio de Psicólogos del Perú (CPP) N.° 46797.</p>
+        </div>
 
-        <article class="credential-card fade-in">
-          <div class="credential-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-          </div>
-          <div class="credential-year">2019</div>
-          <h3 class="credential-title">Psicoterapeuta en Terapia de Aceptación y Compromiso (ACT)</h3>
-          <p class="credential-desc">Especialización en Terapia de Aceptación y Compromiso (ACT) — enfoque basado en evidencia para ansiedad, depresión y trastornos del estado de ánimo.</p>
-        </article>
+        <section class="credenciales-section">
+          <h4 class="credenciales-subtitle">Formación Académica</h4>
+          <ul class="credenciales-list">
+            <li>Especialista en Terapia Cognitivo Conductual.</li>
+            <li>Diplomado en Terapia de Pareja y Sexualidad.</li>
+            <li>Magíster en Terapias de Tercera Generación – ISEP Barcelona.</li>
+            <li>Magíster en Bienestar Emocional – ISEP Barcelona.</li>
+          </ul>
+        </section>
 
-        <article class="credential-card fade-in">
-          <div class="credential-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-          </div>
-          <div class="credential-year">2021</div>
-          <h3 class="credential-title">Diplomado en Terapia de Pareja Sistémica y Sexualidad</h3>
-          <p class="credential-desc">Formación avanzada en abordaje sistémico de la pareja, comunicación, intimidad y sexualidad humana.</p>
-        </article>
+        <section class="credenciales-section">
+          <h4 class="credenciales-subtitle">Enfoque terapéutico</h4>
+          <p class="credenciales-text">
+            Actualmente trabajo principalmente desde la <strong>Terapia de Aceptación y Compromiso (ACT)</strong>, un enfoque de las terapias de tercera generación basado en evidencia científica. Integro herramientas de <strong>mindfulness</strong> y otras estrategias contextuales para acompañar a las personas a desarrollar mayor <strong>flexibilidad psicológica</strong>, relacionarse de una manera más saludable con sus pensamientos y emociones, y construir una vida coherente con sus <strong>valores y objetivos personales</strong>.
+          </p>
+        </section>
 
-        <article class="credential-card fade-in">
-          <div class="credential-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-          </div>
-          <div class="credential-year">2018 - Presente</div>
-          <h3 class="credential-title">Colegiatura Activa</h3>
-          <p class="credential-desc">Colegio de Psicólogos del Perú — Colegiada N° 48921. Habilitación profesional vigente.</p>
-        </article>
-
-        <article class="credential-card fade-in">
-          <div class="credential-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-          </div>
-          <div class="credential-year">Continuo</div>
-          <h3 class="credential-title">Supervisión Clínica y Formación Continua</h3>
-          <p class="credential-desc">Actualización constante en protocolos ACT, EMDR y neurociencia aplicada a la práctica clínica.</p>
-        </article>
+        <section class="credenciales-section">
+          <h4 class="credenciales-subtitle">Experiencia</h4>
+          <p class="credenciales-text">
+            Con <strong>más de 7 años de experiencia clínica</strong>, acompaño a adolescentes, adultos y parejas en el manejo de la ansiedad, el estrés, el sobrepensar, la tristeza, las dificultades en las relaciones, la autoestima, la búsqueda de propósito y sentido de vida, así como otros desafíos emocionales. Mi objetivo es brindar un espacio <strong>profesional, seguro, cercano y basado en evidencia científica</strong>, donde cada persona pueda desarrollar herramientas para afrontar sus dificultades y construir una vida más plena y alineada con sus valores.
+          </p>
+        </section>
       </div>
     </div>
   </section>

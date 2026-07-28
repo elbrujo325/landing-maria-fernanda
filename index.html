@@ -1047,17 +1047,18 @@
     .watermark-wrapper::before {
       content: '';
       position: absolute;
-      top: 50%;
+      top: 0;
       left: 50%;
-      transform: translate(-50%, -50%);
-      width: 60%;
-      max-width: 800px;
-      aspect-ratio: 1;
+      transform: translateX(-50%);
+      width: 80%;
+      max-width: 1000px;
+      height: 100%;
+      min-height: 100vh;
       background-image: url('logo-celeste-transparente.png');
       background-size: contain;
       background-repeat: no-repeat;
-      background-position: center;
-      opacity: 0.08;
+      background-position: center 30%;
+      opacity: 0.05;
       pointer-events: none;
       z-index: 0;
     }
@@ -1703,6 +1704,12 @@
 
         .step-card, .pricing-card {
           padding: 28px 20px;
+        }
+
+        .watermark-wrapper::before {
+          width: 90%;
+          opacity: 0.03;
+          background-position: center 20%;
         }
       }
     }

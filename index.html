@@ -1042,6 +1042,7 @@
     .watermark-wrapper {
       position: relative;
       z-index: 1;
+      background: var(--cream);
     }
 
     .watermark-wrapper::before {
@@ -1057,8 +1058,8 @@
       background-image: url('logo-celeste-transparente.png');
       background-size: contain;
       background-repeat: no-repeat;
-      background-position: center 30%;
-      opacity: 0.05;
+      background-position: center 25%;
+      opacity: 0.06;
       pointer-events: none;
       z-index: 0;
     }
@@ -1067,11 +1068,12 @@
     .watermark-wrapper .problema-solucion {
       position: relative;
       z-index: 1;
+      background: transparent !important;
     }
 
-    /* Ensure credenciales section has cream background for watermark visibility */
+    /* Ensure credenciales section has transparent background */
     #credenciales {
-      background: var(--cream);
+      background: transparent !important;
     }
 
     /* HOW IT WORKS */

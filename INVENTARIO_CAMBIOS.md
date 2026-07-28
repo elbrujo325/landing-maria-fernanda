@@ -48,6 +48,7 @@
 | **C-3** | Nueva sección | Sección "Sobre mí" (líneas 2764-2786) | **Video YouTube embebido** después del texto: `https://www.youtube.com/watch?v=CfACxsC7K-A` → iframe responsive | ✅ |
 | **C-4** | Nueva funcionalidad | Servicios líneas 2933-2977 | **Accordion/desplegable** en cada tarjeta servicio (Presencial / Online): duración, modalidad, qué incluye. **NO precio ni dirección exacta.** | ✅ |
 | **C-5** | Nueva funcionalidad | Debajo de Testimonios (línea 3300) | **Formulario reseñas públicas**: nombre, texto, estrellas 1-5. Envío → Firestore `testimonios` con `aprobado: false`. Moderación admin. Render dinámico en carrusel. | ⏳ (Grupo 6 - Firebase) **— PENDIENTE: requiere credenciales Firebase de la clienta** |
+| **C-6** | Fix responsive | Redes & Agenda sección | **Responsive redes-agenda**: redes-header grid stack columns mobile, social-chips flex-wrap, behold-embed border-radius 16/18px, redes-cta-final font-size 15px en ≤480px y ≤768px. Media queries @media 1024px, 768px, 480px. | ✅ |
 
 ---
 

@@ -73,6 +73,7 @@
 
     html {
       scroll-behavior: smooth;
+      overflow-x: hidden;
     }
 
     body {
@@ -80,6 +81,7 @@
       color: var(--text-dark);
       line-height: 1.6;
       background: var(--cream);
+      overflow-x: hidden;
     }
 
     h1, h2, h3, h4 {
@@ -2245,6 +2247,38 @@
       .photo-collage .collage-item--behold {
         grid-column: span 2 !important;
       }
+
+      /* Problema/Solución 4-column grid - desktop large to tablet (2 columnas en 1024px) */
+      .ps-grid-four {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 32px !important;
+      }
+      .ps-grid-four .ps-card {
+        padding: 32px !important;
+      }
+
+      /* Redes & Agenda: reduce header gap on tablet */
+      .redes-header {
+        gap: 32px !important;
+      }
+      .social-chips {
+        gap: 10px !important;
+      }
+      .social-chip {
+        padding: 12px 24px !important;
+        font-size: 14px !important;
+      }
+    }
+
+    @media (max-width: 768px) {
+      /* Tablet: 2 columnas, padding 28px, gap 28px */
+      .ps-grid-four {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 28px !important;
+      }
+      .ps-grid-four .ps-card {
+        padding: 28px !important;
+      }
     }
 
     @media (max-width: 640px) {
@@ -2412,6 +2446,77 @@
     .redes-agenda {
       padding: var(--space-3xl) 0;
       background: var(--cream);
+    }
+
+    /* Redes header — editorial 2-col layout */
+    .redes-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 40px;
+      align-items: end;
+      margin-bottom: 64px;
+    }
+
+    /* Social chips container — flex with wrap */
+    .social-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .redes-eyebrow {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--text-dark);
+      font-weight: 600;
+      margin: 0 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .redes-eyebrow__line {
+      width: 48px;
+      height: 2px;
+      background: var(--celeste-deep);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    .redes-title {
+      font-family: 'League Spartan', sans-serif;
+      font-weight: 600;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      line-height: 1.05;
+      color: var(--text-dark);
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .15em;
+      align-items: baseline;
+    }
+    .redes-title__highlight {
+      font-family: 'DM Serif Display', serif;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--celeste-deep);
+      position: relative;
+    }
+    .redes-title__underline {
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 100%;
+      height: 16px;
+      pointer-events: none;
+    }
+    .redes-title__underline path {
+      stroke: var(--celeste-deep);
+      stroke-width: 2.5;
+      fill: none;
+      stroke-linecap: round;
     }
 
     /* SOCIAL CHIPS — base styles (moved from inline) */
@@ -2935,7 +3040,7 @@
         background: var(--white);
         flex-direction: column;
         padding: 16px;
-        gap: 12px
+        gap: 12px;
         box-shadow: 0 10px 30px rgba(0,0,0,0.08);
         border-top: 1px solid var(--card-border);
       }
@@ -3521,7 +3626,35 @@
         padding: 10px 20px !important;
         font-size: 13px !important;
       }
-      
+
+      /* Redes header: stack grid columns, center text */
+      .redes-header {
+        grid-template-columns: 1fr !important;
+        gap: 24px !important;
+        text-align: center;
+        align-items: center;
+      }
+      .redes-title {
+        justify-content: center;
+      }
+      .redes-eyebrow {
+        justify-content: center;
+      }
+      .social-chips {
+        justify-content: center !important;
+      }
+
+      /* Redes agenda - behold embed */
+      .behold-embed {
+        margin-top: 32px !important;
+      }
+      .behold-embed > div {
+        border-radius: 18px !important;
+      }
+      .redes-cta-final a {
+        font-size: 15px !important;
+      }
+
       /* Services accordion - full width buttons */
       .service-card {
         margin: 0 -16px;
@@ -3637,8 +3770,17 @@
           animation: none !important;
         }
       }
+
+      /* Problema/Solución 4-column grid - tablet (2 columnas) */
+      .ps-grid-four {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 28px !important;
+      }
+      .ps-card {
+        padding: 28px !important;
+      }
     }
-    
+
     /* Small mobile (<=480px) */
     @media (max-width: 480px) {
       .hero h1 {
@@ -3660,6 +3802,26 @@
       }
       .service-gallery img {
         height: 160px;
+      }
+
+      /* PS Grid Four - 1 columna en móvil */
+      .ps-grid-four {
+        grid-template-columns: 1fr !important;
+        gap: 24px !important;
+      }
+      .ps-grid-four .ps-card {
+        padding: 24px !important;
+      }
+
+      /* Redes agenda - behold embed and CTA */
+      .behold-embed {
+        margin-top: 24px !important;
+      }
+      .behold-embed > div {
+        border-radius: 16px !important;
+      }
+      .redes-cta-final a {
+        font-size: 15px !important;
       }
     }
 </style>
@@ -3877,71 +4039,216 @@
     </div>
   </section>
 
-  <!-- PROBLEMA / SOLUCION -->
+  <!-- PROBLEMA / SOLUCION — 4 columnas optimizadas -->
   <section class="problema-solucion" id="problema-solucion">
-    <div class="container fade-in">
+    <div class="container fade-in" style="max-width: 1720px;">
       <h2 class="section-title" style="text-align: center; margin-bottom: 8px;">¿Te sientes identificado?</h2>
-      <p class="section-subtitle">Muchas personas llegan a terapia sintiendo que algo no encaja. Aquí está el antes y el después.</p>
-      
-      <div class="problem-solution-grid">
-        <div class="problem-card fade-in">
-          <h3>
-            <span class="problem-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
-            </span>
-            El problema
-          </h3>
-          <ul class="problem-list">
-            <li class="problem-item">
-              <span class="problem-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></span>
-              <span class="problem-text">Ansiedad que no te deja dormir, concentrar ni disfrutar el presente</span>
-            </li>
-            <li class="problem-item">
-              <span class="problem-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></span>
-              <span class="problem-text">Pensamientos en bucle que te agotan y te hacen dudar de ti</span>
-            </li>
-            <li class="problem-item">
-              <span class="problem-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></span>
-              <span class="problem-text">Relaciones que se repiten en patrones que no entiendes</span>
-            </li>
-            <li class="problem-item">
-              <span class="problem-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></span>
-              <span class="problem-text">Sensación de estar estancado/a sin saber por dónde empezar</span>
-            </li>
-          </ul>
-        </div>
+      <p class="section-subtitle">Muchas personas llegan a terapia sintiendo que algo no encaja. Aquí puedes ver lo que trabajamos y qué puedes esperar.</p>
 
-        <div class="solution-card fade-in">
-          <h3>
-            <span class="solution-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
-            </span>
-            El resultado
-          </h3>
-          <ul class="solution-list">
-            <li class="solution-item">
-              <span class="solution-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></span>
-              <span class="solution-text"><span>Calma mental</span> para dormir, enfocarte y estar presente</span>
+      <div class="ps-grid-four" style="display:grid; grid-template-columns:repeat(4,1fr); gap:40px; margin-top:56px; align-items:stretch; max-width:1720px; margin-left:auto; margin-right:auto; padding:0 16px;">
+
+        <!-- COLUMNA 1: PROBLEMAS -->
+        <article class="ps-card fade-in" style="background:var(--white); border:1px solid var(--card-border); border-radius:24px; padding:32px; transition:all .3s ease; display:flex; flex-direction:column; height:100%;">
+          <header style="margin-bottom:28px; flex-shrink:0;">
+            <h3 style="font-family:'League Spartan',sans-serif; font-size:22px; color:var(--text-dark); margin:0 0 10px; display:flex; align-items:center; gap:12px; line-height:1.3;">
+              <span style="width:48px;height:48px;border-radius:14px;background:var(--cream-light);display:flex;align-items:center;justify-content:center;color:var(--celeste-deep);flex-shrink:0;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:24px;height:24px;"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+              </span>
+              Problemas
+            </h3>
+            <p style="font-size:13px; color:var(--celeste-deep); margin:0; font-weight:600; text-transform:uppercase; letter-spacing:0.6px;">Lo que te trae aquí</p>
+          </header>
+          <ul style="list-style:none; padding:0; margin:0; flex:1; display:flex; flex-direction:column; gap:10px;">
+            <li style="display:flex; align-items:flex-start; gap:14px; padding:12px 0; border-bottom:1px solid var(--card-border);">
+              <span style="width:26px;height:26px;border-radius:50%;background:var(--yellow-mid);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--celeste-deep)" stroke-width="2.5" style="width:13px;height:13px;"><path d="M20 6L9 17l-5-5"/></svg>
+              </span>
+              <span style="font-size:16px; color:var(--text-dark); line-height:1.6;">No puedes dejar de darle vueltas a las cosas.</span>
             </li>
-            <li class="solution-item">
-              <span class="solution-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></span>
-              <span class="solution-text"><span>Claridad</span> para decidir sin dar vueltas ni auto-sabotearte</span>
+            <li style="display:flex; align-items:flex-start; gap:14px; padding:12px 0; border-bottom:1px solid var(--card-border);">
+              <span style="width:26px;height:26px;border-radius:50%;background:var(--yellow-mid);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--celeste-deep)" stroke-width="2.5" style="width:13px;height:13px;"><path d="M20 6L9 17l-5-5"/></svg>
+              </span>
+              <span style="font-size:16px; color:var(--text-dark); line-height:1.6;">Sientes ansiedad o preocupación constante.</span>
             </li>
-            <li class="solution-item">
-              <span class="solution-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></span>
-              <span class="solution-text"><span>Relaciones sanas</span> con límites claros y comunicación real</span>
+            <li style="display:flex; align-items:flex-start; gap:14px; padding:12px 0; border-bottom:1px solid var(--card-border);">
+              <span style="width:26px;height:26px;border-radius:50%;background:var(--yellow-mid);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--celeste-deep)" stroke-width="2.5" style="width:13px;height:13px;"><path d="M20 6L9 17l-5-5"/></svg>
+              </span>
+              <span style="font-size:16px; color:var(--text-dark); line-height:1.6;">Te cuesta disfrutar como antes.</span>
             </li>
-            <li class="solution-item">
-              <span class="solution-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></span>
-              <span class="solution-text"><span>Guía</span> y herramientas para avanzar por tu cuenta</span>
+            <li style="display:flex; align-items:flex-start; gap:14px; padding:12px 0; border-bottom:1px solid var(--card-border);">
+              <span style="width:26px;height:26px;border-radius:50%;background:var(--yellow-mid);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--celeste-deep)" stroke-width="2.5" style="width:13px;height:13px;"><path d="M20 6L9 17l-5-5"/></svg>
+              </span>
+              <span style="font-size:16px; color:var(--text-dark); line-height:1.6;">Tus relaciones generan más desgaste que tranquilidad.</span>
+            </li>
+            <li style="display:flex; align-items:flex-start; gap:14px; padding:12px 0; border-bottom:1px solid var(--card-border);">
+              <span style="width:26px;height:26px;border-radius:50%;background:var(--yellow-mid);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--celeste-deep)" stroke-width="2.5" style="width:13px;height:13px;"><path d="M20 6L9 17l-5-5"/></svg>
+              </span>
+              <span style="font-size:16px; color:var(--text-dark); line-height:1.6;">Sientes que has perdido el rumbo o tu propósito.</span>
+            </li>
+            <li style="display:flex; align-items:flex-start; gap:14px; padding:12px 0; border-bottom:1px solid var(--card-border);">
+              <span style="width:26px;height:26px;border-radius:50%;background:var(--yellow-mid);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--celeste-deep)" stroke-width="2.5" style="width:13px;height:13px;"><path d="M20 6L9 17l-5-5"/></svg>
+              </span>
+              <span style="font-size:16px; color:var(--text-dark); line-height:1.6;">Te exiges demasiado y sientes que nunca es suficiente.</span>
+            </li>
+            <li style="display:flex; align-items:flex-start; gap:14px; padding:12px 0; border-bottom:1px solid var(--card-border);">
+              <span style="width:26px;height:26px;border-radius:50%;background:var(--yellow-mid);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--celeste-deep)" stroke-width="2.5" style="width:13px;height:13px;"><path d="M20 6L9 17l-5-5"/></svg>
+              </span>
+              <span style="font-size:16px; color:var(--text-dark); line-height:1.6;">Te cuesta poner límites sin sentir culpa.</span>
+            </li>
+            <li style="display:flex; align-items:flex-start; gap:14px; padding:12px 0;">
+              <span style="width:26px;height:26px;border-radius:50%;background:var(--yellow-mid);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--celeste-deep)" stroke-width="2.5" style="width:13px;height:13px;"><path d="M20 6L9 17l-5-5"/></svg>
+              </span>
+              <span style="font-size:16px; color:var(--text-dark); line-height:1.6;">Las emociones parecen controlar tu vida.</span>
             </li>
           </ul>
-        </div>
+        </article>
+
+        <!-- COLUMNA 2: ¿EN QUÉ PUEDO AYUDARTE? -->
+        <article class="ps-card fade-in" style="background:var(--white); border:1px solid var(--card-border); border-radius:24px; padding:32px; transition:all .3s ease; display:flex; flex-direction:column; height:100%;">
+          <header style="margin-bottom:28px; flex-shrink:0;">
+            <h3 style="font-family:'League Spartan',sans-serif; font-size:22px; color:var(--text-dark); margin:0 0 10px; display:flex; align-items:center; gap:12px; line-height:1.3; flex-wrap:wrap;">
+              <span style="width:48px;height:48px;border-radius:14px;background:var(--cream-light);display:flex;align-items:center;justify-content:center;color:var(--celeste-deep);flex-shrink:0;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:24px;height:24px;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+              </span>
+              ¿En qué puedo<br>ayudarte?
+            </h3>
+            <p style="font-size:13px; color:var(--celeste-deep); margin:0; font-weight:600; text-transform:uppercase; letter-spacing:0.6px;">Áreas de especialidad</p>
+          </header>
+          <ul style="list-style:none; padding:0; margin:0; flex:1; display:flex; flex-direction:column; gap:8px;">
+            <li style="padding:14px 16px; border-radius:12px; background:var(--cream-light); border:1px solid var(--card-border); transition:all .2s ease;"><span style="font-size:15px; color:var(--text-dark); font-weight:500;">Ansiedad</span></li>
+            <li style="padding:14px 16px; border-radius:12px; background:var(--cream-light); border:1px solid var(--card-border); transition:all .2s ease;"><span style="font-size:15px; color:var(--text-dark); font-weight:500;">Estrés</span></li>
+            <li style="padding:14px 16px; border-radius:12px; background:var(--cream-light); border:1px solid var(--card-border); transition:all .2s ease;"><span style="font-size:15px; color:var(--text-dark); font-weight:500;">Sobrepensar</span></li>
+            <li style="padding:14px 16px; border-radius:12px; background:var(--cream-light); border:1px solid var(--card-border); transition:all .2s ease;"><span style="font-size:15px; color:var(--text-dark); font-weight:500;">Autoestima</span></li>
+            <li style="padding:14px 16px; border-radius:12px; background:var(--cream-light); border:1px solid var(--card-border); transition:all .2s ease;"><span style="font-size:15px; color:var(--text-dark); font-weight:500;">Relaciones de pareja</span></li>
+            <li style="padding:14px 16px; border-radius:12px; background:var(--cream-light); border:1px solid var(--card-border); transition:all .2s ease;"><span style="font-size:15px; color:var(--text-dark); font-weight:500;">Dependencia emocional</span></li>
+            <li style="padding:14px 16px; border-radius:12px; background:var(--cream-light); border:1px solid var(--card-border); transition:all .2s ease;"><span style="font-size:15px; color:var(--text-dark); font-weight:500;">Regulación emocional</span></li>
+            <li style="padding:14px 16px; border-radius:12px; background:var(--cream-light); border:1px solid var(--card-border); transition:all .2s ease;"><span style="font-size:15px; color:var(--text-dark); font-weight:500;">Tristeza</span></li>
+            <li style="padding:14px 16px; border-radius:12px; background:var(--cream-light); border:1px solid var(--card-border); transition:all .2s ease;"><span style="font-size:15px; color:var(--text-dark); font-weight:500;">Propósito y sentido de vida</span></li>
+            <li style="padding:14px 16px; border-radius:12px; background:var(--cream-light); border:1px solid var(--card-border); transition:all .2s ease;"><span style="font-size:15px; color:var(--text-dark); font-weight:500;">Habilidades de comunicación</span></li>
+            <li style="padding:14px 16px; border-radius:12px; background:var(--cream-light); border:1px solid var(--card-border); transition:all .2s ease;"><span style="font-size:15px; color:var(--text-dark); font-weight:500;">Vivir más en el presente</span></li>
+            <li style="padding:14px 16px; border-radius:12px; background:var(--cream-light); border:1px solid var(--card-border); transition:all .2s ease;"><span style="font-size:15px; color:var(--text-dark); font-weight:500;">Desarrollo personal</span></li>
+          </ul>
+        </article>
+
+        <!-- COLUMNA 3: ¿QUÉ PUEDES ESPERAR DE LA TERAPIA? -->
+        <article class="ps-card fade-in" style="background:var(--white); border:1px solid var(--card-border); border-radius:24px; padding:32px; transition:all .3s ease; display:flex; flex-direction:column; height:100%;">
+          <header style="margin-bottom:28px; flex-shrink:0;">
+            <h3 style="font-family:'League Spartan',sans-serif; font-size:22px; color:var(--text-dark); margin:0 0 10px; display:flex; align-items:center; gap:12px; line-height:1.3; flex-wrap:wrap;">
+              <span style="width:48px;height:48px;border-radius:14px;background:var(--cream-light);display:flex;align-items:center;justify-content:center;color:var(--celeste-deep);flex-shrink:0;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:24px;height:24px;"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </span>
+              ¿Qué puedes esperar<br>de la terapia?
+            </h3>
+            <p style="font-size:13px; color:var(--celeste-deep); margin:0; font-weight:600; text-transform:uppercase; letter-spacing:0.6px;">Resultados del proceso</p>
+          </header>
+          <p style="font-size:15px; color:var(--text-dark); margin:0 0 20px; line-height:1.6;">Durante el proceso aprenderás a:</p>
+          <ul style="list-style:none; padding:0; margin:0; flex:1; display:flex; flex-direction:column; gap:10px;">
+            <li style="display:flex; align-items:flex-start; gap:14px; padding:12px 0; border-bottom:1px solid var(--card-border);">
+              <span style="width:28px;height:28px;border-radius:50%;background:var(--cream-light);border:2px solid var(--celeste-deep);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--celeste-deep)" stroke-width="3" style="width:14px;height:14px;"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              <span style="font-size:16px; color:var(--text-dark); line-height:1.6;">Comprender mejor lo que estás viviendo.</span>
+            </li>
+            <li style="display:flex; align-items:flex-start; gap:14px; padding:12px 0; border-bottom:1px solid var(--card-border);">
+              <span style="width:28px;height:28px;border-radius:50%;background:var(--cream-light);border:2px solid var(--celeste-deep);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--celeste-deep)" stroke-width="3" style="width:14px;height:14px;"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              <span style="font-size:16px; color:var(--text-dark); line-height:1.6;">Relacionarte de forma más sana con tus pensamientos y emociones.</span>
+            </li>
+            <li style="display:flex; align-items:flex-start; gap:14px; padding:12px 0; border-bottom:1px solid var(--card-border);">
+              <span style="width:28px;height:28px;border-radius:50%;background:var(--cream-light);border:2px solid var(--celeste-deep);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--celeste-deep)" stroke-width="3" style="width:14px;height:14px;"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              <span style="font-size:16px; color:var(--text-dark); line-height:1.6;">Reducir el impacto de la ansiedad y el estrés en tu día a día.</span>
+            </li>
+            <li style="display:flex; align-items:flex-start; gap:14px; padding:12px 0; border-bottom:1px solid var(--card-border);">
+              <span style="width:28px;height:28px;border-radius:50%;background:var(--cream-light);border:2px solid var(--celeste-deep);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--celeste-deep)" stroke-width="3" style="width:14px;height:14px;"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              <span style="font-size:16px; color:var(--text-dark); line-height:1.6;">Dejar de luchar constantemente con lo que sientes.</span>
+            </li>
+            <li style="display:flex; align-items:flex-start; gap:14px; padding:12px 0; border-bottom:1px solid var(--card-border);">
+              <span style="width:28px;height:28px;border-radius:50%;background:var(--cream-light);border:2px solid var(--celeste-deep);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--celeste-deep)" stroke-width="3" style="width:14px;height:14px;"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              <span style="font-size:16px; color:var(--text-dark); line-height:1.6;">Tomar decisiones más alineadas con tus valores.</span>
+            </li>
+            <li style="display:flex; align-items:flex-start; gap:14px; padding:12px 0; border-bottom:1px solid var(--card-border);">
+              <span style="width:28px;height:28px;border-radius:50%;background:var(--cream-light);border:2px solid var(--celeste-deep);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--celeste-deep)" stroke-width="3" style="width:14px;height:14px;"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              <span style="font-size:16px; color:var(--text-dark); line-height:1.6;">Desarrollar herramientas prácticas para afrontar los desafíos.</span>
+            </li>
+            <li style="display:flex; align-items:flex-start; gap:14px; padding:12px 0; border-bottom:1px solid var(--card-border);">
+              <span style="width:28px;height:28px;border-radius:50%;background:var(--cream-light);border:2px solid var(--celeste-deep);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--celeste-deep)" stroke-width="3" style="width:14px;height:14px;"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              <span style="font-size:16px; color:var(--text-dark); line-height:1.6;">Fortalecer tu autoestima y tus relaciones.</span>
+            </li>
+            <li style="display:flex; align-items:flex-start; gap:14px; padding:12px 0;">
+              <span style="width:28px;height:28px;border-radius:50%;background:var(--cream-light);border:2px solid var(--celeste-deep);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--celeste-deep)" stroke-width="3" style="width:14px;height:14px;"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              <span style="font-size:16px; color:var(--text-dark); line-height:1.6;">Construir una vida con mayor bienestar y sentido.</span>
+            </li>
+          </ul>
+        </article>
+
+        <!-- COLUMNA 4: QUIZÁ ESTO ES LO QUE LLEVAS TIEMPO DICIÉNDOTE -->
+        <article class="ps-card fade-in" style="background:linear-gradient(150deg, var(--celeste-light) 0%, var(--celeste-mid) 50%, #89CCFF 100%); border:1px solid var(--celeste-mid); border-radius:24px; padding:32px; transition:all .3s ease; position:relative; display:flex; flex-direction:column; height:100%; overflow:hidden;">
+          <div style="position:absolute; inset:0; background:radial-gradient(ellipse at 20% 20%, rgba(255,255,255,0.25) 0%, transparent 55%), radial-gradient(ellipse at 80% 80%, rgba(254,255,171,0.15) 0%, transparent 50%); pointer-events:none;"></div>
+          <header style="margin-bottom:28px; flex-shrink:0; position:relative; z-index:1;">
+            <h3 style="font-family:'League Spartan',sans-serif; font-size:22px; color:var(--text-dark); margin:0 0 10px; display:flex; align-items:center; gap:12px; line-height:1.3; flex-wrap:wrap;">
+              <span style="width:48px;height:48px;border-radius:14px;background:var(--white);display:flex;align-items:center;justify-content:center;color:var(--celeste-deep);flex-shrink:0;box-shadow:0 6px 20px rgba(111,193,255,0.2);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:24px;height:24px;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              </span>
+              Quizá esto es lo que<br>llevas tiempo diciéndote...
+            </h3>
+            <p style="font-size:13px; color:var(--celeste-deep); margin:0; font-weight:600; text-transform:uppercase; letter-spacing:0.6px;">Esa voz interna</p>
+          </header>
+          <ul style="list-style:none; padding:0; margin:0; flex:1; display:flex; flex-direction:column; gap:8px; position:relative; z-index:1;">
+            <li style="padding:20px 24px; border-radius:14px; background:rgba(255,255,255,0.7); backdrop-filter:blur(6px); border:1px solid rgba(111,193,255,0.18); transition:all .2s ease;">
+              <p style="font-family:'DM Serif Display',serif; font-style:italic; font-size:15px; color:var(--text-dark); margin:0; line-height:1.55;">"No dejo de pensar."</p>
+            </li>
+            <li style="padding:20px 24px; border-radius:14px; background:rgba(255,255,255,0.7); backdrop-filter:blur(6px); border:1px solid rgba(111,193,255,0.18); transition:all .2s ease;">
+              <p style="font-family:'DM Serif Display',serif; font-style:italic; font-size:15px; color:var(--text-dark); margin:0; line-height:1.55;">"Todo me preocupa."</p>
+            </li>
+            <li style="padding:20px 24px; border-radius:14px; background:rgba(255,255,255,0.7); backdrop-filter:blur(6px); border:1px solid rgba(111,193,255,0.18); transition:all .2s ease;">
+              <p style="font-family:'DM Serif Display',serif; font-style:italic; font-size:15px; color:var(--text-dark); margin:0; line-height:1.55;">"Siento que nunca soy suficiente."</p>
+            </li>
+            <li style="padding:20px 24px; border-radius:14px; background:rgba(255,255,255,0.7); backdrop-filter:blur(6px); border:1px solid rgba(111,193,255,0.18); transition:all .2s ease;">
+              <p style="font-family:'DM Serif Display',serif; font-style:italic; font-size:15px; color:var(--text-dark); margin:0; line-height:1.55;">"No sé cuál es mi propósito."</p>
+            </li>
+            <li style="padding:20px 24px; border-radius:14px; background:rgba(255,255,255,0.7); backdrop-filter:blur(6px); border:1px solid rgba(111,193,255,0.18); transition:all .2s ease;">
+              <p style="font-family:'DM Serif Display',serif; font-style:italic; font-size:15px; color:var(--text-dark); margin:0; line-height:1.55;">"No quiero seguir reaccionando así."</p>
+            </li>
+            <li style="padding:20px 24px; border-radius:14px; background:rgba(255,255,255,0.7); backdrop-filter:blur(6px); border:1px solid rgba(111,193,255,0.18); transition:all .2s ease;">
+              <p style="font-family:'DM Serif Display',serif; font-style:italic; font-size:15px; color:var(--text-dark); margin:0; line-height:1.55;">"Me cuesta decir que no."</p>
+            </li>
+            <li style="padding:20px 24px; border-radius:14px; background:rgba(255,255,255,0.7); backdrop-filter:blur(6px); border:1px solid rgba(111,193,255,0.18); transition:all .2s ease;">
+              <p style="font-family:'DM Serif Display',serif; font-style:italic; font-size:15px; color:var(--text-dark); margin:0; line-height:1.55;">"Estoy cansado de vivir con ansiedad."</p>
+            </li>
+          </ul>
+        </article>
+
+      </div>
+
+      <!-- TEXTO FINAL ELEGANTE -->
+      <div style="margin-top:56px; padding:44px 56px; background:var(--gradient-hero); border-radius:24px; border:1px solid var(--celeste-light); text-align:center; position:relative; overflow:hidden; max-width:960px; margin-left:auto; margin-right:auto;">
+        <div style="position:absolute; inset:0; background:radial-gradient(ellipse at 30% 50%, rgba(254,255,171,0.22) 0%, transparent 60%), radial-gradient(ellipse at 70% 50%, rgba(176,221,252,0.22) 0%, transparent 60%); pointer-events:none;"></div>
+        <p style="position:relative; font-family:'DM Serif Display',serif; font-style:italic; font-size:clamp(20px,3vw,28px); line-height:1.45; color:var(--text-dark); margin:0; text-shadow:0 1px 2px rgba(255,255,255,0.6);">
+          No tienes que enfrentar esto solo. La terapia puede ayudarte a comprender lo que estás viviendo y desarrollar herramientas para relacionarte de una manera diferente con tus pensamientos, emociones y experiencias.
+        </p>
       </div>
     </div>
-  </section>
-
-  <!-- WAVE DIVIDER: cream (problema-solucion) → celeste-light (servicios) -->
+  </section><!-- WAVE DIVIDER: cream (problema-solucion) → celeste-light (servicios) -->
   <div class="wave-divider" data-from="cream" data-to="celeste-light" data-direction="down" data-amplitude="medium" aria-hidden="true">
     <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
       <path d="M0,64 C240,110 480,20 720,50 C960,80 1200,30 1440,60 L1440,120 L0,120 Z" fill="currentColor"/>
@@ -4362,14 +4669,14 @@
     <div class="container">
       <header class="redes-header">
         <div class="redes-header__text">
-          <p class="eyebrow" style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+          <p class="redes-eyebrow">
             CONTENIDO Y COMUNIDAD
-            <span style="width:48px;height:2px;background:var(--celeste-deep);border-radius:2px;"></span>
+            <span class="redes-eyebrow__line"></span>
           </p>
-          <h2 class="section-title" style="font-size:clamp(2.5rem,6vw,5rem);line-height:1.05;margin:0;display:flex;flex-wrap:wrap;gap:.15em;align-items:baseline;">
+          <h2 class="redes-title" style="font-size:clamp(2.5rem,6vw,5rem);line-height:1.05;margin:0;display:flex;flex-wrap:wrap;gap:.15em;align-items:baseline;">
             <span style="font-style:normal;color:var(--text-dark);">Sígueme en</span>
-            <em class="celeste-italic" style="font-family:'DM Serif Display',serif;font-style:italic;font-weight:400;color:var(--celeste-deep);position:relative;">redes
-              <svg viewBox="0 0 120 16" width="100%" height="16" style="position:absolute;left:0;bottom:-4px;pointer-events:none;" preserveAspectRatio="none">
+            <em class="redes-title__highlight" style="font-family:'DM Serif Display',serif;font-style:italic;font-weight:400;color:var(--celeste-deep);position:relative;">redes
+              <svg class="redes-title__underline" viewBox="0 0 120 16" width="100%" height="16" style="position:absolute;left:0;bottom:-4px;pointer-events:none;" preserveAspectRatio="none">
                 <path d="M0,12 C30,4 90,4 120,12" stroke="var(--celeste-deep)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
               </svg>
             </em>

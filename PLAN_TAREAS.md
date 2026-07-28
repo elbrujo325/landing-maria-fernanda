@@ -47,6 +47,7 @@
 |---|---|---|---|---|---|
 | 3.1 | C-1 | Crear sección nueva `#redes-agenda` (después de `#testimonios`, antes de `#faq`): grid 4 iconos (IG, TT, FB, WA) todos `@pensarsentirhacer.pe` + botón CTA agenda | `index.html:3312-3363` | Sección visible, links correctos | ✅ |
 | 3.2 | C-2 | Embed Behold.so feed Instagram dentro de sección #redes-agenda (iframe/widget). Requiere embed code de clienta. Placeholder con comentario si no hay code aún. | `index.html:3354-3361` | Feed visible o placeholder claro | ✅ (placeholder) |
+| 3.3 | — | **Responsive redes-agenda**: Fix redes-header grid (stack columns on mobile), social-chips flex-wrap, behold-embed radius, redes-cta-final font-size en ≤480px y ≤768px | `index.html` CSS @media 768px, 480px, 1024px | Mobile: header centrado, chips wrap, embed 16px radius, CTA 15px | ✅ |
 
 ---
 

@@ -139,6 +139,19 @@ El cliente solicita un **cambio radical de paleta y estética**:
 
 ---
 
+## TAREAS COMPLETADAS RECENTEMENTE (post-rediseño mayor)
+
+### Redes & Agenda — Fix Responsive (2026-07-27) ✅
+- **Problema**: Sección `#redes-agenda` no se apilaba correctamente en móvil/tablet; social-chips overflow; behold-embed radio fijo; CTA font-size pequeño.
+- **Solución**: CSS media queries en `@media 1024px`, `@media 768px`, `@media 480px`:
+  - `.redes-header`: `grid-template-columns: 1fr` + `text-align: center` + `align-items: center` en ≤768px
+  - `.social-chips`: `flex-wrap: wrap` + `justify-content: center` + gap/padding responsivos
+  - `.behold-embed`: `border-radius: 16/18px` según breakpoint
+  - `.redes-cta-final a`: `font-size: 15px` en ≤768px
+- **Verificación**: Mobile ≤480px: header centrado, chips wrap 2x2, embed 16px radius; Tablet ≤768px: idem gap 8px, padding 10px/20px; Desktop >1024px: sin cambios
+
+---
+
 ## ARCHIVOS DE REFERENCIA DEL PROYECTO (Mantener)
 
 | Archivo | Propósito |

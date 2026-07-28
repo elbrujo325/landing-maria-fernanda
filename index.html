@@ -1045,25 +1045,31 @@
       background: var(--cream);
     }
 
-    .watermark-wrapper::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80%;
-      max-width: 1000px;
-      height: 100%;
-      min-height: 100vh;
-      background-image: url('logo-celeste-transparente.png');
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center 25%;
-      opacity: 0.12;
-      pointer-events: none;
-      z-index: 0;
-    }
+.watermark-wrapper::before {
+  content: '';
+  position: absolute;
+  
+  top: 30%;                     
+  left: 50%;
+  transform: translate(-50%, -50%); 
 
+  width: 100%;                  
+  max-width: none;              
+  height: 120vh;                
+
+  background-image: url('logo-celeste-transparente.png');
+  background-size: contain;     
+  background-repeat: no-repeat;
+  background-position: center center; 
+  
+  /* --- TRUCOS PARA SUAVIZAR EL PIXELEADO --- */
+  image-rendering: -webkit-optimize-contrast; /* Ayuda a que el navegador escale mejor la imagen */
+  filter: blur(0.6px) drop-shadow(0 0 1px rgba(0,0,0,0.05)); /* Desenfoca ligeramente los bordes duros */
+  
+  opacity: 0.24;
+  pointer-events: none;
+  z-index: 0;
+}
     .watermark-wrapper .credenciales-section,
     .watermark-wrapper .problema-solucion {
       position: relative;

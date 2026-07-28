@@ -1038,6 +1038,41 @@
       color: var(--text-dark);
     }
 
+    /* WATERMARK WRAPPER - spans credenciales + problema-solucion */
+    .watermark-wrapper {
+      position: relative;
+      z-index: 1;
+    }
+
+    .watermark-wrapper::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60%;
+      max-width: 800px;
+      aspect-ratio: 1;
+      background-image: url('logo-celeste-transparente.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      opacity: 0.08;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .watermark-wrapper .credenciales-section,
+    .watermark-wrapper .problema-solucion {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Ensure credenciales section has cream background for watermark visibility */
+    #credenciales {
+      background: var(--cream);
+    }
+
     /* HOW IT WORKS */
     .como-funciona {
       padding: var(--space-3xl) 0;
@@ -4030,51 +4065,54 @@
     </svg>
   </div>
 
-  <!-- CREDENCIALES GRID (sección independiente) -->
-  <section class="credenciales-section" id="credenciales">
-    <div class="container">
-      <h2 class="section-title fade-in">Formación y credenciales</h2>
-      <p class="section-subtitle fade-in">Formación académica, certificaciones y desarrollo profesional continuo</p>
-      
-      <div class="credenciales-content fade-in">
-        <div class="credenciales-header">
-          <h3 class="credenciales-name">María Fernanda Arana</h3>
-          <p class="credenciales-title">Licenciada en Psicología Clínica.</p>
-          <p class="credenciales-colegio">Colegio de Psicólogos del Perú (CPP) N.° 46797.</p>
+  <!-- WATERMARK WRAPPER: abarca credenciales + problema-solucion -->
+  <div class="watermark-wrapper">
+
+    <!-- CREDENCIALES GRID (sección independiente) -->
+    <section class="credenciales-section" id="credenciales">
+      <div class="container">
+        <h2 class="section-title fade-in">Formación y credenciales</h2>
+        <p class="section-subtitle fade-in">Formación académica, certificaciones y desarrollo profesional continuo</p>
+
+        <div class="credenciales-content fade-in">
+          <div class="credenciales-header">
+            <h3 class="credenciales-name">María Fernanda Arana</h3>
+            <p class="credenciales-title">Licenciada en Psicología Clínica.</p>
+            <p class="credenciales-colegio">Colegio de Psicólogos del Perú (CPP) N.° 46797.</p>
+          </div>
+
+          <section class="credenciales-section">
+            <h4 class="credenciales-subtitle">Formación Académica</h4>
+            <ul class="credenciales-list">
+              <li>Especialista en Terapia Cognitivo Conductual.</li>
+              <li>Diplomado en Terapia de Pareja y Sexualidad.</li>
+              <li>Magíster en Terapias de Tercera Generación – ISEP Barcelona.</li>
+              <li>Magíster en Bienestar Emocional – ISEP Barcelona.</li>
+            </ul>
+          </section>
+
+          <section class="credenciales-section">
+            <h4 class="credenciales-subtitle">Enfoque terapéutico</h4>
+            <p class="credenciales-text">
+              Actualmente trabajo principalmente desde la <strong>Terapia de Aceptación y Compromiso (ACT)</strong>, un enfoque de las terapias de tercera generación basado en evidencia científica. Integro herramientas de <strong>mindfulness</strong> y otras estrategias contextuales para acompañar a las personas a desarrollar mayor <strong>flexibilidad psicológica</strong>, relacionarse de una manera más saludable con sus pensamientos y emociones, y construir una vida coherente con sus <strong>valores y objetivos personales</strong>.
+            </p>
+          </section>
+
+          <section class="credenciales-section">
+            <h4 class="credenciales-subtitle">Experiencia</h4>
+            <p class="credenciales-text">
+              Con <strong>más de 7 años de experiencia clínica</strong>, acompaño a adolescentes, adultos y parejas en el manejo de la ansiedad, el estrés, el sobrepensar, la tristeza, las dificultades en las relaciones, la autoestima, la búsqueda de propósito y sentido de vida, así como otros desafíos emocionales. Mi objetivo es brindar un espacio <strong>profesional, seguro, cercano y basado en evidencia científica</strong>, donde cada persona pueda desarrollar herramientas para afrontar sus dificultades y construir una vida más plena y alineada con sus valores.
+            </p>
+          </section>
         </div>
-
-        <section class="credenciales-section">
-          <h4 class="credenciales-subtitle">Formación Académica</h4>
-          <ul class="credenciales-list">
-            <li>Especialista en Terapia Cognitivo Conductual.</li>
-            <li>Diplomado en Terapia de Pareja y Sexualidad.</li>
-            <li>Magíster en Terapias de Tercera Generación – ISEP Barcelona.</li>
-            <li>Magíster en Bienestar Emocional – ISEP Barcelona.</li>
-          </ul>
-        </section>
-
-        <section class="credenciales-section">
-          <h4 class="credenciales-subtitle">Enfoque terapéutico</h4>
-          <p class="credenciales-text">
-            Actualmente trabajo principalmente desde la <strong>Terapia de Aceptación y Compromiso (ACT)</strong>, un enfoque de las terapias de tercera generación basado en evidencia científica. Integro herramientas de <strong>mindfulness</strong> y otras estrategias contextuales para acompañar a las personas a desarrollar mayor <strong>flexibilidad psicológica</strong>, relacionarse de una manera más saludable con sus pensamientos y emociones, y construir una vida coherente con sus <strong>valores y objetivos personales</strong>.
-          </p>
-        </section>
-
-        <section class="credenciales-section">
-          <h4 class="credenciales-subtitle">Experiencia</h4>
-          <p class="credenciales-text">
-            Con <strong>más de 7 años de experiencia clínica</strong>, acompaño a adolescentes, adultos y parejas en el manejo de la ansiedad, el estrés, el sobrepensar, la tristeza, las dificultades en las relaciones, la autoestima, la búsqueda de propósito y sentido de vida, así como otros desafíos emocionales. Mi objetivo es brindar un espacio <strong>profesional, seguro, cercano y basado en evidencia científica</strong>, donde cada persona pueda desarrollar herramientas para afrontar sus dificultades y construir una vida más plena y alineada con sus valores.
-          </p>
-        </section>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- PROBLEMA / SOLUCION — 4 columnas optimizadas -->
-  <section class="problema-solucion" id="problema-solucion">
-    <div class="container fade-in" style="max-width: 1720px;">
-      <h2 class="section-title" style="text-align: center; margin-bottom: 8px;">¿Te sientes identificado?</h2>
-      <p class="section-subtitle">Muchas personas llegan a terapia sintiendo que algo no encaja. Aquí puedes ver lo que trabajamos y qué puedes esperar.</p>
+    <!-- PROBLEMA / SOLUCION — 4 columnas optimizadas -->
+    <section class="problema-solucion" id="problema-solucion">
+      <div class="container fade-in" style="max-width: 1720px;">
+        <h2 class="section-title" style="text-align: center; margin-bottom: 8px;">¿Te sientes identificado?</h2>
+        <p class="section-subtitle">Muchas personas llegan a terapia sintiendo que algo no encaja. Aquí puedes ver lo que trabajamos y qué puedes esperar.</p>
 
       <div class="ps-grid-four" style="display:grid; grid-template-columns:repeat(4,1fr); gap:40px; margin-top:56px; align-items:stretch; max-width:1720px; margin-left:auto; margin-right:auto; padding:0 16px;">
 
@@ -4280,6 +4318,7 @@
       </div>
     </div>
   </section><!-- WAVE DIVIDER: cream (problema-solucion) → celeste-light (servicios) -->
+  </div> <!-- /watermark-wrapper -->
   <div class="wave-divider" data-from="cream" data-to="celeste-light" data-direction="down" data-amplitude="medium" aria-hidden="true">
     <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
       <path d="M0,64 C240,110 480,20 720,50 C960,80 1200,30 1440,60 L1440,120 L0,120 Z" fill="currentColor"/>

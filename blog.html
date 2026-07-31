@@ -49,9 +49,86 @@
     .nav-links a { font-family: 'League Spartan', sans-serif; font-size: 15px; font-weight: 600; color: var(--text-dark); transition: color 0.3s ease; }
     .nav-links a:hover { color: var(--celeste-deep); text-decoration: none; }
     .nav-cta { display: flex; align-items: center; gap: 16px; }
-    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 12px 24px; border-radius: 10px; font-family: 'League Spartan', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; border: none; }
-    .btn-primary { background: var(--celeste-deep); color: var(--white); box-shadow: 0 8px 20px -5px rgba(111, 193, 255, 0.3); }
-    .btn-primary:hover { background: var(--celeste-mid); transform: translateY(-2px); box-shadow: 0 12px 28px -5px rgba(111, 193, 255, 0.4); }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+      text-decoration: none;
+    }
+    .btn-primary {
+      background: var(--celeste-deep);
+      color: var(--white);
+      border: none;
+      border-radius: 12px;
+      padding: 14px 32px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 8px 20px -5px rgba(111, 193, 255, 0.25);
+    }
+    .btn-primary:hover {
+      background: var(--celeste-deep);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px -5px rgba(111, 193, 255, 0.35);
+      color: var(--white);
+      filter: brightness(0.92);
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-dark);
+      border: 2px solid var(--celeste-deep);
+      border-radius: 12px;
+      padding: 12px 30px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-secondary:hover {
+      background: var(--celeste-deep);
+      color: var(--white);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px -4px rgba(111, 193, 255, 0.25);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-dark);
+      border: 1px solid var(--celeste-light);
+      border-radius: 12px;
+      padding: 10px 24px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-ghost:hover {
+      background: var(--cream-light);
+      color: var(--text-dark);
+      border-color: var(--celeste-mid);
+    }
 
     /* Blog Hero */
     .blog-hero { padding: 160px 24px 80px; text-align: center; background: linear-gradient(180deg, var(--cream) 0%, var(--cream-light) 100%); }

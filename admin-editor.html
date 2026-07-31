@@ -634,7 +634,8 @@
     function populateForm(data, id) {
       postTitle.value = data.titulo || '';
       postCategory.value = data.categoria || '';
-      document.querySelector(`input[name="plantilla"][value="${data.plantilla || 'estandar'}"]`)?.checked = true;
+      const plantillaRadio = document.querySelector(`input[name="plantilla"][value="${data.plantilla || 'estandar'}"]`);
+      if (plantillaRadio) plantillaRadio.checked = true;
       postPublished.checked = data.publicado === true;
 
       if (data.imagenPortadaUrl) {

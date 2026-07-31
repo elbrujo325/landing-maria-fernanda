@@ -2304,6 +2304,251 @@
       opacity: 0.5;
     }
 
+    /* FORMULARIO RESEÑAS TESTIMONIOS */
+    .testimonios-form-wrapper {
+      max-width: 720px;
+      margin: 60px auto 0;
+      padding: 40px 32px;
+      background: var(--white);
+      border-radius: 24px;
+      border: 2px solid var(--card-border);
+      box-shadow: 0 12px 40px rgba(111, 193, 255, 0.1);
+    }
+
+    .testimonios-form-title {
+      font-family: 'League Spartan', sans-serif;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      color: var(--text-dark);
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .testimonios-form-subtitle {
+      text-align: center;
+      color: var(--text-dark);
+      opacity: 0.7;
+      margin-bottom: 32px;
+      font-size: 15px;
+    }
+
+    .testimonio-form .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .testimonio-form .form-group {
+      margin-bottom: 24px;
+    }
+
+    .testimonio-form label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    .testimonio-form .optional {
+      font-weight: 400;
+      opacity: 0.6;
+      font-size: 12px;
+    }
+
+    .testimonio-form .required {
+      color: var(--color-ig);
+    }
+
+    .testimonio-form input[type="text"],
+    .testimonio-form textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid var(--card-border);
+      border-radius: 12px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 15px;
+      color: var(--text-dark);
+      background: var(--white);
+      transition: all 0.3s ease;
+    }
+
+    .testimonio-form input[type="text"]:focus,
+    .testimonio-form textarea:focus {
+      outline: none;
+      border-color: var(--celeste-deep);
+      box-shadow: 0 0 0 4px rgba(111, 193, 255, 0.15);
+    }
+
+    .testimonio-form textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .char-count {
+      text-align: right;
+      font-size: 12px;
+      color: var(--text-dark);
+      opacity: 0.5;
+      margin-top: 6px;
+    }
+
+    /* Star Rating */
+    .rating-fieldset {
+      border: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .rating-fieldset legend {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .star-rating {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .star-rating input {
+      display: none;
+    }
+
+    .star-rating label {
+      cursor: pointer;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s ease;
+    }
+
+    .star-rating label svg {
+      width: 36px;
+      height: 36px;
+      fill: var(--celeste-light);
+      stroke: var(--celeste-mid);
+      stroke-width: 1;
+      transition: all 0.2s ease;
+    }
+
+    .star-rating input:checked ~ label svg,
+    .star-rating label:hover svg,
+    .star-rating label:hover ~ label svg {
+      fill: var(--yellow-deep);
+      stroke: var(--yellow-deep);
+      transform: scale(1.1);
+    }
+
+    .star-rating input:focus-visible + label svg {
+      outline: 2px solid var(--celeste-deep);
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .checkbox-group input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      margin-top: 2px;
+      accent-color: var(--celeste-deep);
+      flex-shrink: 0;
+    }
+
+    .checkbox-group label {
+      font-size: 13px;
+      color: var(--text-dark);
+      opacity: 0.8;
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .form-note {
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-dark);
+      opacity: 0.6;
+      margin-top: 16px;
+    }
+
+    .btn-loading {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .spinner {
+      width: 20px;
+      height: 20px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .form-toast {
+      margin-top: 16px;
+      padding: 16px 20px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 500;
+      text-align: center;
+      animation: slideIn 0.3s ease;
+    }
+
+    .form-toast.success {
+      background: rgba(37, 211, 102, 0.1);
+      color: #1a8a3a;
+      border: 1px solid rgba(37, 211, 102, 0.3);
+    }
+
+    .form-toast.error {
+      background: rgba(228, 64, 95, 0.1);
+      color: #c13584;
+      border: 1px solid rgba(228, 64, 95, 0.3);
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Dynamic testimonial cards */
+    .testimonio-dynamic .avatar-placeholder {
+      font-size: 1.5rem;
+    }
+
+    /* Responsive form */
+    @media (max-width: 768px) {
+      .testimonios-form-wrapper {
+        margin: 40px 16px 0;
+        padding: 28px 20px;
+      }
+
+      .testimonio-form .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .testimonio-form .form-group {
+        margin-bottom: 20px;
+      }
+    }
+
     /* FAQ ACCORDION */
     .faq {
       padding: var(--space-3xl) 0;
@@ -4112,6 +4357,7 @@
         </li>
         <li><a href="#problema-solucion">¿Te sientes así?</a></li>
         <li><a href="#testimonios">Testimonios</a></li>
+        <li><a href="blog.html">Blog</a></li>
         <li><a href="#faq">Preguntas</a></li>
         <li><a href="https://wa.me/51939855573" class="btn btn-primary" target="_blank" rel="noopener" style="padding: 10px 20px; font-size: 13px;">Agendar</a></li>
       </ul>
@@ -4985,6 +5231,47 @@
       <button class="carousel-dot" aria-label="Testimonio 5"></button>
       <button class="carousel-dot" aria-label="Testimonio 6"></button>
     </div>
+
+    <!-- FORMULARIO RESEÑAS PÚBLICAS -->
+    <div class="testimonios-form-wrapper" id="testimoniosFormWrapper">
+      <h3 class="testimonios-form-title">¿Quieres compartir tu experiencia?</h3>
+      <p class="testimonios-form-subtitle">Tu testimonio ayuda a otros a dar el paso. Se publica tras revisión de la psicóloga.</p>
+      <form id="testimonioForm" class="testimonio-form" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="testimonioNombre">Nombre <span class="optional">(opcional)</span></label>
+            <input type="text" id="testimonioNombre" name="nombre" maxlength="60" placeholder="Tu nombre o iniciales">
+          </div>
+          <div class="form-group">
+            <fieldset class="rating-fieldset" aria-label="Calificación">
+              <legend>Tu valoración</legend>
+              <div class="star-rating" role="radiogroup" aria-label="Estrellas">
+                <input type="radio" id="star5" name="estrellas" value="5" required><label for="star5" aria-label="5 estrellas"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></label>
+                <input type="radio" id="star4" name="estrellas" value="4"><label for="star4" aria-label="4 estrellas"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></label>
+                <input type="radio" id="star3" name="estrellas" value="3"><label for="star3" aria-label="3 estrellas"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></label>
+                <input type="radio" id="star2" name="estrellas" value="2"><label for="star2" aria-label="2 estrellas"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></label>
+                <input type="radio" id="star1" name="estrellas" value="1"><label for="star1" aria-label="1 estrella"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></label>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="testimonioTexto">Tu experiencia <span class="required">*</span></label>
+          <textarea id="testimonioTexto" name="texto" rows="4" maxlength="1000" placeholder="Cuéntanos cómo te ayudó la terapia..." required></textarea>
+          <div class="char-count"><span id="charCount">0</span>/1000</div>
+        </div>
+        <div class="form-group checkbox-group">
+          <input type="checkbox" id="testimonioAnonimo" name="anonimo" value="true">
+          <label for="testimonioAnonimo">Publicar de forma anónima (solo se mostrarán tus iniciales)</label>
+        </div>
+        <button type="submit" class="btn btn-primary" id="submitTestimonio">
+          <span class="btn-text">Enviar para revisión</span>
+          <span class="btn-loading" style="display:none;"><svg class="spinner" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" fill="none" stroke-dasharray="31.4 31.4" stroke-linecap="round"/></svg> Enviando...</span>
+        </button>
+        <p class="form-note">Los testimonios se moderan antes de publicarse. No se muestran datos de contacto.</p>
+      </form>
+      <div id="formToast" class="form-toast" role="alert" aria-live="polite" style="display:none;"></div>
+    </div>
   </section>
 
   <!-- WAVE DIVIDER: celeste-light (testimonios) → cream (redes) -->
@@ -5230,6 +5517,7 @@
           <li><a href="#servicios">Servicios</a></li>
           <li><a href="#problema-solucion">¿Te sientes así?</a></li>
           <li><a href="#testimonios">Testimonios</a></li>
+          <li><a href="blog.html">Blog</a></li>
           <li><a href="#faq">Preguntas frecuentes</a></li>
           <li><a href="https://wa.me/51939855573" target="_blank" rel="noopener">Agendar sesión</a></li>
         </ul>
@@ -5550,6 +5838,150 @@
   }, { threshold: 0.06 });
   els.forEach(function (el) { obs.observe(el); });
 })();
+</script>
+
+<!-- FIREBASE SDK MODULAR v9+ -->
+<script type="module">
+  import { firebaseConfig } from './firebase-config.js';
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js';
+  import { getFirestore, collection, addDoc, query, where, orderBy, onSnapshot, serverTimestamp, limit } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js';
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // --- TESTIMONIOS DINÁMICOS ---
+  const track = document.getElementById('testimoniosTrack');
+  const staticCards = track ? Array.from(track.querySelectorAll('.testimonio-card')) : [];
+  const originalHTML = track ? track.innerHTML : '';
+
+  // Función para crear card de testimonio dinámico
+  function createTestimonioCard(data, id) {
+    const card = document.createElement('div');
+    card.className = 'testimonio-card testimonio-dynamic';
+    card.dataset.id = id;
+
+    const stars = '★'.repeat(data.estrellas) + '☆'.repeat(5 - data.estrellas);
+    const starsHTML = Array.from({length: 5}, (_, i) =>
+      `<svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" ${i < data.estrellas ? 'style="fill: var(--yellow-deep);"' : ''}/></svg>`
+    ).join('');
+
+    const nombre = data.anonimo
+      ? (data.nombre ? data.nombre.charAt(0) + '.' : 'Anónimo')
+      : (data.nombre || 'Anónimo');
+
+    card.innerHTML = `
+      <div class="testimonio-avatar">
+        <div class="avatar-placeholder" style="background: var(--celeste-light); display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; border-radius: 50%; color: var(--celeste-deep); font-weight: 600; font-size: 1.5rem;">
+          ${nombre.charAt(0).toUpperCase()}
+        </div>
+      </div>
+      <div class="testimonio-stars" style="color: var(--yellow-deep);">${starsHTML}</div>
+      <p class="testimonio-text">"${data.texto}"</p>
+      <div class="testimonio-author">— ${nombre}${data.anonimo ? ' (anónimo)' : ''}</div>
+    `;
+    return card;
+  }
+
+  // Merge: estáticos + aprobados dinámicos
+  async function loadTestimonios() {
+    if (!track) return;
+
+    try {
+      const q = query(
+        collection(db, 'testimonios'),
+        where('aprobado', '==', true),
+        orderBy('fecha', 'desc'),
+        limit(20)
+      );
+
+      onSnapshot(q, (snapshot) => {
+        const dynamicCards = [];
+        snapshot.forEach(doc => {
+          dynamicCards.push(createTestimonioCard(doc.data(), doc.id));
+        });
+
+        // Reconstruir track: estáticos (primer set) + dinámicos + estáticos (segundo set para loop)
+        const firstSet = staticCards.slice(0, 6).map(c => c.cloneNode(true));
+        const secondSet = staticCards.slice(6, 12).map(c => c.cloneNode(true));
+
+        track.innerHTML = '';
+        [...firstSet, ...dynamicCards, ...secondSet].forEach(card => track.appendChild(card));
+
+        // Re-inicializar carrusel si existe
+        if (window.initTestimoniosCarousel) {
+          window.initTestimoniosCarousel();
+        }
+      });
+    } catch (error) {
+      console.error('Error cargando testimonios:', error);
+      // Fallback: solo estáticos
+      track.innerHTML = originalHTML;
+    }
+  }
+
+  // --- FORMULARIO RESEÑAS ---
+  const form = document.getElementById('testimonioForm');
+  const toast = document.getElementById('formToast');
+  const submitBtn = document.getElementById('submitTestimonio');
+  const charCount = document.getElementById('charCount');
+  const textoArea = document.getElementById('testimonioTexto');
+
+  if (textoArea && charCount) {
+    textoArea.addEventListener('input', () => {
+      charCount.textContent = textoArea.value.length;
+    });
+  }
+
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      const data = {
+        nombre: formData.get('nombre')?.trim() || null,
+        anonimo: formData.get('anonimo') === 'true',
+        texto: formData.get('texto')?.trim(),
+        estrellas: parseInt(formData.get('estrellas'), 10),
+        fecha: serverTimestamp(),
+        aprobado: false // Moderación previa
+      };
+
+      if (!data.texto || data.estrellas < 1 || data.estrellas > 5) {
+        showToast('Por favor completa todos los campos requeridos', 'error');
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.querySelector('.btn-text').style.display = 'none';
+      submitBtn.querySelector('.btn-loading').style.display = 'inline-flex';
+
+      try {
+        await addDoc(collection(db, 'testimonios'), data);
+        showToast('¡Gracias! Tu testimonio fue enviado para revisión. Se publicará tras ser aprobado.', 'success');
+        form.reset();
+        charCount.textContent = '0';
+      } catch (error) {
+        console.error('Error enviando testimonio:', error);
+        showToast('Hubo un error al enviar. Intenta de nuevo más tarde.', 'error');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.querySelector('.btn-text').style.display = 'inline';
+        submitBtn.querySelector('.btn-loading').style.display = 'none';
+      }
+    });
+  }
+
+  function showToast(message, type) {
+    if (!toast) return;
+    toast.textContent = message;
+    toast.className = `form-toast ${type}`;
+    toast.style.display = 'block';
+    setTimeout(() => { toast.style.display = 'none'; }, 6000);
+  }
+
+  // Iniciar carga de testimonios dinámicos
+  loadTestimonios();
 </script>
 </body>
 </html>

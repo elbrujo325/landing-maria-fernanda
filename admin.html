@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin · Pensar Sentir Hacer</title>
+  <link rel="icon" type="image/png" href="logo-celeste-transparente.png">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #FFFEEC;
+      --cream-light: #FFFDF4;
+      --yellow-light: #FDFDC9;
+      --yellow-mid: #FEFFAF;
+      --yellow-deep: #FFFB85;
+      --celeste-light: #B0DDFC;
+      --celeste-mid: #89CCFF;
+      --celeste-deep: #6FC1FF;
+      --white: #FFFFFF;
+      --text-dark: #3A4A5A;
+      --title-color: #6FC1FF;
+      --color-ig: #E4405F;
+      --color-wa: #25D366;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Open Sans', sans-serif; color: var(--text-dark); background: var(--cream); min-height: 100vh; }
+    h1, h2, h3, h4 { font-family: 'League Spartan', sans-serif; color: var(--text-dark); }
+
+    /* Login Screen */
+    .login-screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 420px;
+      background: var(--white);
+      border-radius: 24px;
+      padding: 48px 40px;
+      box-shadow: 0 20px 60px rgba(111, 193, 255, 0.15);
+      border: 2px solid var(--card-border);
+    }
+
+    .login-logo { text-align: center; margin-bottom: 32px; }
+    .login-logo img { width: 80px; height: 80px; border-radius: 50%; background: var(--celeste-light); }
+    .login-title { font-size: clamp(1.75rem, 4vw, 2.25rem); text-align: center; margin-bottom: 8px; color: var(--text-dark); }
+    .login-subtitle { text-align: center; color: var(--text-dark); opacity: 0.7; margin-bottom: 32px; }
+
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-size: 14px; font-weight: 600; color: var(--text-dark); margin-bottom: 8px; }
+    .form-group input {
+      width: 100%; padding: 14px 16px; border: 2px solid var(--card-border); border-radius: 12px;
+      font-family: 'Open Sans', sans-serif; font-size: 15px; color: var(--text-dark); background: var(--white);
+      transition: all 0.3s ease;
+    }
+    .form-group input:focus { outline: none; border-color: var(--celeste-deep); box-shadow: 0 0 0 4px rgba(111, 193, 255, 0.15); }
+    .form-group input:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 28px; border-radius: 12px; font-family: 'League Spartan', sans-serif; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; border: none; }
+    .btn-primary { background: var(--celeste-deep); color: var(--white); width: 100%; box-shadow: 0 8px 20px -5px rgba(111, 193, 255, 0.3); }
+    .btn-primary:hover:not(:disabled) { background: var(--celeste-mid); transform: translateY(-2px); box-shadow: 0 12px 28px -5px rgba(111, 193, 255, 0.4); }
+    .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
+    .btn-secondary { background: transparent; color: var(--celeste-deep); border: 2px solid var(--celeste-deep); }
+    .btn-secondary:hover { background: var(--celeste-deep); color: var(--white); }
+    .btn-danger { background: var(--color-ig); color: var(--white); }
+    .btn-danger:hover { background: #d63a56; }
+
+    .login-error { background: rgba(228, 64, 95, 0.1); color: #c13584; padding: 12px 16px; border-radius: 10px; margin-bottom: 20px; font-size: 14px; text-align: center; display: none; }
+    .login-error.show { display: block; }
+
+    /* Admin Panel */
+    .admin-panel { display: none; min-height: 100vh; }
+    .admin-panel.active { display: block; }
+
+    .admin-header {
+      background: var(--celeste-deep);
+      color: var(--white);
+      padding: 20px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(111, 193, 255, 0.2);
+    }
+
+    .admin-header-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    .admin-header-left { display: flex; align-items: center; gap: 16px; }
+    .admin-logo { width: 44px; height: 44px; border-radius: 50%; background: var(--white); }
+    .admin-title { font-size: 1.25rem; font-weight: 600; }
+    .admin-nav { display: flex; gap: 8px; }
+    .admin-nav-btn { padding: 10px 20px; border-radius: 10px; background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.3); font-family: 'League Spartan', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; }
+    .admin-nav-btn:hover, .admin-nav-btn.active { background: var(--white); color: var(--celeste-deep); border-color: var(--white); }
+    .admin-user { display: flex; align-items: center; gap: 12px; font-size: 14px; opacity: 0.9; }
+
+    .admin-main { max-width: 1200px; margin: 0 auto; padding: 32px 24px; }
+    .admin-section { display: none; }
+    .admin-section.active { display: block; animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 16px; }
+    .section-title { font-size: clamp(1.5rem, 3vw, 2rem); color: var(--text-dark); }
+    .section-subtitle { color: var(--text-dark); opacity: 0.7; margin-top: 4px; }
+
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 32px; }
+    .stat-card { background: var(--white); border-radius: 16px; padding: 24px; border: 2px solid var(--card-border); box-shadow: 0 4px 16px rgba(111, 193, 255, 0.08); }
+    .stat-value { font-size: 2.5rem; font-weight: 700; color: var(--celeste-deep); font-family: 'League Spartan', sans-serif; line-height: 1; }
+    .stat-label { font-size: 14px; color: var(--text-dark); opacity: 0.7; margin-top: 4px; }
+
+    /* Tables */
+    .table-wrapper { background: var(--white); border-radius: 16px; border: 2px solid var(--card-border); overflow: hidden; box-shadow: 0 4px 16px rgba(111, 193, 255, 0.08); }
+    .admin-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .admin-table th, .admin-table td { padding: 16px; text-align: left; border-bottom: 1px solid var(--card-border); }
+    .admin-table th { background: var(--cream-light); font-family: 'League Spartan', sans-serif; font-weight: 600; color: var(--text-dark); font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .admin-table tbody tr:last-child td { border-bottom: none; }
+    .admin-table tbody tr:hover { background: var(--cream); }
+
+    .badge { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; font-family: 'League Spartan', sans-serif; }
+    .badge-pending { background: rgba(251, 191, 36, 0.15); color: #b8860b; }
+    .badge-approved { background: rgba(37, 211, 102, 0.15); color: #1a8a3a; }
+    .badge-rejected { background: rgba(228, 64, 95, 0.15); color: #c13584; }
+    .badge-published { background: rgba(111, 193, 255, 0.15); color: var(--celeste-deep); }
+    .badge-draft { background: rgba(122, 154, 138, 0.15); color: var(--text-dark); }
+
+    .stars { display: flex; gap: 2px; color: var(--yellow-deep); }
+    .text-preview { max-width: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--text-dark); opacity: 0.8; }
+
+    .action-btns { display: flex; gap: 8px; }
+    .icon-btn { width: 36px; height: 36px; border-radius: 10px; border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; background: var(--cream-light); color: var(--text-dark); }
+    .icon-btn:hover { background: var(--celeste-light); color: var(--celeste-deep); }
+    .icon-btn.danger:hover { background: rgba(228, 64, 95, 0.15); color: var(--color-ig); }
+    .icon-btn svg { width: 18px; height: 18px; }
+
+    .empty-state { text-align: center; padding: 60px 24px; color: var(--text-dark); opacity: 0.6; }
+    .empty-state svg { width: 64px; height: 64px; margin-bottom: 16px; opacity: 0.4; }
+
+    /* Modal */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(26, 46, 53, 0.6); display: none; align-items: center; justify-content: center; padding: 24px; z-index: 1000; backdrop-filter: blur(4px); }
+    .modal-overlay.active { display: flex; }
+    .modal { background: var(--white); border-radius: 20px; max-width: 520px; width: 100%; max-height: 90vh; overflow-y: auto; box-shadow: 0 25px 80px rgba(111, 193, 255, 0.2); }
+    .modal-header { padding: 24px; border-bottom: 1px solid var(--card-border); display: flex; justify-content: space-between; align-items: center; }
+    .modal-title { font-size: 1.25rem; font-weight: 600; color: var(--text-dark); }
+    .modal-close { width: 40px; height: 40px; border-radius: 50%; border: none; background: var(--cream-light); color: var(--text-dark); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; }
+    .modal-close:hover { background: var(--celeste-light); color: var(--celeste-deep); }
+    .modal-body { padding: 24px; }
+    .modal-footer { padding: 20px 24px; border-top: 1px solid var(--card-border); display: flex; justify-content: flex-end; gap: 12px; }
+
+    .modal-textarea { width: 100%; min-height: 120px; padding: 14px 16px; border: 2px solid var(--card-border); border-radius: 12px; font-family: 'Open Sans', sans-serif; font-size: 15px; color: var(--text-dark); resize: vertical; }
+    .modal-textarea:focus { outline: none; border-color: var(--celeste-deep); box-shadow: 0 0 0 4px rgba(111, 193, 255, 0.15); }
+
+    /* Toast */
+    .toast-container { position: fixed; bottom: 24px; right: 24px; z-index: 2000; display: flex; flex-direction: column; gap: 12px; }
+    .toast { padding: 16px 24px; border-radius: 12px; font-size: 14px; font-weight: 500; box-shadow: 0 8px 30px rgba(26, 46, 53, 0.15); animation: slideIn 0.3s ease; }
+    .toast.success { background: var(--color-wa); color: var(--white); }
+    .toast.error { background: var(--color-ig); color: var(--white); }
+    .toast.info { background: var(--celeste-deep); color: var(--white); }
+    @keyframes slideIn { from { opacity: 0; transform: translateX(100px); } to { opacity: 1; transform: translateX(0); } }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .login-card { padding: 32px 24px; }
+      .admin-header-content { flex-direction: column; align-items: flex-start; }
+      .admin-nav { width: 100%; }
+      .admin-nav-btn { flex: 1; text-align: center; }
+      .admin-table th, .admin-table td { padding: 12px 8px; font-size: 13px; }
+      .text-preview { max-width: 180px; }
+      .action-btns { flex-wrap: wrap; }
+      .section-header { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 480px) {
+      .info-row { flex-direction: column; gap: 4px; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <!-- LOGIN SCREEN -->
+  <div class="login-screen" id="loginScreen" role="main">
+    <div class="login-card">
+      <div class="login-logo">
+        <img src="logo-celeste-transparente.png" alt="Pensar Sentir Hacer">
+      </div>
+      <h1 class="login-title">Panel de Administración</h1>
+      <p class="login-subtitle">Inicia sesión con tu cuenta de Google autorizada</p>
+
+      <div class="login-error" id="loginError" role="alert"></div>
+
+      <button type="button" class="btn btn-primary" id="googleLoginBtn">
+        <svg width="20" height="20" viewBox="0 0 24 24" style="display:block;">
+          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+          <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+        </svg>
+        <span>Continuar con Google</span>
+      </button>
+
+      <p style="text-align:center; margin-top:16px; font-size:13px; opacity:0.6;">Solo cuentas autorizadas: pensarsentirhacer.pe@gmail.com, paolosotil97@gmail.com</p>
+    </div>
+  </div>
+
+  <!-- ADMIN PANEL -->
+  <div class="admin-panel" id="adminPanel" role="main" aria-label="Panel de administración">
+    <header class="admin-header">
+      <div class="admin-header-content">
+        <div class="admin-header-left">
+          <img src="logo-celeste-transparente.png" alt="PSH" class="admin-logo">
+          <span class="admin-title">Admin PSH</span>
+        </div>
+        <nav class="admin-nav" role="tablist" aria-label="Secciones del panel">
+          <button class="admin-nav-btn active" role="tab" aria-selected="true" data-tab="testimonios">Testimonios</button>
+          <button class="admin-nav-btn" role="tab" aria-selected="false" data-tab="blog">Blog</button>
+        </nav>
+        <div class="admin-user">
+          <span id="adminUserEmail"></span>
+          <button class="btn btn-secondary" id="logoutBtn" style="padding: 8px 16px; font-size: 13px;">Salir</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="admin-main">
+      <!-- TESTIMONIOS SECTION -->
+      <section class="admin-section active" id="tab-testimonios" role="tabpanel" aria-labelledby="testimonios-tab">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Gestión de Testimonios</h2>
+            <p class="section-subtitle">Revisa y aprueba los testimonios enviados por visitantes</p>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-value" id="statPending">0</div>
+            <div class="stat-label">Pendientes</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="statApproved">0</div>
+            <div class="stat-label">Aprobados</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="statRejected">0</div>
+            <div class="stat-label">Rechazados</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="statTotal">0</div>
+            <div class="stat-label">Total</div>
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="admin-table" role="table">
+            <thead>
+              <tr>
+                <th scope="col">Autor</th>
+                <th scope="col">Estrellas</th>
+                <th scope="col">Testimonio</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="testimoniosTableBody">
+              <tr><td colspan="6" class="empty-state"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12h6M9 12l3-3m-3 3 3 3M21 12c0 4.97-4.03 9-9 9S3 16.97 3 12 7.03 3 12 3s9 4.03 9 9"/></svg><p>Cargando testimonios...</p></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- BLOG SECTION -->
+      <section class="admin-section" id="tab-blog" role="tabpanel" aria-labelledby="blog-tab">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Gestión del Blog</h2>
+            <p class="section-subtitle">Crea, edita y publica artículos</p>
+          </div>
+          <button class="btn btn-primary" id="newPostBtn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+            <span>Nuevo artículo</span>
+          </button>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="admin-table" role="table">
+            <thead>
+              <tr>
+                <th scope="col">Título</th>
+                <th scope="col">Categoría</th>
+                <th scope="col">Plantilla</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="blogTableBody">
+              <tr><td colspan="6" class="empty-state"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 14.5A2.5 2.5 0 0 1 6.5 12H20M4 9.5A2.5 2.5 0 0 1 6.5 7H20"/></svg><p>No hay artículos aún. Crea el primero.</p></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- MODAL TESTIMONIO DETALLE -->
+  <div class="modal-overlay" id="testimonioModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modalTitle">Ver testimonio</h3>
+        <button class="modal-close" id="closeTestimonioModal" aria-label="Cerrar"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+      </div>
+      <div class="modal-body" id="testimonioModalBody">
+        <!-- Contenido dinámico -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="modalRejectBtn">Rechazar</button>
+        <button class="btn btn-primary" id="modalApproveBtn">Aprobar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL BLOG POST (redirige a admin-editor.html) -->
+  <div class="modal-overlay" id="deleteModal" role="dialog" aria-modal="true" aria-labelledby="deleteModalTitle">
+    <div class="modal" style="max-width: 420px;">
+      <div class="modal-header">
+        <h3 class="modal-title" id="deleteModalTitle">Confirmar eliminación</h3>
+        <button class="modal-close" id="closeDeleteModal" aria-label="Cerrar"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+      </div>
+      <div class="modal-body">
+        <p style="color: var(--text-dark); line-height: 1.6;">¿Estás segura de que quieres eliminar este elemento? Esta acción no se puede deshacer.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="cancelDeleteBtn">Cancelar</button>
+        <button class="btn btn-danger" id="confirmDeleteBtn">Eliminar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST CONTAINER -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- FIREBASE SDK -->
+  <script type="module">
+    import { firebaseConfig, ADMIN_EMAILS } from './firebase-config.js';
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js';
+    import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js';
+    import { getFirestore, collection, addDoc, getDocs, query, where, orderBy, updateDoc, deleteDoc, doc, serverTimestamp, onSnapshot } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js';
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    // DOM Elements
+    const loginScreen = document.getElementById('loginScreen');
+    const adminPanel = document.getElementById('adminPanel');
+    const googleLoginBtn = document.getElementById('googleLoginBtn');
+    const loginError = document.getElementById('loginError');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const adminUserEmail = document.getElementById('adminUserEmail');
+    const navBtns = document.querySelectorAll('.admin-nav-btn');
+    const tabSections = document.querySelectorAll('.admin-section');
+    const toastContainer = document.getElementById('toastContainer');
+
+    // Google Auth Provider
+    const googleProvider = new GoogleAuthProvider();
+
+    // Testimonios elements
+    const testimoniosTableBody = document.getElementById('testimoniosTableBody');
+    const statPending = document.getElementById('statPending');
+    const statApproved = document.getElementById('statApproved');
+    const statRejected = document.getElementById('statRejected');
+    const statTotal = document.getElementById('statTotal');
+    const testimonioModal = document.getElementById('testimonioModal');
+    const testimonioModalBody = document.getElementById('testimonioModalBody');
+    const closeTestimonioModal = document.getElementById('closeTestimonioModal');
+    const modalApproveBtn = document.getElementById('modalApproveBtn');
+    const modalRejectBtn = document.getElementById('modalRejectBtn');
+
+    // Blog elements
+    const blogTableBody = document.getElementById('blogTableBody');
+    const newPostBtn = document.getElementById('newPostBtn');
+    const deleteModal = document.getElementById('deleteModal');
+    const closeDeleteModal = document.getElementById('closeDeleteModal');
+    const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
+    const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+
+    let currentTestimonioId = null;
+    let currentDeleteId = null;
+    let currentDeleteType = null; // 'testimonio' o 'blog'
+    let unsubscribeTestimonios = null;
+    let unsubscribeBlog = null;
+
+    // --- TOAST ---
+    function showToast(message, type = 'info') {
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      toast.textContent = message;
+      toastContainer.appendChild(toast);
+      setTimeout(() => { toast.remove(); }, 4000);
+    }
+
+    function showAuthError(msg) {
+      loginError.textContent = msg;
+      loginError.classList.add('show');
+    }
+
+    // --- AUTH ---
+    googleLoginBtn.addEventListener('click', async () => {
+      googleLoginBtn.disabled = true;
+      googleLoginBtn.innerHTML = '<svg class="spinner" viewBox="0 0 24 24" style="width:20px;height:20px;"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" fill="none" stroke-dasharray="31.4 31.4" stroke-linecap="round"/></svg> Entrando...';
+      loginError.classList.remove('show');
+
+      try {
+        await signInWithPopup(auth, googleProvider);
+        // onAuthStateChanged manejará el resto
+      } catch (error) {
+        console.error('Login error:', error);
+        let msg = 'Error al iniciar sesión con Google';
+        if (error.code === 'auth/popup-closed-by-user') msg = 'Ventana cerrada. Intenta de nuevo.';
+        else if (error.code === 'auth/cancelled-popup-request') msg = 'Solicitud cancelada. Intenta de nuevo.';
+        showAuthError(msg);
+      } finally {
+        googleLoginBtn.disabled = false;
+        googleLoginBtn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" style="display:block;"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg><span>Continuar con Google</span>';
+      }
+    });
+
+    logoutBtn.addEventListener('click', async () => {
+      await signOut(auth);
+    });
+
+    onAuthStateChanged(auth, (user) => {
+      if (user && ADMIN_EMAILS.includes(user.email)) {
+        loginScreen.style.display = 'none';
+        adminPanel.classList.add('active');
+        adminUserEmail.textContent = user.email;
+        startListeners();
+      } else {
+        loginScreen.style.display = 'flex';
+        adminPanel.classList.remove('active');
+        stopListeners();
+        if (user) {
+          // User logged in but not authorized
+          signOut(auth);
+          showAuthError('Esta cuenta no tiene permisos de administrador');
+        }
+      }
+    });
+
+    // --- NAVIGATION ---
+    navBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tab = btn.dataset.tab;
+        navBtns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+        tabSections.forEach(s => s.classList.remove('active'));
+        document.getElementById(`tab-${tab}`).classList.add('active');
+      });
+    });
+
+    // --- LISTENERS ---
+    function startListeners() {
+      // Testimonios real-time
+      const qTestimonios = query(collection(db, 'testimonios'), orderBy('fecha', 'desc'));
+      unsubscribeTestimonios = onSnapshot(qTestimonios, (snapshot) => {
+        renderTestimonios(snapshot.docs);
+      }, (error) => {
+        console.error('Error testimonios:', error);
+        showToast('Error cargando testimonios', 'error');
+      });
+
+      // Blog real-time
+      const qBlog = query(collection(db, 'blogPosts'), orderBy('fecha', 'desc'));
+      unsubscribeBlog = onSnapshot(qBlog, (snapshot) => {
+        renderBlog(snapshot.docs);
+      }, (error) => {
+        console.error('Error blog:', error);
+        showToast('Error cargando blog', 'error');
+      });
+    }
+
+    function stopListeners() {
+      if (unsubscribeTestimonios) unsubscribeTestimonios();
+      if (unsubscribeBlog) unsubscribeBlog();
+    }
+
+    // --- RENDER TESTIMONIOS ---
+    function renderTestimonios(docs) {
+      let pending = 0, approved = 0, rejected = 0;
+
+      if (docs.length === 0) {
+        testimoniosTableBody.innerHTML = `
+          <tr><td colspan="6" class="empty-state">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 12h8M8 12l4-4m-4 4 4 4M21 12c0 4.97-4.03 9-9 9S3 16.97 3 12 7.03 3 12 3s9 4.03 9 9"/></svg>
+            <p>No hay testimonios aún</p>
+          </td></tr>
+        `;
+        updateStats(0, 0, 0);
+        return;
+      }
+
+      const rows = docs.map(docSnap => {
+        const data = docSnap.data();
+        const id = docSnap.id;
+        const fecha = data.fecha?.toDate ? formatDate(data.fecha.toDate()) : '—';
+
+        if (data.aprobado === true) approved++;
+        else if (data.aprobado === false && data.rechazado === true) rejected++;
+        else pending++;
+
+        const stars = '★'.repeat(data.estrellas) + '☆'.repeat(5 - data.estrellas);
+        const nombre = data.anonimo ? (data.nombre ? data.nombre.charAt(0) + '.' : 'Anónimo') : (data.nombre || 'Anónimo');
+
+        return `
+          <tr data-id="${id}">
+            <td>${escapeHtml(nombre)}${data.anonimo ? ' <span style="font-size:11px;opacity:0.6;">(anónimo)</span>' : ''}</td>
+            <td><span class="stars">${stars.split('').map(s => `<span>${s}</span>`).join('')}</span></td>
+            <td class="text-preview" title="${escapeHtml(data.texto)}">${escapeHtml(data.texto)}</td>
+            <td>${fecha}</td>
+            <td>
+              <span class="badge ${data.aprobado ? 'badge-approved' : (data.rechazado ? 'badge-rejected' : 'badge-pending')}">
+                ${data.aprobado ? 'Aprobado' : (data.rechazado ? 'Rechazado' : 'Pendiente')}
+              </span>
+            </td>
+            <td>
+              <div class="action-btns">
+                <button class="icon-btn" data-action="view" data-id="${id}" aria-label="Ver testimonio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>
+                ${!data.aprobado ? `
+                  <button class="icon-btn" data-action="approve" data-id="${id}" aria-label="Aprobar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></button>
+                  <button class="icon-btn danger" data-action="reject" data-id="${id}" aria-label="Rechazar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+                ` : ''}
+                <button class="icon-btn danger" data-action="delete" data-id="${id}" aria-label="Eliminar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join('');
+
+      testimoniosTableBody.innerHTML = rows;
+      updateStats(pending, approved, rejected);
+
+      // Event listeners for buttons
+      testimoniosTableBody.querySelectorAll('[data-action="view"]').forEach(btn => {
+        btn.addEventListener('click', () => openTestimonioModal(btn.dataset.id, docs.find(d => d.id === btn.dataset.id).data()));
+      });
+      testimoniosTableBody.querySelectorAll('[data-action="approve"]').forEach(btn => {
+        btn.addEventListener('click', () => approveTestimonio(btn.dataset.id));
+      });
+      testimoniosTableBody.querySelectorAll('[data-action="reject"]').forEach(btn => {
+        btn.addEventListener('click', () => rejectTestimonio(btn.dataset.id));
+      });
+      testimoniosTableBody.querySelectorAll('[data-action="delete"]').forEach(btn => {
+        btn.addEventListener('click', () => confirmDelete(btn.dataset.id, 'testimonio'));
+      });
+    }
+
+    function updateStats(pending, approved, rejected) {
+      statPending.textContent = pending;
+      statApproved.textContent = approved;
+      statRejected.textContent = rejected;
+      statTotal.textContent = pending + approved + rejected;
+    }
+
+    // --- TESTIMONIO MODAL ---
+    function openTestimonioModal(id, data) {
+      currentTestimonioId = id;
+      const fecha = data.fecha?.toDate ? formatDate(data.fecha.toDate()) : '—';
+      const stars = '★'.repeat(data.estrellas) + '☆'.repeat(5 - data.estrellas);
+      const nombre = data.anonimo ? (data.nombre ? data.nombre.charAt(0) + '.' : 'Anónimo') : (data.nombre || 'Anónimo');
+
+      testimonioModalBody.innerHTML = `
+        <div style="display: grid; gap: 16px;">
+          <div class="info-row">
+            <strong>Autor:</strong> <span>${escapeHtml(nombre)}${data.anonimo ? ' (anónimo)' : ''}</span>
+          </div>
+          <div class="info-row">
+            <strong>Estrellas:</strong> <span class="stars" style="font-size: 18px;">${stars.split('').map(s => `<span>${s}</span>`).join('')}</span>
+          </div>
+          <div class="info-row">
+            <strong>Fecha:</strong> <span>${fecha}</span>
+          </div>
+          <div class="info-row">
+            <strong>Testimonio:</strong>
+            <p style="margin-top: 8px; padding: 16px; background: var(--cream); border-radius: 12px; line-height: 1.7; white-space: pre-wrap;">${escapeHtml(data.texto)}</p>
+          </div>
+        </div>
+      `;
+
+      const isApproved = data.aprobado === true;
+      modalApproveBtn.textContent = isApproved ? 'Ya aprobado' : 'Aprobar';
+      modalApproveBtn.disabled = isApproved;
+      modalRejectBtn.textContent = isApproved ? 'Rechazar' : 'Rechazar';
+      modalRejectBtn.disabled = isApproved;
+
+      testimonioModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeTestimonioModalFn() {
+      testimonioModal.classList.remove('active');
+      document.body.style.overflow = '';
+      currentTestimonioId = null;
+    }
+
+    closeTestimonioModal.addEventListener('click', closeTestimonioModalFn);
+    testimonioModal.addEventListener('click', (e) => { if (e.target === testimonioModal) closeTestimonioModalFn(); });
+
+    async function approveTestimonio(id) {
+      try {
+        await updateDoc(doc(db, 'testimonios', id), { aprobado: true, rechazado: false, fechaAprobacion: serverTimestamp() });
+        showToast('Testimonio aprobado ✓', 'success');
+        closeTestimonioModalFn();
+      } catch (error) {
+        console.error('Error aprobando:', error);
+        showToast('Error al aprobar', 'error');
+      }
+    }
+
+    async function rejectTestimonio(id) {
+      try {
+        await updateDoc(doc(db, 'testimonios', id), { aprobado: false, rechazado: true });
+        showToast('Testimonio rechazado', 'info');
+        closeTestimonioModalFn();
+      } catch (error) {
+        console.error('Error rechazando:', error);
+        showToast('Error al rechazar', 'error');
+      }
+    }
+
+    modalApproveBtn.addEventListener('click', () => { if (currentTestimonioId) approveTestimonio(currentTestimonioId); });
+    modalRejectBtn.addEventListener('click', () => { if (currentTestimonioId) rejectTestimonio(currentTestimonioId); });
+
+    // --- BLOG ---
+    newPostBtn.addEventListener('click', () => {
+      window.location.href = 'admin-editor.html?new=true';
+    });
+
+    function renderBlog(docs) {
+      if (docs.length === 0) {
+        blogTableBody.innerHTML = `
+          <tr><td colspan="6" class="empty-state">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 14.5A2.5 2.5 0 0 1 6.5 12H20M4 9.5A2.5 2.5 0 0 1 6.5 7H20"/></svg>
+            <p>No hay artículos aún. Crea el primero.</p>
+          </td></tr>
+        `;
+        return;
+      }
+
+      const categoryLabels = { ansiedad: 'Ansiedad', depresion: 'Depresión', pareja: 'Relaciones de pareja', familiar: 'Relaciones familiares', autoestima: 'Autoestima', otros: 'Otros' };
+      const templateLabels = { estandar: 'Estándar', 'imagen-destacada': 'Imagen destacada', galeria: 'Galería + texto' };
+
+      const rows = docs.map(docSnap => {
+        const data = docSnap.data();
+        const id = docSnap.id;
+        const fecha = data.fecha?.toDate ? formatDate(data.fecha.toDate()) : '—';
+        const estado = data.publicado ? 'Publicado' : 'Borrador';
+        const badgeClass = data.publicado ? 'badge-published' : 'badge-draft';
+
+        return `
+          <tr data-id="${id}">
+            <td>${escapeHtml(data.titulo || 'Sin título')}</td>
+            <td>${categoryLabels[data.categoria] || data.categoria || '—'}</td>
+            <td>${templateLabels[data.plantilla] || data.plantilla || '—'}</td>
+            <td>${fecha}</td>
+            <td><span class="badge ${badgeClass}">${estado}</span></td>
+            <td>
+              <div class="action-btns">
+                <button class="icon-btn" data-action="edit" data-id="${id}" aria-label="Editar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+                <button class="icon-btn" data-action="view" data-id="${id}" aria-label="Ver en vivo" style="${data.publicado ? '' : 'opacity:0.4;pointer-events:none;' }"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>
+                <button class="icon-btn danger" data-action="delete" data-id="${id}" aria-label="Eliminar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join('');
+
+      blogTableBody.innerHTML = rows;
+
+      blogTableBody.querySelectorAll('[data-action="edit"]').forEach(btn => {
+        btn.addEventListener('click', () => { window.location.href = `admin-editor.html?id=${btn.dataset.id}`; });
+      });
+      blogTableBody.querySelectorAll('[data-action="view"]').forEach(btn => {
+        btn.addEventListener('click', () => { window.open(`blog-post.html?id=${btn.dataset.id}`, '_blank'); });
+      });
+      blogTableBody.querySelectorAll('[data-action="delete"]').forEach(btn => {
+        btn.addEventListener('click', () => confirmDelete(btn.dataset.id, 'blog'));
+      });
+    }
+
+    // --- DELETE CONFIRMATION ---
+    function confirmDelete(id, type) {
+      currentDeleteId = id;
+      currentDeleteType = type;
+      deleteModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDeleteModalFn() {
+      deleteModal.classList.remove('active');
+      document.body.style.overflow = '';
+      currentDeleteId = null;
+      currentDeleteType = null;
+    }
+
+    closeDeleteModal.addEventListener('click', closeDeleteModalFn);
+    cancelDeleteBtn.addEventListener('click', closeDeleteModalFn);
+    deleteModal.addEventListener('click', (e) => { if (e.target === deleteModal) closeDeleteModalFn(); });
+
+    confirmDeleteBtn.addEventListener('click', async () => {
+      if (!currentDeleteId || !currentDeleteType) return;
+      try {
+        await deleteDoc(doc(db, currentDeleteType === 'testimonio' ? 'testimonios' : 'blogPosts', currentDeleteId));
+        showToast(`${currentDeleteType === 'testimonio' ? 'Testimonio' : 'Artículo'} eliminado`, 'success');
+        closeDeleteModalFn();
+      } catch (error) {
+        console.error('Error eliminando:', error);
+        showToast('Error al eliminar', 'error');
+      }
+    });
+
+    // --- UTILS ---
+    function formatDate(date) {
+      return date.toLocaleDateString('es-PE', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+  </script>
+</body>
+</html>

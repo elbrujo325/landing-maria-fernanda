@@ -12,3 +12,4 @@ logo-inspector.html
 node_modules/
 .env
 
+firebase-config.js

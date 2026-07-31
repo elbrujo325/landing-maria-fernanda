@@ -1,0 +1,48 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ============================================================
+    // TESTIMONIOS COLLECTION
+    // ============================================================
+    match /testimonios/{docId} {
+      // Public read: only approved testimonials (aprobado == true)
+      allow read: if resource.data.aprobado == true;
+
+      // Public create: anyone can submit a new testimonial (will have aprobado == false by default)
+      // Required fields: nombre, texto, estrellas (1-5), opcional: anonimo (bool)
+      allow create: if request.auth == null
+        && request.resource.data.keys().hasAll(['nombre', 'texto', 'estrellas'])
+        && request.resource.data.estrellas is int
+        && request.resource.data.estrellas >= 1
+        && request.resource.data.estrellas <= 5
+        && request.resource.data.aprobado == false;
+
+      // Admin full access: the designated admin email via Auth
+      allow read, write, delete: if isAdmin();
+    }
+
+    // ============================================================
+    // BLOG POSTS COLLECTION
+    // ============================================================
+    match /blogPosts/{docId} {
+      // Public read: only published posts
+      allow read: if resource.data.publicado == true;
+
+      // Admin full access: create, update, delete, read all (including drafts)
+      allow read, write, delete: if isAdmin();
+
+      // Block any non-admin writes
+      allow create, update, delete: if false;
+    }
+
+    // ============================================================
+    // HELPER FUNCTIONS
+    // ============================================================
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email in ['pensarsentirhacer.pe@gmail.com', 'paolosotil97@gmail.com'];
+    }
+
+  }
+}

@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="postTitle">Artículo · Pensar Sentir Hacer</title>
+  <link rel="icon" type="image/png" href="logo-celeste-transparente.png">
+  <meta name="description" id="postDescription" content="Artículo sobre bienestar emocional por María Fernanda Arana, Psicóloga Clínica ACT.">
+  <meta property="og:title" id="ogTitle" content="Artículo · Pensar Sentir Hacer">
+  <meta property="og:description" id="ogDescription" content="Artículo sobre bienestar emocional por María Fernanda Arana">
+  <meta property="og:image" id="ogImage" content="">
+  <meta property="og:type" content="article">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #FFFEEC;
+      --cream-light: #FFFDF4;
+      --yellow-light: #FDFDC9;
+      --yellow-mid: #FEFFAF;
+      --yellow-deep: #FFFB85;
+      --celeste-light: #B0DDFC;
+      --celeste-mid: #89CCFF;
+      --celeste-deep: #6FC1FF;
+      --white: #FFFFFF;
+      --text-dark: #3A4A5A;
+      --title-color: #6FC1FF;
+      --color-ig: #E4405F;
+      --color-wa: #25D366;
+      --card-border: #E8F4FF;
+      --card-bg: #FFFFFF;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Open Sans', sans-serif; color: var(--text-dark); background: var(--cream); min-height: 100vh; }
+    h1, h2, h3, h4 { font-family: 'League Spartan', sans-serif; color: var(--text-dark); line-height: 1.2; }
+    a { color: var(--celeste-deep); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    img { max-width: 100%; height: auto; display: block; }
+
+    /* Navbar */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(255, 253, 244, 0.95); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+      padding: 16px 24px;
+    }
+    .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .nav-logo { width: 44px; height: 44px; border-radius: 50%; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { font-family: 'League Spartan', sans-serif; font-size: 15px; font-weight: 600; color: var(--text-dark); transition: color 0.3s ease; }
+    .nav-links a:hover { color: var(--celeste-deep); text-decoration: none; }
+    .nav-cta { display: flex; align-items: center; gap: 16px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 12px 24px; border-radius: 10px; font-family: 'League Spartan', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; border: none; }
+    .btn-primary { background: var(--celeste-deep); color: var(--white); box-shadow: 0 8px 20px -5px rgba(111, 193, 255, 0.3); }
+    .btn-primary:hover { background: var(--celeste-mid); transform: translateY(-2px); box-shadow: 0 12px 28px -5px rgba(111, 193, 255, 0.4); }
+    .btn-ghost { background: transparent; color: var(--text-dark); border: 2px solid var(--card-border); }
+    .btn-ghost:hover { background: var(--cream); border-color: var(--celeste-mid); }
+
+    /* Article Layout */
+    .article-main { max-width: 800px; margin: 0 auto; padding: 140px 24px 80px; }
+    .article-header { margin-bottom: 40px; text-align: center; }
+    .article-category { display: inline-block; background: var(--cream-light); color: var(--text-dark); padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; font-family: 'League Spartan', sans-serif; margin-bottom: 16px; }
+    .article-title { font-size: clamp(2rem, 4.5vw, 3rem); color: var(--text-dark); line-height: 1.15; margin-bottom: 20px; }
+    .article-meta { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; color: var(--text-dark); opacity: 0.7; font-size: 14px; }
+    .article-meta .author { display: flex; align-items: center; gap: 8px; }
+    .article-meta .author-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--celeste-light); display: flex; align-items: center; justify-content: center; color: var(--celeste-deep); font-weight: 700; font-size: 12px; }
+
+    .article-cover { width: 100%; max-height: 500px; object-fit: cover; border-radius: 20px; margin-bottom: 40px; box-shadow: 0 12px 40px rgba(111, 193, 255, 0.15); }
+    .article-featured-cover { position: relative; margin-bottom: 0; }
+    .article-featured-cover img { border-radius: 0; }
+    .article-featured-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 60px 40px 40px; background: linear-gradient(180deg, transparent 0%, rgba(26, 46, 53, 0.8) 100%); color: var(--white); }
+    .article-featured-overlay .article-category { background: rgba(255,255,255,0.2); color: var(--white); }
+    .article-featured-overlay .article-title { color: var(--white); }
+    .article-featured-overlay .article-meta { color: rgba(255,255,255,0.9); }
+    .article-featured-overlay .author-avatar { background: var(--white); color: var(--celeste-deep); }
+
+    /* Article Content */
+    .article-content { font-size: 17px; line-height: 1.85; color: var(--text-dark); }
+    .article-content p { margin-bottom: 24px; }
+    .article-content h2 { font-size: 1.75rem; color: var(--title-color); margin: 40px 0 16px; padding-top: 8px; }
+    .article-content h3 { font-size: 1.35rem; color: var(--text-dark); margin: 32px 0 12px; }
+    .article-content h4 { font-size: 1.15rem; color: var(--text-dark); margin: 24px 0 10px; }
+    .article-content blockquote { border-left: 4px solid var(--celeste-deep); padding: 16px 24px; margin: 24px 0; background: var(--cream-light); border-radius: 0 12px 12px 0; font-style: italic; font-size: 1.05rem; }
+    .article-content ul, .article-content ol { margin: 24px 0; padding-left: 28px; }
+    .article-content li { margin-bottom: 10px; line-height: 1.7; }
+    .article-content img { border-radius: 12px; margin: 24px auto; box-shadow: 0 8px 24px rgba(111, 193, 255, 0.15); max-width: 100%; height: auto; }
+    .article-content a { color: var(--celeste-deep); text-decoration: underline; text-underline-offset: 2px; }
+    .article-content strong { font-weight: 600; }
+    .article-content em { font-style: italic; }
+    .article-content code { background: var(--cream-light); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; font-family: monospace; }
+    .article-content pre { background: var(--text-dark); color: var(--cream); padding: 20px; border-radius: 12px; overflow-x: auto; margin: 24px 0; }
+    .article-content pre code { background: none; padding: 0; color: inherit; }
+    .article-content hr { border: none; border-top: 2px solid var(--card-border); margin: 40px 0; }
+
+    .article-tags { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--card-border); }
+    .tag { padding: 6px 14px; background: var(--cream-light); border: 1px solid var(--card-border); border-radius: 20px; font-size: 13px; font-weight: 500; color: var(--text-dark); }
+
+    /* CTA Section */
+    .article-cta { background: linear-gradient(135deg, var(--celeste-mid) 0%, var(--celeste-deep) 100%); border-radius: 24px; padding: 48px 32px; text-align: center; color: var(--white); margin-top: 60px; }
+    .article-cta h3 { font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 12px; color: var(--white); }
+    .article-cta p { opacity: 0.9; margin-bottom: 24px; font-size: 1.1rem; }
+    .article-cta .btn { width: 100%; max-width: 300px; }
+
+    /* Related Posts */
+    .related-section { margin-top: 60px; }
+    .related-title { font-size: 1.5rem; text-align: center; margin-bottom: 24px; color: var(--text-dark); }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+    .related-card { background: var(--white); border-radius: 16px; border: 2px solid var(--card-border); overflow: hidden; transition: all 0.3s ease; }
+    .related-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(111, 193, 255, 0.15); border-color: var(--celeste-mid); }
+    .related-cover { width: 100%; aspect-ratio: 16/9; object-fit: cover; background: var(--cream-light); }
+    .related-content { padding: 20px; }
+    .related-title-link { font-size: 1.1rem; color: var(--text-dark); line-height: 1.4; transition: color 0.3s ease; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .related-card:hover .related-title-link { color: var(--celeste-deep); }
+    .related-meta { font-size: 12px; color: var(--text-dark); opacity: 0.6; margin-top: 8px; }
+
+    /* Footer */
+    .footer { background: var(--celeste-deep); color: var(--white); padding: 48px 24px 24px; margin-top: 80px; }
+    .footer-container { max-width: 1200px; margin: 0 auto; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+    @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr; gap: 24px; } }
+    .footer-brand .footer-logo { width: 80px; height: 80px; border-radius: 50%; background: var(--white); margin-bottom: 16px; }
+    .footer-brand p { opacity: 0.8; line-height: 1.7; font-size: 15px; }
+    .footer-title { font-size: 1.1rem; margin-bottom: 16px; font-weight: 600; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a { color: var(--white); opacity: 0.8; transition: opacity 0.3s ease; }
+    .footer-links a:hover { opacity: 1; text-decoration: underline; }
+    .footer-bottom { padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.15); text-align: center; opacity: 0.6; font-size: 14px; }
+
+    /* WhatsApp Float */
+    .whatsapp-float { position: fixed; bottom: 24px; right: 24px; z-index: 100; width: 56px; height: 56px; border-radius: 50%; background: var(--color-wa); box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4); display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; animation: pulse 2s infinite; }
+    .whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 12px 32px rgba(37, 211, 102, 0.5); }
+    .whatsapp-float svg { width: 28px; height: 28px; }
+    @keyframes pulse { 0%, 100% { box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4); } 50% { box-shadow: 0 8px 24px rgba(37, 211, 102, 0.6); } }
+
+    /* Loading */
+    .loading-skeleton { padding: 140px 24px 80px; max-width: 800px; margin: 0 auto; }
+    .skeleton-line { height: 24px; background: linear-gradient(90deg, var(--cream-light) 25%, var(--cream) 50%, var(--cream-light) 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 8px; margin-bottom: 16px; }
+    .skeleton-line.title { height: 48px; margin-bottom: 24px; }
+    .skeleton-line.short { width: 40%; margin-left: auto; margin-right: auto; }
+    .skeleton-cover { width: 100%; height: 300px; background: linear-gradient(90deg, var(--cream-light) 25%, var(--cream) 50%, var(--cream-light) 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 20px; margin-bottom: 40px; }
+    @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+    /* Not found */
+    .not-found { text-align: center; padding: 140px 24px; }
+    .not-found svg { width: 100px; height: 100px; opacity: 0.3; margin-bottom: 24px; }
+    .not-found h2 { font-size: 2rem; margin-bottom: 12px; }
+    .not-found p { opacity: 0.7; margin-bottom: 24px; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .article-featured-overlay { padding: 40px 24px 24px; }
+      .article-content { font-size: 16px; }
+      .article-cta { padding: 36px 24px; }
+      .related-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar" role="navigation" aria-label="Navegación principal">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo-link" aria-label="Pensar Sentir Hacer - Inicio">
+        <img src="logo-celeste-transparente.png" alt="PSH" class="nav-logo">
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#sobre-mi">Sobre mí</a></li>
+        <li><a href="index.html#servicios">Servicios</a></li>
+        <li><a href="index.html#testimonios">Testimonios</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="index.html#faq">FAQ</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="https://wa.me/51939855573" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Agendar sesión</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- LOADING SKELETON -->
+  <div class="loading-skeleton" id="loadingSkeleton" aria-busy="true" aria-live="polite">
+    <div class="skeleton-line short"></div>
+    <div class="skeleton-line title"></div>
+    <div class="skeleton-line short" style="margin: 0 auto 24px;"></div>
+    <div class="skeleton-cover"></div>
+    <div class="skeleton-line"></div>
+    <div class="skeleton-line"></div>
+    <div class="skeleton-line"></div>
+    <div class="skeleton-line"></div>
+    <div class="skeleton-line"></div>
+    <div class="skeleton-line"></div>
+  </div>
+
+  <!-- ARTICLE (hidden until loaded) -->
+  <article class="article-main" id="articleMain" style="display: none;">
+    <header class="article-header" id="articleHeader">
+      <span class="article-category" id="articleCategory"></span>
+      <h1 class="article-title" id="articleTitle"></h1>
+      <div class="article-meta">
+        <div class="author">
+          <span class="author-avatar">MF</span>
+          <span class="author-name">María Fernanda Arana</span>
+        </div>
+        <time id="articleDate"></time>
+      </div>
+    </header>
+
+    <figure class="article-cover" id="articleCoverFigure" style="display: none;">
+      <img id="articleCover" src="" alt="" loading="eager">
+    </figure>
+
+    <div class="article-content" id="articleContent"></div>
+
+    <div class="article-tags" id="articleTags" style="display: none;"></div>
+
+    <!-- CTA SECTION -->
+    <section class="article-cta" aria-labelledby="ctaTitle">
+      <h3 id="ctaTitle">¿Te resonó este artículo?</h3>
+      <p>La terapia te da herramientas para aplicar esto en tu vida. Agenda tu primera sesión.</p>
+      <a href="https://wa.me/51939855573" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M20.52 3.48A11.914 11.914 0 0 0 12 0C5.373 0 0 5.373 0 12c0 1.783.44 3.482 1.227 5.006L0 24l5.894-1.664A11.942 11.942 0 0 0 12 24c6.627 0 12-5.373 12-12 0-1.958-.487-3.813-1.48-5.442zM8 12.5c0 .827.673 1.5 1.5 1.5H10v4.5c0 .827.673 1.5 1.5 1.5s1.5-.673 1.5-1.5V14h2.5c.827 0 1.5-.673 1.5-1.5s-.673-1.5-1.5-1.5H13V9c0-.827-.673-1.5-1.5-1.5s-1.5.673-1.5 1.5v2.5H9.5c-.827 0-1.5.673-1.5 1.5z"/></svg>
+        Escribir por WhatsApp
+      </a>
+    </section>
+
+    <!-- RELATED POSTS -->
+    <section class="related-section" id="relatedSection" style="display: none;" aria-labelledby="relatedTitle">
+      <h2 class="related-title" id="relatedTitle">Más artículos</h2>
+      <div class="related-grid" id="relatedGrid"></div>
+    </section>
+  </article>
+
+  <!-- NOT FOUND -->
+  <div class="not-found" id="notFound" style="display: none;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+    <h2>Artículo no encontrado</h2>
+    <p>El artículo que buscas no existe o no está publicado.</p>
+    <a href="blog.html" class="btn btn-primary" style="display: inline-block; margin-top: 16px;">Volver al blog</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="logo-celeste-transparente.png" alt="PSH" class="footer-logo">
+          <p>"Si mejoras tú, mejora el mundo y los que te rodean"</p>
+        </div>
+        <nav class="footer-nav" aria-label="Enlaces principales">
+          <h4 class="footer-title">Navegación</h4>
+          <ul class="footer-links">
+            <li><a href="index.html#sobre-mi">Sobre mí</a></li>
+            <li><a href="index.html#servicios">Servicios</a></li>
+            <li><a href="index.html#testimonios">Testimonios</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="index.html#faq">FAQ</a></li>
+          </ul>
+        </nav>
+        <nav class="footer-contact" aria-label="Contacto">
+          <h4 class="footer-title">Contacto</h4>
+          <ul class="footer-links">
+            <li><a href="https://wa.me/51939855573" target="_blank" rel="noopener noreferrer">WhatsApp: +51 939 855 573</a></li>
+            <li><a href="https://instagram.com/pensarsentirhacer.pe" target="_blank" rel="noopener noreferrer">Instagram: @pensarsentirhacer.pe</a></li>
+            <li><a href="https://tiktok.com/@pensarsentirhacer.pe" target="_blank" rel="noopener noreferrer">TikTok: @pensarsentirhacer.pe</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 María Fernanda Arana · CPsP 46797 · Psicóloga Clínica ACT</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WHATSAPP FLOAT -->
+  <a href="https://wa.me/51939855573" class="whatsapp-float" aria-label="Escribir por WhatsApp" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 24 24" fill="#fff">
+      <path d="M20.52 3.48A11.914 11.914 0 0 0 12 0C5.373 0 0 5.373 0 12c0 1.783.44 3.482 1.227 5.006L0 24l5.894-1.664A11.942 11.942 0 0 0 12 24c6.627 0 12-5.373 12-12 0-1.958-.487-3.813-1.48-5.442zM8 12.5c0 .827.673 1.5 1.5 1.5H10v4.5c0 .827.673 1.5 1.5 1.5s1.5-.673 1.5-1.5V14h2.5c.827 0 1.5-.673 1.5-1.5s-.673-1.5-1.5-1.5H13V9c0-.827-.673-1.5-1.5-1.5s-1.5.673-1.5 1.5v2.5H9.5c-.827 0-1.5.673-1.5 1.5z"/>
+    </svg>
+  </a>
+
+  <!-- FIREBASE SDK -->
+  <script type="module">
+    import { firebaseConfig } from './firebase-config.js';
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js';
+    import { getFirestore, doc, getDoc, collection, query, where, orderBy, limit, getDocs } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js';
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // DOM Elements
+    const loadingSkeleton = document.getElementById('loadingSkeleton');
+    const articleMain = document.getElementById('articleMain');
+    const notFound = document.getElementById('notFound');
+    const articleHeader = document.getElementById('articleHeader');
+    const articleCoverFigure = document.getElementById('articleCoverFigure');
+    const articleCover = document.getElementById('articleCover');
+    const articleContent = document.getElementById('articleContent');
+    const articleTags = document.getElementById('articleTags');
+    const relatedSection = document.getElementById('relatedSection');
+    const relatedGrid = document.getElementById('relatedGrid');
+
+    // Meta elements
+    const postTitle = document.getElementById('postTitle');
+    const postDescription = document.getElementById('postDescription');
+    const ogTitle = document.getElementById('ogTitle');
+    const ogDescription = document.getElementById('ogDescription');
+    const ogImage = document.getElementById('ogImage');
+
+    const categoryLabels = {
+      ansiedad: 'Ansiedad',
+      depresion: 'Depresión',
+      pareja: 'Relaciones de pareja',
+      familiar: 'Relaciones familiares',
+      autoestima: 'Autoestima',
+      otros: 'Otros'
+    };
+
+    // Get post ID from URL
+    const params = new URLSearchParams(window.location.search);
+    const postId = params.get('id');
+
+    if (!postId) {
+      showNotFound();
+    } else {
+      loadPost(postId);
+    }
+
+    async function loadPost(id) {
+      try {
+        const docSnap = await getDoc(doc(db, 'blogPosts', id));
+        if (!docSnap.exists() || docSnap.data().publicado !== true) {
+          showNotFound();
+          return;
+        }
+
+        const data = docSnap.data();
+        renderPost(data, id);
+
+        // Load related posts (same category, excluding current)
+        loadRelatedPosts(data.categoria, id);
+
+      } catch (error) {
+        console.error('Error loading post:', error);
+        showNotFound();
+      }
+    }
+
+    function renderPost(data, id) {
+      // Update meta tags
+      const title = data.titulo || 'Artículo';
+      const excerpt = stripHtml(data.contenidoHtml).substring(0, 160);
+      const coverUrl = data.imagenPortadaUrl || '';
+
+      postTitle.textContent = `${title} · Pensar Sentir Hacer`;
+      postDescription.setAttribute('content', excerpt);
+      ogTitle.setAttribute('content', title);
+      ogDescription.setAttribute('content', excerpt);
+      if (coverUrl) ogImage.setAttribute('content', coverUrl);
+
+      // Render header
+      document.getElementById('articleCategory').textContent = categoryLabels[data.categoria] || data.categoria;
+      document.getElementById('articleTitle').textContent = title;
+      document.getElementById('articleDate').textContent = data.fecha?.toDate ? formatDate(data.fecha.toDate()) : 'Fecha no disponible';
+
+      // Cover image
+      if (coverUrl) {
+        articleCover.src = coverUrl;
+        articleCover.alt = title;
+        if (data.plantilla === 'imagen-destacada') {
+          articleCoverFigure.className = 'article-featured-cover';
+          articleCoverFigure.innerHTML = `
+            <img src="${coverUrl}" alt="${escapeHtml(title)}" id="articleCover" loading="eager">
+            <div class="article-featured-overlay">
+              <span class="article-category">${categoryLabels[data.categoria] || data.categoria}</span>
+              <h1 class="article-title">${escapeHtml(title)}</h1>
+              <div class="article-meta">
+                <div class="author">
+                  <span class="author-avatar">MF</span>
+                  <span class="author-name">María Fernanda Arana</span>
+                </div>
+                <time>${data.fecha?.toDate ? formatDate(data.fecha.toDate()) : 'Fecha no disponible'}</time>
+              </div>
+            </div>
+          `;
+          articleHeader.style.display = 'none';
+        } else {
+          articleCoverFigure.style.display = 'block';
+        }
+      }
+
+      // Content
+      articleContent.innerHTML = data.contenidoHtml || '';
+
+      // Tags
+      if (data.categoria) {
+        const tagHtml = `<span class="tag">${categoryLabels[data.categoria] || data.categoria}</span>`;
+        articleTags.innerHTML = tagHtml;
+        articleTags.style.display = 'flex';
+      }
+
+      // Show article, hide loading
+      loadingSkeleton.style.display = 'none';
+      articleMain.style.display = 'block';
+    }
+
+    async function loadRelatedPosts(category, excludeId) {
+      if (!category) return;
+      try {
+        const q = query(
+          collection(db, 'blogPosts'),
+          where('categoria', '==', category),
+          where('publicado', '==', true),
+          orderBy('fecha', 'desc'),
+          limit(4)
+        );
+        const snapshot = await getDocs(q);
+        const posts = snapshot.docs
+          .map(d => ({ id: d.id, ...d.data() }))
+          .filter(p => p.id !== excludeId)
+          .slice(0, 3);
+
+        if (posts.length === 0) return;
+
+        relatedGrid.innerHTML = posts.map(post => {
+          const cover = post.imagenPortadaUrl;
+          const fecha = post.fecha?.toDate ? formatDate(post.fecha.toDate()) : '';
+          return `
+            <article class="related-card">
+              ${cover ? `<img src="${cover}" alt="${escapeHtml(post.titulo)}" class="related-cover" loading="lazy">` : `<div class="related-cover" style="background: linear-gradient(135deg, var(--celeste-light), var(--celeste-mid));"></div>`}
+              <div class="related-content">
+                <a href="blog-post.html?id=${post.id}" class="related-title-link">${escapeHtml(post.titulo)}</a>
+                <div class="related-meta">${fecha}</div>
+              </div>
+            </article>
+          `;
+        }).join('');
+
+        relatedSection.style.display = 'block';
+      } catch (error) {
+        console.error('Error loading related posts:', error);
+      }
+    }
+
+    function showNotFound() {
+      loadingSkeleton.style.display = 'none';
+      notFound.style.display = 'block';
+      document.title = 'Artículo no encontrado · Pensar Sentir Hacer';
+    }
+
+    function formatDate(date) {
+      return date.toLocaleDateString('es-PE', { day: '2-digit', month: 'long', year: 'numeric' });
+    }
+
+    function stripHtml(html) {
+      const div = document.createElement('div');
+      div.innerHTML = html;
+      return div.textContent || div.innerText || '';
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+  </script>
+</body>
+</html>

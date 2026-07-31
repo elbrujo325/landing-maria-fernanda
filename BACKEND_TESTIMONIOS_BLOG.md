@@ -88,7 +88,10 @@ Editor: **Quill.js** (gratis, vía CDN, liviano).
 2. El **correo exacto** que va a usar para loguearse al panel admin (queda fijo en las reglas de seguridad).
 3. Confirmar o ajustar la lista de categorías del blog (sección 6).
 4. Confirmar que quiere moderar cada testimonio antes de publicarlo (recomendado, dado que se permite anónimo).
-5. Que cree una cuenta gratis en Cloudinary (con su Google, sin tarjeta) — misma lógica que Firebase: las imágenes de su blog son datos de su negocio, deben quedar en una cuenta suya. Después de crearla, solo necesita compartir dos datos de texto (no contraseña): el **cloud name** y el **nombre del upload preset** que se configura una sola vez.
+5. [✓ Completado] Que cree una cuenta gratis en Cloudinary (con su Google, sin tarjeta) — misma lógica que Firebase: las imágenes de su blog son datos de su negocio, deben quedar en una cuenta suya. Después de crearla, solo necesita compartir dos datos de texto (no contraseña): el **cloud name** y el **nombre del upload preset** que se configura una sola vez.
+   - Cloud name: `vzqynzsh`
+   - Upload preset: `blog-fernanda` (unsigned)
+   - Carpeta: `blog-fernanda`
 
 ## 8. Fuera de alcance en v1 (queda documentado para v2)
 

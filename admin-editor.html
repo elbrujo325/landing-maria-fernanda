@@ -384,6 +384,7 @@
 
   <!-- QUILL JS -->
   <script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
+  <script src="https://unpkg.com/quill-image-resize-module@3.0.0/image-resize.min.js"></script>
 
   <!-- FIREBASE SDK -->
   <script type="module">
@@ -460,6 +461,9 @@
         return;
       }
 
+      // Registrar módulo de redimensionar imágenes (cargado vía CDN)
+      Quill.register('modules/imageResize', ImageResize.default);
+
       try {
         quill = new Quill('#editorContainer', {
           theme: 'snow',
@@ -472,7 +476,8 @@
               ['blockquote', 'code-block'],
               ['link', 'image'],
               ['clean']
-            ]
+            ],
+            imageResize: { modules: ['Resize', 'DisplaySize'] }
           },
           placeholder: 'Escribe tu artículo aquí...'
         });

@@ -651,13 +651,13 @@
     .social-proof-stat-number {
       font-family: 'League Spartan', sans-serif;
       font-size: 36px;
-      color: var(--text-dark);
+      color: var(--celeste-deep);
       line-height: 1;
     }
 
     .social-proof-stat-label {
       font-size: 13px;
-      color: var(--text-dark);
+      color: var(--celeste-deep);
       text-transform: uppercase;
       letter-spacing: 0.05em;
       margin-top: 4px;
@@ -687,7 +687,7 @@
       font-family: 'League Spartan', sans-serif;
       font-size: 14px;
       font-weight: 600;
-      color: var(--text-dark);
+      color: var(--celeste-deep);
     }
 
     /* PROBLEM / SOLUTION */
@@ -3191,9 +3191,13 @@
       justify-content: center;
       flex-shrink: 0;
     }
+    .footer-logo-circle img {
+      width: 65px !important;
+      height: 65px !important;
+    }
     .footer-brand-name {
       font-family: 'League Spartan', sans-serif;
-      font-size: 22px;
+      font-size: 28px;
       font-weight: 600;
       color: var(--cream);
       line-height: 1.2;
@@ -4419,24 +4423,24 @@
     <div class="container">
       <div class="social-proof-stats">
         <div class="social-proof-stat">
-          <div class="social-proof-stat-number">+150</div>
+          <div class="social-proof-stat-number" data-target="250">0</div>
           <div class="social-proof-stat-label">Pacientes atendidos</div>
         </div>
         <div class="social-proof-stat">
-          <div class="social-proof-stat-number">+7</div>
+          <div class="social-proof-stat-number" data-target="7">0</div>
           <div class="social-proof-stat-label">Años experiencia</div>
         </div>
         <div class="social-proof-stat">
-          <div class="social-proof-stat-number">+12</div>
+          <div class="social-proof-stat-number" data-target="12">0</div>
           <div class="social-proof-stat-label">Países atendidos</div>
         </div>
         <div class="social-proof-stat">
-          <div class="social-proof-stat-number">2</div>
+          <div class="social-proof-stat-number" data-target="2">0</div>
           <div class="social-proof-stat-label">Sedes en Lima</div>
         </div>
         <div class="social-proof-stat">
-          <div class="social-proof-stat-number">100%</div>
-          <div class="social-proof-stat-label">Sesiones online</div>
+          <div class="social-proof-stat-number" data-target="100" data-suffix="%">0</div>
+          <div class="social-proof-stat-label">Sesiones confidenciales</div>
         </div>
       </div>
       <div class="social-proof-logos">
@@ -4621,9 +4625,8 @@
               <span style="width:48px;height:48px;border-radius:14px;background:var(--cream-light);display:flex;align-items:center;justify-content:center;color:var(--celeste-deep);flex-shrink:0;">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:24px;height:24px;"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
               </span>
-              Problemas
+              ¿Te está pasando algo de esto?
             </h3>
-            <p style="font-size:13px; color:var(--celeste-deep); margin:0; font-weight:600; text-transform:uppercase; letter-spacing:0.6px;">Lo que te trae aquí</p>
           </header>
           <ul style="list-style:none; padding:0; margin:0; flex:1; display:flex; flex-direction:column; gap:10px;">
             <li style="display:flex; align-items:flex-start; gap:14px; padding:12px 0; border-bottom:1px solid var(--card-border);">
@@ -4684,9 +4687,8 @@
               <span style="width:48px;height:48px;border-radius:14px;background:var(--cream-light);display:flex;align-items:center;justify-content:center;color:var(--celeste-deep);flex-shrink:0;">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:24px;height:24px;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
               </span>
-              ¿En qué puedo<br>ayudarte?
+              ¿En qué casos te puedo ayudar?
             </h3>
-            <p style="font-size:13px; color:var(--celeste-deep); margin:0; font-weight:600; text-transform:uppercase; letter-spacing:0.6px;">Áreas de especialidad</p>
           </header>
           <ul style="list-style:none; padding:0; margin:0; flex:1; display:flex; flex-direction:column; gap:8px;">
             <li style="padding:14px 16px; border-radius:12px; background:var(--cream-light); border:1px solid var(--card-border); transition:all .2s ease;"><span style="font-size:15px; color:var(--text-dark); font-weight:500;">Ansiedad</span></li>
@@ -4713,7 +4715,6 @@
               </span>
               ¿Qué puedes esperar<br>de la terapia?
             </h3>
-            <p style="font-size:13px; color:var(--celeste-deep); margin:0; font-weight:600; text-transform:uppercase; letter-spacing:0.6px;">Resultados del proceso</p>
           </header>
           <p style="font-size:15px; color:var(--text-dark); margin:0 0 20px; line-height:1.6;">Durante el proceso aprenderás a:</p>
           <ul style="list-style:none; padding:0; margin:0; flex:1; display:flex; flex-direction:column; gap:10px;">
@@ -4778,7 +4779,6 @@
               </span>
               Quizá esto es lo que<br>llevas tiempo diciéndote...
             </h3>
-            <p style="font-size:13px; color:var(--celeste-deep); margin:0; font-weight:600; text-transform:uppercase; letter-spacing:0.6px;">Esa voz interna</p>
           </header>
           <ul style="list-style:none; padding:0; margin:0; flex:1; display:flex; flex-direction:column; gap:8px; position:relative; z-index:1;">
             <li style="padding:20px 24px; border-radius:14px; background:rgba(255,255,255,0.7); backdrop-filter:blur(6px); border:1px solid rgba(111,193,255,0.18); transition:all .2s ease;">
@@ -4861,12 +4861,12 @@
                   <p style="font-size:15px; color:var(--text-dark); font-weight:500; margin:0;">50 minutos por sesión</p>
                 </div>
                 <div style="background:var(--cream-light); padding:16px; border-radius:12px; border:1px solid var(--celeste-light);">
-                  <p style="font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--celeste-deep); font-weight:600; margin:0 0 6px;">Modalidad</p>
-                  <p style="font-size:15px; color:var(--text-dark); font-weight:500; margin:0;">Presencial en consultorio</p>
-                </div>
-                <div style="background:var(--cream-light); padding:16px; border-radius:12px; border:1px solid var(--celeste-light);">
                   <p style="font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--celeste-deep); font-weight:600; margin:0 0 6px;">Frecuencia</p>
                   <p style="font-size:15px; color:var(--text-dark); font-weight:500; margin:0;">Semanal (recomendado)</p>
+                </div>
+                <div style="background:var(--cream-light); padding:16px; border-radius:12px; border:1px solid var(--celeste-light);">
+                  <p style="font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--celeste-deep); font-weight:600; margin:0 0 6px;">SEDES</p>
+                  <p style="font-size:15px; color:var(--text-dark); font-weight:500; margin:0;">Surco y San Isidro</p>
                 </div>
               </div>
               <div>
@@ -4882,9 +4882,9 @@
               <div style="margin-top:24px;">
                 <p style="font-size:13px; text-transform:uppercase; letter-spacing:.05em; color:var(--celeste-deep); font-weight:600; margin:0 0 12px;">Nuestro espacio</p>
                 <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px; border-radius:12px; overflow:hidden; border:1px solid var(--celeste-light);">
-                  <img src="consultorio-1-optimized.jpg" alt="Consultorio - Sala de espera" style="width:100%; height:180px; object-fit:cover; display:block;" loading="lazy">
+                  <img src="san-isidro-optimized.jpg" alt="Consultorio San Isidro - Sala de espera" style="width:100%; height:180px; object-fit:cover; display:block;" loading="lazy">
+                  <img src="surco-optimized.jpg" alt="Consultorio Surco - Sala de espera" style="width:100%; height:180px; object-fit:cover; display:block;" loading="lazy">
                   <img src="consultorio-2-optimized.jpg" alt="Consultorio - Sillón y jardín" style="width:100%; height:180px; object-fit:cover; display:block;" loading="lazy">
-                  <img src="consultorio-3-optimized.jpg" alt="Consultorio - Vista amplia" style="width:100%; height:180px; object-fit:cover; display:block;" loading="lazy">
                 </div>
               </div>
               <div style="margin-top:20px; text-align:center;">
@@ -4917,7 +4917,7 @@
                 </div>
                 <div style="background:var(--cream-light); padding:16px; border-radius:12px; border:1px solid var(--celeste-light);">
                   <p style="font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--celeste-deep); font-weight:600; margin:0 0 6px;">Modalidad</p>
-                  <p style="font-size:15px; color:var(--text-dark); font-weight:500; margin:0;">Videollamada (Google Meet / Zoom / WhatsApp)</p>
+                  <p style="font-size:15px; color:var(--text-dark); font-weight:500; margin:0;">Videollamada únicamente por Google Meet</p>
                 </div>
                 <div style="background:var(--cream-light); padding:16px; border-radius:12px; border:1px solid var(--celeste-light);">
                   <p style="font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--celeste-deep); font-weight:600; margin:0 0 6px;">Frecuencia</p>
@@ -4927,19 +4927,17 @@
               <div>
                 <p style="font-size:13px; text-transform:uppercase; letter-spacing:.05em; color:var(--celeste-deep); font-weight:600; margin:0 0 10px;">Qué incluye</p>
                 <ul style="margin:0; padding-left:20px; font-size:14px; color:var(--text-dark); line-height:1.8;">
-                  <li>Sesión por videollamada segura</li>
-                  <li>Misma calidad y confidencialidad que presencial</li>
-                  <li>Herramientas y ejercicios personalizados</li>
-                  <li>Seguimiento por WhatsApp entre sesiones (packs)</li>
-                  <li>Material de apoyo en PDF</li>
+                  <li>Espacio psicoterapéutico seguro y confidencial</li>
+                  <li>Misma calidad, eficiencia y confidencialidad que la terapia presencial</li>
+                  <li>Ejercicios y estrategias basadas en evidencia científica</li>
                 </ul>
               </div>
               <div style="margin-top:24px;">
                 <p style="font-size:13px; text-transform:uppercase; letter-spacing:.05em; color:var(--celeste-deep); font-weight:600; margin:0 0 12px;">Tu espacio de terapia online</p>
                 <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px;">
-                  <img src="online-1-optimized.jpg" alt="Terapia online - Configuración videollamada" style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:12px; border:1px solid var(--celeste-light);">
-                  <img src="online-2-optimized.jpg" alt="Terapia online - Setup con ring light" style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:12px; border:1px solid var(--celeste-light);">
-                  <img src="online-3-optimized.jpg" alt="Terapia online - Ambiente virtual" style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:12px; border:1px solid var(--celeste-light);">
+                  <img src="online-4-optimized.jpg" alt="Terapia online - Sesión en videollamada" style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:12px; border:1px solid var(--celeste-light);">
+                  <img src="charla-4-optimized.jpg" alt="Terapia online - Espacio virtual" style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:12px; border:1px solid var(--celeste-light);">
+                  <img src="online-1-new-optimized.jpg" alt="Terapia online - Configuración videollamada" style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:12px; border:1px solid var(--celeste-light);">
                 </div>
               </div>
               <div style="margin-top:20px; text-align:center;">
@@ -4995,7 +4993,7 @@
           <div class="mision-icon">
             <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
           </div>
-          <h3>🧠 Un acompañamiento basado en evidencia científica</h3>
+          <h3>Un acompañamiento basado en evidencia científica</h3>
           <p>Trabajo con enfoques psicológicos respaldados por la investigación, adaptando cada proceso a las necesidades de cada persona.</p>
         </div>
 
@@ -5003,7 +5001,7 @@
           <div class="mision-icon">
             <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
-          <h3>🤝 Un espacio seguro y libre de juicios</h3>
+          <h3>Un espacio seguro y libre de juicios</h3>
           <p>Un lugar humano, responsable y libre de juicios donde puedas ser tú y trabajar en tu bienestar.</p>
         </div>
 
@@ -5011,7 +5009,7 @@
           <div class="mision-icon">
             <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </div>
-          <h3>🩵 Psicoterapia ACT y bienestar emocional</h3>
+          <h3>Psicoterapia ACT y bienestar emocional</h3>
           <p>Especialista en Terapia de Aceptación y Compromiso (ACT) y Terapia de Tercera Generación para ansiedad, depresión, relaciones y crecimiento personal.</p>
         </div>
       </div>
@@ -5039,9 +5037,6 @@
         <div class="testimonios-track" id="testimoniosTrack">
           <!-- Set 1 -->
           <div class="testimonio-card">
-            <div class="testimonio-avatar">
-              <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&h=200&fit=crop&crop=face" alt="Testimonio de Marileny C." loading="lazy">
-            </div>
             <div class="testimonio-stars">
               <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
               <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -5054,9 +5049,6 @@
           </div>
 
           <div class="testimonio-card">
-            <div class="testimonio-avatar">
-              <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&h=200&fit=crop&crop=face" alt="Testimonio de Waleska P." loading="lazy">
-            </div>
             <div class="testimonio-stars">
               <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
               <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -5069,9 +5061,6 @@
           </div>
 
           <div class="testimonio-card">
-            <div class="testimonio-avatar">
-              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=face" alt="Testimonio anónimo" loading="lazy">
-            </div>
             <div class="testimonio-stars">
               <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
               <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -5084,9 +5073,6 @@
           </div>
 
           <div class="testimonio-card">
-            <div class="testimonio-avatar">
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face" alt="Testimonio de Carlos R." loading="lazy">
-            </div>
             <div class="testimonio-stars">
               <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
               <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -5099,9 +5085,6 @@
           </div>
 
           <div class="testimonio-card">
-            <div class="testimonio-avatar">
-              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&h=200&fit=crop&crop=face" alt="Testimonio de Ana L." loading="lazy">
-            </div>
             <div class="testimonio-stars">
               <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
               <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -5114,9 +5097,6 @@
           </div>
 
           <div class="testimonio-card">
-            <div class="testimonio-avatar">
-              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face" alt="Testimonio de Patricia V." loading="lazy">
-            </div>
             <div class="testimonio-stars">
               <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
               <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -5130,9 +5110,6 @@
 
           <!-- Set 2 (duplicate for seamless loop) -->
           <div class="testimonio-card">
-            <div class="testimonio-avatar">
-              <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&h=200&fit=crop&crop=face" alt="Testimonio de Marileny C." loading="lazy">
-            </div>
             <div class="testimonio-stars">
               <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
               <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -5145,9 +5122,6 @@
           </div>
 
           <div class="testimonio-card">
-            <div class="testimonio-avatar">
-              <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&h=200&fit=crop&crop=face" alt="Testimonio de Waleska P." loading="lazy">
-            </div>
             <div class="testimonio-stars">
               <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
               <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -5160,9 +5134,6 @@
           </div>
 
           <div class="testimonio-card">
-            <div class="testimonio-avatar">
-              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=face" alt="Testimonio anónimo" loading="lazy">
-            </div>
             <div class="testimonio-stars">
               <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
               <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -5175,9 +5146,6 @@
           </div>
 
           <div class="testimonio-card">
-            <div class="testimonio-avatar">
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face" alt="Testimonio de Carlos R." loading="lazy">
-            </div>
             <div class="testimonio-stars">
               <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
               <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -5190,9 +5158,6 @@
           </div>
 
           <div class="testimonio-card">
-            <div class="testimonio-avatar">
-              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&h=200&fit=crop&crop=face" alt="Testimonio de Ana L." loading="lazy">
-            </div>
             <div class="testimonio-stars">
               <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
               <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -5205,9 +5170,6 @@
           </div>
 
           <div class="testimonio-card">
-            <div class="testimonio-avatar">
-              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face" alt="Testimonio de Patricia V." loading="lazy">
-            </div>
             <div class="testimonio-stars">
               <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
               <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -5450,7 +5412,7 @@
   <!-- CTA FINAL -->
   <section class="cta-final" id="agenda">
     <div class="container fade-in">
-      <h2>¿Lista para empezar?</h2>
+      <h2>¿Estás listo para empezar?</h2>
       <p>Da el primer paso. Una sesión puede cambiarlo todo.</p>
       <div class="cta-final-buttons">
         <a href="https://wa.me/51939855573" class="btn btn-primary" target="_blank" rel="noopener">Agendar mi primera sesión →</a>
@@ -5487,7 +5449,7 @@
     <!-- FRANJA CITA CENTRADA -->
     <div class="footer-quote" aria-hidden="false">
       <blockquote>
-        <p>"Si mejoras tú, mejora el mundo y los que te rodean"</p>
+        <p>Si mejoras tú, mejora el mundo y los que te rodean</p>
         <footer>— María Fernanda Arana</footer>
       </blockquote>
     </div>
@@ -5505,7 +5467,7 @@
           <span class="footer-brand-name">Pensar Sentir Hacer</span>
         </div>
         <p class="footer-tagline">PSICOLOGÍA CLÍNICA ACT</p>
-        <p class="footer-desc">"Acompañamiento psicológico basado en evidencia (ACT) para que recuperes claridad, calma y dirección. +7 años · +12 países · Online y presencial en Lima."</p>
+        <p class="footer-desc">Acompañamiento psicológico basado en evidencia (ACT) para que recuperes claridad, calma y dirección. +7 años · +12 países · Online y presencial en Lima.</p>
         <span class="footer-pill">Terapia con propósito</span>
       </div>
 
@@ -5529,7 +5491,7 @@
         <ul class="footer-contact-list">
           <li>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            <span>Lima, Perú — 2 sedes + Online</span>
+            <span>Lima, Perú — San Isidro, Surco + Online</span>
           </li>
           <li>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
@@ -5871,11 +5833,6 @@
       : (data.nombre || 'Anónimo');
 
     card.innerHTML = `
-      <div class="testimonio-avatar">
-        <div class="avatar-placeholder" style="background: var(--celeste-light); display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; border-radius: 50%; color: var(--celeste-deep); font-weight: 600; font-size: 1.5rem;">
-          ${nombre.charAt(0).toUpperCase()}
-        </div>
-      </div>
       <div class="testimonio-stars" style="color: var(--yellow-deep);">${starsHTML}</div>
       <p class="testimonio-text">"${data.texto}"</p>
       <div class="testimonio-author">— ${nombre}${data.anonimo ? ' (anónimo)' : ''}</div>
@@ -5982,6 +5939,71 @@
 
   // Iniciar carga de testimonios dinámicos
   loadTestimonios();
+</script>
+
+<script>
+  // --- CONTADOR ANIMADO SOCIAL PROOF BAR (4s) ---
+  (function () {
+    var statNumbers = document.querySelectorAll('.social-proof-stat-number[data-target]');
+    if (!statNumbers.length) return;
+
+    var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var duration = 4000; // 4 segundos
+
+    function animateCount(el, target, isPercentage) {
+      var start = 0;
+      var startTime = null;
+      var prefix = isPercentage ? '' : '+';
+
+      function step(timestamp) {
+        if (!startTime) startTime = timestamp;
+        var progress = Math.min((timestamp - startTime) / duration, 1);
+        // Easing: easeOutCubic
+        var eased = 1 - Math.pow(1 - progress, 3);
+        var current = Math.round(eased * target);
+        el.textContent = prefix + current + (isPercentage ? '%' : '');
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        } else {
+          el.textContent = prefix + target + (isPercentage ? '%' : '');
+        }
+      }
+
+      if (prefersReduced) {
+        el.textContent = prefix + target + (isPercentage ? '%' : '');
+      } else {
+        requestAnimationFrame(step);
+      }
+    }
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var el = entry.target;
+          var target = parseInt(el.dataset.target, 10);
+          var isPercentage = el.dataset.suffix === '%';
+          animateCount(el, target, isPercentage);
+          observer.unobserve(el);
+        }
+      });
+    }, { threshold: 0.3, rootMargin: '0px 0px -50px 0px' });
+
+    statNumbers.forEach(function (el) { observer.observe(el); });
+
+    // Verificar elementos ya visibles al cargar (fallback para cuando ya están en viewport)
+    setTimeout(function () {
+      statNumbers.forEach(function (el) {
+        var rect = el.getBoundingClientRect();
+        var isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+        if (isVisible && el.textContent === '0') {
+          var target = parseInt(el.dataset.target, 10);
+          var isPercentage = el.dataset.suffix === '%';
+          animateCount(el, target, isPercentage);
+          observer.unobserve(el);
+        }
+      });
+    }, 100);
+  })();
 </script>
 </body>
 </html>

@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Blog · Pensar Sentir Hacer</title>
-  <link rel="icon" type="image/png" sizes="32x32" href="logo-celeste-transparente.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="logo-celeste-transparente.png">
-  <link rel="apple-touch-icon" href="logo-blanco-transparente.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/logos/logo-celeste-transparente.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/logos/logo-celeste-transparente.png">
+  <link rel="apple-touch-icon" href="assets/logos/logo-blanco-transparente.png">
   <meta name="theme-color" content="#6FC1FF">
   <meta name="description" content="Artículos sobre bienestar emocional, ansiedad, depresión, relaciones y crecimiento personal por María Fernanda Arana, Psicóloga Clínica ACT.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -705,7 +705,7 @@
     <div class="container">
       <a href="index.html" class="nav-logo" aria-label="Pensar Sentir Hacer - Inicio">
         <div class="nav-logo-img-wrap">
-          <img src="logo-celeste-transparente.png" alt="Logo Pensar Sentir Hacer" class="nav-logo-img" aria-hidden="true">
+          <img src="assets/logos/logo-celeste-transparente.png" alt="Logo Pensar Sentir Hacer" class="nav-logo-img" aria-hidden="true">
         </div>
         <span class="nav-text">Pensar Sentir Hacer</span>
       </a>
@@ -799,7 +799,7 @@
     <div class="footer-container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <img src="logo-celeste-transparente.png" alt="PSH" class="footer-logo">
+          <img src="assets/logos/logo-celeste-transparente.png" alt="PSH" class="footer-logo">
           <p>"Si mejoras tú, mejora el mundo y los que te rodean"</p>
           <div class="footer-social">
             <a href="https://instagram.com/pensarsentirhacer.pe" target="_blank" rel="noopener noreferrer" aria-label="Instagram @pensarsentirhacer.pe" class="footer-social-btn">
@@ -864,7 +864,7 @@
 
   <!-- FIREBASE SDK -->
   <script type="module">
-    import { firebaseConfig } from './firebase-config.js';
+    import { firebaseConfig } from './src/js/firebase-config.js';
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js';
     import { getFirestore, collection, query, where, orderBy, onSnapshot, limit, getDocs } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js';
 

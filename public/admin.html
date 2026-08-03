@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin · Pensar Sentir Hacer</title>
-  <link rel="icon" type="image/png" href="logo-celeste-transparente.png">
+  <link rel="icon" type="image/png" href="assets/logos/logo-celeste-transparente.png">
   <meta name="robots" content="noindex, nofollow">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -264,7 +264,7 @@
   <div class="login-screen" id="loginScreen" role="main">
     <div class="login-card">
       <div class="login-logo">
-        <img src="logo-celeste-transparente.png" alt="Pensar Sentir Hacer">
+        <img src="assets/logos/logo-celeste-transparente.png" alt="Pensar Sentir Hacer">
       </div>
       <h1 class="login-title">Panel de Administración</h1>
       <p class="login-subtitle">Inicia sesión con tu cuenta de Google autorizada</p>
@@ -290,7 +290,7 @@
     <header class="admin-header">
       <div class="admin-header-content">
         <div class="admin-header-left">
-          <img src="logo-celeste-transparente.png" alt="PSH" class="admin-logo">
+          <img src="assets/logos/logo-celeste-transparente.png" alt="PSH" class="admin-logo">
           <span class="admin-title">Admin PSH</span>
         </div>
         <nav class="admin-nav" role="tablist" aria-label="Secciones del panel">
@@ -425,7 +425,7 @@
 
   <!-- FIREBASE SDK -->
   <script type="module">
-    import { firebaseConfig, ADMIN_EMAILS } from './firebase-config.js';
+    import { firebaseConfig, ADMIN_EMAILS } from './src/js/firebase-config.js';
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js';
     import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js';
     import { getFirestore, collection, addDoc, getDocs, query, where, orderBy, updateDoc, deleteDoc, doc, serverTimestamp, onSnapshot } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js';

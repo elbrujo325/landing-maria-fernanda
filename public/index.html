@@ -2308,37 +2308,32 @@
     .testimonios-form-wrapper {
       max-width: 720px;
       margin: 60px auto 0;
-      padding: 40px 32px;
-      background: var(--white);
-      border-radius: 24px;
-      border: 2px solid var(--card-border);
-      box-shadow: 0 12px 40px rgba(111, 193, 255, 0.1);
+      padding: 48px 32px 40px;
+      background: linear-gradient(180deg, #FFFFFF 0%, rgba(240, 249, 255, 0.9) 100%);
+      border-radius: 32px;
+      border: 2px solid rgba(176, 221, 252, 0.65);
+      box-shadow: 0 16px 50px rgba(111, 193, 255, 0.12);
     }
 
     .testimonios-form-title {
       font-family: 'League Spartan', sans-serif;
-      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-size: clamp(1.75rem, 3.5vw, 2.3rem);
       color: var(--text-dark);
       text-align: center;
-      margin-bottom: 8px;
+      margin-bottom: 14px;
     }
 
     .testimonios-form-subtitle {
       text-align: center;
       color: var(--text-dark);
-      opacity: 0.7;
-      margin-bottom: 32px;
-      font-size: 15px;
+      opacity: 0.8;
+      margin: 0 auto 34px;
+      font-size: 16px;
+      line-height: 1.65;
+      max-width: 670px;
     }
 
     .testimonio-form .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      margin-bottom: 24px;
-    }
-
-    .testimonio-form .form-group {
       margin-bottom: 24px;
     }
 
@@ -4529,8 +4524,8 @@
             </div>
           </div>
           <div style="flex-shrink:0;animation:badgePop 0.75s cubic-bezier(0.34,1.56,0.64,1) 0.25s both;">
-            <div style="width:128px;height:128px;border-radius:50%;background:#6FC1FF;display:flex;align-items:center;justify-content:center;animation:ringPulse 3s ease-in-out infinite,logoFloat 5s ease-in-out infinite;box-shadow:0 8px 32px rgba(111,193,255,0.35);">
-              <img src="https://raw.githubusercontent.com/elbrujo325/landing-maria-fernanda/main/assets/logos/logo-blanco-transparente.png" alt="Pensar Sentir Hacer" style="width:112px;height:112px;object-fit:contain;filter:brightness(0) invert(1);"/>
+            <div style="width:128px;height:128px;border-radius:50%;background:#6FC1FF;display:flex;align-items:center;justify-content:center;animation:ringPulse 3s ease-in-out infinite,logoFloat 5s ease-in-out infinite;box-shadow:0 8px 32px rgba(111,193,255,0.35);overflow:hidden;">
+              <img src="assets/logos/logo-celeste-transparente.png" alt="Pensar Sentir Hacer" style="width:100%;height:100%;object-fit:contain;filter:brightness(0) invert(1);"/>
             </div>
           </div>
         </div>
@@ -4947,6 +4942,113 @@
           </div>
         </div>
 
+        <!-- CHARLAS Y CAPACITACIONES -->
+        <div class="service-accordion-item fade-in" style="background:var(--white); border:2px solid var(--celeste-mid); border-radius:20px; overflow:hidden; margin-bottom:16px; transition:all .3s ease;">
+          <button class="service-accordion-header" style="width:100%; padding:28px; display:flex; justify-content:space-between; align-items:center; background:none; border:none; cursor:pointer; text-align:left;">
+            <div style="display:flex; align-items:center; gap:16px;">
+              <div style="width:56px; height:56px; background:var(--cream-light); border-radius:16px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                <svg style="width:28px; height:28px; stroke:var(--celeste-deep);" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M4 4h16v4H4z"/><path d="M4 10h16v10H4z"/></svg>
+              </div>
+              <div>
+                <h3 style="font-size:20px; color:var(--text-dark); margin:0 0 4px;">Charlas y Capacitaciones</h3>
+                <p style="font-size:14px; color:var(--text-dark); margin:0;">Conferencias, talleres y capacitaciones diseñadas para promover el bienestar emocional y fortalecer habilidades personales y profesionales.</p>
+              </div>
+            </div>
+            <svg class="accordion-icon" style="width:24px; height:24px; stroke:var(--celeste-deep); flex-shrink:0; transition:transform .3s ease;" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="service-accordion-content" style="max-height:0; overflow:hidden; transition:max-height .4s ease, padding .3s ease;">
+            <div style="padding:0 28px 28px; border-top:1px solid var(--celeste-light);">
+              <p style="font-size:14px; color:var(--text-dark); line-height:1.7; margin-bottom:16px;">Cada propuesta se adapta a las necesidades de tu organización.</p>
+              <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; margin-bottom:20px;">
+                <div style="background:var(--cream-light); padding:16px; border-radius:12px; border:1px solid var(--celeste-light);">
+                  <p style="font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--celeste-deep); font-weight:600; margin:0 0 6px;">DIRIGIDO A</p>
+                  <ul style="margin:0; padding-left:20px; font-size:14px; color:var(--text-dark); line-height:1.8;">
+                    <li>Empresas</li>
+                    <li>Colegios</li>
+                    <li>Universidades</li>
+                    <li>Instituciones</li>
+                    <li>Equipos de trabajo</li>
+                    <li>Comunidades y voluntariados</li>
+                  </ul>
+                </div>
+                <div style="background:var(--cream-light); padding:16px; border-radius:12px; border:1px solid var(--celeste-light);">
+                  <p style="font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--celeste-deep); font-weight:600; margin:0 0 6px;">TEMÁTICAS</p>
+                  <ul style="margin:0; padding-left:20px; font-size:14px; color:var(--text-dark); line-height:1.8;">
+                    <li>Manejo de la ansiedad y el estrés</li>
+                    <li>Bienestar emocional</li>
+                    <li>Comunicación efectiva</li>
+                    <li>Mindfulness</li>
+                    <li>Salud mental en el trabajo</li>
+                    <li>Relaciones saludables</li>
+                    <li>Crianza y familia</li>
+                    <li>Prevención del burnout</li>
+                    <li>Temas personalizados según tus objetivos</li>
+                  </ul>
+                </div>
+              </div>
+              <div style="margin-bottom:20px;">
+                <p style="font-size:13px; text-transform:uppercase; letter-spacing:.05em; color:var(--celeste-deep); font-weight:600; margin:0 0 10px;">¿Qué incluye?</p>
+                <ul style="margin:0; padding-left:20px; font-size:14px; color:var(--text-dark); line-height:1.8;">
+                  <li>Contenido adaptado al público</li>
+                  <li>Material de apoyo</li>
+                  <li>Modalidad presencial u online</li>
+                  <li>Espacio de preguntas y participación</li>
+                </ul>
+              </div>
+              <div style="margin-top:20px; text-align:center;">
+                <a href="https://wa.me/51939855573" class="btn btn-primary" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:8px; padding:14px 28px;">Solicitar información<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px; height:18px;"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ALIANZAS Y COLABORACIONES -->
+        <div class="service-accordion-item fade-in" style="background:var(--white); border:2px solid var(--celeste-mid); border-radius:20px; overflow:hidden; margin-bottom:16px; transition:all .3s ease;">
+          <button class="service-accordion-header" style="width:100%; padding:28px; display:flex; justify-content:space-between; align-items:center; background:none; border:none; cursor:pointer; text-align:left;">
+            <div style="display:flex; align-items:center; gap:16px;">
+              <div style="width:56px; height:56px; background:var(--cream-light); border-radius:16px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                <svg style="width:28px; height:28px; stroke:var(--celeste-deep);" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+              </div>
+              <div>
+                <h3 style="font-size:20px; color:var(--text-dark); margin:0 0 4px;">Alianzas y Colaboraciones</h3>
+                <p style="font-size:14px; color:var(--text-dark); margin:0;">Trabajemos juntos para desarrollar proyectos que acerquen el bienestar emocional a más personas.</p>
+              </div>
+            </div>
+            <svg class="accordion-icon" style="width:24px; height:24px; stroke:var(--celeste-deep); flex-shrink:0; transition:transform .3s ease;" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="service-accordion-content" style="max-height:0; overflow:hidden; transition:max-height .4s ease, padding .3s ease;">
+            <div style="padding:0 28px 28px; border-top:1px solid var(--celeste-light);">
+              <p style="font-size:14px; color:var(--text-dark); line-height:1.7; margin-bottom:16px;">Colaboro con empresas, instituciones, organizaciones y marcas que comparten este propósito.</p>
+              <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; margin-bottom:20px;">
+                <div style="background:var(--cream-light); padding:16px; border-radius:12px; border:1px solid var(--celeste-light);">
+                  <p style="font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--celeste-deep); font-weight:600; margin:0 0 6px;">¿EN QUÉ PODEMOS COLABORAR?</p>
+                  <ul style="margin:0; padding-left:20px; font-size:14px; color:var(--text-dark); line-height:1.8;">
+                    <li>Charlas y conferencias para eventos</li>
+                    <li>Talleres y capacitaciones</li>
+                    <li>Entrevistas y podcasts</li>
+                    <li>Campañas de salud mental</li>
+                    <li>Creación de contenido educativo</li>
+                    <li>Colaboraciones con marcas afines</li>
+                    <li>Eventos corporativos</li>
+                    <li>Proyectos sociales y voluntariados</li>
+                  </ul>
+                </div>
+                <div style="background:var(--cream-light); padding:16px; border-radius:12px; border:1px solid var(--celeste-light);">
+                  <p style="font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--celeste-deep); font-weight:600; margin:0 0 6px;">MODALIDADES</p>
+                  <ul style="margin:0; padding-left:20px; font-size:14px; color:var(--text-dark); line-height:1.8;">
+                    <li>Presencial</li>
+                    <li>Online</li>
+                  </ul>
+                </div>
+              </div>
+              <p style="font-size:14px; color:var(--text-dark); margin-bottom:20px;">Formato personalizado según el proyecto.</p>
+              <div style="margin-top:20px; text-align:center;">
+                <a href="https://wa.me/51939855573" class="btn btn-primary" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:8px; padding:14px 28px;">Hablemos de tu proyecto<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px; height:18px;"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- EBOOKS & RECURSOS (OCULTO v1) -->
         <div class="service-accordion-item fade-in" style="display:none; background:var(--white); border:2px solid var(--celeste-mid); border-radius:20px; overflow:hidden; margin-bottom:16px; transition:all .3s ease;"><!-- DESHABILITADO v1 - reactivar en v2 -->
           <button class="service-accordion-header" style="width:100%; padding:28px; display:flex; justify-content:space-between; align-items:center; background:none; border:none; cursor:pointer; text-align:left;">
@@ -5196,8 +5298,8 @@
 
     <!-- FORMULARIO RESEÑAS PÚBLICAS -->
     <div class="testimonios-form-wrapper" id="testimoniosFormWrapper">
-      <h3 class="testimonios-form-title">¿Quieres compartir tu experiencia?</h3>
-      <p class="testimonios-form-subtitle">Tu testimonio ayuda a otros a dar el paso. Se publica tras revisión de la psicóloga.</p>
+      <h3 class="testimonios-form-title">Comparte tu experiencia</h3>
+      <p class="testimonios-form-subtitle">Tu historia puede ayudar a otras personas a dar el primer paso.</p>
       <form id="testimonioForm" class="testimonio-form" novalidate>
         <div class="form-row">
           <div class="form-group">
@@ -5227,7 +5329,7 @@
           <label for="testimonioAnonimo">Publicar de forma anónima (solo se mostrarán tus iniciales)</label>
         </div>
         <button type="submit" class="btn btn-primary" id="submitTestimonio">
-          <span class="btn-text">Enviar para revisión</span>
+          <span class="btn-text">Compartir mi experiencia</span>
           <span class="btn-loading" style="display:none;"><svg class="spinner" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" fill="none" stroke-dasharray="31.4 31.4" stroke-linecap="round"/></svg> Enviando...</span>
         </button>
         <p class="form-note">Los testimonios se moderan antes de publicarse. No se muestran datos de contacto.</p>
@@ -5499,7 +5601,7 @@
           </li>
           <li>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            <a href="mailto:hola@pensarsentirhacer.pe">hola@pensarsentirhacer.pe</a>
+            <a href="mailto:pensarsentirhacer.pe@gmail.com">pensarsentirhacer.pe@gmail.com</a>
           </li>
           <li>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
@@ -5547,24 +5649,57 @@
   <script>
     // Navbar scroll effect + dynamic theme
     const navbar = document.getElementById('navbar');
-    const hero = document.querySelector('.hero');
-    const heroHeight = hero ? hero.offsetHeight : 600;
+    const heroSection = document.querySelector('.hero');
+    const heroPhoto = document.querySelector('.hero-photo');
+    const mobileStickyCta = document.getElementById('mobileStickyCta');
+    const whatsappFloat = document.querySelector('.whatsapp-float');
 
-    function updateNavbarTheme() {
-      const scrollY = window.scrollY;
-
-      // Scrolled state: navbar se vuelve más opaca y muestra sombra
+    function updateNavbarTheme(scrollY) {
       if (scrollY > 50) {
         navbar.classList.add('scrolled');
       } else {
         navbar.classList.remove('scrolled');
       }
-      // Nota: la navbar usa SOLO el tema claro (texto ink sobre fondo crema).
     }
 
-    window.addEventListener('scroll', updateNavbarTheme, { passive: true });
-    // Initial check
-    updateNavbarTheme();
+    function updateScrollEffects() {
+      const scrollY = window.scrollY;
+      updateNavbarTheme(scrollY);
+
+      if (heroSection && heroPhoto) {
+        const heroHeight = heroSection.offsetHeight;
+        if (scrollY < heroHeight) {
+          heroPhoto.style.transform = `translateY(${scrollY * 0.3}px)`;
+        }
+      }
+
+      if (mobileStickyCta && heroSection) {
+        if (window.innerWidth <= 768) {
+          const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+          if (scrollY > heroBottom - 100) {
+            mobileStickyCta.classList.add('visible');
+            mobileStickyCta.setAttribute('aria-hidden', 'false');
+          } else {
+            mobileStickyCta.classList.remove('visible');
+            mobileStickyCta.setAttribute('aria-hidden', 'true');
+          }
+        } else {
+          mobileStickyCta.classList.remove('visible');
+          mobileStickyCta.setAttribute('aria-hidden', 'true');
+        }
+      }
+
+      if (whatsappFloat) {
+        if (window.innerWidth <= 768 && mobileStickyCta && mobileStickyCta.classList.contains('visible')) {
+          whatsappFloat.style.bottom = '85px';
+        } else {
+          whatsappFloat.style.bottom = '18px';
+        }
+      }
+    }
+
+    window.addEventListener('scroll', updateScrollEffects, { passive: true });
+    updateScrollEffects();
 
     // Mobile menu toggle
     const navToggle = document.getElementById('navToggle');
@@ -5658,20 +5793,6 @@
       });
     });
 
-    // Hero parallax effect
-    const heroPhoto = document.querySelector('.hero-photo');
-    const heroSection = document.querySelector('.hero');
-
-    window.addEventListener('scroll', () => {
-      const scrolled = window.scrollY;
-      const heroHeight = heroSection.offsetHeight;
-
-      if (scrolled < heroHeight && heroPhoto) {
-        const rate = scrolled * 0.3;
-        heroPhoto.style.transform = `translateY(${rate}px)`;
-      }
-    });
-
     // Service card hover enhancement
     document.querySelectorAll('.service-card').forEach(card => {
       card.addEventListener('mouseenter', () => {
@@ -5680,38 +5801,6 @@
       card.addEventListener('mouseleave', () => {
         card.style.zIndex = '1';
       });
-    });
-
-    // Mobile sticky CTA - show after scrolling past hero
-    const mobileStickyCta = document.getElementById('mobileStickyCta');
-    const heroSectionEl = document.querySelector('.hero');
-
-    window.addEventListener('scroll', () => {
-      if (window.innerWidth <= 768 && heroSectionEl && mobileStickyCta) {
-        const heroBottom = heroSectionEl.offsetTop + heroSectionEl.offsetHeight;
-        if (window.scrollY > heroBottom - 100) {
-          mobileStickyCta.classList.add('visible');
-          mobileStickyCta.setAttribute('aria-hidden', 'false');
-        } else {
-          mobileStickyCta.classList.remove('visible');
-          mobileStickyCta.setAttribute('aria-hidden', 'true');
-        }
-      } else if (mobileStickyCta) {
-        mobileStickyCta.classList.remove('visible');
-        mobileStickyCta.setAttribute('aria-hidden', 'true');
-      }
-    });
-
-    // WhatsApp float - adjust position when mobile sticky CTA is visible
-    const whatsappFloat = document.querySelector('.whatsapp-float');
-    window.addEventListener('scroll', () => {
-      if (window.innerWidth <= 768 && whatsappFloat && mobileStickyCta) {
-        if (mobileStickyCta.classList.contains('visible')) {
-          whatsappFloat.style.bottom = '85px';
-        } else {
-          whatsappFloat.style.bottom = '18px';
-        }
-      }
     });
 
     // YouTube autoplay on scroll into view

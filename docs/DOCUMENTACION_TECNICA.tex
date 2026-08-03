@@ -1,0 +1,945 @@
+\documentclass[12pt,a4paper,spanish]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fontawesome5}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{tocloft}
+\usepackage{enumitem}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{csquotes}
+\usepackage{datetime2}
+
+% Configuración de página
+\geometry{margin=2.5cm, headheight=15pt}
+\setlength{\parskip}{0.5em}
+\setlength{\parindent}{0pt}
+
+% Colores corporativos
+\definecolor{celestedep}{HTML}{11698E}
+\definecolor{celestemid}{HTML}{3AA8C9}
+\definecolor{celestelight}{HTML}{6FC1FF}
+\definecolor{crem}{HTML}{FFF8E7}
+\definecolor{yellowmid}{HTML}{FFE066}
+\definecolor{textdark}{HTML}{1A1A2E}
+\definecolor{textmuted}{HTML}{6B7280}
+
+% Configuración de hipervínculos
+\hypersetup{
+    colorlinks=true,
+    linkcolor=celestedep,
+    filecolor=celestemid,
+    urlcolor=celestemid,
+    citecolor=celestedep,
+    pdftitle={Documentación Técnica - Landing María Fernanda},
+    pdfauthor={Henry Paolo Alfaro Sotil},
+    pdfsubject={Documentación completa del proyecto Landing María Fernanda - Psicología Clínica ACT},
+    pdfkeywords={Firebase, Firestore, Quill.js, Landing Page, Psicología, ACT, Web Development}
+}
+
+% Estilo de capítulos y secciones
+\titleformat{\chapter}[display]
+    {\normalfont\huge\bfseries\color{celestedep}}
+    {\chaptertitlename\ \thechapter}
+    {20pt}
+    {\titlerule\vspace{10pt}}
+    [\vspace{10pt}\titlerule]
+
+\titleformat{\section}
+    {\normalfont\Large\bfseries\color{celestedep}}
+    {\thesection}
+    {1em}
+    {}
+
+\titleformat{\subsection}
+    {\normalfont\large\bfseries\color{celestemid}}
+    {\thesubsection}
+    {1em}
+    {}
+
+% Estilo de lista de código
+\lstdefinestyle{codeStyle}{
+    backgroundcolor=\color{crem},
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    framesep=5pt,
+    rulecolor=\color{celestelight},
+    commentstyle=\color{textmuted}\itshape,
+    keywordstyle=\bfseries\color{celestedep},
+    stringstyle=\color{yellowmid},
+    numbers=left,
+    numberstyle=\tiny\color{textmuted},
+    stepnumber=1,
+    numbersep=8pt,
+    showspaces=false,
+    showstringspaces=false,
+    tabsize=4
+}
+
+\lstset{style=codeStyle}
+
+% Header y footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\leftmark}
+\fancyhead[R]{\thepage}
+\fancyfoot[C]{\textit{Landing María Fernanda — Documentación Técnica v1.0}}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+
+% Portada
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+
+    {\Huge\bfseries\color{celestedep} Landing María Fernanda\par}
+    \vspace{0.5cm}
+    {\Large\color{celestemid} Psicología Clínica ACT — Documentación Técnica Completa\par}
+
+    \vspace{2cm}
+
+    {\large\normalfont Documentación para cliente y desarrolladores\par}
+
+    \vspace{3cm}
+
+    \begin{minipage}{0.8\textwidth}
+        \centering
+        \begin{tabular}{ll}
+            \textbf{Autor:} & Henry Paolo Alfaro Sotil \\
+            \textbf{Rol:} & Full-stack Developer \\
+            \textbf{GitHub:} & \href{https://github.com/elbrujo325}{@elbrujo325} \\
+            \textbf{LinkedIn:} & \href{https://linkedin.com/in/henry-paolo-alfaro-sotil}{linkedin.com/in/henry-paolo-alfaro-sotil} \\
+            \textbf{Email:} & paolo.alfaro.sotil@gmail.com \\
+            \textbf{Fecha:} & \DTMtoday \\
+            \textbf{Versión:} & 1.0 \\
+            \textbf{Repositorio:} & \href{https://github.com/elbrujo325/landing-maria-fernanda}{github.com/elbrujo325/landing-maria-fernanda} \\
+            \textbf{Deploy:} & \href{https://landing-maria-fernanda.web.app}{landing-maria-fernanda.web.app}
+        \end{tabular}
+    \end{minipage}
+
+    \vfill
+
+    {\color{textmuted}\textit{Desarrollado con enfoque en performance, accesibilidad y mantenibilidad.}}
+
+    \vspace{1cm}
+\end{titlepage}
+
+% Tabla de contenidos
+\tableofcontents
+\clearpage
+
+% Lista de figuras y tablas
+\listoffigures
+\listoftables
+\clearpage
+
+\chapter{Introducción y Visión General}
+\label{ch:introduccion}
+
+\section{Propósito del Documento}
+Este documento proporciona una documentación técnica exhaustiva del proyecto \textbf{Landing María Fernanda}, una página de aterrizaje (landing page) profesional para la psicóloga clínica María Fernanda Arana, especialista en Terapia de Aceptación y Compromiso (ACT).
+
+Está dirigido a dos audiencias:
+\begin{itemize}
+    \item \textbf{Cliente (María Fernanda Arana):} Para comprender el alcance, funcionalidades y cómo gestionar el contenido.
+    \item \textbf{Desarrolladores:} Para onboarding rápido, mantenimiento, escalabilidad y toma de decisiones técnicas.
+\end{itemize}
+
+\section{Alcance del Proyecto}
+\begin{table}[H]
+    \centering
+    \caption{Alcance funcional del proyecto}
+    \label{tab:alcance}
+    \begin{tabular}{>{\bfseries}ll}
+        \toprule
+        \textbf{Área} & \textbf{Descripción} \\
+        \midrule
+        Landing Principal & Hero, Sobre mí, Credenciales, Problema/Solución, Servicios, Testimonios, FAQ, Footer \\
+        Blog Público & Listado con filtros, búsqueda, paginación infinita, vista detalle con posts relacionados \\
+        Panel Admin & Login seguro, CRUD posts, CRUD testimonios, editor Quill.js rich-text \\
+        Backend & Firebase (Firestore, Auth, Hosting) — Plan Spark gratuito \\
+        Performance & WebP srcset (8 densidades), lazy loading, image-rendering crisp, zero-runtime JS \\
+        Accesibilidad & WCAG 2.1 AA, semántica HTML5, ARIA labels, focus visible, contraste \\
+    \bottomrule
+    \end{tabular}
+\end{table}
+
+\section{Objetivos de Negocio}
+\begin{enumerate}
+    \item \textbf{Conversión principal:} Agendar sesión vía WhatsApp (float button + sticky CTA móvil + hero buttons)
+    \item \textbf{Autoridad clínica:} Mostrar credenciales, formación ACT, experiencia (+7 años, +12 países)
+    \item \textbf{Content Marketing:} Blog SEO-ready para atraer tráfico orgánico (ansiedad, relaciones, propósito)
+    \item \textbf{Autonomía:} Panel admin para que la clienta gestione posts/testimonios sin dependencia técnica
+\end{enumerate}
+
+\section{Stack Tecnológico Resumido}
+\begin{table}[H]
+    \centering
+    \caption{Stack tecnológico}
+    \label{tab:stack}
+    \begin{tabular}{lll}
+        \toprule
+        \textbf{Capa} & \textbf{Tecnología} & \textbf{Justificación} \\
+        \midrule
+        Frontend & HTML5, CSS3 (Custom Props), Vanilla JS (ESM) & Cero dependencias, performance máximo, control total \\
+        BaaS & Firebase (Firestore, Auth, Hosting) & Serverless, escalable, plan gratuito generoso, DX excelente \\
+        Editor & Quill.js v2 (CDN) & Rich-text probado, modular, image-resize nativo \\
+        Imágenes & WebP + srcset (72--800px), square-crop & Core Web Vitals (LCP, CLS), retina-ready \\
+        Despliegue & Firebase CLI + GitHub (SSH) & CI/CD simple, preview channels, rollback instantáneo \\
+    \bottomrule
+    \end{tabular}
+\end{table}
+
+\chapter{Arquitectura del Sistema}
+\label{ch:arquitectura}
+
+\section{Diagrama de Arquitectura}
+\begin{figure}[H]
+    \centering
+    \fbox{\begin{minipage}{0.9\textwidth}
+        \centering
+        \texttt{
+        +---------------------------------------------------------------------+\textbackslash\\
+        |                        USUARIO FINAL                                |\textbackslash\\
+        |  (Navegador: Chrome, Firefox, Safari, Edge -- Mobile/Desktop)      |\textbackslash\\
+        +---------------------------------------------------------------------+\textbackslash\\
+                                  | HTTPS\textbackslash\\
+                                  v\textbackslash\\
+        +---------------------------------------------------------------------+\textbackslash\\
+        |                  FIREBASE HOSTING (CDN Global)                      |\textbackslash\\
+        |  public/index.html, blog.html, blog-post.html, admin*.html          |\textbackslash\\
+        |  assets/images/*.webp, assets/logos/*, src/js/firebase-config.js    |\textbackslash\\
+        +---------------------------------------------------------------------+\textbackslash\\
+                                  |\textbackslash\\
+          +-----------------------+-----------------------+\textbackslash\\
+          v                       v                       v\textbackslash\\
+    +-------------+       +-------------+       +-------------+\textbackslash\\
+    | FIRESTORE   |       | FIREBASE    |       |  STORAGE    |\textbackslash\\
+    | (NoSQL DB)  |       |   AUTH      |       | (Opcional)  |\textbackslash\\
+    |             |       |             |       |             |\textbackslash\\
+    | blogPosts   |<----->| Email/      |       | Imagenes    |\textbackslash\\
+    | testimonios | Admin | Password    |       | Quill       |\textbackslash\\
+    | (public/    |claims | + Custom    |       | (base64/    |\textbackslash\\
+    |  admin)     |admin: |  claims     |       |  URL ext)   |\textbackslash\\
+    +-------------+ true  +-------------+       +-------------+\textbackslash\\
+        }
+    \end{minipage}}
+    \caption{Arquitectura de alto nivel -- Landing María Fernanda}
+    \label{fig:arquitectura}
+\end{figure}
+
+\section{Modelo de Datos (Firestore)}
+
+\subsection{Colección: \texttt{blogPosts}}
+\begin{table}[H]
+    \centering
+    \caption{Campos de documento blogPosts}
+    \label{tab:blogposts}
+    \begin{tabular}{lllp{5cm}}
+        \toprule
+        \textbf{Campo} & \textbf{Tipo} & \textbf{Req.} & \textbf{Descripción} \\
+        \midrule
+        titulo & string & Sí & Título del post (SEO, max 80 chars) \\
+        slug & string & Sí & URL amigable, único, minúsculas, guiones \\
+        extracto & string & Sí & Resumen para cards/listado (max 200 chars) \\
+        contenido & string & Sí & HTML completo desde Quill.js \\
+        categoria & string & Sí & Enum: ansiedad, relaciones, autoestima, proposito, tecnicas, general \\
+        etiquetas & array<string> & No & Tags para filtrado/búsqueda \\
+        imagenDestacada & string & No & URL WebP (hero del post) \\
+        publicado & boolean & Sí & \texttt{true} = visible en blog.html/blog-post.html \\
+        fecha & timestamp & Sí & Fecha publicación (orden descendente) \\
+        fechaCreacion & timestamp & Sí & Auditoría \\
+        fechaActualizacion & timestamp & No & Auditoría \\
+        autorUid & string & Sí & FK a Firebase Auth UID \\
+        tiempoLectura & number & No & Minutos estimados (cálculo automático) \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsection{Colección: \texttt{testimonios}}
+\begin{table}[H]
+    \centering
+    \caption{Campos de documento testimonios}
+    \label{tab:testimonios}
+    \begin{tabular}{lllp{5cm}}
+        \toprule
+        \textbf{Campo} & \textbf{Tipo} & \textbf{Req.} & \textbf{Descripción} \\
+        \midrule
+        nombre & string & Sí & Nombre o iniciales del paciente \\
+        texto & string & Sí & Testimonio completo \\
+        avatar & string & No & URL imagen (SVG placeholder si ausencia) \\
+        iniciales & string & Sí & 2-3 letras para avatar fallback \\
+        publicado & boolean & Sí & Visible en index.html \#testimonios \\
+        orden & number & Sí & Orden de aparición (0, 1, 2...) \\
+        fechaCreacion & timestamp & Sí & Auditoría \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\section{Índices Compuestos Requeridos}
+Definidos en \texttt{firestore.indexes.json}:
+
+\begin{lstlisting}[language=JSON, caption={firestore.indexes.json}]
+{
+  "indexes": [
+    {
+      "collectionGroup": "blogPosts",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "publicado", "order": "ASCENDING" },
+        { "fieldPath": "fecha", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "testimonios",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "publicado", "order": "ASCENDING" },
+        { "fieldPath": "orden", "order": "ASCENDING" }
+      ]
+    }
+  ]
+}
+\end{lstlisting}
+
+\textbf{Importante:} Sin el índice \texttt{blogPosts (publicado Asc, fecha Desc)}, la consulta en \texttt{blog.html} fallará con error \texttt{FAILED\_PRECONDITION}. Crear desde Firebase Console o \texttt{firebase deploy --only firestore:indexes}.
+
+\section{Reglas de Seguridad (Firestore)}
+\begin{lstlisting}[language=JavaScript, caption={firestore.rules (resumen)}]
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Blog Posts
+    match /blogPosts/{docId} {
+      // Público: solo lee publicados
+      allow read: if resource.data.publicado == true || request.auth != null;
+      // Admin: escribe todo (custom claim admin:true)
+      allow write: if request.auth != null && request.auth.token.admin == true;
+    }
+
+    // Testimonios
+    match /testimonios/{docId} {
+      allow read: if resource.data.publicado == true || request.auth != null;
+      allow write: if request.auth != null && request.auth.token.admin == true;
+    }
+  }
+}
+\end{lstlisting}
+
+\chapter{Frontend — Estructura y Componentes}
+\label{ch:frontend}
+
+\section{Páginas HTML — Responsabilidades}
+\begin{table}[H]
+    \centering
+    \caption{Páginas y su propósito}
+    \label{tab:paginas}
+    \begin{tabular}{llp{6cm}}
+        \toprule
+        \textbf{Archivo} & **Rol** & \textbf{Descripción} \\
+        \midrule
+        index.html & Landing Principal & Hero, Sobre mí, Credenciales, Problema/Solución, Servicios, Testimonios, FAQ, Footer Luxto \\
+        blog.html & Listado Blog & Grid responsivo, filtros categoría, búsqueda temps real, scroll infinito, footer Luxto \\
+        blog-post.html & Detalle Post & Artículo completo, barra progreso lectura, share, posts relacionados (3), CTA final, footer Luxto \\
+        admin.html & Dashboard Admin & Login, tabs Posts/Testimonios, CRUD modal, stats, footer Luxto \\
+        admin-editor.html & Editor Quill & Toolbar completa, image resize, clipboard cleanup, preview, auto-save, footer Luxto \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\section{Sistema de Diseño (Design Tokens)}
+Variables CSS en \texttt{:root} (\texttt{index.html:1-80}):
+
+\begin{lstlisting}[language=CSS, caption={Design Tokens — Colores y Espaciado}]
+:root {
+  /* Colores principales */
+  --celeste-deep: #11698e;      /* Primary brand */
+  --celeste-mid:  #3aa8c9;
+  --celeste-light: #6fc1ff;     /* Accent / hover */
+  --cream:        #fff8e7;      /* Background warm */
+  --cream-light:  #fffef0;
+  --yellow-mid:   #ffe066;      /* Highlights */
+  --white:        #ffffff;
+  --text-dark:    #1a1a2e;
+  --text-muted:   #6b7280;
+  --card-border:  rgba(17,105,142,0.12);
+  --card-bg:      #ffffff;
+
+  /* Espaciado (escala 4px) */
+  --space-xs: 4px;  --space-sm: 8px;  --space-md: 16px;
+  --space-lg: 24px; --space-xl: 32px; --space-2xl: 48px;
+  --space-3xl: 64px; --space-4xl: 96px;
+
+  /* Tipografía */
+  --font-heading: 'League Spartan', sans-serif;
+  --font-body:    'Open Sans', sans-serif;
+
+  /* Radii & Sombras */
+  --radius-sm: 8px;  --radius-md: 12px; --radius-lg: 16px;
+  --radius-xl: 24px; --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 12px rgba(17,105,142,0.10);
+  --shadow-lg: 0 12px 32px rgba(17,105,142,0.15);
+
+  /* Colores sociales (footer) */
+  --color-wa: #25d366;   --color-ig: #e1306c;
+  --color-tt: #000000;   --color-fb: #1877f2;
+}
+\end{lstlisting}
+
+\section{Breakpoints Responsive}
+\begin{table}[H]
+    \centering
+    \caption{Breakpoints y comportamientos}
+    \label{tab:breakpoints}
+    \begin{tabular}{llp{6cm}}
+        \toprule
+        \textbf{Breakpoint} & \textbf{Dispositivo} & \textbf{Cambios Clave} \\
+        \midrule
+        $\geq$1440px & Desktop Large & Container 1280px, hero 2-col, footer 3-col (1.5/1/1fr) \\
+        1024--1439px & Desktop/Tablet Landscape & Hero 2-col, footer 3-col \\
+        768--1023px & Tablet Portrait & \textbf{Navbar $\rightarrow$ Hamburger absolute dropdown}, footer 2-col, hero 1-col \\
+        $<$768px & Mobile & Footer 1-col, hero imagen arriba, CTA sticky, WhatsApp float push-up \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\section{Navbar — Comportamiento Detallado}
+\begin{itemize}
+    \item \textbf{Desktop ($>$768px):} Links horizontales, dropdown "Servicios" en hover/focus, logo + CTA "Agendar"
+    \item \textbf{Mobile ($\leq$768px):} Hamburger ($\equiv$) $\rightarrow$ dropdown absoluto (\texttt{top: 100\%, left: 0, right: 0, z-index: 1000})
+    \item \textbf{Animación:} \texttt{slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1)}
+    \item \textbf{Scroll effect:} Clase \texttt{.scrolled} añade \texttt{backdrop-filter: blur(12px)} + sombra
+    \item \textbf{Active link:} \texttt{IntersectionObserver} en secciones \texttt{id} resalta link actual
+    \item \textbf{Bug fix crítico:} Selector "close menu on link click" excluye \texttt{.has-dropdown > a} para permitir abrir submenú
+\end{itemize}
+
+\section{Footer — Luxto Style (Referencia: index.html)}
+Estructura de 3 zonas:
+
+\begin{enumerate}
+    \item \textbf{Franja Cita Centrada:} \texttt{blockquote} con frase "Si mejoras tú, mejora el mundo y los que te rodean" — \textit{María Fernanda Arana}
+    \item \textbf{Grid 3 Columnas (1.5fr / 1fr / 1fr):}
+    \begin{itemize}
+        \item \textbf{Col 1 - Brand:} Logo círculo blanco + "Pensar Sentir Hacer" + Tagline "PSICOLOGÍA CLÍNICA ACT" + Descripción + Pill "Terapia con propósito"
+        \item \textbf{Col 2 - Nav:} 7 links (Sobre mí, Servicios, ¿Te sientes así?, Testimonios, Blog, Preguntas, Agendar)
+        \item \textbf{Col 3 - Contacto:} Ubicación (Lima, Perú), WhatsApp clickable, Email mailto, Horario + 4 Social Buttons (IG, TikTok, FB, WA) con \textbf{brand colors en hover}
+    \end{itemize}
+    \item \textbf{Bottom Bar:} Copyright © 2026 + Legal links (Privacidad, Términos, Behold)
+\end{enumerate}
+
+\textbf{Textura de ruido:} SVG filter \texttt{feTurbulence} en \texttt{.footer-background::before} (opacity 0.03).
+
+\textbf{Responsive Footer:}
+\begin{itemize}
+    \item 1023px: Grid 2-col (Brand 100% width, Nav + Contacto 50% each)
+    \item 767px: Grid 1-col, orden: Brand $\rightarrow$ Nav $\rightarrow$ Contacto
+\end{itemize}
+
+\section{WhatsApp Float — Colisión Inteligente}
+\begin{lstlisting}[language=JavaScript, caption={WhatsApp Float collision detection}]
+function updateWhatsAppFloat() {
+  const whatsappFloat = document.querySelector('.whatsapp-float');
+  const footer = document.querySelector('.footer');
+  if (!whatsappFloat || !footer) return;
+
+  const floatRect = whatsappFloat.getBoundingClientRect();
+  const footerRect = footer.getBoundingClientRect();
+  const viewportHeight = window.innerHeight;
+
+  // Si el float toca o pasa el footer (con margen 16px)
+  if (floatRect.bottom >= footerRect.top - 16) {
+    const overlap = floatRect.bottom - footerRect.top + 16;
+    whatsappFloat.style.bottom = `${overlap + 24}px`; // Push up
+  } else {
+    whatsappFloat.style.bottom = '24px'; // Posición normal
+  }
+}
+// Throttled en scroll + resize
+\end{lstlisting}
+
+\chapter{Blog System — Implementación}
+\label{ch:blog}
+
+\section{Flujo de Datos}
+\begin{figure}[H]
+    \centering
+    \fbox{\begin{minipage}{0.9\textwidth}
+        \centering
+        \texttt{
+        ADMIN (admin-editor.html)                    PUBLICO (blog.html, blog-post.html)\textbackslash\\
+        +---------------------+                      +---------------------+\textbackslash\\
+        | 1. Escribe en Quill |                      | 1. onSnapshot()     |\textbackslash\\
+        | 2. Click "Publicar" |---> Firestore ------>|    where(publicado  |\textbackslash\\
+        |    ->               |   blogPosts          |    == true)         |\textbackslash\\
+        |    {publicado:true} |   (trigger)          |    orderBy(fecha    |\textbackslash\\
+        | 3. Doc creado/actual|                      |    desc)            |\textbackslash\\
+        +---------------------+                      | 2. Render cards/    |\textbackslash\\
+                                                     |    article HTML     |\textbackslash\\
+                                                     +---------------------+\textbackslash\\
+        }
+    \end{minipage}}
+    \caption{Flujo de datos Blog: Admin $\rightarrow$ Firestore $\rightarrow$ Publico}
+    \label{fig:blog-flow}
+\end{figure}
+
+\section{blog.html — Listado}
+\begin{itemize}
+    \item \textbf{Query:} \texttt{db.collection('blogPosts').where('publicado', '==', true).orderBy('fecha', 'desc')}
+    \item \textbf{Listener real-time:} \texttt{onSnapshot()} — actualización instantánea sin refresh
+    \item \textbf{Filtros:} Chips por categoría (Todos, Ansiedad, Relaciones, Autoestima, Propósito, Técnicas, General)
+    \item \textbf{Búsqueda:} Input \texttt{type="search"} con \texttt{debounce(300ms)} filtra por título/extracto/etiquetas
+    \item \textbf{Paginación infinita:} \texttt{IntersectionObserver} en sentinel $\rightarrow$ \texttt{limit(6)} + \texttt{startAfter(lastDoc)}
+    \item \textbf{Empty state:} Ilustración SVG + mensaje "No hay posts publicados" + CTA a admin (si logueado)
+\end{itemize}
+
+\section{blog-post.html — Detalle}
+\begin{itemize}
+    \item \textbf{Routing:} \texttt{blog-post.html?id=<docId>} (URL param)
+    \item \textbf{Loading:} Spinner skeleton mientras \texttt{docSnap} carga
+    \item \textbf{Not found:} 404 UI amigable + link "Volver al blog"
+    \item \textbf{Reading Progress Bar:} Fixed top, width = \texttt{(scrollY / (articleHeight - viewportHeight)) * 100\%}
+    \item \textbf{Share Buttons:} WhatsApp, LinkedIn, Twitter (X), Copy Link — \texttt{navigator.share()} fallback
+    \item \textbf{Related Posts:} 3 posts misma categoría (excluyendo actual), fallback aleatorios
+    \item \textbf{CTA Final:} "¿Te resonó este artículo?" + WhatsApp button
+    \item \textbf{SEO Meta:} \texttt{title}, \texttt{description}, \texttt{og:*}, \texttt{twitter:*}, \texttt{article:*} inyectados vía JS
+\end{itemize}
+
+\section{Admin Panel — CRUD}
+
+\subsection{Autenticación}
+\begin{itemize}
+    \item Firebase Auth: Email/Password
+    \item \textbf{Custom Claim requerido:} \texttt{admin: true} (set via Admin SDK)
+    \item \texttt{onAuthStateChanged} $\rightarrow$ redirige a login si no autenticado o sin claim
+    \item Logout: \texttt{auth.signOut()} + redirect a \texttt{admin.html}
+\end{itemize}
+
+\subsection{Editor Quill.js (admin-editor.html)}
+\begin{lstlisting}[language=JavaScript, caption={Configuración Quill.js}]
+import Quill from 'https://cdn.jsdelivr.net/npm/quill@2.0.0-dev.4/+esm';
+import ImageResize from 'quill-image-resize-module';
+
+Quill.register('modules/imageResize', ImageResize);
+
+const quill = new Quill('#editor', {
+  theme: 'snow',
+  modules: {
+    toolbar: [
+      [{ header: [1, 2, 3, false] }],
+      ['bold', 'italic', 'underline', 'strike'],
+      [{ color: [] }, { background: [] }],
+      [{ list: 'ordered' }, { list: 'bullet' }, { indent: '-1' }, { indent: '+1' }],
+      ['link', 'image', 'video', 'blockquote', 'code-block'],
+      ['clean']
+    ],
+    clipboard: {
+      matchVisual: false // Limpia estilos Word/Google Docs
+    },
+    imageResize: {
+      displayStyles: { 'background-color': 'transparent', 'border': 'none' },
+      modules: ['Resize', 'DisplaySize', 'Toolbar']
+    },
+    history: { delay: 1000, maxStack: 100, userOnly: true }
+  },
+  placeholder: 'Escribe tu artículo aquí...'
+});
+\end{lstlisting}
+
+\textbf{Imágenes en Quill:} Actualmente \texttt{base64} o URL externa. \textit{TODO: Upload a Firebase Storage + CDN}.
+
+\chapter{Optimización de Imágenes}
+\label{ch:imagenes}
+
+\section{Estrategia Dual: Original vs Optimizado}
+
+\subsection{index.html — Fotos Originales (Máxima Calidad)}
+\begin{table}[H]
+    \centering
+    \caption{Uso de foto original en index.html}
+    \label{tab:foto-original}
+    \begin{tabular}{llll}
+        \toprule
+        \textbf{Sección} & \textbf{Selector} & \textbf{Tamaño CSS} & \textbf{Archivo} \\
+        \midrule
+        Hero & \texttt{.hero-photo img} & 400px círculo (desktop) & \texttt{foto-fernanda.png} (377$\times$661) \\
+        Perfil & \texttt{.perfil-photo img} & 260px círculo sticky & \texttt{foto-fernanda.png} (377$\times$661) \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+\textit{Decisión de cliente: mantener retrato original sin recorte ni compresión en zonas hero.}
+
+\subsection{Blog / Blog-Post — Avatares Optimizados (Square Crop + WebP)}
+
+\subsubsection{Proceso de Optimización}
+\begin{enumerate}
+    \item \textbf{Source:} \texttt{foto-fernanda.png} (377$\times$661, portrait, 2.1 MB)
+    \item \textbf{Crop:} Square 1:1 desde \textbf{top-center} (cara centrada) $\rightarrow$ \texttt{foto-fernanda-square.png} (400$\times$400)
+    \item \textbf{WebP densities:} 72, 108, 144, 216, 260, 400, 520, 800px (8 variantes)
+    \item \textbf{Naming:} \texttt{foto-fernanda-\{w\}.webp}
+\end{enumerate}
+
+\subsubsection{HTML Implementación}
+\begin{lstlisting}[language=HTML, caption={Avatar optimizado — blog.html / blog-post.html}]
+<img src="assets/images/foto-fernanda-square.png"
+     srcset="
+       assets/images/foto-fernanda-72.webp   72w,
+       assets/images/foto-fernanda-108.webp  108w,
+       assets/images/foto-fernanda-144.webp  144w,
+       assets/images/foto-fernanda-216.webp  216w,
+       assets/images/foto-fernanda-260.webp  260w,
+       assets/images/foto-fernanda-400.webp  400w,
+       assets/images/foto-fernanda-520.webp  520w,
+       assets/images/foto-fernanda-800.webp  800w
+     "
+     sizes="(max-width: 767px) 60px, (max-width: 1023px) 72px, 80px"
+     alt="María Fernanda Arana"
+     loading="lazy"
+     style="image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges;"
+     width="80" height="80">
+\end{lstlisting}
+
+\subsubsection{CSS para Nitidez en Pequeño}
+\begin{lstlisting}[language=CSS, caption={image-rendering para avatares pequeños}]
+.avatar-img,
+.blog-author-avatar,
+.post-author-avatar {
+  image-rendering: -webkit-optimize-contrast; /* Safari/Chrome */
+  image-rendering: crisp-edges;               /* Firefox/Edge */
+  image-rendering: pixelated;                 /* Fallback */
+}
+\end{lstlisting}
+
+\subsubsection{Resultado de Performance}
+\begin{table}[H]
+    \centering
+    \caption{Métricas de imagen avatar (WebP vs PNG original)}
+    \label{tab:img-perf}
+    \begin{tabular}{lrrr}
+        \toprule
+        \textbf{Métrica} & \textbf{Original PNG} & \textbf{WebP 80px} & \textbf{Mejora} \\
+        \midrule
+        Tamaño archivo & 2.1 MB & 2.8 KB (72w) -- 18 KB (800w) & \textbf{99\% reducción} \\
+        Dimensiones & 377$\times$661 & 72--800px (responsive) & \textbf{Srcset nativo} \\
+        Formato & PNG (lossless) & WebP (lossy, quality 80) & \textbf{Modern browser support} \\
+        Renderizado & Blurry en 60px & Crisp (image-rendering) & \textbf{Legibilidad avatar} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\chapter{Despliegue y Operaciones}
+\label{ch:despliegue}
+
+\section{Comandos Firebase CLI}
+\begin{lstlisting}[language=bash, caption={Comandos de despliegue}]
+# Login (una vez)
+firebase login
+
+# Desarrollo local (emuladores)
+firebase emulators:start --only hosting,firestore,auth
+
+# Servir solo hosting (rápido)
+firebase serve --only hosting --port 5000
+
+# Deploy completo (Hosting + Firestore rules + indexes)
+firebase deploy --project landing-maria-fernanda
+
+# Deploy solo hosting
+firebase deploy --only hosting --project landing-maria-fernanda
+
+# Deploy solo reglas e índices
+firebase deploy --only firestore:rules,firestore:indexes --project landing-maria-fernanda
+
+# Ver logs hosting
+firebase hosting:channel:list
+firebase hosting:channel:open <channel-id>
+\end{lstlisting}
+
+\section{Configuración firebase.json}
+\begin{lstlisting}[language=JSON, caption={firebase.json}]
+{
+  "hosting": {
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ],
+    "headers": [
+      {
+        "source": "**/*.@(webp|avif|png|jpg|jpeg|svg|ico)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=31536000, immutable"
+          }
+        ]
+      },
+      {
+        "source": "**/*.html",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=0, must-revalidate"
+          }
+        ]
+      }
+    ]
+  },
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "emulators": {
+    "auth": { "port": 9099 },
+    "firestore": { "port": 8080 },
+    "hosting": { "port": 5000 },
+    "ui": { "enabled: true, "port": 4000 }
+  }
+}
+\end{lstlisting}
+
+\section{Git Workflow}
+\begin{lstlisting}[language=bash, caption={Git workflow estándar}]
+# Trabajo en feature branch
+git checkout -b feat/nueva-funcionalidad
+# ... cambios ...
+git add .
+git commit -m "feat: descripción clara del cambio"
+git push origin feat/nueva-funcionalidad
+# PR en GitHub $\rightarrow$ review $\rightarrow$ merge a main
+
+# Deploy automático tras merge a main (opcional: GitHub Actions)
+# O deploy manual:
+git checkout main
+git pull origin main
+firebase deploy --project landing-maria-fernanda
+\end{lstlisting}
+
+\textbf{Remote SSH:} \texttt{git@github.com:elbrujo325/landing-maria-fernanda.git}
+
+\section{Configuración Admin (Custom Claims)}
+\begin{lstlisting}[language=bash, caption={Asignar claim admin via Firebase CLI}]
+# Opción A: Firebase Admin SDK (Node)
+# node setAdminClaim.js <uid>
+# const admin = require('firebase-admin');
+# admin.auth().setCustomUserClaims(uid, { admin: true });
+
+# Opción B: Firebase Console
+# 1. Authentication > Users > seleccionar usuario
+# 2. Custom claims (requiere Blaze plan) o Cloud Function
+
+# Opción C: Cloud Function (recomendado para producción)
+# exports.setAdminClaim = functions.https.onCall(async (data, context) => {
+#   if (!context.auth.token.admin) throw new Error('No autorizado');
+#   await admin.auth().setCustomUserClaims(data.uid, { admin: true });
+#   return { success: true };
+# });
+\end{lstlisting}
+
+\chapter{Mantenimiento y Troubleshooting}
+\label{ch:mantenimiento}
+
+\section{Checklist Pre-Deploy}
+\begin{table}[H]
+    \centering
+    \caption{Checklist de calidad antes de deploy}
+    \label{tab:checklist}
+    \begin{tabular}{lll}
+        \toprule
+        \textbf{Categoría} & \textbf{Verificación} & \textbf{Herramienta} \\
+        \midrule
+        HTML & Válido, semántico & \texttt{npx html-validate public/*.html} \\
+        CSS & Sin errores, variables usadas & \texttt{npx stylelint public/**/*.html} \\
+        JS & Sin errores consola & Chrome DevTools (todas las páginas) \\
+        Responsive & 320, 768, 1024, 1440px & Chrome Device Toolbar \\
+        Firestore & Índices verdes & Firebase Console > Firestore > Indexes \\
+        Imágenes & WebP servido & Network tab > img > type: webp \\
+        Accesibilidad & 0 critical/serious & axe DevTools / Lighthouse \\
+        Performance & Lighthouse $\geq$ 90 & Lighthouse CI / DevTools \\
+        SEO & Meta tags completos & Lighthouse SEO / Social Preview \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\section{Problemas Conocidos y Soluciones}
+
+\begin{table}[H]
+    \centering
+    \caption{Troubleshooting común}
+    \label{tab:troubleshooting}
+    \begin{tabular}{p{3cm}p{5cm}p{5cm}}
+        \toprule
+        \textbf{Síntoma} & \textbf{Causa} & \textbf{Solución} \\
+        \midrule
+        Blog no carga posts & Índice compuesto faltante & Firebase Console > Firestore > Indexes > "Create index" para \texttt{blogPosts (publicado Asc, fecha Desc)} \\
+        Admin: "Permission denied" & Falta custom claim \texttt{admin:true} & Asignar claim via Admin SDK o Cloud Function \\
+        Quill: imagen no sube & No hay Storage configurado & Implementar upload a Firebase Storage + retornar URL \\
+        Footer se rompe en móvil & \texttt{.container} wrapper en \texttt{.footer-grid} & Remover \texttt{.container} del footer HTML (CSS espera \texttt{.footer-grid} directo) \\
+        Navbar móvil no abre & CSS breakpoint 968px vs JS 768px & Unificar a 768px en CSS y JS \\
+        Dropdown "Servicios" no abre & Link capturado por "close on link click" & Excluir \texttt{.has-dropdown > a} del handler \\
+        Avatar pixelado en blog & Usaba foto original 377x661 en circle 60px & Square crop top-center + WebP srcset + image-rendering:crisp-edges \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\section{Logs y Debugging}
+\begin{itemize}
+    \item \textbf{Firebase Hosting Logs:} \texttt{firebase hosting:channel:open <id>} o Console > Hosting > Logs
+    \item \textbf{Firestore:} Console > Logs > Firestore (reads/writes, errors)
+    \item \textbf{Client-side:} \texttt{localStorage.setItem('debug', 'true')} $\rightarrow$ logs verbose en consola
+    \item \textbf{Performance:} \texttt{performance.mark() / measure()} en secciones críticas (hero, blog load)
+\end{itemize}
+
+\chapter{Escalabilidad y Roadmap}
+\label{ch:roadmap}
+
+## Deuda Técnica y Mejoras Priorizadas
+
+\begin{table}[H]
+    \centering
+    \caption{Roadmap técnico}
+    \label{tab:roadmap}
+    \begin{tabular}{llll}
+        \toprule
+        \textbf{Prioridad} & \textbf{Item} & \textbf{Esfuerzo} & \textbf{Impacto} \\
+        \midrule
+        🔴 Crítico & Índice compuesto blogPosts en producción & 5 min & Blog funcional \\
+        🟡 Alto & Quill image upload $\rightarrow$ Firebase Storage & 4h & Editor completo, sin base64 \\
+        🟡 Alto & SEO meta tags dinámicos por post (SSR/SSG) & 8h & SEO orgánico real \\
+        🟡 Medio & PWA: Manifest + Service Worker (offline) & 6h & UX móvil, engagement \\
+        🟢 Bajo & Tests E2E (Playwright) & 16h & Confianza deploy \\
+        🟢 Bajo & Analytics (GA4 + eventos custom) & 4h & Métricas negocio \\
+        🟢 Bajo & i18n (EN/PT) para pacientes internacionales & 12h & Expansión mercado \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\section{Arquitectura Futura (v2.0)}
+\begin{itemize}
+    \item \textbf{Next.js + Firebase (App Router):} SSR/ISR para blog-post.html $\rightarrow$ SEO real, OG tags estáticos
+    \item \textbf{Cloud Functions v2:} Triggers para \texttt{onCreate} blogPosts $\rightarrow$ generar OG images dinámicas, sitemap.xml, push notifications
+    \item \textbf{Firebase Extensions:} \texttt{Resize Images} para Quill uploads automático
+    \item \textbf{Algolia/Meilisearch:} Búsqueda full-text real en blog (reemplazar filtro cliente)
+    \item \textbf{Headless CMS opcional:} Si cliente necesita multi-autor, workflow editorial
+\end{itemize}
+
+\chapter{Apéndices}
+\label{ch:apendices}
+
+\section{Archivos de Configuración Clave}
+
+\subsection{package.json (si se usa build tools)}
+\begin{lstlisting}[language=JSON, caption={package.json sugerido para tooling}]
+{
+  "name": "landing-maria-fernanda",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "firebase serve --only hosting",
+    "deploy": "firebase deploy --project landing-maria-fernanda",
+    "deploy:rules": "firebase deploy --only firestore:rules,firestore:indexes",
+    "lint:html": "html-validate public/*.html",
+    "lint:css": "stylelint public/**/*.html",
+    "test:e2e": "playwright test",
+    "format": "prettier --write \"public/**/*.{html,css,js}\""
+  },
+  "devDependencies": {
+    "firebase-tools": "^13.0.0",
+    "html-validate": "^8.0.0",
+    "stylelint": "^16.0.0",
+    "prettier": "^3.0.0",
+    "@playwright/test": "^1.40.0"
+  }
+}
+\end{lstlisting}
+
+\subsection{.gitignore}
+\begin{lstlisting}[language=bash, caption={.gitignore}]
+# Firebase
+.firebase/
+firebase-debug.log
+firestore-debug.log
+
+# Dependencias
+node_modules/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Testing
+coverage/
+.nyc_output/
+playwright-report/
+test-results/
+
+# Build (si aplica)
+dist/
+build/
+\end{lstlisting}
+
+\section{Referencias y Recursos}
+
+\begin{enumerate}
+    \item \textbf{Firebase Docs:} \url{https://firebase.google.com/docs}
+    \item \textbf{Firestore Data Modeling:} \url{https://firebase.google.com/docs/firestore/data-model}
+    \item \textbf{Quill.js v2 Docs:} \url{https://quilljs.com/docs/}
+    \item \textbf{WebP Browser Support:} \url{https://caniuse.com/webp}
+    \item \textbf{CSS Custom Properties:} \url{https://developer.mozilla.org/en-US/docs/Web/CSS/--*}
+    \item \textbf{IntersectionObserver API:} \url{https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver_API}
+    \item \textbf{WCAG 2.1 Guidelines:} \url{https://www.w3.org/WAI/WCAG21/quickref/}
+    \item \textbf{Luxto Design Inspiration:} \url{https://luxto.com/} (footer style reference)
+\end{enumerate}
+
+\section{Contacto y Soporte}
+
+Para dudas técnicas, mejoras o incidencias:
+
+\begin{itemize}
+    \item \textbf{Desarrollador:} Henry Paolo Alfaro Sotil
+    \item \textbf{GitHub:} \href{https://github.com/elbrujo325}{@elbrujo325} — Issues y PRs bienvenidos
+    \item \textbf{LinkedIn:} \href{https://linkedin.com/in/henry-paolo-alfaro-sotil}{linkedin.com/in/henry-paolo-alfaro-sotil}
+    \item \textbf{Email:} paolo.alfaro.sotil@gmail.com
+    \item \textbf{Repositorio:} \href{https://github.com/elbrujo325/landing-maria-fernanda}{github.com/elbrujo325/landing-maria-fernanda}
+\end{itemize}
+
+\vspace{2cm}
+
+\begin{center}
+    \rule{0.5\textwidth}{0.5pt}\\
+    \vspace{0.5cm}
+    \textit{Documentación generada el \DTMtoday \quad Versión 1.0}\\
+    \textit{Landing María Fernanda — Psicología Clínica ACT}\\
+    \textit{Desarrollado por Henry Paolo Alfaro Sotil}
+\end{center}
+
+\end{document}

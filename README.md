@@ -338,7 +338,7 @@ Proyecto privado — Todos los derechos reservados a **María Fernanda Arana** y
 ## 👨‍💻 Autor
 
 **Henry Paolo Alfaro Sotil**  
-Full-stack Developer · Firebase · Web Performance · UX Engineering
+Full-stack Developer · Firebase · Web Performance · UX Engineering . Physics . Data Science
 
 - GitHub: [@elbrujo325](https://github.com/elbrujo325)
 - LinkedIn: [linkedin.com/in/henry-paolo-alfaro-sotil](https://linkedin.com/in/henry-paolo-alfaro-sotil)

@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editor · Pensar Sentir Hacer</title>
+  <link rel="icon" type="image/png" href="assets/logos/logo-celeste-transparente.png">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <!-- Quill.js -->
+  <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #FFFEEC;
+      --cream-light: #FFFDF4;
+      --yellow-light: #FDFDC9;
+      --yellow-mid: #FEFFAF;
+      --yellow-deep: #FFFB85;
+      --celeste-light: #B0DDFC;
+      --celeste-mid: #89CCFF;
+      --celeste-deep: #6FC1FF;
+      --white: #FFFFFF;
+      --text-dark: #3A4A5A;
+      --title-color: #6FC1FF;
+      --color-ig: #E4405F;
+      --color-wa: #25D366;
+      --card-border: #E8F4FF;
+      --card-bg: #FFFFFF;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Open Sans', sans-serif; color: var(--text-dark); background: var(--cream); min-height: 100vh; }
+    h1, h2, h3, h4 { font-family: 'League Spartan', sans-serif; color: var(--text-dark); }
+
+    /* Header */
+    .editor-header {
+      background: var(--celeste-deep);
+      color: var(--white);
+      padding: 16px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(111, 193, 255, 0.2);
+    }
+    .editor-header-content { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    .editor-header-left { display: flex; align-items: center; gap: 12px; }
+    .editor-logo { width: 36px; height: 36px; border-radius: 50%; background: var(--white); }
+    .editor-title { font-size: 1.1rem; font-weight: 600; }
+    .editor-actions { display: flex; gap: 12px; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+      text-decoration: none;
+    }
+    .btn-primary {
+      background: var(--celeste-deep);
+      color: var(--white);
+      border: none;
+      border-radius: 12px;
+      padding: 14px 32px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 8px 20px -5px rgba(111, 193, 255, 0.25);
+    }
+    .btn-primary:hover {
+      background: var(--celeste-deep);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px -5px rgba(111, 193, 255, 0.35);
+      color: var(--white);
+      filter: brightness(0.92);
+    }
+    .btn-primary:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-dark);
+      border: 2px solid var(--celeste-deep);
+      border-radius: 12px;
+      padding: 12px 30px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-secondary:hover {
+      background: var(--celeste-deep);
+      color: var(--white);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px -4px rgba(111, 193, 255, 0.25);
+    }
+    .btn-outline { background: transparent; color: var(--celeste-deep); border: 2px solid var(--celeste-deep); }
+    .btn-outline:hover { background: var(--celeste-deep); color: var(--white); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-dark);
+      border: 1px solid var(--celeste-light);
+      border-radius: 12px;
+      padding: 10px 24px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-ghost:hover {
+      background: var(--cream-light);
+      color: var(--text-dark);
+      border-color: var(--celeste-mid);
+    }
+
+    /* Main */
+    .editor-main { max-width: 1000px; margin: 0 auto; padding: 32px 24px; }
+    .editor-grid { display: grid; grid-template-columns: 1fr 320px; gap: 32px; }
+
+    @media (max-width: 900px) {
+      .editor-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Editor Panel */
+    .editor-panel { background: var(--white); border-radius: 20px; border: 2px solid var(--card-border); padding: 24px; box-shadow: 0 4px 24px rgba(111, 193, 255, 0.08); }
+
+    .form-section { margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--card-border); }
+    .form-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .section-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; color: var(--text-dark); opacity: 0.6; margin-bottom: 12px; font-family: 'League Spartan', sans-serif; }
+
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 14px; font-weight: 600; color: var(--text-dark); margin-bottom: 8px; }
+    .form-group input, .form-group select {
+      width: 100%; padding: 12px 16px; border: 2px solid var(--card-border); border-radius: 10px;
+      font-family: 'Open Sans', sans-serif; font-size: 15px; color: var(--text-dark); background: var(--white);
+      transition: all 0.3s ease;
+    }
+    .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--celeste-deep); box-shadow: 0 0 0 4px rgba(111, 193, 255, 0.15); }
+    .form-group input:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    .required::after { content: ' *'; color: var(--color-ig); }
+
+    /* Cover Image Upload */
+    .cover-upload { position: relative; }
+    .cover-preview { width: 100%; aspect-ratio: 16/9; border-radius: 12px; background: var(--cream-light); border: 2px dashed var(--celeste-light); display: flex; align-items: center; justify-content: center; overflow: hidden; cursor: pointer; transition: all 0.3s ease; }
+    .cover-preview:hover { border-color: var(--celeste-mid); background: var(--cream); }
+    .cover-preview.has-image { border-style: solid; border-color: var(--celeste-mid); }
+    .cover-preview img { width: 100%; height: 100%; object-fit: cover; }
+    .cover-preview.empty svg { width: 48px; height: 48px; color: var(--celeste-light); }
+    .cover-upload input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+    .cover-remove { position: absolute; top: 12px; right: 12px; width: 32px; height: 32px; border-radius: 50%; background: rgba(26, 46, 53, 0.6); color: var(--white); border: none; display: none; align-items: center; justify-content: center; cursor: pointer; }
+    .cover-preview.has-image .cover-remove { display: flex; }
+    .cover-remove:hover { background: var(--color-ig); }
+
+    /* Quill Editor */
+    .editor-toolbar { border: 2px solid var(--card-border) !important; border-bottom: none !important; border-radius: 10px 10px 0 0 !important; background: var(--cream-light) !important; padding: 8px 12px !important; }
+    .editor-toolbar .ql-stroke { stroke: var(--celeste-deep) !important; }
+    .editor-toolbar .ql-fill { fill: var(--celeste-deep) !important; }
+    .editor-toolbar .ql-picker-label { color: var(--text-dark) !important; border-color: var(--card-border) !important; }
+    .editor-toolbar .ql-picker-options { border-color: var(--card-border) !important; background: var(--white) !important; }
+    .editor-toolbar .ql-picker-item:hover { background: var(--cream) !important; color: var(--celeste-deep) !important; }
+    .editor-toolbar button:hover .ql-stroke,
+    .editor-toolbar button:hover .ql-fill { stroke: var(--title-color) !important; fill: var(--title-color) !important; }
+    .editor-toolbar .ql-active .ql-stroke,
+    .editor-toolbar .ql-active .ql-fill { stroke: var(--title-color) !important; fill: var(--title-color) !important; }
+
+    #editorContainer { border: 2px solid var(--card-border) !important; border-radius: 0 0 10px 10px !important; background: var(--white) !important; min-height: 400px; }
+    #editorContainer .ql-editor { min-height: 380px; padding: 20px !important; font-family: 'Open Sans', sans-serif; font-size: 15px; line-height: 1.8; color: var(--text-dark); }
+    #editorContainer .ql-editor p { margin-bottom: 16px; }
+    #editorContainer .ql-editor h1 { font-family: 'League Spartan', sans-serif; font-size: 2rem; color: var(--title-color); margin: 24px 0 16px; }
+    #editorContainer .ql-editor h2 { font-family: 'League Spartan', sans-serif; font-size: 1.5rem; color: var(--text-dark); margin: 20px 0 12px; }
+    #editorContainer .ql-editor h3 { font-family: 'League Spartan', sans-serif; font-size: 1.25rem; color: var(--text-dark); margin: 16px 0 10px; }
+    #editorContainer .ql-editor blockquote { border-left: 4px solid var(--celeste-deep); padding-left: 16px; margin: 16px 0; font-style: italic; color: var(--text-dark); opacity: 0.8; }
+    #editorContainer .ql-editor img { max-width: 100%; height: auto; border-radius: 12px; margin: 16px 0; box-shadow: 0 8px 24px rgba(111, 193, 255, 0.15); }
+    #editorContainer .ql-editor a { color: var(--celeste-deep); text-decoration: underline; }
+    #editorContainer .ql-editor ul, #editorContainer .ql-editor ol { padding-left: 24px; margin: 16px 0; }
+    #editorContainer .ql-editor li { margin-bottom: 8px; }
+
+    /* Sidebar */
+    .sidebar { display: flex; flex-direction: column; gap: 20px; }
+    .sidebar-card { background: var(--white); border-radius: 16px; border: 2px solid var(--card-border); padding: 20px; box-shadow: 0 4px 16px rgba(111, 193, 255, 0.08); }
+    .sidebar-title { font-size: 14px; font-weight: 600; color: var(--text-dark); margin-bottom: 16px; font-family: 'League Spartan', sans-serif; display: flex; align-items: center; gap: 8px; }
+
+    .radio-group { display: flex; flex-direction: column; gap: 12px; }
+    .radio-option { position: relative; }
+    .radio-option input { position: absolute; opacity: 0; }
+    .radio-label { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border: 2px solid var(--card-border); border-radius: 12px; cursor: pointer; transition: all 0.3s ease; background: var(--cream-light); }
+    .radio-option input:checked + .radio-label { border-color: var(--celeste-deep); background: rgba(111, 193, 255, 0.1); }
+    .radio-label:hover { border-color: var(--celeste-mid); }
+    .radio-icon { width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--celeste-mid); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.3s ease; }
+    .radio-option input:checked + .radio-label .radio-icon { background: var(--celeste-deep); border-color: var(--celeste-deep); }
+    .radio-option input:checked + .radio-label .radio-icon::after { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--white); }
+    .radio-content { flex: 1; }
+    .radio-title { font-weight: 600; color: var(--text-dark); font-size: 14px; }
+    .radio-desc { font-size: 12px; color: var(--text-dark); opacity: 0.6; margin-top: 2px; }
+
+    .checkbox-option { display: flex; align-items: flex-start; gap: 10px; padding: 12px; border-radius: 10px; background: var(--cream-light); transition: all 0.3s ease; }
+    .checkbox-option:hover { background: var(--cream); }
+    .checkbox-option input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--celeste-deep); flex-shrink: 0; }
+    .checkbox-option label { font-size: 13px; color: var(--text-dark); margin: 0; line-height: 1.5; cursor: pointer; }
+
+    .tag-list { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag { padding: 6px 12px; background: var(--cream-light); border: 1px solid var(--card-border); border-radius: 20px; font-size: 12px; font-weight: 500; color: var(--text-dark); cursor: pointer; transition: all 0.3s ease; }
+    .tag:hover, .tag.selected { background: var(--celeste-deep); color: var(--white); border-color: var(--celeste-deep); }
+
+    /* Preview Modal */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(26, 46, 53, 0.7); display: none; align-items: center; justify-content: center; padding: 24px; z-index: 1000; backdrop-filter: blur(4px); }
+    .modal-overlay.active { display: flex; }
+    .modal { background: var(--white); border-radius: 20px; max-width: 900px; width: 100%; max-height: 90vh; overflow: hidden; box-shadow: 0 25px 80px rgba(111, 193, 255, 0.2); display: flex; flex-direction: column; }
+    .modal-header { padding: 20px 24px; border-bottom: 1px solid var(--card-border); display: flex; justify-content: space-between; align-items: center; }
+    .modal-title { font-size: 1.1rem; font-weight: 600; color: var(--text-dark); }
+    .modal-close { width: 40px; height: 40px; border-radius: 50%; border: none; background: var(--cream-light); color: var(--text-dark); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; }
+    .modal-close:hover { background: var(--celeste-light); color: var(--celeste-deep); }
+    .modal-body { flex: 1; overflow-y: auto; padding: 24px; }
+    .preview-content { font-family: 'Open Sans', sans-serif; color: var(--text-dark); line-height: 1.8; }
+    .preview-content h1 { font-family: 'League Spartan', sans-serif; color: var(--title-color); margin: 24px 0 16px; }
+    .preview-content h2 { font-family: 'League Spartan', sans-serif; color: var(--text-dark); margin: 20px 0 12px; }
+    .preview-content img { max-width: 100%; border-radius: 12px; margin: 16px 0; }
+    .preview-cover { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 12px; margin-bottom: 24px; }
+    .modal-footer { padding: 16px 24px; border-top: 1px solid var(--card-border); display: flex; justify-content: flex-end; gap: 12px; }
+
+    /* Toast */
+    .toast-container { position: fixed; bottom: 24px; right: 24px; z-index: 2000; display: flex; flex-direction: column; gap: 12px; }
+    .toast { padding: 14px 22px; border-radius: 10px; font-size: 14px; font-weight: 500; box-shadow: 0 8px 30px rgba(26, 46, 53, 0.15); animation: slideIn 0.3s ease; }
+    .toast.success { background: var(--color-wa); color: var(--white); }
+    .toast.error { background: var(--color-ig); color: var(--white); }
+    .toast.info { background: var(--celeste-deep); color: var(--white); }
+    @keyframes slideIn { from { opacity: 0; transform: translateX(100px); } to { opacity: 1; transform: translateX(0); } }
+
+    /* Loading overlay */
+    .loading-overlay { position: fixed; inset: 0; background: rgba(255,255,255,0.95); display: none; align-items: center; justify-content: center; z-index: 2000; }
+    .loading-overlay.active { display: flex; }
+    .loading-spinner { width: 48px; height: 48px; border: 4px solid var(--celeste-light); border-top-color: var(--celeste-deep); border-radius: 50%; animation: spin 1s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .editor-header-content { flex-direction: column; align-items: flex-start; }
+      .editor-actions { width: 100%; }
+      .editor-actions .btn { flex: 1; }
+      .editor-main { padding: 20px 16px; }
+      .editor-panel { padding: 20px 16px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="editor-header">
+    <div class="editor-header-content">
+      <div class="editor-header-left">
+        <img src="assets/logos/logo-celeste-transparente.png" alt="PSH" class="editor-logo">
+        <span class="editor-title" id="editorTitle">Nuevo artículo</span>
+      </div>
+      <div class="editor-actions">
+        <a href="admin.html" class="btn btn-secondary"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Volver</a>
+        <button class="btn btn-primary" id="previewBtn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> Vista previa</button>
+        <button class="btn btn-primary" id="saveDraftBtn">Guardar borrador</button>
+        <button class="btn btn-primary" id="publishBtn">Publicar</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="editor-main">
+    <div class="editor-grid">
+      <!-- EDITOR PANEL -->
+      <div class="editor-panel">
+        <form id="editorForm" novalidate>
+          <!-- TÍTULO -->
+          <div class="form-section">
+            <div class="section-label">Título</div>
+            <div class="form-group">
+              <label for="postTitle" class="required">Título del artículo</label>
+              <input type="text" id="postTitle" name="titulo" maxlength="120" placeholder="Escribe un título atractivo..." required>
+            </div>
+          </div>
+
+          <!-- IMAGEN DE PORTADA -->
+          <div class="form-section">
+            <div class="section-label">Imagen de portada</div>
+            <div class="form-group cover-upload">
+              <div class="cover-preview empty" id="coverPreview" role="button" tabindex="0" aria-label="Subir imagen de portada">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 19V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2z"/><circle cx="12" cy="12" r="3"/><path d="M12 17l4-4 4 4"/></svg>
+                <input type="file" id="coverInput" accept="image/*" aria-label="Seleccionar imagen de portada">
+              </div>
+              <button type="button" class="cover-remove" id="coverRemove" aria-label="Eliminar imagen"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+              <p style="font-size: 12px; color: var(--text-dark); opacity: 0.6; margin-top: 8px; text-align: center;">Click para subir · JPG/PNG/WebP · máx. 5MB · Proporción 16:9 recomendada</p>
+            </div>
+          </div>
+
+          <!-- CATEGORÍA -->
+          <div class="form-section">
+            <div class="section-label">Categoría</div>
+            <div class="form-group">
+              <label for="postCategory" class="required">Categoría</label>
+              <select id="postCategory" name="categoria" required>
+                <option value="">Selecciona una categoría</option>
+                <option value="ansiedad">Ansiedad</option>
+                <option value="depresion">Depresión</option>
+                <option value="pareja">Relaciones de pareja</option>
+                <option value="familiar">Relaciones familiares</option>
+                <option value="autoestima">Autoestima</option>
+                <option value="otros">Otros</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- PLANTILLA -->
+          <div class="form-section">
+            <div class="section-label">Plantilla de visualización</div>
+            <div class="form-group">
+              <label class="required">Plantilla</label>
+              <div class="radio-group" role="radiogroup" aria-label="Plantilla">
+                <div class="radio-option">
+                  <input type="radio" id="tplEstandar" name="plantilla" value="estandar" checked>
+                  <label for="tplEstandar" class="radio-label">
+                    <span class="radio-icon"></span>
+                    <div class="radio-content">
+                      <div class="radio-title">Estándar</div>
+                      <div class="radio-desc">Imagen de portada arriba + título + texto corrido</div>
+                    </div>
+                  </label>
+                </div>
+                <div class="radio-option">
+                  <input type="radio" id="tplDestacada" name="plantilla" value="imagen-destacada">
+                  <label for="tplDestacada" class="radio-label">
+                    <span class="radio-icon"></span>
+                    <div class="radio-content">
+                      <div class="radio-title">Imagen destacada</div>
+                      <div class="radio-desc">Imagen grande a ancho completo + título superpuesto + texto abajo</div>
+                    </div>
+                  </label>
+                </div>
+                <div class="radio-option">
+                  <input type="radio" id="tplGaleria" name="plantilla" value="galeria">
+                  <label for="tplGaleria" class="radio-label">
+                    <span class="radio-icon"></span>
+                    <div class="radio-content">
+                      <div class="radio-title">Galería + texto</div>
+                      <div class="radio-desc">Texto con 2-3 imágenes intercaladas</div>
+                    </div>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- EDITOR QUILL -->
+          <div class="form-section">
+            <div class="section-label">Contenido</div>
+            <div class="form-group">
+              <label class="required">Texto del artículo</label>
+              <div id="editorContainer"></div>
+              <input type="hidden" id="editorContent" name="contenidoHtml">
+            </div>
+          </div>
+
+          <!-- OPCIONES -->
+          <div class="form-section">
+            <div class="section-label">Opciones</div>
+            <div class="form-group">
+              <div class="checkbox-option">
+                <input type="checkbox" id="postPublished" name="publicado" value="true">
+                <label for="postPublished">Publicar inmediatamente (se verá en el blog público)</label>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="sidebar-card">
+          <div class="sidebar-title"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Acciones rápidas</div>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <button type="button" class="btn btn-outline" id="sidebarPreviewBtn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> Vista previa</button>
+            <button type="button" class="btn btn-outline" id="sidebarSaveDraftBtn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Guardar borrador</button>
+            <button type="button" class="btn btn-primary" id="sidebarPublishBtn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Publicar ahora</button>
+          </div>
+        </div>
+
+        <div class="sidebar-card">
+          <div class="sidebar-title"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Estado</div>
+          <div style="display: grid; gap: 12px;">
+            <div style="padding: 12px; background: var(--cream-light); border-radius: 10px;">
+              <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; color: var(--text-dark); opacity: 0.6;">Estado actual</div>
+              <div id="currentStatus" style="font-weight: 600; color: var(--celeste-deep); margin-top: 4px;">Borrador</div>
+            </div>
+            <div style="padding: 12px; background: var(--cream-light); border-radius: 10px;">
+              <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; color: var(--text-dark); opacity: 0.6;">Última actualización</div>
+              <div id="lastUpdated" style="font-weight: 600; color: var(--text-dark); margin-top: 4px;">—</div>
+            </div>
+            <div style="padding: 12px; background: var(--cream-light); border-radius: 10px;">
+              <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; color: var(--text-dark); opacity: 0.6;">Palabras aprox.</div>
+              <div id="wordCount" style="font-weight: 600; color: var(--text-dark); margin-top: 4px;">0</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar-card">
+          <div class="sidebar-title"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Tips de redacción</div>
+          <ul style="font-size: 13px; color: var(--text-dark); opacity: 0.8; line-height: 2; padding-left: 20px;">
+            <li>Usa subtítulos (H2/H3) para estructurar</li>
+            <li>Párrafos cortos: 3-4 líneas máximo</li>
+            <li>Inserta imágenes cada 300-400 palabras</li>
+            <li>Incluye lista con viñetas para escaneabilidad</li>
+            <li>Termina con CTA o pregunta de reflexión</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- PREVIEW MODAL -->
+  <div class="modal-overlay" id="previewModal" role="dialog" aria-modal="true" aria-labelledby="previewTitle">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title" id="previewTitle">Vista previa del artículo</h3>
+        <button class="modal-close" id="closePreview" aria-label="Cerrar"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+      </div>
+      <div class="modal-body">
+        <article class="preview-content" id="previewContent"></article>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" id="closePreviewBtn">Cerrar</button>
+        <button class="btn btn-primary" id="previewPublishBtn">Publicar desde aquí</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOADING OVERLAY -->
+  <div class="loading-overlay" id="loadingOverlay" aria-busy="true" aria-live="polite">
+    <div class="loading-spinner"></div>
+  </div>
+
+  <!-- TOAST CONTAINER -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- QUILL JS -->
+  <script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
+  <script src="https://unpkg.com/quill-image-resize-module@3.0.0/image-resize.min.js"></script>
+
+  <!-- FIREBASE SDK -->
+  <script type="module">
+    import { firebaseConfig, ADMIN_EMAILS, cloudinaryConfig } from './src/js/firebase-config.js';
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js';
+    import { getAuth, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js';
+    import { getFirestore, doc, getDoc, setDoc, updateDoc, serverTimestamp, collection } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js';
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    // DOM Elements
+    const editorForm = document.getElementById('editorForm');
+    const postTitle = document.getElementById('postTitle');
+    const postCategory = document.getElementById('postCategory');
+    const coverInput = document.getElementById('coverInput');
+    const coverPreview = document.getElementById('coverPreview');
+    const coverRemove = document.getElementById('coverRemove');
+    const editorContent = document.getElementById('editorContent');
+    const postPublished = document.getElementById('postPublished');
+    const saveDraftBtn = document.getElementById('saveDraftBtn');
+    const publishBtn = document.getElementById('publishBtn');
+    const previewBtn = document.getElementById('previewBtn');
+    const sidebarPreviewBtn = document.getElementById('sidebarPreviewBtn');
+    const sidebarSaveDraftBtn = document.getElementById('sidebarSaveDraftBtn');
+    const sidebarPublishBtn = document.getElementById('sidebarPublishBtn');
+    const previewModal = document.getElementById('previewModal');
+    const previewContent = document.getElementById('previewContent');
+    const closePreview = document.getElementById('closePreview');
+    const closePreviewBtn = document.getElementById('closePreviewBtn');
+    const previewPublishBtn = document.getElementById('previewPublishBtn');
+    const editorTitle = document.getElementById('editorTitle');
+    const currentStatus = document.getElementById('currentStatus');
+    const lastUpdated = document.getElementById('lastUpdated');
+    const wordCount = document.getElementById('wordCount');
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    const toastContainer = document.getElementById('toastContainer');
+
+    let quill = null;
+    let coverImageUrl = '';
+    let coverImageFile = null;
+    let currentPostId = null;
+    let isNewPost = true;
+
+    // --- TOAST ---
+    function showToast(message, type = 'info') {
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      toast.textContent = message;
+      toastContainer.appendChild(toast);
+      setTimeout(() => { toast.remove(); }, 4000);
+    }
+
+    function showLoading(show) { loadingOverlay.classList.toggle('active', show); }
+
+    // --- AUTH CHECK ---
+    onAuthStateChanged(auth, async (user) => {
+      if (!user || !ADMIN_EMAILS.includes(user.email)) {
+        window.location.href = 'admin.html';
+        return;
+      }
+      initEditor();
+      await loadPostIfEditing();
+    });
+
+    // --- INIT QUILL ---
+    function initEditor() {
+      const container = document.getElementById('editorContainer');
+      if (!container) {
+        console.error('editorContainer no encontrado');
+        showToast('Error: No se encontró el contenedor del editor', 'error');
+        return;
+      }
+
+      // Registrar módulo de redimensionar imágenes (cargado vía CDN)
+      Quill.register('modules/imageResize', ImageResize.default);
+
+      try {
+        quill = new Quill('#editorContainer', {
+          theme: 'snow',
+          modules: {
+            toolbar: [
+              [{ 'header': [1, 2, 3, false] }],
+              ['bold', 'italic', 'underline', 'strike'],
+              [{ 'color': [] }, { 'background': [] }],
+              [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+              ['blockquote', 'code-block'],
+              ['link', 'image'],
+              ['clean']
+            ],
+            imageResize: { modules: ['Resize', 'DisplaySize'] }
+          },
+          placeholder: 'Escribe tu artículo aquí...'
+        });
+        console.log('Quill inicializado correctamente');
+      } catch (e) {
+        console.error('Error inicializando Quill:', e);
+        showToast('Error al cargar el editor: ' + e.message, 'error');
+        return;
+      }
+
+      // Override image handler to upload to Cloudinary
+      const toolbar = quill.getModule('toolbar');
+      if (!toolbar) {
+        console.error('Toolbar de Quill no disponible');
+        showToast('Error: Toolbar no disponible', 'error');
+        return;
+      }
+
+      toolbar.addHandler('image', () => {
+        console.log('Botón de imagen clickeado');
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = 'image/*';
+        input.onchange = async () => {
+          const file = input.files[0];
+          if (!file) {
+            console.log('No se seleccionó archivo');
+            return;
+          }
+          console.log('Archivo seleccionado:', file.name, file.size, 'bytes');
+          const range = quill.getSelection();
+          try {
+            showLoading(true);
+            const url = await uploadToCloudinary(file);
+            showLoading(false);
+            console.log('Imagen subida:', url);
+            if (range) quill.insertEmbed(range.index, 'image', url);
+            showToast('Imagen insertada ✓', 'success');
+          } catch (e) {
+            showLoading(false);
+            console.error('Error subiendo imagen:', e);
+            showToast('Error subiendo imagen: ' + e.message, 'error');
+          }
+        };
+        input.click();
+      });
+
+      // Sync content to hidden input
+      quill.on('text-change', () => {
+        editorContent.value = quill.root.innerHTML;
+        updateWordCount();
+      });
+
+      // Keyboard shortcuts
+      document.addEventListener('keydown', (e) => {
+        if ((e.metaKey || e.ctrlKey) && e.key === 's') {
+          e.preventDefault();
+          savePost(false);
+        }
+      });
+    }
+
+    // --- CLOUDINARY UPLOAD ---
+    async function uploadToCloudinary(file) {
+      if (file.size > 5 * 1024 * 1024) throw new Error('Archivo muy grande (máx. 5MB)');
+
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('upload_preset', cloudinaryConfig.uploadPreset);
+      formData.append('folder', cloudinaryConfig.folder);
+
+      console.log('Subiendo a Cloudinary:', cloudinaryConfig.cloudName, cloudinaryConfig.uploadPreset);
+      const response = await fetch(`https://api.cloudinary.com/v1_1/${cloudinaryConfig.cloudName}/image/upload`, {
+        method: 'POST',
+        body: formData
+      });
+
+      console.log('Respuesta Cloudinary:', response.status, response.statusText);
+      if (!response.ok) {
+        const err = await response.json().catch(() => ({}));
+        console.error('Error Cloudinary:', err);
+        throw new Error(`Cloudinary ${response.status}: ${err.error?.message || response.statusText || 'Error subiendo imagen'}`);
+      }
+
+      const data = await response.json();
+      console.log('Cloudinary success:', data.secure_url);
+      return data.secure_url;
+    }
+
+    // --- COVER IMAGE ---
+    coverPreview.addEventListener('click', () => coverInput.click());
+    coverPreview.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); coverInput.click(); } });
+
+    coverInput.addEventListener('change', async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      if (file.size > 5 * 1024 * 1024) { showToast('Archivo muy grande (máx. 5MB)', 'error'); return; }
+
+      console.log('Subiendo portada:', file.name);
+      try {
+        showLoading(true);
+        const url = await uploadToCloudinary(file);
+        coverImageUrl = url;
+        coverImageFile = file;
+        coverPreview.classList.add('has-image');
+        coverPreview.classList.remove('empty');
+        coverPreview.innerHTML = `<img src="${url}" alt="Portada">` + coverPreview.innerHTML.replace(/<svg[\s\S]*?<\/svg>/, '');
+        showToast('Imagen de portada subida ✓', 'success');
+        console.log('Portada subida:', url);
+      } catch (error) {
+        console.error('Error subiendo portada:', error);
+        showToast('Error subiendo portada: ' + error.message, 'error');
+      } finally {
+        showLoading(false);
+      }
+    });
+
+    coverRemove.addEventListener('click', (e) => {
+      e.stopPropagation();
+      coverImageUrl = '';
+      coverImageFile = null;
+      coverInput.value = '';
+      coverPreview.classList.remove('has-image');
+      coverPreview.classList.add('empty');
+      coverPreview.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 19V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2z"/><circle cx="12" cy="12" r="3"/><path d="M12 17l4-4 4 4"/></svg>`;
+      showToast('Imagen de portada eliminada', 'info');
+    });
+
+    // --- LOAD POST IF EDITING ---
+    async function loadPostIfEditing() {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get('id');
+      const isNew = params.get('new') === 'true';
+
+      if (id) {
+        currentPostId = id;
+        isNewPost = false;
+        editorTitle.textContent = 'Editar artículo';
+        try {
+          showLoading(true);
+          const docSnap = await getDoc(doc(db, 'blogPosts', id));
+          showLoading(false);
+          if (!docSnap.exists()) { showToast('Artículo no encontrado', 'error'); setTimeout(() => window.location.href = 'admin.html', 2000); return; }
+          populateForm(docSnap.data(), id);
+        } catch (error) {
+          showLoading(false);
+          showToast('Error cargando artículo: ' + error.message, 'error');
+        }
+      } else if (isNew) {
+        currentPostId = null;
+        isNewPost = true;
+        editorTitle.textContent = 'Nuevo artículo';
+        updateStatus('Borrador');
+      }
+    }
+
+    function populateForm(data, id) {
+      postTitle.value = data.titulo || '';
+      postCategory.value = data.categoria || '';
+      const plantillaRadio = document.querySelector(`input[name="plantilla"][value="${data.plantilla || 'estandar'}"]`);
+      if (plantillaRadio) plantillaRadio.checked = true;
+      postPublished.checked = data.publicado === true;
+
+      if (data.imagenPortadaUrl) {
+        coverImageUrl = data.imagenPortadaUrl;
+        coverPreview.classList.add('has-image');
+        coverPreview.classList.remove('empty');
+        coverPreview.innerHTML = `<img src="${data.imagenPortadaUrl}" alt="Portada">`;
+      }
+
+      if (data.contenidoHtml) {
+        quill.root.innerHTML = data.contenidoHtml;
+        editorContent.value = data.contenidoHtml;
+      }
+
+      updateStatus(data.publicado ? 'Publicado' : 'Borrador');
+      updateLastUpdated(data.fecha?.toDate ? data.fecha.toDate() : null);
+      updateWordCount();
+    }
+
+    // --- SAVE / PUBLISH ---
+    saveDraftBtn.addEventListener('click', () => savePost(false));
+    publishBtn.addEventListener('click', () => savePost(true));
+    sidebarSaveDraftBtn.addEventListener('click', () => savePost(false));
+    sidebarPublishBtn.addEventListener('click', () => savePost(true));
+
+    async function savePost(publish) {
+      const titulo = postTitle.value.trim();
+      const categoria = postCategory.value;
+      const plantilla = document.querySelector('input[name="plantilla"]:checked')?.value || 'estandar';
+      const contenidoHtml = quill.root.innerHTML.trim();
+      const publicado = publish || postPublished.checked;
+
+      if (!titulo) { showToast('El título es obligatorio', 'error'); postTitle.focus(); return; }
+      if (!categoria) { showToast('Selecciona una categoría', 'error'); postCategory.focus(); return; }
+      if (!contenidoHtml || contenidoHtml === '<p><br></p>') { showToast('El contenido no puede estar vacío', 'error'); return; }
+
+      const postData = {
+        titulo,
+        categoria,
+        plantilla,
+        contenidoHtml,
+        imagenPortadaUrl: coverImageUrl || null,
+        publicado,
+        fecha: serverTimestamp()
+      };
+
+      if (!isNewPost) {
+        // No sobrescribir fecha de creación en update
+        delete postData.fecha;
+      }
+
+      try {
+        showLoading(true);
+        const targetId = currentPostId || doc(collection(db, 'blogPosts')).id;
+        await setDoc(doc(db, 'blogPosts', targetId), postData, { merge: true });
+        showLoading(false);
+
+        currentPostId = targetId;
+        isNewPost = false;
+        editorTitle.textContent = 'Editar artículo';
+        updateStatus(publicado ? 'Publicado' : 'Borrador');
+        updateLastUpdated(new Date());
+
+        showToast(publicado ? 'Artículo publicado ✓' : 'Borrador guardado ✓', 'success');
+
+        // Actualizar URL sin recargar
+        const newUrl = `${window.location.pathname}?id=${targetId}`;
+        window.history.replaceState({}, '', newUrl);
+      } catch (error) {
+        showLoading(false);
+        showToast('Error guardando: ' + error.message, 'error');
+      }
+    }
+
+    // --- PREVIEW ---
+    function openPreview() {
+      const titulo = postTitle.value.trim() || 'Sin título';
+      const categoria = postCategory.value;
+      const plantilla = document.querySelector('input[name="plantilla"]:checked')?.value || 'estandar';
+      const contenidoHtml = quill.root.innerHTML;
+      const imagenPortada = coverImageUrl;
+
+      const categoryLabels = { ansiedad: 'Ansiedad', depresion: 'Depresión', pareja: 'Relaciones de pareja', familiar: 'Relaciones familiares', autoestima: 'Autoestima', otros: 'Otros' };
+
+      let html = '';
+      if (plantilla === 'imagen-destacada' && imagenPortada) {
+        html += `<img src="${imagenPortada}" alt="${escapeHtml(titulo)}" class="preview-cover">`;
+        html += `<h1 style="position: relative; z-index: 1;">${escapeHtml(titulo)}</h1>`;
+      } else {
+        if (imagenPortada) html += `<img src="${imagenPortada}" alt="${escapeHtml(titulo)}" class="preview-cover">`;
+        html += `<h1>${escapeHtml(titulo)}</h1>`;
+      }
+      html += `<div style="margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--card-border); display: flex; gap: 16px; flex-wrap: wrap; align-items: center; font-size: 14px; color: var(--text-dark); opacity: 0.7;">`;
+      html += `<span>${categoryLabels[categoria] || categoria}</span>`;
+      html += `<span>•</span><span>${new Date().toLocaleDateString('es-PE', { day: '2-digit', month: 'long', year: 'numeric' })}</span>`;
+      html += `</div>`;
+      html += contenidoHtml;
+
+      previewContent.innerHTML = html;
+      previewModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closePreviewFn() {
+      previewModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    previewBtn.addEventListener('click', openPreview);
+    sidebarPreviewBtn.addEventListener('click', openPreview);
+    closePreview.addEventListener('click', closePreviewFn);
+    closePreviewBtn.addEventListener('click', closePreviewFn);
+    previewPublishBtn.addEventListener('click', () => { closePreviewFn(); savePost(true); });
+    previewModal.addEventListener('click', (e) => { if (e.target === previewModal) closePreviewFn(); });
+
+    // --- STATUS ---
+    function updateStatus(status) {
+      currentStatus.textContent = status;
+      currentStatus.style.color = status === 'Publicado' ? '#1a8a3a' : 'var(--celeste-deep)';
+    }
+
+    function updateLastUpdated(date) {
+      if (date) {
+        lastUpdated.textContent = date.toLocaleString('es-PE', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+      } else {
+        lastUpdated.textContent = '—';
+      }
+    }
+
+    function updateWordCount() {
+      const text = quill.getText().trim();
+      const count = text ? text.split(/\s+/).length : 0;
+      wordCount.textContent = count;
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    // Expose for console debugging
+    window.editor = { quill, savePost, openPreview };
+  </script>
+</body>
+</html>

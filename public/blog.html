@@ -1373,8 +1373,8 @@
       navToggle.classList.toggle('active');
     });
 
-    // Close mobile menu on link click
-    navLinks.querySelectorAll('a').forEach(link => {
+    // Close mobile menu on link click (but not dropdown trigger)
+    navLinks.querySelectorAll('a:not(.has-dropdown > a)').forEach(link => {
       link.addEventListener('click', () => {
         navLinks.classList.remove('active');
         navToggle.classList.remove('active');
@@ -1384,11 +1384,20 @@
     // Mobile dropdown toggle
     document.querySelectorAll('.has-dropdown > a').forEach(link => {
       link.addEventListener('click', (e) => {
-        if (window.innerWidth <= 768) {
+        if (window.innerWidth <= 968) {
           e.preventDefault();
           link.parentElement.classList.toggle('active');
         }
       });
+    });
+
+    // Close menu on resize to desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 968) {
+        navLinks.classList.remove('active');
+        navToggle.classList.remove('active');
+        document.querySelectorAll('.has-dropdown').forEach(el => el.classList.remove('active'));
+      }
     });
 
     // Fade-in animation on scroll

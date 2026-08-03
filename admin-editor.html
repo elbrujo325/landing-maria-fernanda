@@ -154,12 +154,13 @@
 
     .form-group { margin-bottom: 16px; }
     .form-group label { display: block; font-size: 14px; font-weight: 600; color: var(--text-dark); margin-bottom: 8px; }
-    .form-group input, .form-group select {
+    .form-group input, .form-group select, .form-group textarea {
       width: 100%; padding: 12px 16px; border: 2px solid var(--card-border); border-radius: 10px;
       font-family: 'Open Sans', sans-serif; font-size: 15px; color: var(--text-dark); background: var(--white);
       transition: all 0.3s ease;
     }
-    .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--celeste-deep); box-shadow: 0 0 0 4px rgba(111, 193, 255, 0.15); }
+    .form-group textarea { min-height: 110px; resize: vertical; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--celeste-deep); box-shadow: 0 0 0 4px rgba(111, 193, 255, 0.15); }
     .form-group input:disabled { opacity: 0.6; cursor: not-allowed; }
 
     .required::after { content: ' *'; color: var(--color-ig); }
@@ -236,11 +237,22 @@
     .modal-close { width: 40px; height: 40px; border-radius: 50%; border: none; background: var(--cream-light); color: var(--text-dark); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; }
     .modal-close:hover { background: var(--celeste-light); color: var(--celeste-deep); }
     .modal-body { flex: 1; overflow-y: auto; padding: 24px; }
-    .preview-content { font-family: 'Open Sans', sans-serif; color: var(--text-dark); line-height: 1.8; }
-    .preview-content h1 { font-family: 'League Spartan', sans-serif; color: var(--title-color); margin: 24px 0 16px; }
+    .preview-content { font-family: 'Open Sans', sans-serif; color: var(--text-dark); line-height: 1.9; }
+    .preview-content h1 { font-family: 'League Spartan', sans-serif; color: var(--title-color); margin: 24px 0 16px; font-size: clamp(2rem, 4vw, 2.6rem); }
     .preview-content h2 { font-family: 'League Spartan', sans-serif; color: var(--text-dark); margin: 20px 0 12px; }
-    .preview-content img { max-width: 100%; border-radius: 12px; margin: 16px 0; }
-    .preview-cover { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 12px; margin-bottom: 24px; }
+    .preview-content img { max-width: 100%; border-radius: 12px; margin: 18px 0; }
+    .preview-cover { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 20px; margin-bottom: 24px; }
+    .preview-hero { position: relative; border-radius: 20px; overflow: hidden; margin-bottom: 28px; }
+    .preview-hero img { width: 100%; height: auto; display: block; object-fit: cover; }
+    .preview-hero-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(26, 46, 53, 0.0) 30%, rgba(26, 46, 53, 0.88) 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 28px; }
+    .preview-hero-overlay h1 { color: var(--white); margin: 0; font-size: clamp(2rem, 4vw, 2.8rem); line-height: 1.05; }
+    .preview-article-header { margin-bottom: 26px; }
+    .preview-article-header h1 { font-size: clamp(2rem, 4vw, 2.6rem); margin: 14px 0 12px; line-height: 1.08; }
+    .preview-badge { display: inline-flex; align-items: center; padding: 6px 16px; border-radius: 999px; background: rgba(111, 193, 255, 0.15); color: var(--celeste-deep); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; font-size: 12px; margin-bottom: 12px; }
+    .preview-meta { display: flex; flex-wrap: wrap; gap: 10px; color: var(--text-dark); opacity: 0.78; font-size: 13px; margin-bottom: 22px; }
+    .preview-description { margin-bottom: 28px; color: rgba(58, 74, 90, 0.82); }
+    .preview-article-content { padding-bottom: 24px; }
+    .preview-article-content blockquote { border-left-color: var(--celeste-deep); background: var(--cream-light); padding: 16px 20px; border-radius: 0 12px 12px 0; }
     .modal-footer { padding: 16px 24px; border-top: 1px solid var(--card-border); display: flex; justify-content: flex-end; gap: 12px; }
 
     /* Toast */
@@ -296,6 +308,15 @@
             <div class="form-group">
               <label for="postTitle" class="required">Título del artículo</label>
               <input type="text" id="postTitle" name="titulo" maxlength="120" placeholder="Escribe un título atractivo..." required>
+            </div>
+          </div>
+
+          <!-- DESCRIPCIÓN CORTA -->
+          <div class="form-section">
+            <div class="section-label">Resumen</div>
+            <div class="form-group">
+              <label for="postExcerpt">Descripción corta</label>
+              <textarea id="postExcerpt" name="descripcionCorta" rows="4" maxlength="220" placeholder="Resumen breve que se usará en la vista previa y en redes sociales..."></textarea>
             </div>
           </div>
 
@@ -479,6 +500,7 @@
     // DOM Elements
     const editorForm = document.getElementById('editorForm');
     const postTitle = document.getElementById('postTitle');
+    const postExcerpt = document.getElementById('postExcerpt');
     const postCategory = document.getElementById('postCategory');
     const coverInput = document.getElementById('coverInput');
     const coverPreview = document.getElementById('coverPreview');
@@ -730,6 +752,7 @@
         quill.root.innerHTML = data.contenidoHtml;
         editorContent.value = data.contenidoHtml;
       }
+      postExcerpt.value = data.descripcionCorta || '';
 
       updateStatus(data.publicado ? 'Publicado' : 'Borrador');
       updateLastUpdated(data.fecha?.toDate ? data.fecha.toDate() : null);
@@ -744,6 +767,7 @@
 
     async function savePost(publish) {
       const titulo = postTitle.value.trim();
+      const descripcionCorta = postExcerpt.value.trim();
       const categoria = postCategory.value;
       const plantilla = document.querySelector('input[name="plantilla"]:checked')?.value || 'estandar';
       const contenidoHtml = quill.root.innerHTML.trim();
@@ -755,6 +779,7 @@
 
       const postData = {
         titulo,
+        descripcionCorta: descripcionCorta || null,
         categoria,
         plantilla,
         contenidoHtml,
@@ -794,26 +819,37 @@
     // --- PREVIEW ---
     function openPreview() {
       const titulo = postTitle.value.trim() || 'Sin título';
+      const descripcionCorta = postExcerpt.value.trim();
       const categoria = postCategory.value;
       const plantilla = document.querySelector('input[name="plantilla"]:checked')?.value || 'estandar';
       const contenidoHtml = quill.root.innerHTML;
       const imagenPortada = coverImageUrl;
+      const fechaTexto = new Date().toLocaleDateString('es-PE', { day: '2-digit', month: 'long', year: 'numeric' });
 
       const categoryLabels = { ansiedad: 'Ansiedad', depresion: 'Depresión', pareja: 'Relaciones de pareja', familiar: 'Relaciones familiares', autoestima: 'Autoestima', otros: 'Otros' };
+      const summary = descripcionCorta || stripHtml(contenidoHtml).substring(0, 180);
 
       let html = '';
       if (plantilla === 'imagen-destacada' && imagenPortada) {
-        html += `<img src="${imagenPortada}" alt="${escapeHtml(titulo)}" class="preview-cover">`;
-        html += `<h1 style="position: relative; z-index: 1;">${escapeHtml(titulo)}</h1>`;
+        html += `<section class="preview-hero"><img src="${imagenPortada}" alt="${escapeHtml(titulo)}"><div class="preview-hero-overlay">`;
+        html += `<span class="preview-badge">${categoryLabels[categoria] || categoria}</span>`;
+        html += `<h1>${escapeHtml(titulo)}</h1>`;
+        html += `<div class="preview-meta"><span>Por María Fernanda Arana</span><span>•</span><span>${fechaTexto}</span></div>`;
+        html += `</div></section>`;
       } else {
         if (imagenPortada) html += `<img src="${imagenPortada}" alt="${escapeHtml(titulo)}" class="preview-cover">`;
+        html += `<div class="preview-article-header">`;
+        html += `<span class="preview-badge">${categoryLabels[categoria] || categoria}</span>`;
         html += `<h1>${escapeHtml(titulo)}</h1>`;
+        html += `<div class="preview-meta"><span>Por María Fernanda Arana</span><span>•</span><span>${fechaTexto}</span></div>`;
+        html += `</div>`;
       }
-      html += `<div style="margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--card-border); display: flex; gap: 16px; flex-wrap: wrap; align-items: center; font-size: 14px; color: var(--text-dark); opacity: 0.7;">`;
-      html += `<span>${categoryLabels[categoria] || categoria}</span>`;
-      html += `<span>•</span><span>${new Date().toLocaleDateString('es-PE', { day: '2-digit', month: 'long', year: 'numeric' })}</span>`;
-      html += `</div>`;
-      html += contenidoHtml;
+
+      if (summary) {
+        html += `<p class="preview-description">${escapeHtml(summary)}</p>`;
+      }
+
+      html += `<div class="preview-article-content">${contenidoHtml}</div>`;
 
       previewContent.innerHTML = html;
       previewModal.classList.add('active');
@@ -856,6 +892,12 @@
       const div = document.createElement('div');
       div.textContent = text;
       return div.innerHTML;
+    }
+
+    function stripHtml(html) {
+      const div = document.createElement('div');
+      div.innerHTML = html;
+      return div.textContent || div.innerText || '';
     }
 
     // Expose for console debugging

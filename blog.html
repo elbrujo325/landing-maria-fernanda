@@ -257,6 +257,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 12px 24px;
+      position: relative;
     }
 
     .nav-links {
@@ -671,17 +672,6 @@
         transition-duration: 0.01ms !important;
       }
     }
-
-    /* INDEX NAVBAR + FOOTER STYLES (aesthetic parity) */
-    .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255,254,236,0.85); backdrop-filter: blur(8px) saturate(180%); -webkit-backdrop-filter: blur(8px) saturate(180%); border-bottom: 1px solid rgba(176,221,252,0.35); transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; }
-    .navbar.scrolled { background: rgba(255,254,236,0.95); border-bottom-color: rgba(137,204,255,0.5); box-shadow: 0 6px 24px -16px rgba(111,193,255,0.25); }
-    .navbar .nav-text { color: var(--text-dark); }
-    .navbar .nav-links > li > a { color: var(--text-dark); }
-    .navbar .nav-links > li > a:hover { color: var(--celeste-deep); }
-    .navbar .dropdown-arrow { stroke: var(--celeste-deep); }
-    .navbar .nav-logo-img-wrap { background: var(--celeste-deep); }
-    .navbar .nav-logo-img { filter: brightness(0) invert(1); }
-    .navbar .container { display: flex; justify-content: space-between; align-items: center; padding: 12px 24px; }
 
     /* Footer — Luxto Style (paridad con index.html) */
     .footer {

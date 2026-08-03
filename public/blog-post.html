@@ -475,7 +475,7 @@
     function renderPost(data, id) {
       // Update meta tags
       const title = data.titulo || 'Artículo';
-      const excerpt = stripHtml(data.contenidoHtml).substring(0, 160);
+      const excerpt = data.descripcionCorta ? data.descripcionCorta.trim() : stripHtml(data.contenidoHtml).substring(0, 160);
       const coverUrl = data.imagenPortadaUrl || '';
       const articleDescriptionText = excerpt || 'Lee este artículo para encontrar herramientas prácticas y reflexivas sobre bienestar emocional.';
 

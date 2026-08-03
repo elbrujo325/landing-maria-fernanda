@@ -342,6 +342,6 @@ Full-stack Developer · Firebase · Web Performance · UX Engineering . Physics 
 
 - GitHub: [@elbrujo325](https://github.com/elbrujo325)
 - LinkedIn: [linkedin.com/in/henry-paolo-alfaro-sotil](https://linkedin.com/in/henry-paolo-alfaro-sotil)
-- Email: paolo.alfaro.sotil@gmail.com
+- Email: paolosotil97@gmail.com
 
 > *Desarrollado con enfoque en performance, accesibilidad y mantenibilidad. Código limpio, documentado y listo para escalar.*

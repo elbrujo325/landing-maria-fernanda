@@ -843,32 +843,10 @@
     const params = new URLSearchParams(window.location.search);
     const postId = params.get('id');
 
-    const readingProgress = document.getElementById('readingProgress');
-
     if (!postId) {
       showNotFound();
     } else {
       loadPost(postId);
-    }
-
-    window.addEventListener('scroll', updateReadingProgress);
-    window.addEventListener('resize', updateReadingProgress);
-    window.addEventListener('load', updateReadingProgress);
-
-    function updateReadingProgress() {
-      const article = document.getElementById('articleMain');
-      if (!article || article.style.display === 'none') return;
-      const articleTop = article.offsetTop;
-      const articleHeight = article.offsetHeight;
-      const viewportHeight = window.innerHeight;
-      const totalScrollable = articleHeight - viewportHeight;
-      if (totalScrollable <= 0) {
-        readingProgress.style.width = '100%';
-        return;
-      }
-      const scrolled = Math.min(Math.max(window.scrollY - articleTop + 4, 0), totalScrollable);
-      const percent = Math.round((scrolled / totalScrollable) * 100);
-      readingProgress.style.width = `${percent}%`;
     }
 
     async function loadPost(id) {

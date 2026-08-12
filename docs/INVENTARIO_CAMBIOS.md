@@ -3,14 +3,14 @@
 **Archivo base:** `index.html` (3.629 líneas)  
 **Fecha:** 2026-07-21  
 **Fuente:** Brief del cliente + revisión exhaustiva del HTML actual  
-**Última actualización:** 2026-07-21 — Commit `8f28dab` (Grupos 1-5 completados ✅) + **Post-commit: Paleta oficial, optimización imágenes, tipografías de marca, docs actualizados**
+**Última actualización:** 2026-08-12 — Commit `ed0d7e4` (Grupo E completado ✅) + **Blog unificación deployada, Invalid Date fix, template parity 100%**
 
 ---
 
 ## ÍNDICE DE CAMBIOS
 
 | ID | Categoría | Sección / Línea | Cambio requerido | Estado |
-|---|---|---|---|---|
+|---|---|---|---|---|---|
 | **A-1** | Copy | `<title>` línea 6 | `TCC` → `ACT` | ✅ |
 | **A-2** | Copy | `<meta description>` línea 7 | `TCC` → `ACT`; "Psicóloga clínica y psicoterapeuta Cognitivo Conductual" → "Psicóloga clínica ACT, especialista en bienestar emocional" | ✅ |
 | **A-3** | Copy | Hero eyebrow línea 2699 | `"Psicóloga Clínica · TCC · Lima & Online"` → `"Psicóloga clínica ACT, especialista en bienestar emocional"` | ✅ |
@@ -30,7 +30,7 @@
 ---
 
 | ID | Categoría | Sección / Línea | Cambio requerido | Estado |
-|---|---|---|---|---|
+|---|---|---|---|---|---|
 | **B-1** | Eliminar/Deshabilitar | Nav dropdown líneas 2675-2679 | Item "Ebooks & Recursos" → **ocultar con `display:none` + comentario `<!-- DESHABILITADO v1 - reactivar en v2 -->`** NO eliminar del código | ✅ |
 | **B-2** | Eliminar/Deshabilitar | Servicios tarjeta 3 líneas 2963-2975 | Tarjeta completa "Ebooks & Recursos" → **ocultar con `display:none` + comentario igual** | ✅ |
 | **B-3** | Eliminar | Sección Precios completa líneas 3047-3106 | **ELIMINAR bloque completo** (incluye `id="precios"` y todo su contenido). NO dejar código comentado. | ✅ |
@@ -42,7 +42,7 @@
 ---
 
 | ID | Categoría | Sección / Línea | Cambio requerido | Estado |
-|---|---|---|---|---|
+|---|---|---|---|---|---|
 | **C-1** | Nueva sección | Después de Testimonios / Antes de FAQ | **Sección "Redes & Agenda" (reemplaza espacio de Precios)**: Instagram, TikTok, Facebook, WhatsApp todos `@pensarsentirhacer.pe` + botón CTA WhatsApp | ✅ |
 | **C-2** | Nueva sección | Dentro de C-1 | **Feed Instagram vivo (Behold.so)**: embed widget conectado a `@pensarsentirhacer.pe`. Requiere que clienta conecte su cuenta en Behold.so. Patrón de proyecto "Luz de Cristo / Luxto". | ✅ (placeholder listo) |
 | **C-3** | Nueva sección | Sección "Sobre mí" (líneas 2764-2786) | **Video YouTube embebido** después del texto: `https://www.youtube.com/watch?v=CfACxsC7K-A` → iframe responsive | ✅ |
@@ -53,7 +53,7 @@
 ---
 
 | ID | Categoría | Sección / Línea | Cambio requerido | Estado |
-|---|---|---|---|---|
+|---|---|---|---|---|---|
 | **D-1** | Backend | Firebase | Configurar projecto Firebase **bajo cuenta Google de la clienta** (coordinar con Paolo). Firestore + Auth + Hosting rules. | ⏳ **DEFERIDO: esperando credenciales clienta** |
 | **D-2** | Backend | Firestore | Colección `testimonios`: `{ nombre, texto, estrellas, fecha, aprobado: boolean }`. Default `aprobado: false`. | ⏳ **DEFERIDO: esperando credenciales clienta** |
 | **D-3** | Backend | Firestore | Colección `blogs`: `{ titulo, cuerpo, imagen_url, fecha, publicado: boolean }`. Solo `publicado: true` se renderiza en público. | ⏳ **DEFERIDO: esperando credenciales clienta** |
@@ -132,19 +132,31 @@
 
 ---
 
-## GRUPO E — UNIFICACIÓN BLOG PREVIEW + VISTA REAL (NUEVO — 2026-08-11)
+## GRUPO E — UNIFICACIÓN BLOG PREVIEW + VISTA REAL (COMPLETADO ✅ — 2026-08-11 a 2026-08-12)
 
 **Contexto:** Detectadas 9 discrepancias entre `admin-editor.html` (preview modal) y `blog-post.html` (vista real): 3 críticas (bugs funcionales), 3 altas (engañan al redactor), 3 medias/bajas (CSS). Dos sistemas de renderizado independientes.
 
 | ID | Categoría | Archivo/Componente | Cambio requerido | Estado |
-|---|---|---|---|---|
-| **E-1** | Bug Crítico | `admin-editor.html:1123` | Fix publicación accidental: `const publicado = publish ? true : postPublished.checked` | ⏳ |
-| **E-2** | Bug Crítico | `blog-post.html` `<head>` | Añadir Quill CSS: `<link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">` | ⏳ |
-| **E-3** | Bug Crítico | `blog-post.html:1117-1134` | Fix descripción en imagen-destacada: mover/renderizar descripción en overlay antes de ocultar header | ⏳ |
-| **E-4** | Feature | **NUEVO** `public/src/js/blog-renderer.js` | Crear módulo compartido `renderArticle(data, container, options)` — renderizado unificado para preview y real | ⏳ |
-| **E-5** | Feature | `blog-renderer.js` | Implementar plantilla `galeria` REAL: `buildGalleryLayout()` con texto + 2-3 imágenes intercaladas, grid responsive | ⏳ |
-| **E-6** | Refactor | `admin-editor.html` | Integrar módulo: import, reemplazar `openPreview()`, eliminar CSS `.preview-*` duplicado | ⏳ |
-| **E-7** | Refactor | `blog-post.html` | Integrar módulo: import, reemplazar `renderPost()`, mantener SEO/related/navbar, eliminar CSS `.article-*` duplicado | ⏳ |
+|---|---|---|---|---|---|
+| **E-1** | Bug Crítico | `admin-editor.html:1123` | Fix publicación accidental: `const publicado = publish ? true : postPublished.checked` | ✅ |
+| **E-2** | Bug Crítico | `blog-post.html` `<head>` (línea 17) | Añadir Quill CSS: `<link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">` | ✅ |
+| **E-3** | Bug Crítico | `blog-renderer.js:153-172` (`buildHero()`) | Fix descripción en imagen-destacada: inyectar descripción en overlay via `buildHero()` | ✅ |
+| **E-4** | Feature | **NUEVO** `public/src/js/blog-renderer.js` (~600 líneas) | Crear módulo compartido `renderArticle(data, container, options)` — renderizado unificado para preview y real | ✅ |
+| **E-5** | Feature | `blog-renderer.js:180-302` (`buildGalleryLayout()`) | Implementar plantilla `galeria` REAL: texto + 2-3 imágenes intercaladas, marcadores `<!-- gallery-img-N -->`, grid responsive 2 col desktop / 1 col mobile | ✅ |
+| **E-6** | Refactor | `admin-editor.html:245-324, 1203-1228` | Integrar módulo: import, reemplazar `openPreview()` por `renderArticle()`, **CSS preview modal reescrito para paridad exacta con blog-post.html** (max-width 800px) | ✅ |
+| **E-7** | Refactor | `blog-post.html:304-305, 1079-1109` | Integrar módulo: import, reemplazar `renderPost()` por `renderArticle()`, mantener SEO/related/navbar/reading-progress, fix CSS `.article-cover` (object-fit en img) | ✅ |
+
+**Commits clave:**
+- `bb9627d` — fix(blog-renderer): syntax error missing `=`
+- `06d33e0` — fix(blog-renderer): add classes, fix Invalid Date, improve templates
+- `6b747c9` — fix(blog): comprehensive fix Invalid Date, template parity, preview fidelity
+- `ed0d7e4` — fix(blog-post): remove duplicate event listener
+
+**Mejoras adicionales en módulo:**
+- `formatDate()` robusto: maneja `Date`, `Timestamp.toDate()`, `{seconds}`, string ISO, number (epoch ms) → elimina "Invalid Date"
+- `applyQuillStyles()`: normaliza `.ql-align-*`, `.ql-indent-*`, blockquotes, listas, imágenes, code, video
+- `buildHero()`: inyecta descripción en overlay para `imagen-destacada`
+- Plantillas 3 `estandar` / `imagen-destacada` / `galeria` estéticamente mejoradas con design tokens PSH
 
 ---
 

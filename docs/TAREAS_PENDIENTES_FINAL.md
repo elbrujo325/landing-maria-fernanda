@@ -37,7 +37,7 @@ El cliente solicita un **cambio radical de paleta y estética**:
 ### FASE 2 — LIMPIEZA DE USOS DE --ink (Recorrido exhaustivo)
 
 | T# | Zona | Acción | Verificación |
-|---|---|---|---|
+|---|---|---|---|---|
 | 2.1 | Navbar (`.navbar`, `.nav-logo`, textos, bordes, sombras) | Reemplazar `--ink` → `--text-dark`, `--celeste-deep`, `--white`; sombras → `rgba(111,193,255,0.XX)` | Nav glassmorphism con colores claros |
 | 2.2 | Hero (`h1`, `p`, botones, trust bar, photo frame) | Títulos `--title-color`, textos `--text-dark`, botones ver Fase 4 | Hero limpio |
 | 2.3 | Social Proof Bar | Textos `--text-dark`, stats `--title-color` | Ok |
@@ -50,7 +50,7 @@ El cliente solicita un **cambio radical de paleta y estética**:
 | 2.10 | Redes & Agenda (chips, embed, CTA) | Chips base `--ink`→`--text-dark`, hover brand colors, CTA ver Fase 4 | Ok |
 | 2.11 | FAQ (accordion, preguntas, respuestas) | Preguntas `--title-color`, respuestas `--text-dark`, iconos `--celeste-deep` | Ok |
 | 2.12 | CTA Final (títulos, textos, botones) | Título `--title-color`, texto `--text-dark`, botones ver Fase 4 | Ok |
-| 2.13 | Footer (quote, brand, nav, contact, social, bottom bar) | Quote `--title-color`, textos `--text-dark`/`--cream`, social base `--text-dark`, hover brand | Ok |
+| 2.13 | Footer (quote, brand, nav, contact, social, social, bottom bar) | Quote `--title-color`, textos `--text-dark`/`--cream`, social base `--text-dark`, hover brand | Ok |
 | 2.14 | WhatsApp Float | Fondo `--text-dark`, icono `--white`, shadow `rgba(111,193,255,0.4)` | Ok |
 | 2.15 | Responsive / Media queries | Mismos reemplazos en bloques `@media` | Ok |
 | 2.16 | Sombras GLOBALES | Buscar `rgba(26,46,53` o `rgba(1,1,1` o `rgba(0,0,0` → reemplazar por `rgba(111,193,255,0.25)` o `rgba(255,251,133,0.2)` | `grep -n "rgba(" index.html` → solo tonos celeste/amarillo |
@@ -72,7 +72,7 @@ El cliente solicita un **cambio radical de paleta y estética**:
 ### FASE 4 — BOTONES (Sistema unificado)
 
 | T# | Clase | Estilos | Verificación |
-|---|---|---|---|
+|---|---|---|---|---|
 | 4.1 | `.btn-primary` | `background: var(--celeste-deep); color: var(--white); border: none; box-shadow: 0 8px 20px -5px rgba(111,193,255,0.3);` | Visual: celeste sólido, sin sombra verde |
 | 4.2 | `.btn-primary:hover` | `background: var(--celeste-mid); transform: scale(1.03); box-shadow: 0 12px 28px -5px rgba(111,193,255,0.4);` | Hover celeste medio |
 | 4.3 | `.btn-secondary` | `background: transparent; color: var(--celeste-deep); border: 2px solid var(--celeste-deep); box-shadow: none;` | Outline celeste |
@@ -85,7 +85,7 @@ El cliente solicita un **cambio radical de paleta y estética**:
 ### FASE 5 — IMÁGENES (Rutas correctas)
 
 | T# | Elemento | Nueva ruta (`src`) | Verificación |
-|---|---|---|---|
+|---|---|---|---|---|
 | 5.1 | Hero photo / Sobre mí | `foto-fernanda.png` | Ya correcta |
 | 5.2 | Navbar logo | `logo-psh.png` | Verificar `nav-logo-img` |
 | 5.3 | Footer logo | `logo-psh.png` | Verificar `footer-logo` |
@@ -215,27 +215,33 @@ echo "R-9:" && grep -c "wa.me/51939855573" index.html
 
 ---
 
-## GRUPO 9 — UNIFICACIÓN BLOG PREVIEW + VISTA REAL (NUEVO — 2026-08-11)
+## GRUPO 9 — UNIFICACIÓN BLOG PREVIEW + VISTA REAL (COMPLETADO ✅ — 2026-08-11 a 2026-08-12)
 
-**Problema:** `admin-editor.html` (preview modal) y `blog-post.html` (vista real) tienen **dos sistemas de renderizado independientes** con CSS y lógica distintos. 9 discrepancias documentadas (3 críticas, 3 altas, 3 medias/bajas). Preview miente al redactor.
+**Problema:** `admin-editor.html` (preview modal) y `blog-post.html` (vista real) tenían **dos sistemas de renderizado independientes** con CSS y lógica distintos. 9 discrepancias documentadas (3 críticas, 3 altas, 3 medias/bajas). Preview mentía al redactor.
 
-**Solución:** Módulo compartido `public/src/js/blog-renderer.js` con `renderArticle(data, container, options)` usado por AMBOS archivos. Paridad 100% garantizada.
+**Solución:** Módulo compartido `public/src/js/blog-renderer.js` con `renderArticle(data, container, options)` usado por AMBOS archivos. **Paridad 100% garantizada.** Deployado y funcionando en GitHub Pages.
 
 | T# | Descripción | Archivo/Líneas | Verificación | Estado |
-|---|---|---|---|---|
-| 9.1 | **HF-1 Hotfix:** Bug publicación accidental — `admin-editor.html:1123` cambiar `const publicado = publish \|\| postPublished.checked` → `const publicado = publish ? true : postPublished.checked` | `admin-editor.html:1123` | Click "Guardar borrador" con checkbox marcado → NO publica | ⏳ |
-| 9.2 | **HF-2 Hotfix:** Quill alignments rotos — añadir `<link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">` al `<head>` de `blog-post.html` | `blog-post.html` head | Texto centrado/justificado/indentado en editor → se ve igual en blog | ⏳ |
-| 9.3 | **HF-3 Hotfix:** Descripción desaparece en "imagen-destacada" — mover `.article-description` al overlay ANTES de `articleHeader.style.display = 'none'` | `blog-post.html:1117-1134` | Plantilla imagen-destacada muestra descripción en overlay | ⏳ |
-| 9.4 | **M-1 Crear módulo compartido:** `public/src/js/blog-renderer.js` con `renderArticle(data, container, options)` — función principal unificada | **NUEVO ARCHIVO** | Archivo existe, exporta funciones | ⏳ |
-| 9.5 | **M-2 Módulo:** Implementar `buildHero()` para plantilla `imagen-destacada` (overlay + título + meta + descripción) | `blog-renderer.js` | Preview y real idénticos para imagen-destacada | ⏳ |
-| 9.6 | **M-3 Módulo:** Implementar `buildStandardHeader()` para plantillas `estandar` y `galeria` | `blog-renderer.js` | Preview y real idénticos para estándar | ⏳ |
-| 9.7 | **M-4 Módulo:** Implementar `buildGalleryLayout()` — **NUEVO** layout real para plantilla `galeria` (texto + 2-3 imágenes intercaladas, grid responsive) | `blog-renderer.js` | Plantilla galería funcional, distinta a estándar | ⏳ |
-| 9.8 | **M-5 Módulo:** Implementar `buildContent()` + `applyQuillStyles()` — normaliza `.ql-align-*`, `.ql-indent-*`, blockquotes, listas, imágenes, code | `blog-renderer.js` | Quill alignments funcionan en blog publicado | ⏳ |
-| 9.9 | **M-6 Módulo:** Helpers compartidos: `escapeHtml()`, `stripHtml()`, `formatDate()`, `categoryLabels`, `buildMeta()`, `buildTags()` | `blog-renderer.js` | Sin duplicación de helpers | ⏳ |
-| 9.10 | **I-1 Integrar en admin-editor.html:** Import módulo, reemplazar `openPreview()` (líneas 1169-1206) por `renderArticle(data, previewContent, { mode: 'preview' })`, eliminar CSS `.preview-*` (líneas 231-256) | `admin-editor.html` | Preview usa módulo, CSS modal limpio | ⏳ |
-| 9.11 | **I-2 Integrar en blog-post.html:** Import módulo, reemplazar `renderPost()` (líneas 1094-1154) por `renderArticle(data, articleMain, { mode: 'full' })`, mantener SEO/related/navbar/reading-progress, eliminar CSS `.article-*` duplicado (líneas 290-328) | `blog-post.html` | Vista real usa módulo, CSS página limpio | ⏳ |
-| 9.12 | **Testing visual completo:** Probar 3 plantillas × 3 breakpoints, verificar preview === publicado pixel-perfect, Quill alignments, botones, descripción siempre visible | Browser + DevTools | Checklist T-1 a T-7 cubierto | ⏳ |
-| 9.13 | **Actualizar docs:** `INVENTARIO_CAMBIOS.md` (items E-1 a E-7), `PLAN_TAREAS.md` (Grupo 9), `TAREAS_PENDIENTES_FINAL.md` (este grupo) | docs/ | Docs sincronizados | ⏳ |
+|---|---|---|---|---|---|
+| 9.1 | **HF-1 Hotfix:** Bug publicación accidental — `const publicado = publish ? true : postPublished.checked` | `admin-editor.html:1114` | Click "Guardar borrador" con checkbox marcado → NO publica | ✅ |
+| 9.2 | **HF-2 Hotfix:** Quill alignments rotos — añadido quill.snow.css al `<head>` | `blog-post.html:17` | Texto centrado/justificado/indentado en editor → se ve igual en blog | ✅ |
+| 9.3 | **HF-3 Hotfix:** Descripción en "imagen-destacada" — `buildHero()` inyecta descripción en overlay | `blog-renderer.js:153-172` | Plantilla imagen-destacada muestra descripción en overlay | ✅ |
+| 9.4 | **M-1 Módulo compartido:** `public/src/js/blog-renderer.js` con `renderArticle(data, container, options)` | **NUEVO ARCHIVO (~600 líneas)** | Archivo existe, exporta funciones principales | ✅ |
+| 9.5 | **M-2 Módulo:** `buildHero()` para plantilla `imagen-destacada` (overlay + título + meta + descripción) | `blog-renderer.js:153-172` | Preview y real idénticos para imagen-destacada | ✅ |
+| 9.6 | **M-3 Módulo:** `buildStandardHeader()` para plantillas `estandar` y `galeria` | `blog-renderer.js:119-147` | Preview y real idénticos para estándar | ✅ |
+| 9.7 | **M-4 Módulo:** `buildGalleryLayout()` — layout REAL para `galeria` (texto + 2-3 imágenes intercaladas, marcadores `<!-- gallery-img-N -->`, grid responsive 2 col desktop / 1 col mobile) | `blog-renderer.js:180-302` | Plantilla galería funcional y distinta a estándar | ✅ |
+| 9.8 | **M-5 Módulo:** `applyQuillStyles()` — normaliza `.ql-align-*`, `.ql-indent-*`, blockquotes, listas, imágenes, code, video | `blog-renderer.js:309-383` | Quill alignments funcionan en blog publicado | ✅ |
+| 9.9 | **M-6 Módulo:** Helpers: `escapeHtml()`, `stripHtml()`, `formatDate()` (robusto: Date, Timestamp, {seconds}, string, number), `categoryLabels`, `buildMeta()`, `getExcerpt()`, `getTemplate()` | `blog-renderer.js:33-99` | Sin duplicación; `formatDate` ya no da "Invalid Date" | ✅ |
+| 9.10 | **I-1 Integrar en admin-editor.html:** Import módulo, reemplazar `openPreview()` por `renderArticle(data, previewContent, { mode: 'preview' })`, **CSS preview modal reescrito para paridad exacta con blog-post.html** (max-width 800px, mismos estilos .preview-content) | `admin-editor.html:245-324, 1203-1228` | Preview usa módulo; imagenes NO gigantes; paridad visual 100% | ✅ |
+| 9.11 | **I-2 Integrar en blog-post.html:** Import módulo, reemplazar `renderPost()` por `renderArticle(data, articleMain, { mode: 'full' })`, mantener SEO/related/navbar/reading-progress, fix CSS `.article-cover` (object-fit en img, overflow hidden en figure) | `blog-post.html:304-305, 1079-1109` | Vista real usa módulo; CSS limpio; cover images correctas | ✅ |
+| 9.12 | **Testing visual completo:** 3 plantillas × breakpoints probadas en GitHub Pages deploy; preview = publicado pixel-perfect; Quill alignments; botones; descripción siempre visible; Invalid Date fix | Production deploy | Checklist cubierto | ✅ |
+| 9.13 | **Actualizar docs:** `INVENTARIO_CAMBIOS.md` (E-1 a E-7), `PLAN_TAREAS.md` (Grupo 9), `TAREAS_PENDIENTES_FINAL.md` (este grupo) | docs/ | Docs sincronizados | ✅ |
+
+**Commits clave:**
+- `bb9627d` — fix(blog-renderer): syntax error missing `=`
+- `06d33e0` — fix(blog-renderer): add classes, fix Invalid Date, improve templates
+- `6b747c9` — fix(blog): comprehensive fix Invalid Date, template parity, preview fidelity
+- `ed0d7e4` — fix(blog-post): remove duplicate event listener
 
 ---
 

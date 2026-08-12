@@ -197,7 +197,7 @@ export function buildGalleryLayout(data, options = {}) {
   const paragraphs = Array.from(tempContent.querySelectorAll('p, h2, h3, blockquote, ul, ol'));
 
   // Si hay marcadores explícitos de galería, usarlos
-  const markerRegex /<!--\s*gallery-img-(\d+)\s*-->/g;
+  const markerRegex = /<!--\s*gallery-img-(\d+)\s*-->/g;
   let markers = [];
   let match;
   while ((match = markerRegex.exec(contentHtml)) !== null) {

@@ -46,7 +46,19 @@ export function stripHtml(html) {
 
 export function formatDate(date) {
   if (!date) return 'Fecha no disponible';
-  const d = date instanceof Date ? date : new Date(date);
+  let d;
+  if (date instanceof Date) {
+    d = date;
+  } else if (date && typeof date.toDate === 'function') {
+    // Firestore Timestamp
+    d = date.toDate();
+  } else if (date && date.seconds !== undefined) {
+    // Firestore Timestamp-like object
+    d = new Date(date.seconds * 1000);
+  } else {
+    d = new Date(date);
+  }
+  if (isNaN(d.getTime())) return 'Fecha no disponible';
   return d.toLocaleDateString('es-PE', { day: '2-digit', month: 'long', year: 'numeric' });
 }
 
@@ -111,10 +123,10 @@ export function buildStandardHeader(data, options = {}) {
 
   let html = '';
 
-  // Imagen de portada (si existe)
+  // Imagen de portada (si existe) - usa clases que coinciden con blog-post.html
   if (coverUrl) {
     html += `<figure class="article-cover">
-      <img src="${coverUrl}" alt="${escapeHtml(data.titulo)}" loading="eager">
+      <img src="${coverUrl}" alt="${escapeHtml(data.titulo)}" loading="eager" class="article-cover-img">
     </figure>`;
   }
 
@@ -150,7 +162,7 @@ export function buildHero(data, options = {}) {
 
   return `
     <figure class="article-featured-cover">
-      <img src="${coverUrl}" alt="${escapeHtml(data.titulo)}" loading="eager">
+      <img src="${coverUrl}" alt="${escapeHtml(data.titulo)}" loading="eager" class="article-cover-img">
       <div class="article-featured-overlay">
         ${buildCategoryBadge(data.categoria)}
         <h1 class="article-title">${escapeHtml(data.titulo)}</h1>
@@ -211,12 +223,12 @@ export function buildGalleryLayout(data, options = {}) {
     const coverIsInGallery = images.some(img => img.src === coverUrl);
     if (!coverIsInGallery) {
       html += `<figure class="article-cover gallery-main-cover">
-        <img src="${coverUrl}" alt="${escapeHtml(data.titulo)}" loading="eager">
+        <img src="${coverUrl}" alt="${escapeHtml(data.titulo)}" loading="eager" class="article-cover-img">
       </figure>`;
     }
   } else if (coverUrl && galleryImages.length > 0) {
     html += `<figure class="article-cover gallery-main-cover">
-      <img src="${coverUrl}" alt="${escapeHtml(data.titulo)}" loading="eager">
+      <img src="${coverUrl}" alt="${escapeHtml(data.titulo)}" loading="eager" class="article-cover-img">
     </figure>`;
   }
 
@@ -274,7 +286,7 @@ export function buildGalleryLayout(data, options = {}) {
       if (shouldInsert) {
         const img = galleryImages[imageIndex];
         html += `<figure class="gallery-inline-image">
-          <img src="${img.src}" alt="${escapeHtml(img.alt || data.titulo)}" loading="lazy">
+          <img src="${img.src}" alt="${escapeHtml(img.alt || data.titulo)}" loading="lazy" class="gallery-img">
           ${img.alt ? `<figcaption>${escapeHtml(img.alt)}</figcaption>` : ''}
         </figure>`;
         imageIndex++;

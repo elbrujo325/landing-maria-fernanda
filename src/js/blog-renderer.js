@@ -44,20 +44,28 @@ export function stripHtml(html) {
   return div.textContent || div.innerText || '';
 }
 
+/**
+ * Formatea fecha manejando: Date, Firestore Timestamp, objeto {seconds, nanoseconds}, string, number
+ * Devuelve 'Fecha no disponible' si no es parseable.
+ */
 export function formatDate(date) {
   if (!date) return 'Fecha no disponible';
+
   let d;
   if (date instanceof Date) {
     d = date;
   } else if (date && typeof date.toDate === 'function') {
-    // Firestore Timestamp
+    // Firestore Timestamp (v9+ SDK)
     d = date.toDate();
-  } else if (date && date.seconds !== undefined) {
-    // Firestore Timestamp-like object
+  } else if (date && typeof date.seconds === 'number') {
+    // Objeto tipo Timestamp serializado ({seconds, nanoseconds})
     d = new Date(date.seconds * 1000);
-  } else {
+  } else if (typeof date === 'string' || typeof date === 'number') {
     d = new Date(date);
+  } else {
+    return 'Fecha no disponible';
   }
+
   if (isNaN(d.getTime())) return 'Fecha no disponible';
   return d.toLocaleDateString('es-PE', { day: '2-digit', month: 'long', year: 'numeric' });
 }
@@ -115,6 +123,7 @@ function buildMeta(fecha) {
 
 /**
  * Construye el header estándar (para plantillas 'estandar' y 'galeria')
+ * Genera HTML compatible con CSS de blog-post.html (.article-cover figure > img)
  */
 export function buildStandardHeader(data, options = {}) {
   const { showDescription = true } = options;
@@ -123,10 +132,10 @@ export function buildStandardHeader(data, options = {}) {
 
   let html = '';
 
-  // Imagen de portada (si existe) - usa clases que coinciden con blog-post.html
+  // Imagen de portada (si existe) - estructura compatible con blog-post.html CSS
   if (coverUrl) {
     html += `<figure class="article-cover">
-      <img src="${coverUrl}" alt="${escapeHtml(data.titulo)}" loading="eager" class="article-cover-img">
+      <img src="${coverUrl}" alt="${escapeHtml(data.titulo)}" loading="eager">
     </figure>`;
   }
 
@@ -149,6 +158,7 @@ export function buildStandardHeader(data, options = {}) {
 
 /**
  * Construye el hero para plantilla 'imagen-destacada'
+ * Imagen full-width con overlay de título/meta/description
  */
 export function buildHero(data, options = {}) {
   const coverUrl = getCoverUrl(data);
@@ -162,7 +172,7 @@ export function buildHero(data, options = {}) {
 
   return `
     <figure class="article-featured-cover">
-      <img src="${coverUrl}" alt="${escapeHtml(data.titulo)}" loading="eager" class="article-cover-img">
+      <img src="${coverUrl}" alt="${escapeHtml(data.titulo)}" loading="eager">
       <div class="article-featured-overlay">
         ${buildCategoryBadge(data.categoria)}
         <h1 class="article-title">${escapeHtml(data.titulo)}</h1>
@@ -223,12 +233,12 @@ export function buildGalleryLayout(data, options = {}) {
     const coverIsInGallery = images.some(img => img.src === coverUrl);
     if (!coverIsInGallery) {
       html += `<figure class="article-cover gallery-main-cover">
-        <img src="${coverUrl}" alt="${escapeHtml(data.titulo)}" loading="eager" class="article-cover-img">
+        <img src="${coverUrl}" alt="${escapeHtml(data.titulo)}" loading="eager">
       </figure>`;
     }
   } else if (coverUrl && galleryImages.length > 0) {
     html += `<figure class="article-cover gallery-main-cover">
-      <img src="${coverUrl}" alt="${escapeHtml(data.titulo)}" loading="eager" class="article-cover-img">
+      <img src="${coverUrl}" alt="${escapeHtml(data.titulo)}" loading="eager">
     </figure>`;
   }
 
@@ -286,7 +296,7 @@ export function buildGalleryLayout(data, options = {}) {
       if (shouldInsert) {
         const img = galleryImages[imageIndex];
         html += `<figure class="gallery-inline-image">
-          <img src="${img.src}" alt="${escapeHtml(img.alt || data.titulo)}" loading="lazy" class="gallery-img">
+          <img src="${img.src}" alt="${escapeHtml(img.alt || data.titulo)}" loading="lazy">
           ${img.alt ? `<figcaption>${escapeHtml(img.alt)}</figcaption>` : ''}
         </figure>`;
         imageIndex++;
@@ -347,7 +357,7 @@ export function applyQuillStyles(container) {
   }
 
   // Normalizar clases en el contenedor
-  const editorContent = container.querySelector('.article-content, .gallery-content, .preview-article-content');
+  const editorContent = container.querySelector('.article-content, .gallery-content');
   if (editorContent) {
     // Asegurar que párrafos vacíos no colapsen
     editorContent.querySelectorAll('p').forEach(p => {
@@ -356,13 +366,14 @@ export function applyQuillStyles(container) {
       }
     });
 
-    // Mejorar imágenes
-    editorContent.querySelectorAll('img').forEach(img => {
-      if (!img.classList.contains('gallery-inline-image img') && !img.closest('figure')) {
+    // Mejorar imágenes sueltas en contenido (no portada, no galería)
+    editorContent.querySelectorAll('img:not([class*="gallery"]):not(.article-cover img):not(.article-featured-cover img)').forEach(img => {
+      if (!img.closest('figure')) {
         img.style.borderRadius = '12px';
         img.style.margin = '24px auto';
         img.style.maxWidth = '100%';
         img.style.boxShadow = '0 8px 24px rgba(111, 193, 255, 0.15)';
+        img.style.display = 'block';
       }
     });
 
@@ -372,9 +383,101 @@ export function applyQuillStyles(container) {
         el.style.maxWidth = '100%';
         el.style.borderRadius = '12px';
         el.style.margin = '24px auto';
+        el.style.display = 'block';
       }
     });
   }
+}
+
+// ============================================
+// ESTILOS CSS INYECTADOS PARA GALERÍA (responsive)
+// ============================================
+
+function injectGalleryStyles() {
+  if (document.getElementById('gallery-grid-styles')) return;
+
+  const style = document.createElement('style');
+  style.id = 'gallery-grid-styles';
+  style.textContent = `
+    /* Gallery grid responsive styles - compatible con blog-post.html */
+    @media (min-width: 768px) {
+      .gallery-content .gallery-inline-image {
+        display: inline-block;
+        width: calc(50% - 16px);
+        margin: 16px 8px;
+        vertical-align: top;
+      }
+      .gallery-content .gallery-main-cover {
+        margin-bottom: 32px;
+      }
+      .gallery-content .gallery-inline-image img {
+        width: 100%;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgba(111, 193, 255, 0.15);
+      }
+      .gallery-content .gallery-inline-image figcaption {
+        margin-top: 8px;
+        font-size: 0.85rem;
+        color: var(--text-dark);
+        opacity: 0.7;
+        font-style: italic;
+        text-align: center;
+      }
+    }
+    @media (max-width: 767px) {
+      .gallery-content .gallery-inline-image {
+        display: block;
+        width: 100%;
+        margin: 24px auto;
+      }
+      .gallery-content .gallery-inline-image img {
+        width: 100%;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgba(111, 193, 255, 0.15);
+      }
+      .gallery-content .gallery-inline-image figcaption {
+        margin-top: 8px;
+        font-size: 0.85rem;
+        color: var(--text-dark);
+        opacity: 0.7;
+        font-style: italic;
+        text-align: center;
+      }
+    }
+  `;
+  document.head.appendChild(style);
+}
+
+/**
+ * Configura estilos adicionales para imágenes de galería (legacy, mantener injectGalleryStyles)
+ */
+function setupGalleryImages(container) {
+  injectGalleryStyles();
+  const galleryImages = container.querySelectorAll('.gallery-inline-image');
+  galleryImages.forEach(fig => {
+    fig.style.margin = '32px auto';
+    fig.style.maxWidth = '100%';
+    fig.style.textAlign = 'center';
+
+    const img = fig.querySelector('img');
+    if (img) {
+      img.style.borderRadius = '12px';
+      img.style.boxShadow = '0 8px 24px rgba(111, 193, 255, 0.15)';
+      img.style.maxWidth = '100%';
+      img.style.height = 'auto';
+    }
+
+    const caption = fig.querySelector('figcaption');
+    if (caption) {
+      caption.style.marginTop = '8px';
+      caption.style.fontSize = '0.85rem';
+      caption.style.color = 'var(--text-dark)';
+      caption.style.opacity = '0.7';
+      caption.style.fontStyle = 'italic';
+    }
+  });
 }
 
 // ============================================
@@ -495,62 +598,6 @@ export function renderArticle(data, container, options = {}) {
   };
 }
 
-/**
- * Configura estilos adicionales para imágenes de galería
- */
-function setupGalleryImages(container) {
-  const galleryImages = container.querySelectorAll('.gallery-inline-image');
-  galleryImages.forEach(fig => {
-    fig.style.margin = '32px auto';
-    fig.style.maxWidth = '100%';
-    fig.style.textAlign = 'center';
-
-    const img = fig.querySelector('img');
-    if (img) {
-      img.style.borderRadius = '12px';
-      img.style.boxShadow = '0 8px 24px rgba(111, 193, 255, 0.15)';
-      img.style.maxWidth = '100%';
-      img.style.height = 'auto';
-    }
-
-    const caption = fig.querySelector('figcaption');
-    if (caption) {
-      caption.style.marginTop = '8px';
-      caption.style.fontSize = '0.85rem';
-      caption.style.color = 'var(--text-dark)';
-      caption.style.opacity = '0.7';
-      caption.style.fontStyle = 'italic';
-    }
-  });
-
-  // Grid responsive para galería
-  if (!document.getElementById('gallery-grid-styles')) {
-    const style = document.createElement('style');
-    style.id = 'gallery-grid-styles';
-    style.textContent = `
-      @media (min-width: 768px) {
-        .gallery-content .gallery-inline-image {
-          display: inline-block;
-          width: calc(50% - 16px);
-          margin: 16px 8px;
-          vertical-align: top;
-        }
-        .gallery-content .gallery-main-cover {
-          margin-bottom: 32px;
-        }
-      }
-      @media (max-width: 767px) {
-        .gallery-content .gallery-inline-image {
-          display: block;
-          width: 100%;
-          margin: 24px auto;
-        }
-      }
-    `;
-    document.head.appendChild(style);
-  }
-}
-
 // ============================================
 // FUNCIÓN PARA CARGAR POSTS RELACIONADOS (solo blog-post.html)
 // ============================================
@@ -592,7 +639,7 @@ export async function loadRelatedPosts(db, category, excludeId, relatedGrid, rel
 
     relatedGrid.innerHTML = posts.map(post => {
       const cover = post.imagenPortadaUrl;
-      const fecha = post.fecha?.toDate ? formatDate(post.fecha.toDate()) : '';
+      const fecha = post.fecha?.toDate ? formatDate(post.fecha.toDate()) : formatDate(post.fecha);
       return `
         <article class="related-card">
           ${cover ? `<img src="${cover}" alt="${escapeHtml(post.titulo)}" class="related-cover" loading="lazy">` : `<div class="related-cover" style="background: linear-gradient(135deg, var(--celeste-light), var(--celeste-mid));"></div>`}

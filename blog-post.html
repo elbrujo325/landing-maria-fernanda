@@ -13,6 +13,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <!-- Quill.js styles for alignment/indent classes used in editor -->
+  <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
   <style>
     :root {
       --cream: #FFFEEC;
@@ -1026,6 +1028,7 @@
   <!-- FIREBASE SDK -->
   <script type="module">
     import { firebaseConfig } from './src/js/firebase-config.js';
+    import { renderArticle, loadRelatedPosts, stripHtml, formatDate } from './src/js/blog-renderer.js';
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js';
     import { getFirestore, doc, getDoc, collection, query, where, orderBy, limit, getDocs } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js';
 
@@ -1080,10 +1083,34 @@
         }
 
         const data = docSnap.data();
-        renderPost(data, id);
 
-        // Load related posts (same category, excluding current)
-        loadRelatedPosts(data.categoria, id);
+        // Update meta tags (SEO) - specific to blog-post.html
+        const title = data.titulo || 'Artículo';
+        const excerpt = data.descripcionCorta ? data.descripcionCorta.trim() : stripHtml(data.contenidoHtml).substring(0, 160);
+        const coverUrl = data.imagenPortadaUrl || '';
+        const articleDescriptionText = excerpt || 'Lee este artículo para encontrar herramientas prácticas y reflexivas sobre bienestar emocional.';
+
+        postTitle.textContent = `${title} · Pensar Sentir Hacer`;
+        document.getElementById('postDescription').setAttribute('content', articleDescriptionText);
+        ogTitle.setAttribute('content', title);
+        ogDescription.setAttribute('content', articleDescriptionText);
+        if (coverUrl) ogImage.setAttribute('content', coverUrl);
+
+        // Render article using shared module (full mode with CTA and related posts)
+        const rendered = renderArticle(data, articleMain, {
+          mode: 'full',
+          showCTA: true,
+          showRelated: true
+        });
+
+        // Load related posts using shared module
+        if (rendered && rendered.relatedSection && rendered.relatedGrid) {
+          await loadRelatedPosts(db, data.categoria, id, rendered.relatedGrid, rendered.relatedSection);
+        }
+
+        // Show article, hide loading
+        loadingSkeleton.style.display = 'none';
+        articleMain.style.display = 'block';
 
       } catch (error) {
         console.error('Error loading post:', error);
@@ -1091,126 +1118,10 @@
       }
     }
 
-    function renderPost(data, id) {
-      // Update meta tags
-      const title = data.titulo || 'Artículo';
-      const excerpt = data.descripcionCorta ? data.descripcionCorta.trim() : stripHtml(data.contenidoHtml).substring(0, 160);
-      const coverUrl = data.imagenPortadaUrl || '';
-      const articleDescriptionText = excerpt || 'Lee este artículo para encontrar herramientas prácticas y reflexivas sobre bienestar emocional.';
-
-      postTitle.textContent = `${title} · Pensar Sentir Hacer`;
-      document.getElementById('postDescription').setAttribute('content', articleDescriptionText);
-      ogTitle.setAttribute('content', title);
-      ogDescription.setAttribute('content', articleDescriptionText);
-      if (coverUrl) ogImage.setAttribute('content', coverUrl);
-
-      // Render header
-      document.getElementById('articleCategory').textContent = categoryLabels[data.categoria] || data.categoria;
-      document.getElementById('articleTitle').textContent = title;
-      document.getElementById('articleDate').textContent = data.fecha?.toDate ? formatDate(data.fecha.toDate()) : 'Fecha no disponible';
-      document.getElementById('articleDescription').textContent = articleDescriptionText;
-
-      // Cover image
-      if (coverUrl) {
-        articleCover.src = coverUrl;
-        articleCover.alt = title;
-        if (data.plantilla === 'imagen-destacada') {
-          articleCoverFigure.className = 'article-featured-cover';
-          articleCoverFigure.innerHTML = `
-            <img src="${coverUrl}" alt="${escapeHtml(title)}" id="articleCover" loading="eager">
-            <div class="article-featured-overlay">
-              <span class="article-category">${categoryLabels[data.categoria] || data.categoria}</span>
-              <h1 class="article-title">${escapeHtml(title)}</h1>
-              <div class="article-meta">
-                <div class="author">
-                  <span class="author-avatar"><img src="assets/images/foto-fernanda-72.webp" srcset="assets/images/foto-fernanda-72.webp 72w, assets/images/foto-fernanda-108.webp 108w, assets/images/foto-fernanda-144.webp 144w" sizes="32px" alt="María Fernanda Arana" loading="lazy"></span>
-                  <span class="author-name">María Fernanda Arana</span>
-                </div>
-                <time>${data.fecha?.toDate ? formatDate(data.fecha.toDate()) : 'Fecha no disponible'}</time>
-              </div>
-            </div>
-          `;
-          articleCoverFigure.style.display = 'block';
-          articleHeader.style.display = 'none';
-        } else {
-          articleCoverFigure.className = 'article-cover';
-          articleCoverFigure.style.display = 'block';
-        }
-      }
-
-      // Content
-      articleContent.innerHTML = data.contenidoHtml || '';
-
-      // Tags
-      if (data.categoria) {
-        const tagHtml = `<span class="tag">${categoryLabels[data.categoria] || data.categoria}</span>`;
-        articleTags.innerHTML = tagHtml;
-        articleTags.style.display = 'flex';
-      }
-
-      // Show article, hide loading
-      loadingSkeleton.style.display = 'none';
-      articleMain.style.display = 'block';
-    }
-
-    async function loadRelatedPosts(category, excludeId) {
-      if (!category) return;
-      try {
-        const q = query(
-          collection(db, 'blogPosts'),
-          where('categoria', '==', category),
-          where('publicado', '==', true),
-          orderBy('fecha', 'desc'),
-          limit(4)
-        );
-        const snapshot = await getDocs(q);
-        const posts = snapshot.docs
-          .map(d => ({ id: d.id, ...d.data() }))
-          .filter(p => p.id !== excludeId)
-          .slice(0, 3);
-
-        if (posts.length === 0) return;
-
-        relatedGrid.innerHTML = posts.map(post => {
-          const cover = post.imagenPortadaUrl;
-          const fecha = post.fecha?.toDate ? formatDate(post.fecha.toDate()) : '';
-          return `
-            <article class="related-card">
-              ${cover ? `<img src="${cover}" alt="${escapeHtml(post.titulo)}" class="related-cover" loading="lazy">` : `<div class="related-cover" style="background: linear-gradient(135deg, var(--celeste-light), var(--celeste-mid));"></div>`}
-              <div class="related-content">
-                <a href="blog-post.html?id=${post.id}" class="related-title-link">${escapeHtml(post.titulo)}</a>
-                <div class="related-meta">${fecha}</div>
-              </div>
-            </article>
-          `;
-        }).join('');
-
-        relatedSection.style.display = 'block';
-      } catch (error) {
-        console.error('Error loading related posts:', error);
-      }
-    }
-
     function showNotFound() {
       loadingSkeleton.style.display = 'none';
       notFound.style.display = 'block';
       document.title = 'Artículo no encontrado · Pensar Sentir Hacer';
-    }
-
-    function formatDate(date) {
-      return date.toLocaleDateString('es-PE', { day: '2-digit', month: 'long', year: 'numeric' });
-    }
-
-    function stripHtml(html) {
-      const div = document.createElement('div');
-      div.innerHTML = html;
-      return div.textContent || div.innerText || '';
-    }
-
-    function escapeHtml(text) {
-      const div = document.createElement('div');
-      div.textContent = text;
-      return div.innerHTML;
     }
 
     // Mobile Navbar Toggle (paridad con blog.html)

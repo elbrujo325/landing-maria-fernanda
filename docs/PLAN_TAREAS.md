@@ -128,6 +128,7 @@
 ```
 Grupos 1-5 COMPLETADOS ✅
 Grupo 8 — Paleta oficial + Optimización imágenes + Tipografías ✅ COMPLETADO
+Grupo 9 — Unificación Blog Preview + Vista Real → Tareas 9.1 a 9.13 (NUEVO — 2026-08-11)
 Fase 3.6 (Grupo 6) → Tareas 6.1 a 6.9   (Firebase + Form + Admin - FASE COMPLEJA, coordinar con Paolo)
 Fase 3.7 (Grupo 7) → Tareas 7.13        (Performance Lighthouse - pendiente)
 ```

@@ -215,6 +215,30 @@ echo "R-9:" && grep -c "wa.me/51939855573" index.html
 
 ---
 
+## GRUPO 9 — UNIFICACIÓN BLOG PREVIEW + VISTA REAL (NUEVO — 2026-08-11)
+
+**Problema:** `admin-editor.html` (preview modal) y `blog-post.html` (vista real) tienen **dos sistemas de renderizado independientes** con CSS y lógica distintos. 9 discrepancias documentadas (3 críticas, 3 altas, 3 medias/bajas). Preview miente al redactor.
+
+**Solución:** Módulo compartido `public/src/js/blog-renderer.js` con `renderArticle(data, container, options)` usado por AMBOS archivos. Paridad 100% garantizada.
+
+| T# | Descripción | Archivo/Líneas | Verificación | Estado |
+|---|---|---|---|---|
+| 9.1 | **HF-1 Hotfix:** Bug publicación accidental — `admin-editor.html:1123` cambiar `const publicado = publish \|\| postPublished.checked` → `const publicado = publish ? true : postPublished.checked` | `admin-editor.html:1123` | Click "Guardar borrador" con checkbox marcado → NO publica | ⏳ |
+| 9.2 | **HF-2 Hotfix:** Quill alignments rotos — añadir `<link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">` al `<head>` de `blog-post.html` | `blog-post.html` head | Texto centrado/justificado/indentado en editor → se ve igual en blog | ⏳ |
+| 9.3 | **HF-3 Hotfix:** Descripción desaparece en "imagen-destacada" — mover `.article-description` al overlay ANTES de `articleHeader.style.display = 'none'` | `blog-post.html:1117-1134` | Plantilla imagen-destacada muestra descripción en overlay | ⏳ |
+| 9.4 | **M-1 Crear módulo compartido:** `public/src/js/blog-renderer.js` con `renderArticle(data, container, options)` — función principal unificada | **NUEVO ARCHIVO** | Archivo existe, exporta funciones | ⏳ |
+| 9.5 | **M-2 Módulo:** Implementar `buildHero()` para plantilla `imagen-destacada` (overlay + título + meta + descripción) | `blog-renderer.js` | Preview y real idénticos para imagen-destacada | ⏳ |
+| 9.6 | **M-3 Módulo:** Implementar `buildStandardHeader()` para plantillas `estandar` y `galeria` | `blog-renderer.js` | Preview y real idénticos para estándar | ⏳ |
+| 9.7 | **M-4 Módulo:** Implementar `buildGalleryLayout()` — **NUEVO** layout real para plantilla `galeria` (texto + 2-3 imágenes intercaladas, grid responsive) | `blog-renderer.js` | Plantilla galería funcional, distinta a estándar | ⏳ |
+| 9.8 | **M-5 Módulo:** Implementar `buildContent()` + `applyQuillStyles()` — normaliza `.ql-align-*`, `.ql-indent-*`, blockquotes, listas, imágenes, code | `blog-renderer.js` | Quill alignments funcionan en blog publicado | ⏳ |
+| 9.9 | **M-6 Módulo:** Helpers compartidos: `escapeHtml()`, `stripHtml()`, `formatDate()`, `categoryLabels`, `buildMeta()`, `buildTags()` | `blog-renderer.js` | Sin duplicación de helpers | ⏳ |
+| 9.10 | **I-1 Integrar en admin-editor.html:** Import módulo, reemplazar `openPreview()` (líneas 1169-1206) por `renderArticle(data, previewContent, { mode: 'preview' })`, eliminar CSS `.preview-*` (líneas 231-256) | `admin-editor.html` | Preview usa módulo, CSS modal limpio | ⏳ |
+| 9.11 | **I-2 Integrar en blog-post.html:** Import módulo, reemplazar `renderPost()` (líneas 1094-1154) por `renderArticle(data, articleMain, { mode: 'full' })`, mantener SEO/related/navbar/reading-progress, eliminar CSS `.article-*` duplicado (líneas 290-328) | `blog-post.html` | Vista real usa módulo, CSS página limpio | ⏳ |
+| 9.12 | **Testing visual completo:** Probar 3 plantillas × 3 breakpoints, verificar preview === publicado pixel-perfect, Quill alignments, botones, descripción siempre visible | Browser + DevTools | Checklist T-1 a T-7 cubierto | ⏳ |
+| 9.13 | **Actualizar docs:** `INVENTARIO_CAMBIOS.md` (items E-1 a E-7), `PLAN_TAREAS.md` (Grupo 9), `TAREAS_PENDIENTES_FINAL.md` (este grupo) | docs/ | Docs sincronizados | ⏳ |
+
+---
+
 ## NOTAS CRÍTICAS PARA LA IMPLEMENTACIÓN
 
 1. **Single-file architecture**: Todo CSS en `<style>` dentro de `index.html`. NO crear archivos externos.
@@ -224,8 +248,7 @@ echo "R-9:" && grep -c "wa.me/51939855573" index.html
 5. **will-change**: Solo en `.wave`, `.testimonios-track`, `.hero-photo` (elementos animados).
 6. **Comentarios en CSS**: Marcar bloques con `/* SECCIÓN: Nombre */` para navegación rápida en 3600+ líneas.
 7. **Deploy**: GitHub Pages automático desde `main` → https://elbrujo325.github.io/landing-maria-fernanda/
-
----
+8. **Módulos ESM compartidos**: Para lógica duplicada (blog-renderer), crear archivos en `public/src/js/` e importar con `type="module"`. NO duplicar lógica ni CSS.
 
 ## ENTREGABLE ESPERADO
 

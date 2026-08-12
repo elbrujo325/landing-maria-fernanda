@@ -132,6 +132,22 @@
 
 ---
 
+## GRUPO E — UNIFICACIÓN BLOG PREVIEW + VISTA REAL (NUEVO — 2026-08-11)
+
+**Contexto:** Detectadas 9 discrepancias entre `admin-editor.html` (preview modal) y `blog-post.html` (vista real): 3 críticas (bugs funcionales), 3 altas (engañan al redactor), 3 medias/bajas (CSS). Dos sistemas de renderizado independientes.
+
+| ID | Categoría | Archivo/Componente | Cambio requerido | Estado |
+|---|---|---|---|---|
+| **E-1** | Bug Crítico | `admin-editor.html:1123` | Fix publicación accidental: `const publicado = publish ? true : postPublished.checked` | ⏳ |
+| **E-2** | Bug Crítico | `blog-post.html` `<head>` | Añadir Quill CSS: `<link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">` | ⏳ |
+| **E-3** | Bug Crítico | `blog-post.html:1117-1134` | Fix descripción en imagen-destacada: mover/renderizar descripción en overlay antes de ocultar header | ⏳ |
+| **E-4** | Feature | **NUEVO** `public/src/js/blog-renderer.js` | Crear módulo compartido `renderArticle(data, container, options)` — renderizado unificado para preview y real | ⏳ |
+| **E-5** | Feature | `blog-renderer.js` | Implementar plantilla `galeria` REAL: `buildGalleryLayout()` con texto + 2-3 imágenes intercaladas, grid responsive | ⏳ |
+| **E-6** | Refactor | `admin-editor.html` | Integrar módulo: import, reemplazar `openPreview()`, eliminar CSS `.preview-*` duplicado | ⏳ |
+| **E-7** | Refactor | `blog-post.html` | Integrar módulo: import, reemplazar `renderPost()`, mantener SEO/related/navbar, eliminar CSS `.article-*` duplicado | ⏳ |
+
+---
+
 ## NOTAS DE COORDINACIÓN CON PAOLO/CLIENTA
 
 - **Firebase**: La clienta debe crear cuenta Google → crear proyecto Firebase → agregar a Paolo como colaborador → Paolo configura Firestore/Auth/Hosting.

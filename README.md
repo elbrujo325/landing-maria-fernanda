@@ -115,7 +115,7 @@ Esta lista es **configuración técnica actual**, no algo que el usuario final d
 
 **Testimonios (`/testimonios/{docId}`):**
 - **Lectura pública:** solo testimonios aprobados (`aprobado == true`).
-- **Creación pública:** cualquier usuario (incluso no autenticado) puede enviar un testimonio, siempre que:
+- **Creación:** reservada a usuarios **no autenticados** (`request.auth == null`), es decir, a los visitantes anónimos del sitio; siempre que:
   - incluya los campos `nombre`, `texto`, `estrellas`;
   - `estrellas` sea entero entre 1 y 5;
   - `aprobado` sea `false` (queda pendiente de moderación).
@@ -178,7 +178,7 @@ Contiene **únicamente** la configuración de Firestore. **No** hay sección `ho
   - `galeria` — contenido con imágenes intercaladas.
 - **Posts relacionados:** sí — carga hasta 3 posts de la misma `categoria`, excluyendo el actual.
 - **CTA final:** botón de WhatsApp + enlace a ver más artículos.
-- **Editor:** `admin-editor.html` con **Quill.js v2** (toolbar, modificar tamaño de imágenes, limpieza). Vista previa con el mismo renderizador (paridad 100% preview = publicado).
+- **Editor:** `admin-editor.html` con **Quill.js 1.3.7** (toolbar, módulo de redimensionado de imágenes `quill-image-resize-module`, limpieza). Vista previa con el mismo renderizador (paridad 100% preview = publicado).
 - **Publicación/despublicación:** el campo booleano `publicado` controla visibilidad. Guardar borrador (`publicado = false`) o publicar (`publicado = true`).
 - **Imágenes:** portada (`imagenPortadaUrl`) e imágenes en el contenido, subidas a Cloudinary.
 

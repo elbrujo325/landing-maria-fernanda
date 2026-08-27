@@ -362,3 +362,13 @@ Paolo es colaborador técnico de Firebase **durante el desarrollo**: configuraci
 ## 14. Nota sobre `docs/`
 
 La carpeta `docs/` contiene documentación de etapas previas del proyecto (por ejemplo, `DOCUMENTACION_TECNICA.tex/.pdf`) con referencias a una arquitectura **anterior** (Firebase Hosting, `firebase deploy`, dominio `.web.app`, ID de proyecto distinto). Esa documentación **no** se ha modificado en esta tarea. **Antes de la entrega final se debe revisar y reconciliar `docs/`** para que no queden referencias a una arquitectura que ya no se usa.
+
+---
+
+## 15. Autor
+
+**Henry Paolo Alfaro Sotil** — creador del proyecto.
+
+- GitHub: [@elbrujo325](https://github.com/elbrujo325)
+- LinkedIn: [linkedin.com/in/henry-paolo-alfaro-sotil](https://linkedin.com/in/henry-paolo-alfaro-sotil)
+- Email: paolosotil97@gmail.com

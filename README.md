@@ -1,347 +1,364 @@
-# Landing María Fernanda — Psicología Clínica ACT
+# Landing María Fernanda — Pensar Sentir Hacer
 
-Sitio web profesional para **María Fernanda Arana**, psicóloga clínica especialista en Terapia de Aceptación y Compromiso (ACT). Desarrollado como una *single-page application* moderna con panel de administración para gestión de blog y testimonios.
+Sitio web profesional para **María Fernanda Arana**, psicóloga clínica especialista en Terapia de Aceptación y Compromiso (ACT). Landing page con blog dinámico, testimonios moderados y panel de administración.
 
----
-
-## 🎯 Descripción General
-
-**Landing María Fernanda** es una página de aterrizaje (landing page) diseñada para convertir visitantes en pacientes. Presenta servicios de terapia presencial en Lima (San Isidro, Surco) y online a nivel mundial, con un enfoque en evidencia científica y narrativa cercana.
-
-- **Target**: Personas buscando terapia ACT para ansiedad, depresión, relaciones, propósito de vida
-- **Conversión principal**: Botón WhatsApp flotante + CTA sticky móvil + formulario de agendamiento
-- **Diferenciador**: Diseño *Luxto-style* (footer 3-columnas, franja de cita, textura de ruido SVG), animaciones sutiles, performance optimizado
+> **Nota:** Esta documentación describe la arquitectura **real y vigente** del repositorio (código y configuración), no una arquitectura previa. Si algún archivo de la carpeta `docs/` contradice lo aquí descrito, la fuente de verdad es el código y la configuración del repositorio.
 
 ---
 
-## 🛠 Stack Tecnológico
+## 1. Arquitectura
 
-| Capa | Tecnología | Versión / Nota |
-|------|------------|----------------|
-| **Frontend** | HTML5 semántico, CSS3 (Custom Properties), Vanilla JS (ESM) | Sin frameworks — cero dependencias runtime |
-| **Estilos** | CSS Variables (design tokens), Flexbox/Grid, Media Queries | Breakpoints: 768px (mobile), 1024px (tablet), 1440px (desktop) |
-| **Backend / BaaS** | **Firebase** — Firestore (DB), Auth (Admin), Hosting | Plan Spark (gratuito) |
-| **Editor** | **Quill.js** v2 (CDN) — Rich text para blog posts | Módulos: toolbar, clipboard, history, image-resize |
-| **Imágenes** | WebP + srcset (7 densidades), square-crop automático | Original: `foto-fernanda.png` (377×661) → avatares optimizados |
-| **Despliegue** | `firebase deploy` → `https://landing-maria-fernanda.web.app` | SSH remote: `git@github.com:elbrujo325/landing-maria-fernanda.git` |
-| **Lint/Format** | Prettier (HTML/CSS/JS), ESLint (opcional) | Config en `.prettierrc` |
+| Capa | Servicio | Detalle |
+|------|----------|---------|
+| **Frontend** | **GitHub Pages** | HTML/CSS/JS estáticos servidos desde GitHub Pages |
+| **Backend / BaaS** | **Firebase** | Firestore (base de datos) + Firebase Authentication (login admin) |
+| **Imágenes** | **Cloudinary** | Almacenamiento y entrega de imágenes del blog (portadas y contenido) |
+| **Dominio** | **Cloudflare + GitHub Pages** | Pendiente de configuración (ver sección Dominio) |
+
+No se utiliza **Firebase Hosting**. El sitio público se sirve exclusivamente desde GitHub Pages.
+
+**Propiedad de los servicios:**
+- Firebase → **María Fernanda**
+- Cloudinary → **María Fernanda**
+- Dominio → será comprado a nombre de **María Fernanda**
+- GitHub → repositorio original en **elbrujo325/landing-maria-fernanda**; María tendrá su propio **fork** como copia/propiedad del código (no se transfiere el repositorio original).
 
 ---
 
-## 📁 Estructura del Proyecto
+## 2. Estructura del proyecto
 
 ```
 landing-maria-fernanda/
-├── public/                          # Código fuente servido (Firebase Hosting)
-│   ├── index.html                   # Landing principal (referencia de diseño)
-│   ├── blog.html                    # Listado de posts con filtros + búsqueda
-│   ├── blog-post.html               # Vista detalle de post + relacionados + CTA
-│   ├── admin.html                   # Dashboard admin (login, CRUD posts/testimonios)
-│   ├── admin-editor.html            # Editor Quill para crear/editar posts
+├── public/                          # Código servido por GitHub Pages (publish_dir)
+│   ├── index.html                   # Landing principal (servicios, testimonios, form de reseña)
+│   ├── blog.html                    # Listado de posts (filtros por categoría)
+│   ├── blog-post.html               # Vista individual de post (+ relacionados + CTA)
+│   ├── admin.html                   # Panel admin (login Google, moderar testimonios, gestionar posts)
+│   ├── admin-editor.html            # Editor Quill (crear/editar posts, subir imágenes)
 │   ├── assets/
-│   │   ├── images/                  # Fotos optimizadas (WebP srcset + PNG fallback)
-│   │   │   ├── foto-fernanda.png            # Original 377×661 (hero/perfil index.html)
-│   │   │   ├── foto-fernanda-square.png     # Square crop 1:1 (avatar blog/blog-post)
-│   │   │   └── foto-fernanda-{72,108,144,216,260,400,520,800}.webp
+│   │   ├── images/                  # Fotos optimizadas (WebP srcset + PNG)
 │   │   └── logos/
-│   │       ├── logo-blanco-transparente.png
-│   │       ├── logo-celeste-transparente.png
-│   │       └── logo-psh.png
 │   └── src/js/
-│       └── firebase-config.js       # Configuración Firebase (exporta db, auth)
-├── firebase.json                    # Config Hosting + rewrites SPA
-├── firestore.indexes.json           # Índices compuestos requeridos
-├── docs/                            # Documentación interna
-│   ├── CONTEXTO_proyecto_landing-fernanda.md
-│   ├── PLAN_TAREAS.md
-│   ├── BACKEND_TESTIMONIOS_BLOG.md
-│   ├── INVENTARIO_CAMBIOS.md
-│   ├── TAREAS_PENDIENTES_FINAL.md
-│   ├── PRODUCT.md
-│   └── Paginas web de referencia.txt
-└── README.md                        # Este archivo
+│       ├── firebase-config.js       # Config Firebase + Cloudinary (pública)
+│       └── blog-renderer.js         # Render compartido de artículos (preview = publicado)
+├── firebase.json                    # Config Firestore (rules + indexes). NO define Hosting.
+├── firestore.rules                  # Security Rules de Firestore
+├── firestore.indexes.json           # Índices compuestos de Firestore
+├── .github/workflows/deploy-pages.yml  # Deploy automático a GitHub Pages
+├── docs/                            # Documentación interna (revisar antes de entrega final)
+└── README.md
 ```
 
 ---
 
-## 🎨 Sistema de Diseño (Design Tokens)
+## 3. Firebase
 
-Variables CSS definidas en `:root` (ver `index.html:1-80`):
+### 3.1 Proyecto
 
-```css
-/* Colores principales */
---celeste-deep: #11698e;      /* Primary brand */
---celeste-mid:  #3aa8c9;
---celeste-light: #6fc1ff;     /* Accent / hover */
---cream:        #fff8e7;      /* Background warm */
---cream-light:  #fffef0;
---yellow-mid:   #ffe066;      /* Highlights */
---white:        #ffffff;
---text-dark:    #1a1a2e;
---text-muted:   #6b7280;
---card-border:  rgba(17,105,142,0.12);
---card-bg:      #ffffff;
+- **Project ID:** `pagina-web-8ab3b`
+- **Servicios utilizados:** Firestore y Firebase Authentication.
+- **Firebase Storage:** el proyecto **no** almacena imágenes en Storage; usa Cloudinary.
 
-/* Espaciado (escala 4px) */
---space-xs: 4px;  --space-sm: 8px;  --space-md: 16px;
---space-lg: 24px; --space-xl: 32px; --space-2xl: 48px;
---space-3xl: 64px; --space-4xl: 96px;
+### 3.2 Configuración pública del frontend (`public/src/js/firebase-config.js`)
 
-/* Tipografía */
---font-heading: 'League Spartan', sans-serif;  /* Títulos */
---font-body:    'Open Sans', sans-serif;       /* Texto */
+El archivo exporta la configuración del Firebase Web SDK (`apiKey`, `authDomain`, `projectId`, `storageBucket`, `messagingSenderId`, `appId`, `measurementId`).
 
-/* Radii & Sombras */
---radius-sm: 8px;  --radius-md: 12px; --radius-lg: 16px;
---radius-xl: 24px; --radius-full: 9999px;
---shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
---shadow-md: 0 4px 12px rgba(17,105,142,0.10);
---shadow-lg: 0 12px 32px rgba(17,105,142,0.15);
+- Esta configuración es **pública por diseño**: el Firebase Web SDK la expone en el navegador de los visitantes.
+- `apiKey`, `appId`, etc. **no son secretos** por sí mismos; la protección real está en las **Security Rules** de Firestore y en la configuración de Authentication.
+- **Nunca** deben incluirse en el frontend o en el repositorio: claves de *service account*, keys privadas, tokens secretos ni credenciales administrativas (esto incluye el Admin SDK o la API Key del servidor de Cloudinary).
 
-/* Colores sociales (footer) */
---color-wa: #25d366;   --color-ig: #e1306c;
---color-tt: #000000;   --color-fb: #1877f2;
-```
+### 3.3 Colecciones Firestore
 
----
+**`blogPosts`** — campos relevantes:
 
-## 📱 Responsive Breakpoints
+| Campo | Tipo | Notas |
+|-------|------|-------|
+| `titulo` | string | Título del post |
+| `descripcionCorta` | string (opcional) | Excerpt / meta description |
+| `categoria` | string | `ansiedad`, `depresion`, `pareja`, `familiar`, `autoestima`, `otros` |
+| `plantilla` | string | `estandar`, `imagen-destacada`, `galeria` |
+| `contenidoHtml` | string | Contenido en HTML (generado por Quill) |
+| `imagenPortadaUrl` | string (opcional) | URL de Cloudinary |
+| `publicado` | boolean | `true` = visible públicamente; `false` = borrador |
+| `fecha` | timestamp | Fecha de creación |
 
-| Breakpoint | Dispositivo | Cambios Clave |
-|------------|-------------|---------------|
-| **≥1440px** | Desktop Large | Container max-width 1280px, hero 2-col, footer 3-col (1.5/1/1fr) |
-| **1024–1439px** | Desktop / Tablet Landscape | Hero 2-col, footer 3-col |
-| **768–1023px** | Tablet Portrait | **Navbar → Hamburger absolute dropdown**, footer 2-col (brand 100% + nav/contact 50%), hero 1-col |
-| **<768px** | Mobile | Footer 1-col, hero image arriba, CTA sticky visible, WhatsApp float colisiona con footer (push up) |
+**`testimonios`** — campos relevantes:
 
-**Navbar móvil (768px)**: Dropdown absoluto bajo la nav (`top: 100%`, `left: 0`, `right: 0`), z-index 1000, animación `slideDown 0.3s`. Excluye `.has-dropdown > a` del handler "close on link click".
+| Campo | Tipo | Notas |
+|-------|------|-------|
+| `nombre` | string | Nombre del autor (clave requerida por reglas) |
+| `anonimo` | boolean (opcional) | Mostrar como anónimo |
+| `texto` | string | Texto del testimonio |
+| `estrellas` | int (1–5) | Calificación |
+| `aprobado` | boolean | `true` = aprobado por admin |
+| `rechazado` | boolean | `true` = rechazado |
+| `fecha` | timestamp | Fecha de envío |
+| `fechaAprobacion` | timestamp (opcional) | Fecha de aprobación |
 
----
+### 3.4 Security Rules (`firestore.rules`)
 
-## 🧩 Componentes Principales
+La seguridad está íntegramente en las reglas de Firestore — **no** en el mero ocultamiento de `/admin.html`. Las páginas de admin sí comprueban autorización en el cliente, pero la barrera real es el servidor de reglas.
 
-### 1. Navbar (`<nav id="navbar">`)
-- **Desktop**: Links horizontales + dropdown "Servicios" (hover/focus)
-- **Mobile (≤768px)**: Hamburger → dropdown absoluto con todos los links
-- **Scroll effect**: `.scrolled` añade backdrop-blur + sombra
-- **Active link**: Resaltado por scroll (IntersectionObserver)
+**Determinación de admin (`isAdmin()`):** es admin todo usuario autenticado cuyo `email` coincida con la lista configurada en las reglas:
 
-### 2. Hero
-- Layout 2-col (texto + imagen) en desktop, 1-col móvil
-- Foto original `foto-fernanda.png` (377×661) — **no optimizada** por decisión de cliente
-- Wave background animado (SVG)
-- Trust indicators: avatares + contador "+150 pacientes"
-
-### 3. Footer — *Luxto Style* (Referencia: `index.html:5558-5650`)
-```
-┌─────────────────────────────────────────────────────────────┐
-│  FRANJA CITA CENTRADA: "Si mejoras tú, mejora el mundo..."  │
-├─────────────────────────────────────────────────────────────┤
-│  GRID 3 COL:  Brand (1.5fr)  │  Nav (1fr)  │  Contacto (1fr) │
-│  • Logo círculo + nombre      │  7 links    │  Ubicación      │
-│  • Tagline "PSICOLOGÍA ACT"   │             │  WhatsApp       │
-│  • Descripción + pill         │             │  Email          │
-│                               │             │  Horario        │
-│                               │             │  4 Social btns  │
-├─────────────────────────────────────────────────────────────┤
-│  BOTTOM BAR: Copyright + Legal links (Privacidad, Términos) │
-└─────────────────────────────────────────────────────────────┘
-```
-- **Noise texture**: SVG filter `feTurbulence` en `.footer-background::before`
-- **Social buttons**: Brand colors en hover (`--color-wa`, `--color-ig`, `--color-tt`, `--color-fb`)
-- **Responsive**: 1023px → 2-col (brand 100%), 767px → 1-col
-
-### 4. WhatsApp Float (`.whatsapp-float`)
-- Fixed bottom-right, `z-index: 100`
-- **Mobile collision detection**: Si `floatRect.bottom >= footerRect.top - 16` → `bottom = footerHeight + 24px`
-- Pulse animation + tooltip en hover
-
-### 5. Blog System
-- **Firestore Collection**: `blogPosts`
-- **Query público**: `where('publicado', '==', true).orderBy('fecha', 'desc')`
-- **Índice compuesto requerido**: `blogPosts` → `publicado Asc, fecha Desc` (`firestore.indexes.json`)
-- **blog.html**: Grid responsivo, filtros por categoría, búsqueda en tiempo real, paginación infinita
-- **blog-post.html**: Reading progress bar, share buttons, related posts (3), CTA final
-
-### 6. Admin Panel (`admin.html` + `admin-editor.html`)
-- **Auth**: Email/password (Firebase Auth) — solo cuentas autorizadas
-- **CRUD Posts**: Crear, editar, publicar/despublicar, eliminar
-- **CRUD Testimonios**: Gestión de testimonios con avatar
-- **Editor**: Quill.js v2 con toolbar completa, image resize, clipboard cleanup
-- **Seguridad**: Reglas Firestore separan `public` (read published) vs `admin` (read/write all)
-
----
-
-## 🔥 Firebase — Configuración
-
-### `firebase.json`
-```json
-{
-  "hosting": {
-    "public": "public",
-    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
-    "rewrites": [{ "source": "**", "destination": "/index.html" }]
-  },
-  "firestore": { "rules": "firestore.rules", "indexes": "firestore.indexes.json" }
-}
-```
-
-### `firestore.indexes.json` (Índices compuestos)
-```json
-{
-  "indexes": [
-    {
-      "collectionGroup": "blogPosts",
-      "queryScope": "COLLECTION",
-      "fields": [
-        { "fieldPath": "publicado", "order": "ASCENDING" },
-        { "fieldPath": "fecha", "order": "DESCENDING" }
-      ]
-    },
-    {
-      "collectionGroup": "testimonios",
-      "queryScope": "COLLECTION",
-      "fields": [
-        { "fieldPath": "publicado", "order": "ASCENDING" },
-        { "fieldPath": "orden", "order": "ASCENDING" }
-      ]
-    }
-  ]
-}
-```
-
-### Reglas Firestore (`firestore.rules` — resumidas)
 ```javascript
-rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-    // Blog posts: público lee solo publicados; admin lee/escribe todo
-    match /blogPosts/{docId} {
-      allow read: if resource.data.publicado == true || request.auth != null;
-      allow write: if request.auth != null && request.auth.token.admin == true;
-    }
-    // Testimonios: similar
-    match /testimonios/{docId} {
-      allow read: if resource.data.publicado == true || request.auth != null;
-      allow write: if request.auth != null && request.auth.token.admin == true;
-    }
+function isAdmin() {
+  return request.auth != null
+    && request.auth.token.email in [
+      'pensarsentirhacer.pe@gmail.com',
+      'paolosotil97@gmail.com'
+    ];
+}
+```
+
+Esta lista es **configuración técnica actual**, no algo que el usuario final deba editar manualmente.
+
+**Testimonios (`/testimonios/{docId}`):**
+- **Lectura pública:** solo testimonios aprobados (`aprobado == true`).
+- **Creación pública:** cualquier usuario (incluso no autenticado) puede enviar un testimonio, siempre que:
+  - incluya los campos `nombre`, `texto`, `estrellas`;
+  - `estrellas` sea entero entre 1 y 5;
+  - `aprobado` sea `false` (queda pendiente de moderación).
+- **Admin (lectura/escritura/borrado total):** solo si `isAdmin()`.
+
+**Posts (`/blogPosts/{docId}`):**
+- **Lectura pública:** solo posts publicados (`publicado == true`).
+- **Admin (lectura/escritura/borrado total):** solo si `isAdmin()` (incluye borradores).
+- **Bloqueo explícito:** cualquier `create`, `update`, `delete` que no sea admin falla (`allow ... if false`).
+
+### 3.5 Índices compuestos (`firestore.indexes.json`)
+
+El repositorio define exactamente **tres** índices:
+
+| Colección | Campos (orden) |
+|-----------|----------------|
+| `testimonios` | `aprobado` ASC, `fecha` DESC |
+| `blogPosts` | `publicado` ASC, `fecha` DESC |
+| `blogPosts` | `categoria` ASC, `publicado` ASC, `fecha` DESC |
+
+### 3.6 `firebase.json`
+
+```json
+{
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
   }
 }
 ```
 
----
-
-## 🖼 Optimización de Imágenes
-
-### Avatar María Fernanda (Blog / Blog-Post)
-- **Source**: `foto-fernanda.png` (377×661, portrait)
-- **Crop**: Square 1:1 desde **top-center** (cara centrada) → `foto-fernanda-square.png`
-- **WebP densities**: 72, 108, 144, 216, 260, 400, 520, 800px
-- **HTML** (`blog.html`, `blog-post.html`):
-  ```html
-  <img src="assets/images/foto-fernanda-square.png"
-       srcset="
-         assets/images/foto-fernanda-72.webp   72w,
-         assets/images/foto-fernanda-108.webp  108w,
-         assets/images/foto-fernanda-144.webp  144w,
-         assets/images/foto-fernanda-216.webp  216w,
-         assets/images/foto-fernanda-260.webp  260w,
-         assets/images/foto-fernanda-400.webp  400w,
-         assets/images/foto-fernanda-520.webp  520w,
-         assets/images/foto-fernanda-800.webp  800w
-       "
-       sizes="(max-width: 767px) 60px, (max-width: 1023px) 72px, 80px"
-       alt="María Fernanda Arana"
-       loading="lazy"
-       style="image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges;">
-  ```
-- **CSS**: `image-rendering` para nitidez en avatares pequeños (60–80px)
-
-### Hero / Perfil (index.html) — **NO optimizadas**
-- Usan `foto-fernanda.png` original a resolución completa
-- Decisión de cliente: máxima calidad en zonas destacadas
+Contiene **únicamente** la configuración de Firestore. **No** hay sección `hosting`, por lo tanto no existe configuración de Firebase Hosting.
 
 ---
 
-## 🚀 Despliegue
+## 4. Cloudinary
 
-### Prerrequisitos
+- **Propiedad:** cuenta de **María Fernanda**.
+- **Uso:** alojamiento de las imágenes del blog (imagen de portada e imágenes insertadas en el contenido).
+- **Cómo se sube:** desde el editor, mediante petición `POST` unsigned a `https://api.cloudinary.com/v1_1/{cloudName}/image/upload` con `upload_preset` y `folder`.
+- **Configuración pública existente** (`public/src/js/firebase-config.js`):
+  - `cloudName`: `vzqynzsh`
+  - `uploadPreset`: `blog-fernanda`
+  - `folder`: `blog-fernanda`
+- **Límite:** máximo 5 MB por imagen (validado en el editor).
+- **Nota de seguridad:** este preset es *unsigned* (público). No se documenta aquí ninguna contraseña ni secreto de Cloudinary.
+
+---
+
+## 5. Blog
+
+- **Colección Firestore:** `blogPosts`.
+- **Consulta pública (listado):** `where('publicado', '==', true)` + `orderBy('fecha', 'desc')` + `limit(50)`.
+- **Filtros:** por categoría (`ansiedad`, `depresion`, `pareja`, `familiar`, `autoestima`, `otros`) mediante botones en `blog.html`. El filtrado se hace en el cliente sobre los resultados cargados.
+- **Búsqueda:** no implementada (no hay buscador de texto).
+- **Paginación:** no implementada (se muestran los últimos 50 posts publicados).
+- **Vista individual (`blog-post.html`):** obtiene el post por `id` desde la URL; solo lo muestra si `publicado == true`. Actualiza meta tags (título, descripción, Open Graph). Renderiza mediante el módulo compartido `blog-renderer.js` según la `plantilla`:
+  - `estandar` — header + contenido;
+  - `imagen-destacada` — hero full-width con overlay;
+  - `galeria` — contenido con imágenes intercaladas.
+- **Posts relacionados:** sí — carga hasta 3 posts de la misma `categoria`, excluyendo el actual.
+- **CTA final:** botón de WhatsApp + enlace a ver más artículos.
+- **Editor:** `admin-editor.html` con **Quill.js v2** (toolbar, modificar tamaño de imágenes, limpieza). Vista previa con el mismo renderizador (paridad 100% preview = publicado).
+- **Publicación/despublicación:** el campo booleano `publicado` controla visibilidad. Guardar borrador (`publicado = false`) o publicar (`publicado = true`).
+- **Imágenes:** portada (`imagenPortadaUrl`) e imágenes en el contenido, subidas a Cloudinary.
+
+---
+
+## 6. Testimonios
+
+**Visitante (usuario no autenticado):**
+- Puede enviar un testimonio desde el formulario de la landing (`index.html`).
+- Datos que envía: `nombre` (opcional, con opción `anonimo`), `texto` (obligatorio), `estrellas` (1–5, obligatorio).
+- Validaciones: `texto` no vacío y `estrellas` entre 1 y 5 (cliente), más las validaciones de las reglas (servidor).
+- Todo testimonio se guarda con `aprobado: false` (pendiente de moderación).
+
+**Administrador:**
+- Aprueba (`aprobado: true`, `rechazado: false`), rechaza (`aprobado: false`, `rechazado: true`), visualiza y elimina testimonios desde `admin.html`.
+
+**Público (visitantes):**
+- Solo ve testimonios con `aprobado == true`, ordenados por `fecha` descendente, con límite de 20, mezclados con los testimonios estáticos en la marquesina.
+
+---
+
+## 7. Panel administrativo
+
+**Login (`admin.html`):**
+- Autenticación con **Google** (Firebase Authentication vía `signInWithPopup` con `GoogleAuthProvider`). No usa email/contraseña.
+- **Autorización:** tras el login, se verifica que el email del usuario esté en `ADMIN_EMAILS` (definido en `firebase-config.js`). En el servidor, la autorización real la impone `isAdmin()` en `firestore.rules`.
+- Si el usuario no está autorizado, se cierra la sesión y se muestra error.
+
+**Gestión de posts (panel):** listar todos (publicados y borradores), editar (redirige al editor), ver en vivo, eliminar, y crear nuevo.
+
+**Gestión de testimonios (panel):** listar pendientes/aprobados/rechazados con estadísticas, ver detalle, aprobar, rechazar y eliminar.
+
+**Editor (`admin-editor.html`):**
+- Requiere usuario autenticado y autorizado (si no, redirige a `admin.html`).
+- Edita título, descripción corta, categoría, plantilla y contenido con Quill.
+- Subida de **imagen de portada** y de **imágenes de contenido** a Cloudinary.
+- Guardar borrador / publicar / vista previa.
+
+**Logout:** botón de salir en `admin.html` (`signOut`).
+
+---
+
+## 8. Despliegue
+
+### 8.1 Frontend — GitHub Pages
+
+El despliegue es **automático** mediante el workflow `.github/workflows/deploy-pages.yml`:
+
+- Se ejecuta en cada `push` a la rama `main`.
+- Usa `peaceiris/actions-gh-pages@v4` para publicar el contenido de la carpeta **`public/`** en la rama **`gh-pages`**.
+
+La web se sirve desde la carpeta `public/` (confirmado por `publish_dir: public`).
+
+### 8.2 Firebase — Firebase CLI
+
+La CLI de Firebase solo gestiona los recursos definidos en `firebase.json`, que en este proyecto son únicamente **Firestore (rules e indexes)**:
+
 ```bash
-npm install -g firebase-tools
-firebase login
+# Desplegar reglas e índices de Firestore
+firebase deploy --only firestore:rules,firestore:indexes --project pagina-web-8ab3b
 ```
 
-### Desarrollo local
-```bash
-cd landing-maria-fernanda
-firebase serve --only hosting  # http://localhost:5000
+> No existe un comando `firebase deploy` que publique la web pública: la web está en GitHub Pages, no en Firebase Hosting.
+
+---
+
+## 9. Dominio (pendiente)
+
+El dominio aún **no está configurado**. El flujo planificado una vez se compre el dominio a nombre de María Fernanda:
+
+```
+Cloudflare  →  DNS  →  GitHub Pages  →  Custom Domain  →  HTTPS
 ```
 
-### Deploy producción
-```bash
-firebase deploy --project landing-maria-fernanda
-# → https://landing-maria-fernanda.web.app
-```
-
-### Git workflow
-```bash
-git add .
-git commit -m "feat: descripción del cambio"
-git push origin main  # SSH: git@github.com:elbrujo325/landing-maria-fernanda.git
-```
+1. Comprar el dominio a nombre de María Fernanda.
+2. Configurar el DNS en Cloudflare apuntando a GitHub Pages.
+3. Agregar el *custom domain* en el fork de GitHub Pages.
+4. Hacer cumplir HTTPS.
+5. **Importante:** agregar el dominio final como **Authorized Domain** en Firebase Authentication (si el flujo de login lo requiere); de lo contrario, el popup de login de Google fallará en el nuevo dominio.
 
 ---
 
-## 🔐 Acceso Admin
+## 10. Rellenar el admin
 
-1. Ir a `/admin.html`
-2. Login con cuenta autorizada (Firebase Auth → Authentication → Users)
-3. **Custom claim `admin: true`** requerido para writes en Firestore:
-   ```bash
-   # Via Firebase Admin SDK (Node)
-   admin.auth().setCustomUserClaims(uid, { admin: true })
-   ```
+Para lograr que una cuenta tenga acceso al panel, debe ocurrir todo lo siguiente:
 
----
+1. El usuario debe existir en Firebase Authentication.
+2. Su email debe aparecer en la lista `isAdmin()` de `firestore.rules` (y, en el cliente, en `ADMIN_EMAILS`).
 
-## 📋 Checklist de Calidad (Pre-deploy)
-
-- [ ] **HTML válido**: `npx html-validate public/*.html`
-- [ ] **CSS sin errores**: `npx stylelint public/**/*.html` (inline styles)
-- [ ] **JS sin errores consola**: Navegar todas las páginas en Chrome DevTools
-- [ ] **Responsive**: Test en 320px, 768px, 1024px, 1440px (Chrome Device Toolbar)
-- [ ] **Firestore indexes**: Verificar en Console → Firestore → Indexes (verdes = listos)
-- [ ] **Imágenes WebP**: Verificar `Network` tab → `img` → `webp` servido
-- [ ] **Accesibilidad**: `axe DevTools` — 0 critical/serious
-- [ ] **Performance**: Lighthouse ≥90 (Performance, Accessibility, Best Practices, SEO)
+Dado que la lista de admins está en las reglas, cualquier alta de un nuevo administrador implica actualizar las reglas y redesplegarlas.
 
 ---
 
-## 🐛 Known Issues / TODO
+## 11. Proceso de entrega al cliente
 
-| Issue | Archivo | Prioridad |
-|-------|---------|-----------|
-| Blog posts no cargan sin índice compuesto | `blog.html` / Firebase Console | 🔴 Crítico — crear índice en Console |
-| Admin Quill image upload → Firebase Storage | `admin-editor.html` | 🟡 Medio — actualmente base64/URL externo |
-| SEO meta tags dinámicos por post | `blog-post.html` | 🟡 Medio |
-| PWA manifest + service worker | `public/` | 🟢 Bajo |
-| Tests E2E (Playwright/Cypress) | — | 🟢 Bajo |
+1. **María** crea (o usa) su cuenta de GitHub.
+2. **María** hace un **fork** del repositorio original `elbrujo325/landing-maria-fernanda`. Su fork es su copia/propiedad del código.
+3. Se configura **GitHub Pages** en el fork de María (a partir de la carpeta `public/`).
+4. Se compra/configura el **dominio** a nombre de María.
+5. Se configura el **DNS en Cloudflare**.
+6. Se conecta el **dominio a GitHub Pages** (custom domain + HTTPS).
+7. Se configura el **dominio autorizado en Firebase Authentication** (si el login lo requiere).
+8. Se **prueban** todas las funcionalidades (landing, blog, testimonios, admin, imágenes).
+9. **María valida y acepta** la entrega.
+10. **Paolo retira su acceso de Firebase** (su email se elimina de `isAdmin()` y de `ADMIN_EMAILS`, y se retira su membresía del proyecto Firebase).
+
+**Propiedad final:**
+- GitHub → María Fernanda (mediante su fork)
+- Firebase → María Fernanda
+- Cloudinary → María Fernanda
+- Dominio → María Fernanda
+
+### Rol del desarrollador (Paolo)
+
+Paolo es colaborador técnico de Firebase **durante el desarrollo**: configuración, despliegue de reglas e índices, debugging, pruebas y mantenimiento. Al terminar configuración, pruebas, entrega y recibir aprobación de la clienta, **retirará su acceso**. Si más adelante existe un contrato de mantenimiento, el acceso podrá volver a concederse.
 
 ---
 
-## 📄 Licencia
+## 12. Checklist de entrega
 
-Proyecto privado — Todos los derechos reservados a **María Fernanda Arana** y **Henry Paolo Alfaro Sotil** (desarrollador).
+**GitHub**
+- [ ] Fork realizado por María
+- [ ] GitHub Pages funcionando en el fork
+
+**Dominio**
+- [ ] Dominio comprado a nombre de María
+- [ ] DNS configurado (Cloudflare)
+- [ ] HTTPS funcionando
+
+**Firebase**
+- [ ] Authentication funcionando
+- [ ] Dominio autorizado (si el login lo requiere)
+- [ ] Firestore funcionando
+- [ ] Reglas verificadas
+- [ ] Índices verificados
+
+**Cloudinary**
+- [ ] Subida de imágenes funcionando
+
+**Web pública**
+- [ ] Landing
+- [ ] Navegación
+- [ ] Blog
+- [ ] Posts individuales
+- [ ] Testimonios
+- [ ] Formulario de testimonio
+- [ ] WhatsApp
+- [ ] Responsive
+
+**Admin**
+- [ ] Login
+- [ ] Crear post
+- [ ] Editar post
+- [ ] Publicar
+- [ ] Despublicar
+- [ ] Subida de imágenes
+- [ ] Moderar testimonios (aprobar/rechazar)
+- [ ] Logout
+
+**Seguridad**
+- [ ] El visitante no puede modificar posts
+- [ ] El visitante no puede modificar testimonios existentes
+- [ ] Los borradores no son públicos
+- [ ] Las operaciones administrativas requieren autorización
+
+**Cierre**
+- [ ] Cliente acepta la entrega
+- [ ] Paolo retira su acceso de Firebase
 
 ---
 
-## 👨‍💻 Autor
+## 13. Mantenimiento
 
-**Henry Paolo Alfaro Sotil**  
-Full-stack Developer · Firebase · Web Performance · UX Engineering . Physics . Data Science
+- **Contenido:** posts y testimonios se gestionan desde el panel admin (no requiere tocar código).
+- **Moderación:** los testimonios enviados quedan en estado pendiente hasta que se aprueban.
+- **Reglas e índices:** ante nuevos tipos de consulta, actualizar `firestore.rules` y/o `firestore.indexes.json` y redesplegar con `firebase deploy --only firestore:rules,firestore:indexes`.
+- **Nuevo administrador:** requiere alta en Firebase Authentication + actualizar la lista de admins en reglas y en `firebase-config.js`.
 
-- GitHub: [@elbrujo325](https://github.com/elbrujo325)
-- LinkedIn: [linkedin.com/in/henry-paolo-alfaro-sotil](https://linkedin.com/in/henry-paolo-alfaro-sotil)
-- Email: paolosotil97@gmail.com
+---
 
-> *Desarrollado con enfoque en performance, accesibilidad y mantenibilidad. Código limpio, documentado y listo para escalar.*
+## 14. Nota sobre `docs/`
+
+La carpeta `docs/` contiene documentación de etapas previas del proyecto (por ejemplo, `DOCUMENTACION_TECNICA.tex/.pdf`) con referencias a una arquitectura **anterior** (Firebase Hosting, `firebase deploy`, dominio `.web.app`, ID de proyecto distinto). Esa documentación **no** se ha modificado en esta tarea. **Antes de la entrega final se debe revisar y reconciliar `docs/`** para que no queden referencias a una arquitectura que ya no se usa.
